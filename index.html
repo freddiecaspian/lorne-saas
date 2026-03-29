@@ -451,7 +451,7 @@ body {
 
 .voice-header h2 {
     font-family: 'DM Serif Display', Georgia, serif;
-    font-size: clamp(1.75rem, 3.5vw, 2.5rem);
+    font-size: clamp(2rem, 4vw, 2.75rem);
     font-weight: 400;
     letter-spacing: -0.02em;
     color: var(--text-light);
@@ -501,9 +501,9 @@ body {
 .voice-card.is-draft .voice-card-label { background: rgba(166, 58, 106, 0.15); color: #d47a9e; }
 
 .voice-card blockquote {
-    font-size: 1.05rem;
+    font-size: 1.15rem;
     color: var(--text-light);
-    line-height: 1.75;
+    line-height: 1.8;
     font-style: italic;
     border: none;
     margin: 0;
@@ -599,12 +599,12 @@ body {
 }
 
 .brand-restaurant-name {
-    font-size: 0.65rem;
+    font-size: 0.8rem;
     text-transform: uppercase;
-    letter-spacing: 0.12em;
+    letter-spacing: 0.1em;
     font-weight: 600;
-    color: var(--text-tertiary);
-    margin-bottom: 0.35rem;
+    color: var(--text);
+    margin-bottom: 0.25rem;
 }
 
 .brand-restaurant-type {
@@ -616,8 +616,12 @@ body {
     border-bottom: 1px solid var(--border);
 }
 
+.brand-restaurant:nth-child(1) .brand-restaurant-body { background: #fefcfa; }
+.brand-restaurant:nth-child(2) .brand-restaurant-body { background: #fafcfe; }
+.brand-restaurant:nth-child(3) .brand-restaurant-body { background: #fcfafe; }
+
 .brand-restaurant-quote {
-    font-size: 0.88rem;
+    font-size: 0.92rem;
     color: var(--text);
     line-height: 1.65;
     font-style: italic;
@@ -870,10 +874,29 @@ body {
 }
 
 /* ---- FINAL CTA ---- */
+.final-cta-wrapper {
+    background: var(--bg-dark);
+    margin-top: 4rem;
+    position: relative;
+    overflow: hidden;
+}
+
+.final-cta-wrapper::before {
+    content: '';
+    position: absolute;
+    top: -4rem;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 32rem;
+    height: 32rem;
+    background: radial-gradient(circle, rgba(139, 34, 82, 0.1) 0%, transparent 70%);
+    pointer-events: none;
+}
+
 .final-cta {
     padding: 5rem 0;
-    border-top: 1px solid var(--border);
     text-align: center;
+    position: relative;
 }
 
 .final-cta h2 {
@@ -885,21 +908,47 @@ body {
     max-width: 600px;
     margin-left: auto;
     margin-right: auto;
+    color: var(--text-light);
 }
 
 .final-cta p {
     font-size: 1rem;
-    color: var(--text-secondary);
+    color: var(--text-light-secondary);
     margin-bottom: 2rem;
     max-width: 480px;
     margin-left: auto;
     margin-right: auto;
 }
 
+.final-cta .hero-note {
+    color: var(--text-light-secondary);
+}
+
+.cta-primary-light {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.85rem 2rem;
+    background: #fff;
+    color: var(--wine);
+    border: none;
+    border-radius: 10px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    text-decoration: none;
+}
+
+.cta-primary-light:hover { background: var(--bg); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,0,0,0.2); }
+.cta-primary-light svg { width: 1rem; height: 1rem; }
+
 /* ---- FOOTER ---- */
 .footer {
     padding: 2rem 0;
-    border-top: 1px solid var(--border);
+    background: var(--bg-dark);
+    border-top: 1px solid var(--border-dark);
 }
 
 .footer-inner {
@@ -914,7 +963,7 @@ body {
 .footer-brand {
     font-family: 'DM Serif Display', Georgia, serif;
     font-size: 1rem;
-    color: var(--text-tertiary);
+    color: var(--text-light-secondary);
 }
 
 .footer-links {
@@ -924,11 +973,11 @@ body {
 
 .footer-links a {
     font-size: 0.8rem;
-    color: var(--text-tertiary);
+    color: var(--text-light-secondary);
     text-decoration: none;
 }
 
-.footer-links a:hover { color: var(--text); }
+.footer-links a:hover { color: var(--text-light); }
 
 /* ---- SCROLL ANIMATIONS ---- */
 .fade-up {
@@ -1302,15 +1351,17 @@ body {
 </section>
 
 <!-- FINAL CTA -->
-<section class="final-cta section" id="waitlist">
+<div class="final-cta-wrapper" id="waitlist">
+<section class="final-cta section fade-up">
     <h2>Stop answering emails at midnight</h2>
     <p>Join the waitlist for early access. We're onboarding a small number of independent restaurants in London first.</p>
-    <a href="mailto:freddie@nightdraft.com?subject=NightDraft%20waitlist&body=Restaurant%20name:%0ACovers:%0ABooking%20system%20(OpenTable/SevenRooms/other):%0A" class="cta-primary">
+    <a href="mailto:freddie@nightdraft.com?subject=NightDraft%20waitlist&body=Restaurant%20name:%0ACovers:%0ABooking%20system%20(OpenTable/SevenRooms/other):%0A" class="cta-primary-light">
         Get early access
         <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
     </a>
     <p class="hero-note">Or email freddie@nightdraft.com directly</p>
 </section>
+</div>
 
 <!-- FOOTER -->
 <footer class="footer">
