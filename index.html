@@ -1,0 +1,1380 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NightDraft - Your overnight emails, answered before you wake up</title>
+<meta name="description" content="NightDraft reads your restaurant booking emails overnight, drafts replies in your voice, and lets you send them with one tap. Built for independent restaurants.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><text y='24' font-size='24'>&#x1F311;</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=DM+Serif+Display&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+    --bg: #faf8f5;
+    --bg-card: #ffffff;
+    --bg-hover: #f5f2ee;
+    --bg-inset: #f0ece6;
+    --bg-dark: #1e1814;
+    --bg-dark-card: rgba(255,255,255,0.06);
+    --border: #e8e2d9;
+    --border-strong: #d4cdc2;
+    --border-dark: rgba(255,255,255,0.1);
+    --text: #2c2520;
+    --text-secondary: #7a7067;
+    --text-tertiary: #a69e94;
+    --text-light: #f0ece6;
+    --text-light-secondary: rgba(240,236,230,0.7);
+    --wine: #8b2252;
+    --wine-dim: rgba(139, 34, 82, 0.08);
+    --wine-light: #a63a6a;
+    --wine-glow: rgba(139, 34, 82, 0.15);
+    --green: #2d7a4f;
+    --green-dim: rgba(45, 122, 79, 0.08);
+    --amber: #b8860b;
+    --amber-dim: rgba(184, 134, 11, 0.08);
+    --blue: #3d6b99;
+    --blue-dim: rgba(61, 107, 153, 0.08);
+    --red: #c24b3a;
+    --red-dim: rgba(194, 75, 58, 0.08);
+}
+
+html { font-size: 16px; scroll-behavior: smooth; }
+
+body {
+    font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    line-height: 1.6;
+}
+
+/* ---- NAV ---- */
+.nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+    background: rgba(250, 248, 245, 0.92);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+    padding: 0.85rem 0;
+}
+
+.nav-inner {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 0 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.nav-brand {
+    font-family: 'DM Serif Display', Georgia, serif;
+    font-size: 1.25rem;
+    color: var(--text);
+    text-decoration: none;
+    letter-spacing: -0.02em;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.nav-brand-icon {
+    width: 1.5rem;
+    height: 1.5rem;
+    background: var(--wine);
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.nav-brand-icon svg { width: 0.9rem; height: 0.9rem; }
+
+.nav-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 1.25rem;
+    background: var(--wine);
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.85rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    text-decoration: none;
+}
+
+.nav-cta:hover { background: var(--wine-light); transform: translateY(-1px); }
+
+/* ---- LAYOUT ---- */
+.section {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 0 2rem;
+}
+
+/* ---- HERO ---- */
+.hero-wrapper {
+    position: relative;
+    overflow: hidden;
+    background: linear-gradient(180deg, var(--bg) 0%, #f5f0ea 60%, var(--bg) 100%);
+}
+
+.hero-wrapper::before {
+    content: '';
+    position: absolute;
+    top: 4rem;
+    right: -8rem;
+    width: 28rem;
+    height: 28rem;
+    background: radial-gradient(circle, var(--wine-glow) 0%, transparent 70%);
+    pointer-events: none;
+}
+
+.hero-wrapper::after {
+    content: '';
+    position: absolute;
+    top: 12rem;
+    left: -6rem;
+    width: 20rem;
+    height: 20rem;
+    background: radial-gradient(circle, rgba(45, 122, 79, 0.06) 0%, transparent 70%);
+    pointer-events: none;
+}
+
+.hero {
+    padding-top: 8rem;
+    padding-bottom: 2rem;
+    text-align: center;
+    position: relative;
+}
+
+.hero-label {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    font-weight: 600;
+    color: var(--wine);
+    background: var(--wine-dim);
+    padding: 0.35rem 1rem;
+    border-radius: 999px;
+    margin-bottom: 1.5rem;
+}
+
+.hero-label svg { width: 0.75rem; height: 0.75rem; }
+
+.hero h1 {
+    font-family: 'DM Serif Display', Georgia, serif;
+    font-size: clamp(2.25rem, 5vw, 3.5rem);
+    font-weight: 400;
+    letter-spacing: -0.03em;
+    line-height: 1.15;
+    color: var(--text);
+    max-width: 720px;
+    margin: 0 auto 1.25rem;
+}
+
+.hero-sub {
+    font-size: 1.15rem;
+    color: var(--text-secondary);
+    max-width: 540px;
+    margin: 0 auto 2rem;
+    line-height: 1.6;
+}
+
+.hero-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.85rem 2rem;
+    background: var(--wine);
+    color: #fff;
+    border: none;
+    border-radius: 10px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    text-decoration: none;
+}
+
+.hero-cta:hover { background: var(--wine-light); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(139, 34, 82, 0.2); }
+.hero-cta svg { width: 1rem; height: 1rem; }
+
+.hero-note {
+    font-size: 0.8rem;
+    color: var(--text-tertiary);
+    margin-top: 0.75rem;
+}
+
+/* ---- MOCKUP EMBED ---- */
+.mockup-section {
+    padding: 2rem 0 4rem;
+    position: relative;
+}
+
+.mockup-frame {
+    max-width: 640px;
+    margin: 0 auto;
+    border-radius: 16px;
+    overflow: hidden;
+    border: 1px solid var(--border);
+    box-shadow: 0 24px 80px rgba(44, 37, 32, 0.08), 0 4px 16px rgba(44, 37, 32, 0.04);
+    background: var(--bg-card);
+}
+
+.mockup-frame img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.mockup-frame iframe {
+    width: 100%;
+    height: 600px;
+    border: none;
+}
+
+.mockup-caption {
+    text-align: center;
+    margin-top: 1rem;
+    font-size: 0.8rem;
+    color: var(--text-tertiary);
+}
+
+.mockup-caption a {
+    color: var(--wine);
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.mockup-caption a:hover { text-decoration: underline; }
+
+/* ---- PROBLEM ---- */
+.problem {
+    padding: 4rem 0;
+    border-top: 1px solid var(--border);
+}
+
+.problem-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    align-items: start;
+}
+
+.problem h2 {
+    font-family: 'DM Serif Display', Georgia, serif;
+    font-size: 1.75rem;
+    font-weight: 400;
+    letter-spacing: -0.02em;
+    line-height: 1.25;
+    margin-bottom: 1.5rem;
+}
+
+.problem-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.problem-list li {
+    padding: 1rem 1.25rem;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    font-size: 0.95rem;
+    color: var(--text-secondary);
+    line-height: 1.5;
+    position: relative;
+    padding-left: 3rem;
+}
+
+.problem-list .problem-icon {
+    position: absolute;
+    left: 1rem;
+    top: 1.05rem;
+    width: 1.25rem;
+    height: 1.25rem;
+    color: var(--wine);
+}
+
+/* ---- HOW IT WORKS ---- */
+.how {
+    padding: 4rem 0;
+    border-top: 1px solid var(--border);
+}
+
+.how h2 {
+    font-family: 'DM Serif Display', Georgia, serif;
+    font-size: 1.75rem;
+    font-weight: 400;
+    letter-spacing: -0.02em;
+    text-align: center;
+    margin-bottom: 0.75rem;
+}
+
+.how-sub {
+    text-align: center;
+    color: var(--text-secondary);
+    margin-bottom: 3rem;
+    font-size: 1rem;
+}
+
+.steps {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 2rem;
+}
+
+.step {
+    text-align: center;
+    padding: 2rem 1.5rem;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    transition: all 0.2s ease;
+}
+
+.step:hover { border-color: var(--border-strong); box-shadow: 0 4px 16px rgba(44, 37, 32, 0.06); }
+
+.step-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 3rem;
+    height: 3rem;
+    border-radius: 12px;
+    margin-bottom: 1rem;
+}
+
+.step-icon svg { width: 1.5rem; height: 1.5rem; }
+
+.step:nth-child(1) .step-icon { background: var(--blue-dim); color: var(--blue); }
+.step:nth-child(2) .step-icon { background: var(--wine-dim); color: var(--wine); }
+.step:nth-child(3) .step-icon { background: var(--green-dim); color: var(--green); }
+
+.step h3 {
+    font-family: 'DM Serif Display', Georgia, serif;
+    font-size: 1.15rem;
+    font-weight: 400;
+    margin-bottom: 0.5rem;
+}
+
+.step-time {
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    font-weight: 600;
+    margin-bottom: 0.75rem;
+}
+
+.step:nth-child(1) .step-time { color: var(--blue); }
+.step:nth-child(2) .step-time { color: var(--wine); }
+.step:nth-child(3) .step-time { color: var(--green); }
+
+.step p {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    line-height: 1.5;
+}
+
+/* ---- FEATURES ---- */
+.features {
+    padding: 4rem 0;
+    border-top: 1px solid var(--border);
+}
+
+.features h2 {
+    font-family: 'DM Serif Display', Georgia, serif;
+    font-size: 1.75rem;
+    font-weight: 400;
+    letter-spacing: -0.02em;
+    text-align: center;
+    margin-bottom: 0.75rem;
+}
+
+.features-sub {
+    text-align: center;
+    color: var(--text-secondary);
+    margin-bottom: 3rem;
+    font-size: 1rem;
+}
+
+.feature-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+}
+
+.feature-card {
+    padding: 1.75rem;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    transition: all 0.2s ease;
+}
+
+.feature-card:hover { border-color: var(--border-strong); box-shadow: 0 4px 16px rgba(44, 37, 32, 0.06); }
+
+.feature-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: 10px;
+    margin-bottom: 1rem;
+}
+
+.feature-icon svg { width: 1.25rem; height: 1.25rem; }
+
+.feature-card:nth-child(1) .feature-icon { background: var(--wine-dim); color: var(--wine); }
+.feature-card:nth-child(2) .feature-icon { background: var(--green-dim); color: var(--green); }
+.feature-card:nth-child(3) .feature-icon { background: var(--blue-dim); color: var(--blue); }
+.feature-card:nth-child(4) .feature-icon { background: var(--amber-dim); color: var(--amber); }
+.feature-card:nth-child(5) .feature-icon { background: var(--wine-dim); color: var(--wine); }
+.feature-card:nth-child(6) .feature-icon { background: var(--green-dim); color: var(--green); }
+
+.feature-card h3 {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 1rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+}
+
+.feature-card p {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    line-height: 1.5;
+}
+
+/* ---- STATS ---- */
+.stats {
+    padding: 3rem 0;
+    border-top: 1px solid var(--border);
+}
+
+.stats-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    gap: 1.5rem;
+    text-align: center;
+}
+
+.stat-number {
+    font-family: 'DM Serif Display', Georgia, serif;
+    font-size: 2rem;
+    color: var(--wine);
+    line-height: 1;
+    margin-bottom: 0.35rem;
+}
+
+.stat-label {
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+    line-height: 1.4;
+}
+
+/* ---- VOICE SECTION (HERO SECTION) ---- */
+.voice-wrapper {
+    background: var(--bg-dark);
+    padding: 5rem 0;
+    margin: 4rem 0 0;
+    position: relative;
+    overflow: hidden;
+}
+
+.voice-wrapper::before {
+    content: '';
+    position: absolute;
+    top: -4rem;
+    right: -4rem;
+    width: 24rem;
+    height: 24rem;
+    background: radial-gradient(circle, rgba(139, 34, 82, 0.12) 0%, transparent 70%);
+    pointer-events: none;
+}
+
+.voice {
+    padding: 0;
+}
+
+.voice-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3.5rem;
+    align-items: center;
+}
+
+.voice h2 {
+    font-family: 'DM Serif Display', Georgia, serif;
+    font-size: 2rem;
+    font-weight: 400;
+    letter-spacing: -0.02em;
+    margin-bottom: 1.25rem;
+    color: var(--text-light);
+}
+
+.voice-text p {
+    font-size: 0.95rem;
+    color: var(--text-light-secondary);
+    line-height: 1.7;
+    margin-bottom: 1rem;
+}
+
+.voice-text ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+    margin-top: 0.5rem;
+}
+
+.voice-text li {
+    font-size: 0.9rem;
+    color: var(--text-light-secondary);
+    padding-left: 1.75rem;
+    position: relative;
+}
+
+.voice-text li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0.5rem;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--wine-light);
+}
+
+.voice-demo {
+    background: var(--bg-dark-card);
+    border: 1px solid var(--border-dark);
+    border-radius: 16px;
+    overflow: hidden;
+}
+
+.voice-demo-header {
+    padding: 1rem 1.5rem;
+    border-bottom: 1px solid var(--border-dark);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--text-light-secondary);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+}
+
+.voice-demo-header svg { width: 0.9rem; height: 0.9rem; color: var(--wine-light); }
+
+.voice-demo-body {
+    padding: 1.5rem;
+}
+
+.voice-example {
+    padding: 1.25rem;
+    background: rgba(255,255,255,0.03);
+    border-radius: 10px;
+    font-size: 0.9rem;
+    color: var(--text-light);
+    line-height: 1.7;
+    font-style: italic;
+    margin-bottom: 1rem;
+    border-left: 3px solid transparent;
+}
+
+.voice-example:last-child { margin-bottom: 0; }
+
+.voice-example.is-original { border-left-color: var(--blue); }
+.voice-example.is-draft { border-left-color: var(--wine-light); }
+
+.voice-tag {
+    display: inline-block;
+    font-size: 0.6rem;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    font-weight: 600;
+    padding: 0.2rem 0.6rem;
+    border-radius: 4px;
+    margin-bottom: 0.6rem;
+    font-style: normal;
+}
+
+.voice-tag.original { background: var(--blue-dim); color: #6fa3d4; }
+.voice-tag.draft { background: rgba(166, 58, 106, 0.15); color: #d47a9e; }
+
+/* ---- INTEGRATIONS ---- */
+.integrations {
+    padding: 4rem 0;
+    border-top: 1px solid var(--border);
+    text-align: center;
+}
+
+.integrations h2 {
+    font-family: 'DM Serif Display', Georgia, serif;
+    font-size: 1.75rem;
+    font-weight: 400;
+    letter-spacing: -0.02em;
+    margin-bottom: 0.75rem;
+}
+
+.integrations-sub {
+    color: var(--text-secondary);
+    margin-bottom: 2.5rem;
+    font-size: 1rem;
+}
+
+.integration-logos {
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+    margin-bottom: 1rem;
+}
+
+.integration-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.6rem;
+    padding: 1.25rem 2rem;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    min-width: 140px;
+    transition: all 0.2s ease;
+}
+
+.integration-item:hover { border-color: var(--border-strong); box-shadow: 0 2px 8px rgba(44, 37, 32, 0.06); }
+
+.integration-icon {
+    width: 2rem;
+    height: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 8px;
+}
+
+.integration-icon svg { width: 1.5rem; height: 1.5rem; }
+
+.integration-item:nth-child(1) .integration-icon { color: var(--red); }
+.integration-item:nth-child(2) .integration-icon { color: var(--wine); }
+.integration-item:nth-child(3) .integration-icon { color: var(--green); }
+.integration-item:nth-child(4) .integration-icon { color: var(--blue); }
+.integration-item:nth-child(5) .integration-icon { color: var(--amber); }
+
+.integration-name {
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: var(--text-secondary);
+}
+
+/* ---- PRICING ---- */
+.pricing {
+    padding: 4rem 0;
+    border-top: 1px solid var(--border);
+    text-align: center;
+}
+
+.pricing h2 {
+    font-family: 'DM Serif Display', Georgia, serif;
+    font-size: 1.75rem;
+    font-weight: 400;
+    letter-spacing: -0.02em;
+    margin-bottom: 0.75rem;
+}
+
+.pricing-sub {
+    color: var(--text-secondary);
+    margin-bottom: 2.5rem;
+    font-size: 1rem;
+}
+
+.pricing-card {
+    max-width: 420px;
+    margin: 0 auto;
+    padding: 2.5rem;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    box-shadow: 0 8px 32px rgba(44, 37, 32, 0.06);
+    position: relative;
+    overflow: hidden;
+}
+
+.pricing-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--wine), var(--wine-light));
+}
+
+.pricing-amount {
+    font-family: 'DM Serif Display', Georgia, serif;
+    font-size: 3rem;
+    color: var(--text);
+    line-height: 1;
+}
+
+.pricing-amount span {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 1rem;
+    font-weight: 500;
+    color: var(--text-secondary);
+}
+
+.pricing-period {
+    font-size: 0.85rem;
+    color: var(--text-tertiary);
+    margin-bottom: 1.5rem;
+}
+
+.pricing-features {
+    list-style: none;
+    text-align: left;
+    margin-bottom: 2rem;
+}
+
+.pricing-features li {
+    padding: 0.5rem 0;
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    border-bottom: 1px solid var(--bg-inset);
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.pricing-features li:last-child { border-bottom: none; }
+
+.check {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 1.25rem;
+    height: 1.25rem;
+    border-radius: 50%;
+    background: var(--green-dim);
+    color: var(--green);
+    flex-shrink: 0;
+}
+
+.check svg { width: 0.7rem; height: 0.7rem; }
+
+.pricing-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.85rem 2.5rem;
+    background: var(--wine);
+    color: #fff;
+    border: none;
+    border-radius: 10px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    text-decoration: none;
+    width: 100%;
+    justify-content: center;
+}
+
+.pricing-cta:hover { background: var(--wine-light); }
+
+.pricing-note {
+    font-size: 0.8rem;
+    color: var(--text-tertiary);
+    margin-top: 0.75rem;
+}
+
+/* ---- BRAND SECTION ---- */
+.brand {
+    padding: 4rem 0;
+    border-top: 1px solid var(--border);
+}
+
+.brand-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    align-items: center;
+}
+
+.brand h2 {
+    font-family: 'DM Serif Display', Georgia, serif;
+    font-size: 1.75rem;
+    font-weight: 400;
+    letter-spacing: -0.02em;
+    margin-bottom: 1rem;
+}
+
+.brand-text p {
+    font-size: 0.95rem;
+    color: var(--text-secondary);
+    line-height: 1.6;
+    margin-bottom: 1rem;
+}
+
+.brand-demo {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.brand-card {
+    padding: 1.5rem;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    transition: all 0.2s ease;
+}
+
+.brand-card:hover { border-color: var(--border-strong); box-shadow: 0 4px 12px rgba(44, 37, 32, 0.06); }
+
+.brand-card-header {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 1rem;
+}
+
+.brand-card-dot {
+    width: 2rem;
+    height: 2rem;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: #fff;
+}
+
+.brand-card:nth-child(1) .brand-card-dot { background: #c87941; }
+.brand-card:nth-child(2) .brand-card-dot { background: #3d6b99; }
+
+.brand-card-label {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    font-weight: 600;
+    color: var(--text-secondary);
+}
+
+.brand-card-preview {
+    padding: 1rem 1.25rem;
+    border-radius: 10px;
+    font-size: 0.88rem;
+    line-height: 1.6;
+    font-style: italic;
+    color: var(--text);
+}
+
+.brand-card:nth-child(1) .brand-card-preview {
+    background: #fdf6f0;
+    border-left: 3px solid #c87941;
+}
+
+.brand-card:nth-child(2) .brand-card-preview {
+    background: #f0f4f8;
+    border-left: 3px solid #3d6b99;
+}
+
+/* ---- FINAL CTA ---- */
+.final-cta {
+    padding: 5rem 0;
+    border-top: 1px solid var(--border);
+    text-align: center;
+}
+
+.final-cta h2 {
+    font-family: 'DM Serif Display', Georgia, serif;
+    font-size: clamp(1.75rem, 3.5vw, 2.25rem);
+    font-weight: 400;
+    letter-spacing: -0.02em;
+    margin-bottom: 1rem;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.final-cta p {
+    font-size: 1rem;
+    color: var(--text-secondary);
+    margin-bottom: 2rem;
+    max-width: 480px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* ---- FOOTER ---- */
+.footer {
+    padding: 2rem 0;
+    border-top: 1px solid var(--border);
+    text-align: center;
+}
+
+.footer-inner {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 0 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.footer-brand {
+    font-family: 'DM Serif Display', Georgia, serif;
+    font-size: 1rem;
+    color: var(--text-tertiary);
+}
+
+.footer-links {
+    display: flex;
+    gap: 1.5rem;
+}
+
+.footer-links a {
+    font-size: 0.8rem;
+    color: var(--text-tertiary);
+    text-decoration: none;
+}
+
+.footer-links a:hover { color: var(--text); }
+
+/* ---- SCROLL ANIMATIONS ---- */
+.fade-up {
+    opacity: 0;
+    transform: translateY(1.5rem);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.fade-up.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* ---- RESPONSIVE ---- */
+@media (max-width: 768px) {
+    .section { padding: 0 1.25rem; }
+
+    .hero { padding-top: 5.5rem; padding-bottom: 2rem; }
+
+    .problem-grid,
+    .voice-grid,
+    .brand-grid {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+
+    .steps {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+
+    .step {
+        display: grid;
+        grid-template-columns: auto 1fr;
+        grid-template-rows: auto auto;
+        text-align: left;
+        gap: 0 1rem;
+        padding: 1.25rem;
+    }
+
+    .step-icon {
+        grid-row: 1 / 3;
+        align-self: start;
+        margin-bottom: 0;
+    }
+
+    .step h3 { margin-bottom: 0.15rem; }
+    .step-time { margin-bottom: 0; }
+    .step p { grid-column: 2; }
+
+    .feature-grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+
+    .stats-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 1rem;
+    }
+
+    .footer-inner {
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    .mockup-frame iframe { height: 480px; }
+
+    .voice-wrapper { padding: 3.5rem 0; margin: 3rem 0 0; }
+
+    .integration-logos { gap: 0.75rem; }
+    .integration-item { min-width: 120px; padding: 1rem 1.25rem; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav">
+    <div class="nav-inner">
+        <a href="#" class="nav-brand">
+            <span class="nav-brand-icon">
+                <svg viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M8 2C5.5 2 4 4 4 6.5c0 2 1 3.5 2 4.5v2a1 1 0 001 1h2a1 1 0 001-1v-2c1-1 2-2.5 2-4.5C12 4 10.5 2 8 2z" fill="#fff" opacity="0.9"/>
+                    <circle cx="8" cy="6" r="1.5" fill="#8b2252"/>
+                </svg>
+            </span>
+            NightDraft
+        </a>
+        <a href="#waitlist" class="nav-cta">Join the waitlist</a>
+    </div>
+</nav>
+
+<!-- HERO -->
+<div class="hero-wrapper">
+<section class="hero section">
+    <div class="hero-label">
+        <svg viewBox="0 0 16 16" fill="currentColor"><path d="M8 1l2 5h5l-4 3.5 1.5 5L8 11.5 3.5 14.5 5 9.5 1 6h5z"/></svg>
+        Built with a Michelin Bib Gourmand restaurant
+    </div>
+    <h1>Your overnight emails, answered before you wake up</h1>
+    <p class="hero-sub">NightDraft reads your restaurant's booking emails, drafts replies in your voice, and lets you send them with one tap. You handle the hospitality. We handle the admin.</p>
+    <a href="#waitlist" class="hero-cta">
+        Join the waitlist
+        <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
+    </a>
+    <p class="hero-note">Free during early access. No credit card required.</p>
+</section>
+
+<!-- MOCKUP -->
+<section class="mockup-section section">
+    <div class="mockup-frame">
+        <iframe src="mockup.html" title="NightDraft product preview" loading="lazy"></iframe>
+    </div>
+    <p class="mockup-caption"><a href="mockup.html" target="_blank">Open full interactive preview</a></p>
+</section>
+</div>
+
+<!-- PROBLEM -->
+<section class="problem section fade-up">
+    <div class="problem-grid">
+        <div>
+            <h2>You finish service at midnight. By 8am, 15 emails are waiting.</h2>
+            <p style="font-size: 0.95rem; color: var(--text-secondary); line-height: 1.6;">Large parties, dietary requests, date changes, cancellations - all mixed in with supplier emails. You reply between prep and lunch, typing on your phone, hoping you don't double-book or miss someone's anniversary dinner.</p>
+        </div>
+        <ul class="problem-list">
+            <li>
+                <svg class="problem-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg>
+                Typing replies on your phone between services, one thumb at a time
+            </li>
+            <li>
+                <svg class="problem-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                Large party requests sitting unanswered for 12+ hours while you're on the floor
+            </li>
+            <li>
+                <svg class="problem-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8h1a4 4 0 010 8h-1"/><path d="M2 8h16v9a4 4 0 01-4 4H6a4 4 0 01-4-4V8z"/><line x1="6" y1="1" x2="6" y2="4"/><line x1="10" y1="1" x2="10" y2="4"/><line x1="14" y1="1" x2="14" y2="4"/></svg>
+                Dietary requirements buried in long email threads you don't have time to re-read
+            </li>
+            <li>
+                <svg class="problem-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>
+                OpenTable caps online bookings at 6-8 covers - everything else spills into email
+            </li>
+        </ul>
+    </div>
+</section>
+
+<!-- STATS -->
+<section class="stats section fade-up">
+    <div class="stats-grid">
+        <div>
+            <div class="stat-number">20 min</div>
+            <div class="stat-label">saved per day on email replies</div>
+        </div>
+        <div>
+            <div class="stat-number">50+</div>
+            <div class="stat-label">booking emails per week for a typical independent</div>
+        </div>
+        <div>
+            <div class="stat-number">&lt; 5 min</div>
+            <div class="stat-label">to review and send your entire overnight queue</div>
+        </div>
+        <div>
+            <div class="stat-number">5:1</div>
+            <div class="stat-label">ROI at just 2 hours saved per month</div>
+        </div>
+    </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="how section fade-up">
+    <h2>Three steps. One morning coffee.</h2>
+    <p class="how-sub">NightDraft works while you sleep and waits for you to approve.</p>
+    <div class="steps">
+        <div class="step">
+            <div class="step-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
+            </div>
+            <h3>Overnight</h3>
+            <div class="step-time">11pm - 8am</div>
+            <p>NightDraft reads every email that arrives overnight. Classifies each one - booking, modification, cancellation, dietary query - and extracts the details: party size, date, time, occasion, requirements.</p>
+        </div>
+        <div class="step">
+            <div class="step-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8A6 6 0 006 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 01-3.46 0"/></svg>
+            </div>
+            <h3>Morning review</h3>
+            <div class="step-time">Over your first coffee</div>
+            <p>Open the app. Your queue is ready - each email with a draft reply written in your voice. Edit if you want, add a personal touch, or just approve. Nothing sends without your tap.</p>
+        </div>
+        <div class="step">
+            <div class="step-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+            </div>
+            <h3>Send &amp; book</h3>
+            <div class="step-time">Done before service</div>
+            <p>One tap sends the reply from your restaurant email. Booking details are formatted and ready for your reservation system - OpenTable, SevenRooms, ResDiary, or whatever you use.</p>
+        </div>
+    </div>
+</section>
+
+<!-- VOICE (EMOTIONAL CENTREPIECE) -->
+<div class="voice-wrapper">
+<section class="voice section">
+    <div class="voice-grid">
+        <div class="voice-text">
+            <h2>Your voice. Not a robot.</h2>
+            <p>NightDraft learns how you write by studying your real email replies. Your warmth. Your turn of phrase. The way you mention the wine list for special occasions. The way you handle a cancellation without making the guest feel awkward.</p>
+            <p>And it gets smarter over time. Every edit you make teaches it. It learns how you speak to regulars versus first-time guests. How you handle a table of 12 differently to a table of 2.</p>
+            <ul>
+                <li>Trained on your real sent replies - not templates</li>
+                <li>Adapts per guest over time - learns returning visitors</li>
+                <li>Picks up your house rules automatically</li>
+                <li>You edit, it learns. Every session makes it sharper</li>
+            </ul>
+        </div>
+        <div class="voice-demo">
+            <div class="voice-demo-header">
+                <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M8 3v10M4 7l4-4 4 4"/><rect x="2" y="1" width="12" height="14" rx="2"/></svg>
+                Voice comparison
+            </div>
+            <div class="voice-demo-body">
+                <div class="voice-example is-original">
+                    <div class="voice-tag original">Your real reply</div>
+                    "How lovely - happy anniversary! We'd be delighted to have you. I've got a beautiful corner table that would be perfect for the occasion. Could I tempt you with our tasting menu? We can absolutely accommodate the dairy-free requirement."
+                </div>
+                <div class="voice-example is-draft">
+                    <div class="voice-tag draft">NightDraft's draft</div>
+                    "How lovely - congratulations! We'd be delighted to have you both. I've a wonderful table in mind for the evening - our corner spot would be perfect for the occasion. Our tasting menu would be ideal, and the dairy-free requirement is no problem at all."
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+</div>
+
+<!-- BRAND EXTENSION -->
+<section class="brand section fade-up">
+    <div class="brand-grid">
+        <div class="brand-demo">
+            <div class="brand-card">
+                <div class="brand-card-header">
+                    <div class="brand-card-dot">L</div>
+                    <div class="brand-card-label">The Lorne, Victoria</div>
+                </div>
+                <div class="brand-card-preview">
+                    "How lovely to hear from you! We'd be delighted to welcome your party. I can offer you our long table by the window - perfect for eight. Shall I put together a wine selection for the evening?"
+                </div>
+            </div>
+            <div class="brand-card">
+                <div class="brand-card-header">
+                    <div class="brand-card-dot">B</div>
+                    <div class="brand-card-label">The Blue Boar, Westminster</div>
+                </div>
+                <div class="brand-card-preview">
+                    "Good morning - thank you for your enquiry. We have availability on the 14th for a party of six. I'll reserve our private dining area. Please let us know of any dietary requirements in advance."
+                </div>
+            </div>
+        </div>
+        <div class="brand-text">
+            <h2>An extension of your restaurant, not ours</h2>
+            <p>Every restaurant has its own personality. NightDraft doesn't impose a corporate tone or generic templates. It becomes an extension of your brand - your words, your warmth, your way of making guests feel welcome before they've even walked through the door.</p>
+            <p>Two restaurants using NightDraft will produce completely different replies. Because the voice is yours. Customised to you, trained on you, improving for you.</p>
+        </div>
+    </div>
+</section>
+
+<!-- FEATURES -->
+<section class="features section fade-up">
+    <h2>Everything you need. Nothing you don't.</h2>
+    <p class="features-sub">Built specifically for independent restaurants, not retrofitted from enterprise software.</p>
+    <div class="feature-grid">
+        <div class="feature-card">
+            <div class="feature-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg>
+            </div>
+            <h3>Human in the loop. Always.</h3>
+            <p>Nothing sends without your approval. NightDraft drafts, you decide. Your guests will never receive a message you haven't reviewed.</p>
+        </div>
+        <div class="feature-card">
+            <div class="feature-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+            </div>
+            <h3>Smart classification</h3>
+            <p>Automatically sorts bookings, modifications, cancellations, dietary queries, and supplier emails. Priority-flagged so you handle what matters first.</p>
+        </div>
+        <div class="feature-card">
+            <div class="feature-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+            </div>
+            <h3>Works with your booking system</h3>
+            <p>Booking details formatted and ready for OpenTable, SevenRooms, ResDiary, or Resy. One-tap copy with a deep link to your reservation dashboard.</p>
+        </div>
+        <div class="feature-card">
+            <div class="feature-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg>
+            </div>
+            <h3>Mobile-first</h3>
+            <p>Designed for how you actually work - reviewing emails on your phone over coffee, not sitting at a desk. Tap to approve, swipe to skip.</p>
+        </div>
+        <div class="feature-card">
+            <div class="feature-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
+            </div>
+            <h3>Thread memory</h3>
+            <p>Remembers the full conversation with each guest. If they change their party size or add a dietary requirement in a follow-up, NightDraft catches it.</p>
+        </div>
+        <div class="feature-card">
+            <div class="feature-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8h1a4 4 0 010 8h-1"/><path d="M2 8h16v9a4 4 0 01-4 4H6a4 4 0 01-4-4V8z"/><line x1="6" y1="1" x2="6" y2="4"/><line x1="10" y1="1" x2="10" y2="4"/><line x1="14" y1="1" x2="14" y2="4"/></svg>
+            </div>
+            <h3>Dietary detail extraction</h3>
+            <p>Automatically pulls out allergies, intolerances, and preferences from long emails and flags them clearly. No more re-reading threads to find the coeliac guest.</p>
+        </div>
+    </div>
+</section>
+
+<!-- INTEGRATIONS -->
+<section class="integrations section fade-up">
+    <h2>Connects to what you already use</h2>
+    <p class="integrations-sub">NightDraft sits alongside your existing tools. No rip-and-replace.</p>
+    <div class="integration-logos">
+        <div class="integration-item">
+            <div class="integration-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+            </div>
+            <span class="integration-name">Gmail / Google Workspace</span>
+        </div>
+        <div class="integration-item">
+            <div class="integration-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+            </div>
+            <span class="integration-name">OpenTable</span>
+        </div>
+        <div class="integration-item">
+            <div class="integration-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>
+            </div>
+            <span class="integration-name">SevenRooms</span>
+        </div>
+        <div class="integration-item">
+            <div class="integration-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 014 4v14a3 3 0 00-3-3H2z"/><path d="M22 3h-6a4 4 0 00-4 4v14a3 3 0 013-3h7z"/></svg>
+            </div>
+            <span class="integration-name">ResDiary</span>
+        </div>
+        <div class="integration-item">
+            <div class="integration-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"/></svg>
+            </div>
+            <span class="integration-name">Resy</span>
+        </div>
+    </div>
+</section>
+
+<!-- PRICING -->
+<section class="pricing section fade-up" id="pricing">
+    <h2>Simple pricing. No surprises.</h2>
+    <p class="pricing-sub">One plan. No per-cover fees. No long contracts.</p>
+    <div class="pricing-card">
+        <div class="pricing-amount">&pound;99<span> /month</span></div>
+        <div class="pricing-period">Cancel anytime. Free during early access.</div>
+        <ul class="pricing-features">
+            <li><span class="check"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="3.5 8.5 6.5 11.5 12.5 5.5"/></svg></span> Unlimited email processing</li>
+            <li><span class="check"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="3.5 8.5 6.5 11.5 12.5 5.5"/></svg></span> Voice training on your real replies</li>
+            <li><span class="check"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="3.5 8.5 6.5 11.5 12.5 5.5"/></svg></span> Smart classification and priority sorting</li>
+            <li><span class="check"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="3.5 8.5 6.5 11.5 12.5 5.5"/></svg></span> Booking detail extraction</li>
+            <li><span class="check"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="3.5 8.5 6.5 11.5 12.5 5.5"/></svg></span> Integration with your reservation system</li>
+            <li><span class="check"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="3.5 8.5 6.5 11.5 12.5 5.5"/></svg></span> Thread memory and guest history</li>
+            <li><span class="check"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="3.5 8.5 6.5 11.5 12.5 5.5"/></svg></span> Dietary and allergy flagging</li>
+            <li><span class="check"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="3.5 8.5 6.5 11.5 12.5 5.5"/></svg></span> Mobile-first interface</li>
+        </ul>
+        <a href="#waitlist" class="pricing-cta">Join the waitlist</a>
+        <p class="pricing-note">Less than the cost of one extra cover per month</p>
+    </div>
+</section>
+
+<!-- FINAL CTA -->
+<section class="final-cta section" id="waitlist">
+    <h2>Stop answering emails at midnight</h2>
+    <p>Join the waitlist for early access. We're onboarding a small number of independent restaurants in London first.</p>
+    <a href="mailto:freddie@nightdraft.com?subject=NightDraft%20waitlist&body=Restaurant%20name:%0ACovers:%0ABooking%20system%20(OpenTable/SevenRooms/other):%0A" class="hero-cta">
+        Get early access
+        <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
+    </a>
+    <p class="hero-note">Or email freddie@nightdraft.com directly</p>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+    <div class="footer-inner">
+        <div class="footer-brand">NightDraft</div>
+        <div class="footer-links">
+            <a href="mailto:freddie@nightdraft.com">Contact</a>
+            <a href="mockup.html">Product preview</a>
+        </div>
+    </div>
+</footer>
+
+<script>
+// Scroll-triggered fade-in
+const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+        }
+    });
+}, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+
+document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>
