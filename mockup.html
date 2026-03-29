@@ -48,14 +48,11 @@ body {
 
 /* ---- NAV ---- */
 .nav {
-    position: sticky;
-    top: 0;
+    position: relative;
     z-index: 100;
-    background: rgba(250, 248, 245, 0.9);
-    backdrop-filter: blur(16px);
-    -webkit-backdrop-filter: blur(16px);
+    background: var(--bg);
     border-bottom: 1px solid var(--border);
-    padding: 0.75rem 0;
+    padding: 0.85rem 0;
 }
 
 .nav-inner {
@@ -73,7 +70,7 @@ body {
 }
 
 .nav-logo {
-    height: 22px;
+    height: 28px;
     width: auto;
 }
 
@@ -283,21 +280,32 @@ body {
 .email-card {
     background: var(--bg-card);
     border: 1px solid var(--border);
-    border-radius: 12px;
-    padding: 1rem;
+    border-left: 3px solid var(--border);
+    border-radius: 2px 12px 12px 2px;
+    padding: 1rem 1rem 1rem 0.85rem;
     cursor: pointer;
     transition: all 0.2s ease;
     -webkit-tap-highlight-color: transparent;
     position: relative;
     overflow: hidden;
+    box-shadow: 0 1px 3px rgba(44, 37, 32, 0.04);
 }
 
 .email-card:active { transform: scale(0.98); }
-.email-card:hover { border-color: var(--border-strong); box-shadow: 0 4px 12px rgba(44, 37, 32, 0.08); transform: translateY(-1px); }
+.email-card:hover { border-color: var(--border-strong); box-shadow: 0 4px 16px rgba(44, 37, 32, 0.08); transform: translateY(-1px); }
+
+/* Urgency left-border colours */
+.email-card.urgency-action { border-left-color: var(--wine); }
+.email-card.urgency-review { border-left-color: var(--amber); }
+.email-card.urgency-done { border-left-color: var(--green); opacity: 0.7; }
+.email-card.urgency-muted { border-left-color: var(--border); opacity: 0.45; }
+.email-card.urgency-cancel { border-left-color: var(--red); }
 
 .email-card.expanded {
-    border-color: var(--wine);
-    box-shadow: 0 2px 12px rgba(139, 34, 82, 0.08);
+    border-color: var(--border-strong);
+    border-left-color: var(--wine);
+    box-shadow: 0 4px 20px rgba(44, 37, 32, 0.1);
+    opacity: 1;
 }
 
 .email-card-header {
@@ -695,6 +703,78 @@ body {
     line-height: 1.5;
 }
 
+/* ---- VOICE CARD ---- */
+.voice-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+    text-align: center;
+}
+
+.voice-quote {
+    font-family: 'DM Serif Display', Georgia, serif;
+    font-size: 1rem;
+    line-height: 1.6;
+    color: var(--text);
+    font-style: italic;
+    max-width: 440px;
+    margin: 0 auto;
+}
+
+.voice-caption {
+    font-size: 0.65rem;
+    color: var(--text-tertiary);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-top: 0.75rem;
+    font-weight: 500;
+}
+
+/* ---- VOICE TRAITS ---- */
+.voice-traits {
+    display: flex;
+    flex-direction: column;
+    gap: 0.85rem;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 1rem;
+}
+
+.voice-trait {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+}
+
+.trait-label {
+    font-size: 0.7rem;
+    font-weight: 600;
+    color: var(--text);
+}
+
+.trait-bar {
+    height: 4px;
+    background: var(--border);
+    border-radius: 2px;
+    overflow: hidden;
+}
+
+.trait-fill {
+    height: 100%;
+    background: var(--wine);
+    border-radius: 2px;
+}
+
+.trait-range {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.6rem;
+    color: var(--text-tertiary);
+}
+
 /* ---- STYLE PROFILE ---- */
 .profile-summary {
     background: var(--bg-card);
@@ -1037,7 +1117,7 @@ body {
     <div class="email-list">
 
         <!-- EMAIL 1: Standard booking - expanded to show the full flow -->
-        <div class="email-card expanded" onclick="toggleCard(event, this)">
+        <div class="email-card expanded urgency-action" onclick="toggleCard(event, this)">
             <div class="email-card-header">
                 <div class="email-sender">Sarah Mitchell</div>
                 <div class="email-time">11:42pm</div>
@@ -1115,7 +1195,7 @@ body {
         </div>
 
         <!-- EMAIL 2: Large party + dietary -->
-        <div class="email-card" onclick="toggleCard(event, this)">
+        <div class="email-card urgency-review" onclick="toggleCard(event, this)">
             <div class="email-card-header">
                 <div class="email-sender">James Thornton</div>
                 <div class="email-time">10:15pm</div>
@@ -1185,7 +1265,7 @@ body {
         </div>
 
         <!-- EMAIL 3: Stale draft - guest sent follow-up -->
-        <div class="email-card" onclick="toggleCard(event, this)">
+        <div class="email-card urgency-review" onclick="toggleCard(event, this)">
             <div class="email-card-header">
                 <div class="email-sender">Oliver Marsh</div>
                 <div class="email-time">6:45am</div>
@@ -1275,7 +1355,7 @@ body {
         </div>
 
         <!-- EMAIL 4: Already handled externally -->
-        <div class="email-card" onclick="toggleCard(event, this)">
+        <div class="email-card urgency-done" onclick="toggleCard(event, this)">
             <div class="email-card-header">
                 <div>
                     <div class="email-sender">Priya Kapoor</div>
@@ -1296,7 +1376,7 @@ body {
         </div>
 
         <!-- EMAIL 5: Cancellation -->
-        <div class="email-card" onclick="toggleCard(event, this)">
+        <div class="email-card urgency-cancel" onclick="toggleCard(event, this)">
             <div class="email-card-header">
                 <div class="email-sender">David Chen</div>
                 <div class="email-time">1:20am</div>
@@ -1338,7 +1418,7 @@ body {
         </div>
 
         <!-- EMAIL 6: Supplier (auto-archived) -->
-        <div class="email-card" style="opacity: 0.45;" onclick="toggleCard(event, this)">
+        <div class="email-card urgency-muted" onclick="toggleCard(event, this)">
             <div class="email-card-header">
                 <div class="email-sender">Bibendum Wine</div>
                 <div class="email-time">3:10am</div>
@@ -1356,41 +1436,49 @@ body {
 <!-- ======== SCREEN: VOICE / STYLE ======== -->
 <div id="screen-style" class="container" style="display:none;">
 
-    <div class="screen-label">Your Voice</div>
-
     <div class="status-bar">
         <div class="greeting">
             <h1>Katie's voice</h1>
-            <p>Trained from 18 real email replies</p>
+            <p>Learned from 18 real replies</p>
         </div>
+    </div>
+
+    <div class="voice-card">
+        <div class="voice-quote">"Hi Sarah, lovely &mdash; you're all booked in for 4 at 7.30 on Friday. See you then, K x"</div>
+        <div class="voice-caption">How you sound to guests</div>
     </div>
 
     <div class="settings-section">
         <h3>Style profile</h3>
-        <div class="profile-summary">
-            <div class="profile-row">
-                <div class="profile-key">Tone</div>
-                <div class="profile-val">Warm, direct, personal</div>
+        <div class="voice-traits">
+            <div class="voice-trait">
+                <div class="trait-label">Tone</div>
+                <div class="trait-bar"><div class="trait-fill" style="width: 80%"></div></div>
+                <div class="trait-range"><span>Formal</span><span>Casual</span></div>
             </div>
-            <div class="profile-row">
-                <div class="profile-key">Formality</div>
-                <div class="profile-val" style="color: var(--green)">Casual-professional</div>
+            <div class="voice-trait">
+                <div class="trait-label">Length</div>
+                <div class="trait-bar"><div class="trait-fill" style="width: 30%"></div></div>
+                <div class="trait-range"><span>Brief</span><span>Detailed</span></div>
             </div>
-            <div class="profile-row">
-                <div class="profile-key">Avg. reply length</div>
-                <div class="profile-val">45 words</div>
+            <div class="voice-trait">
+                <div class="trait-label">Warmth</div>
+                <div class="trait-bar"><div class="trait-fill" style="width: 90%"></div></div>
+                <div class="trait-range"><span>Neutral</span><span>Personal</span></div>
             </div>
+        </div>
+        <div class="profile-summary" style="margin-top: 0.75rem;">
             <div class="profile-row">
                 <div class="profile-key">Sign-off</div>
-                <div class="profile-val">K x</div>
+                <div class="profile-val" style="font-style: italic;">K x</div>
             </div>
             <div class="profile-row">
                 <div class="profile-key">Uses guest's name</div>
                 <div class="profile-val">Always</div>
             </div>
             <div class="profile-row">
-                <div class="profile-key">Exclamation marks</div>
-                <div class="profile-val">Moderate (birthdays, celebrations)</div>
+                <div class="profile-key">Avg. reply length</div>
+                <div class="profile-val">45 words</div>
             </div>
         </div>
     </div>
@@ -1600,6 +1688,13 @@ function showScreen(name) {
 
     document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
     event.target.classList.add('active');
+
+    // Reset filters when returning to inbox
+    if (name === 'inbox') {
+        document.querySelectorAll('.filter-pill').forEach(p => p.classList.remove('active'));
+        document.querySelector('.filter-pill').classList.add('active');
+        document.querySelectorAll('.email-card').forEach(c => c.style.display = '');
+    }
 
     window.scrollTo({ top: 0, behavior: 'smooth' });
 }
