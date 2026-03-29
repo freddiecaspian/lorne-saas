@@ -167,6 +167,29 @@ body {
     50% { opacity: 0.4; }
 }
 
+/* ---- SERVICE SUMMARY ---- */
+.service-summary {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 1rem 1.25rem;
+    margin-bottom: 1rem;
+    text-align: center;
+}
+
+.service-date {
+    font-family: 'DM Serif Display', Georgia, serif;
+    font-size: 0.95rem;
+    color: var(--text);
+    margin-bottom: 0.2rem;
+}
+
+.covers-count {
+    font-size: 0.75rem;
+    color: var(--text-tertiary);
+    font-weight: 500;
+}
+
 /* ---- PROGRESS BAR ---- */
 .progress-bar-container {
     margin-bottom: 1.5rem;
@@ -229,6 +252,24 @@ body {
 .filter-pill.active {
     color: var(--text);
     background: var(--bg-inset);
+}
+
+.pill-count {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 1rem;
+    height: 1rem;
+    padding: 0 0.25rem;
+    border-radius: 999px;
+    background: var(--border);
+    font-size: 0.55rem;
+    font-weight: 700;
+    margin-left: 0.15rem;
+}
+
+.filter-pill.active .pill-count {
+    background: var(--border-strong);
 }
 
 /* ---- EMAIL CARDS ---- */
@@ -316,11 +357,12 @@ body {
 .extracted-details {
     background: var(--bg-inset);
     border-radius: 8px;
-    padding: 0.75rem;
-    margin: 0.75rem 0;
+    padding: 0.85rem;
+    margin: 0.85rem 0;
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 0.5rem;
+    gap: 0.6rem;
+    border: 1px solid var(--border);
 }
 
 .detail-item {
@@ -424,9 +466,9 @@ body {
 /* ---- ORIGINAL EMAIL ---- */
 .original-email {
     margin-top: 0.75rem;
-    padding: 0.75rem;
-    background: var(--bg-inset);
-    border-radius: 8px;
+    padding: 0.75rem 0.75rem 0.75rem 1rem;
+    background: transparent;
+    border-radius: 0;
     border-left: 2px solid var(--border-strong);
 }
 
@@ -970,6 +1012,11 @@ body {
         </div>
     </div>
 
+    <div class="service-summary">
+        <div class="service-date">Tonight's service &mdash; Saturday 29 March</div>
+        <div class="covers-count">28 covers across 6 requests</div>
+    </div>
+
     <div class="progress-bar-container">
         <div class="progress-bar">
             <div class="progress-fill" style="width: 25%"></div>
@@ -980,9 +1027,10 @@ body {
     <div class="section-header">
         <h2>Overnight emails</h2>
         <div class="filter-pills">
-            <button class="filter-pill active">All</button>
-            <button class="filter-pill">Bookings</button>
-            <button class="filter-pill">Dietary</button>
+            <button class="filter-pill active" onclick="filterCards(event, 'all')">All <span class="pill-count">8</span></button>
+            <button class="filter-pill" onclick="filterCards(event, 'booking')">Bookings <span class="pill-count">3</span></button>
+            <button class="filter-pill" onclick="filterCards(event, 'modification')">Changes <span class="pill-count">2</span></button>
+            <button class="filter-pill" onclick="filterCards(event, 'cancellation')">Cancel <span class="pill-count">1</span></button>
         </div>
     </div>
 
@@ -1049,7 +1097,7 @@ body {
                 <div class="draft-section">
                     <div class="draft-label">
                         <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
-                        AI Draft
+                        Suggested reply
                     </div>
                     <div class="draft-text">
                         <p>Hi Sarah,</p>
@@ -1118,7 +1166,7 @@ body {
                 <div class="draft-section">
                     <div class="draft-label">
                         <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
-                        AI Draft
+                        Suggested reply
                     </div>
                     <div class="draft-text">
                         <p>Hi James,</p>
@@ -1210,7 +1258,7 @@ body {
                 <div class="draft-section">
                     <div class="draft-label">
                         <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
-                        AI Draft (regenerated)
+                        Suggested reply (updated)
                     </div>
                     <div class="draft-text">
                         <p>Hi Oliver,</p>
@@ -1273,7 +1321,7 @@ body {
                 <div class="draft-section">
                     <div class="draft-label">
                         <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
-                        AI Draft
+                        Suggested reply
                     </div>
                     <div class="draft-text">
                         <p>Hi David,</p>
@@ -1619,6 +1667,26 @@ function copyBookingDetails() {
         }, 2000);
     });
 }
+
+function filterCards(e, type) {
+    document.querySelectorAll('.filter-pill').forEach(p => p.classList.remove('active'));
+    e.target.closest('.filter-pill').classList.add('active');
+
+    document.querySelectorAll('.email-card').forEach(card => {
+        if (type === 'all') {
+            card.style.display = '';
+            return;
+        }
+        const tags = card.querySelectorAll('.tag');
+        const match = Array.from(tags).some(t => t.classList.contains(type));
+        card.style.display = match ? '' : 'none';
+    });
+}
+
+// Close overlay on escape key
+document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') closeBookingCard();
+});
 </script>
 
 </body>
