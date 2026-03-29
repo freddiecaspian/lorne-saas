@@ -68,14 +68,14 @@ body {
 }
 
 .nav-brand {
-    font-family: 'DM Serif Display', Georgia, serif;
-    font-size: 1.25rem;
-    font-weight: 400;
-    letter-spacing: -0.02em;
-    color: var(--wine);
+    display: flex;
+    align-items: center;
 }
 
-.nav-brand span { color: var(--wine); }
+.nav-logo {
+    height: 22px;
+    width: auto;
+}
 
 .nav-tabs {
     display: flex;
@@ -167,39 +167,29 @@ body {
     50% { opacity: 0.4; }
 }
 
-/* ---- STATS ROW ---- */
-.stats-row {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 0.75rem;
+/* ---- PROGRESS BAR ---- */
+.progress-bar-container {
     margin-bottom: 1.5rem;
 }
 
-.stat-card {
-    background: var(--bg-card);
-    border: 1px solid var(--border);
-    border-radius: 12px;
-    padding: 0.85rem;
-    text-align: center;
+.progress-bar {
+    height: 4px;
+    background: var(--border);
+    border-radius: 2px;
+    overflow: hidden;
 }
 
-.stat-number {
-    font-family: 'DM Serif Display', Georgia, serif;
-    font-size: 1.5rem;
-    font-weight: 400;
-    letter-spacing: -0.02em;
+.progress-fill {
+    height: 100%;
+    background: var(--wine);
+    border-radius: 2px;
+    transition: width 0.5s ease;
 }
 
-.stat-number.red { color: var(--wine); }
-.stat-number.amber { color: var(--amber); }
-.stat-number.green { color: var(--green); }
-
-.stat-label {
-    font-size: 0.65rem;
+.progress-label {
+    font-size: 0.7rem;
     color: var(--text-tertiary);
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
-    margin-top: 0.15rem;
+    margin-top: 0.5rem;
     font-weight: 500;
 }
 
@@ -262,7 +252,7 @@ body {
 }
 
 .email-card:active { transform: scale(0.98); }
-.email-card:hover { border-color: var(--border-strong); box-shadow: 0 2px 8px rgba(44, 37, 32, 0.06); }
+.email-card:hover { border-color: var(--border-strong); box-shadow: 0 4px 12px rgba(44, 37, 32, 0.08); transform: translateY(-1px); }
 
 .email-card.expanded {
     border-color: var(--wine);
@@ -372,16 +362,18 @@ body {
     gap: 0.35rem;
 }
 
+.draft-label svg { stroke: var(--wine); }
+
 .draft-text {
     font-size: 0.8rem;
     line-height: 1.7;
     color: var(--text-secondary);
-    background: var(--bg-inset);
+    background: linear-gradient(to bottom, var(--bg-inset) 0%, rgba(240, 236, 230, 0.5) 100%);
     border: 1px solid var(--border);
-    border-radius: 8px;
-    padding: 0.85rem;
+    border-left: 3px solid var(--wine);
+    border-radius: 2px 8px 8px 2px;
+    padding: 0.85rem 0.85rem 0.85rem 1rem;
     margin-bottom: 0.75rem;
-    font-style: italic;
 }
 
 .draft-text p { margin-bottom: 0.6rem; }
@@ -409,11 +401,11 @@ body {
 .btn:active { transform: scale(0.96); }
 
 .btn-primary {
-    background: var(--wine);
+    background: var(--green);
     color: #fff;
 }
 
-.btn-primary:hover { background: var(--wine-light); }
+.btn-primary:hover { background: #257a45; }
 
 .btn-secondary {
     background: var(--bg-inset);
@@ -955,7 +947,7 @@ body {
 <!-- ======== NAV ======== -->
 <nav class="nav">
     <div class="nav-inner">
-        <div class="nav-brand">lorne<span>.</span></div>
+        <div class="nav-brand"><img src="logo.webp" alt="Lorne" class="nav-logo"></div>
         <div class="nav-tabs">
             <button class="nav-tab active" onclick="showScreen('inbox')">Inbox</button>
             <button class="nav-tab" onclick="showScreen('style')">Voice</button>
@@ -967,32 +959,22 @@ body {
 <!-- ======== SCREEN: INBOX (Morning Queue) ======== -->
 <div id="screen-inbox" class="container">
 
-    <div class="screen-label">Morning Queue</div>
-
     <div class="status-bar">
         <div class="greeting">
             <h1>Morning, Katie</h1>
-            <p>8 new emails overnight - 6 drafts ready</p>
+            <p>6 guests waiting for a reply</p>
         </div>
         <div class="status-badge connected">
             <span class="dot"></span>
-            Gmail synced
+            Synced
         </div>
     </div>
 
-    <div class="stats-row">
-        <div class="stat-card">
-            <div class="stat-number red">6</div>
-            <div class="stat-label">Ready to send</div>
+    <div class="progress-bar-container">
+        <div class="progress-bar">
+            <div class="progress-fill" style="width: 25%"></div>
         </div>
-        <div class="stat-card">
-            <div class="stat-number amber">1</div>
-            <div class="stat-label">Needs review</div>
-        </div>
-        <div class="stat-card">
-            <div class="stat-number green">1</div>
-            <div class="stat-label">Handled</div>
-        </div>
+        <div class="progress-label">2 of 8 done &middot; 6 to go</div>
     </div>
 
     <div class="section-header">
