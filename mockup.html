@@ -6,33 +6,41 @@
 <title>Lorne SaaS - Product Mockup</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=DM+Serif+Display&display=swap" rel="stylesheet">
 <style>
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
 :root {
-    --black: #09090b;
-    --white: #fafafa;
-    --gray: #71717a;
-    --gray-light: #a1a1aa;
-    --gray-dark: #27272a;
-    --gray-darker: #18181b;
-    --red: #ef4444;
-    --red-dim: rgba(239, 68, 68, 0.15);
-    --green: #22c55e;
-    --green-dim: rgba(34, 197, 94, 0.15);
-    --amber: #f59e0b;
-    --amber-dim: rgba(245, 158, 11, 0.15);
-    --blue: #3b82f6;
-    --blue-dim: rgba(59, 130, 246, 0.15);
+    --bg: #faf8f5;
+    --bg-card: #ffffff;
+    --bg-hover: #f5f2ee;
+    --bg-inset: #f0ece6;
+    --border: #e8e2d9;
+    --border-strong: #d4cdc2;
+    --text: #2c2520;
+    --text-secondary: #7a7067;
+    --text-tertiary: #a69e94;
+    --wine: #8b2252;
+    --wine-dim: rgba(139, 34, 82, 0.08);
+    --wine-light: #a63a6a;
+    --green: #2d7a4f;
+    --green-dim: rgba(45, 122, 79, 0.08);
+    --amber: #b8860b;
+    --amber-dim: rgba(184, 134, 11, 0.08);
+    --blue: #3d6b99;
+    --blue-dim: rgba(61, 107, 153, 0.08);
+    --red: #c24b3a;
+    --red-dim: rgba(194, 75, 58, 0.08);
+    --purple: #7b5ea7;
+    --purple-dim: rgba(123, 94, 167, 0.08);
 }
 
 html { font-size: 16px; scroll-behavior: smooth; }
 
 body {
-    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-    background: var(--black);
-    color: var(--white);
+    font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+    background: var(--bg);
+    color: var(--text);
     min-height: 100dvh;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
@@ -43,10 +51,10 @@ body {
     position: sticky;
     top: 0;
     z-index: 100;
-    background: rgba(9, 9, 11, 0.85);
+    background: rgba(250, 248, 245, 0.9);
     backdrop-filter: blur(16px);
     -webkit-backdrop-filter: blur(16px);
-    border-bottom: 1px solid var(--gray-dark);
+    border-bottom: 1px solid var(--border);
     padding: 0.75rem 0;
 }
 
@@ -60,12 +68,14 @@ body {
 }
 
 .nav-brand {
-    font-size: 1.1rem;
-    font-weight: 800;
-    letter-spacing: -0.03em;
+    font-family: 'DM Serif Display', Georgia, serif;
+    font-size: 1.25rem;
+    font-weight: 400;
+    letter-spacing: -0.02em;
+    color: var(--wine);
 }
 
-.nav-brand span { color: var(--red); }
+.nav-brand span { color: var(--wine); }
 
 .nav-tabs {
     display: flex;
@@ -77,16 +87,17 @@ body {
     border-radius: 8px;
     font-size: 0.75rem;
     font-weight: 600;
-    color: var(--gray);
+    color: var(--text-secondary);
     cursor: pointer;
     transition: all 0.15s ease;
     border: none;
     background: none;
+    font-family: 'DM Sans', sans-serif;
     -webkit-tap-highlight-color: transparent;
 }
 
-.nav-tab:hover { color: var(--white); }
-.nav-tab.active { color: var(--white); background: var(--gray-dark); }
+.nav-tab:hover { color: var(--text); }
+.nav-tab.active { color: var(--text); background: var(--bg-inset); }
 
 /* ---- CONTAINER ---- */
 .container {
@@ -100,7 +111,7 @@ body {
     font-size: 0.6rem;
     text-transform: uppercase;
     letter-spacing: 0.15em;
-    color: var(--gray);
+    color: var(--text-tertiary);
     font-weight: 600;
     margin-bottom: 0.5rem;
 }
@@ -114,15 +125,17 @@ body {
 }
 
 .greeting h1 {
-    font-size: 1.4rem;
-    font-weight: 800;
-    letter-spacing: -0.03em;
+    font-family: 'DM Serif Display', Georgia, serif;
+    font-size: 1.5rem;
+    font-weight: 400;
+    letter-spacing: -0.02em;
     line-height: 1.2;
+    color: var(--text);
 }
 
 .greeting p {
     font-size: 0.8rem;
-    color: var(--gray-light);
+    color: var(--text-secondary);
     margin-top: 0.25rem;
 }
 
@@ -163,26 +176,27 @@ body {
 }
 
 .stat-card {
-    background: var(--gray-darker);
-    border: 1px solid var(--gray-dark);
+    background: var(--bg-card);
+    border: 1px solid var(--border);
     border-radius: 12px;
     padding: 0.85rem;
     text-align: center;
 }
 
 .stat-number {
+    font-family: 'DM Serif Display', Georgia, serif;
     font-size: 1.5rem;
-    font-weight: 800;
-    letter-spacing: -0.03em;
+    font-weight: 400;
+    letter-spacing: -0.02em;
 }
 
-.stat-number.red { color: var(--red); }
+.stat-number.red { color: var(--wine); }
 .stat-number.amber { color: var(--amber); }
 .stat-number.green { color: var(--green); }
 
 .stat-label {
     font-size: 0.65rem;
-    color: var(--gray);
+    color: var(--text-tertiary);
     text-transform: uppercase;
     letter-spacing: 0.08em;
     margin-top: 0.15rem;
@@ -198,9 +212,10 @@ body {
 }
 
 .section-header h2 {
-    font-size: 0.95rem;
-    font-weight: 700;
-    letter-spacing: -0.02em;
+    font-family: 'DM Serif Display', Georgia, serif;
+    font-size: 1rem;
+    font-weight: 400;
+    letter-spacing: -0.01em;
 }
 
 .filter-pills {
@@ -213,16 +228,17 @@ body {
     border-radius: 6px;
     font-size: 0.65rem;
     font-weight: 600;
-    color: var(--gray);
+    color: var(--text-tertiary);
     cursor: pointer;
     border: none;
     background: none;
+    font-family: 'DM Sans', sans-serif;
     transition: all 0.15s ease;
 }
 
 .filter-pill.active {
-    color: var(--white);
-    background: var(--gray-dark);
+    color: var(--text);
+    background: var(--bg-inset);
 }
 
 /* ---- EMAIL CARDS ---- */
@@ -234,22 +250,23 @@ body {
 }
 
 .email-card {
-    background: var(--gray-darker);
-    border: 1px solid var(--gray-dark);
+    background: var(--bg-card);
+    border: 1px solid var(--border);
     border-radius: 12px;
     padding: 1rem;
     cursor: pointer;
-    transition: all 0.15s ease;
+    transition: all 0.2s ease;
     -webkit-tap-highlight-color: transparent;
     position: relative;
     overflow: hidden;
 }
 
 .email-card:active { transform: scale(0.98); }
-.email-card:hover { border-color: var(--gray); }
+.email-card:hover { border-color: var(--border-strong); box-shadow: 0 2px 8px rgba(44, 37, 32, 0.06); }
 
 .email-card.expanded {
-    border-color: var(--red);
+    border-color: var(--wine);
+    box-shadow: 0 2px 12px rgba(139, 34, 82, 0.08);
 }
 
 .email-card-header {
@@ -264,18 +281,19 @@ body {
     font-size: 0.9rem;
     font-weight: 700;
     letter-spacing: -0.01em;
+    color: var(--text);
 }
 
 .email-time {
     font-size: 0.7rem;
-    color: var(--gray);
+    color: var(--text-tertiary);
     white-space: nowrap;
     margin-top: 0.1rem;
 }
 
 .email-subject {
     font-size: 0.8rem;
-    color: var(--gray-light);
+    color: var(--text-secondary);
     line-height: 1.4;
     margin-bottom: 0.6rem;
 }
@@ -298,15 +316,15 @@ body {
 .tag.booking { background: var(--blue-dim); color: var(--blue); }
 .tag.dietary { background: var(--amber-dim); color: var(--amber); }
 .tag.large-party { background: var(--red-dim); color: var(--red); }
-.tag.modification { background: rgba(168, 85, 247, 0.15); color: #a855f7; }
-.tag.cancellation { background: rgba(239, 68, 68, 0.15); color: var(--red); }
+.tag.modification { background: var(--purple-dim); color: var(--purple); }
+.tag.cancellation { background: var(--red-dim); color: var(--red); }
 .tag.available { background: var(--green-dim); color: var(--green); }
 .tag.partial { background: var(--amber-dim); color: var(--amber); }
 .tag.unavailable { background: var(--red-dim); color: var(--red); }
 
 /* ---- EXTRACTED DETAILS ---- */
 .extracted-details {
-    background: rgba(255, 255, 255, 0.03);
+    background: var(--bg-inset);
     border-radius: 8px;
     padding: 0.75rem;
     margin: 0.75rem 0;
@@ -323,7 +341,7 @@ body {
 
 .detail-label {
     font-size: 0.6rem;
-    color: var(--gray);
+    color: var(--text-tertiary);
     text-transform: uppercase;
     letter-spacing: 0.08em;
     font-weight: 500;
@@ -332,20 +350,21 @@ body {
 .detail-value {
     font-size: 0.8rem;
     font-weight: 600;
+    color: var(--text);
 }
 
 /* ---- DRAFT SECTION ---- */
 .draft-section {
     margin-top: 0.75rem;
     padding-top: 0.75rem;
-    border-top: 1px solid var(--gray-dark);
+    border-top: 1px solid var(--border);
 }
 
 .draft-label {
     font-size: 0.6rem;
     text-transform: uppercase;
     letter-spacing: 0.1em;
-    color: var(--red);
+    color: var(--wine);
     font-weight: 700;
     margin-bottom: 0.5rem;
     display: flex;
@@ -355,13 +374,14 @@ body {
 
 .draft-text {
     font-size: 0.8rem;
-    line-height: 1.6;
-    color: var(--gray-light);
-    background: rgba(255, 255, 255, 0.02);
-    border: 1px solid var(--gray-dark);
+    line-height: 1.7;
+    color: var(--text-secondary);
+    background: var(--bg-inset);
+    border: 1px solid var(--border);
     border-radius: 8px;
     padding: 0.85rem;
     margin-bottom: 0.75rem;
+    font-style: italic;
 }
 
 .draft-text p { margin-bottom: 0.6rem; }
@@ -376,7 +396,7 @@ body {
     flex: 1;
     padding: 0.7rem;
     border-radius: 10px;
-    font-family: 'Inter', sans-serif;
+    font-family: 'DM Sans', sans-serif;
     font-size: 0.8rem;
     font-weight: 700;
     cursor: pointer;
@@ -389,40 +409,40 @@ body {
 .btn:active { transform: scale(0.96); }
 
 .btn-primary {
-    background: var(--red);
-    color: var(--white);
+    background: var(--wine);
+    color: #fff;
 }
 
-.btn-primary:hover { background: #dc2626; }
+.btn-primary:hover { background: var(--wine-light); }
 
 .btn-secondary {
-    background: var(--gray-dark);
-    color: var(--white);
-    border: 1px solid var(--gray-dark);
+    background: var(--bg-inset);
+    color: var(--text);
+    border: 1px solid var(--border);
 }
 
-.btn-secondary:hover { background: var(--gray-darker); border-color: var(--gray); }
+.btn-secondary:hover { background: var(--bg-hover); border-color: var(--border-strong); }
 
 .btn-ghost {
     background: none;
-    color: var(--gray);
-    border: 1px solid var(--gray-dark);
+    color: var(--text-tertiary);
+    border: 1px solid var(--border);
 }
 
 /* ---- ORIGINAL EMAIL ---- */
 .original-email {
     margin-top: 0.75rem;
     padding: 0.75rem;
-    background: rgba(255, 255, 255, 0.02);
+    background: var(--bg-inset);
     border-radius: 8px;
-    border-left: 2px solid var(--gray-dark);
+    border-left: 2px solid var(--border-strong);
 }
 
 .original-email-label {
     font-size: 0.6rem;
     text-transform: uppercase;
     letter-spacing: 0.1em;
-    color: var(--gray);
+    color: var(--text-tertiary);
     font-weight: 600;
     margin-bottom: 0.35rem;
 }
@@ -430,7 +450,7 @@ body {
 .original-email-text {
     font-size: 0.78rem;
     line-height: 1.55;
-    color: var(--gray);
+    color: var(--text-secondary);
     font-style: italic;
 }
 
@@ -441,7 +461,7 @@ body {
     gap: 0.5rem;
     padding: 0.6rem 0.75rem;
     background: var(--amber-dim);
-    border: 1px solid rgba(245, 158, 11, 0.3);
+    border: 1px solid rgba(184, 134, 11, 0.2);
     border-radius: 8px;
     margin-bottom: 0.75rem;
     font-size: 0.75rem;
@@ -470,15 +490,16 @@ body {
 }
 
 .settings-section h3 {
-    font-size: 0.85rem;
-    font-weight: 700;
+    font-family: 'DM Serif Display', Georgia, serif;
+    font-size: 0.9rem;
+    font-weight: 400;
     margin-bottom: 0.75rem;
     letter-spacing: -0.01em;
 }
 
 .rule-card {
-    background: var(--gray-darker);
-    border: 1px solid var(--gray-dark);
+    background: var(--bg-card);
+    border: 1px solid var(--border);
     border-radius: 10px;
     padding: 0.75rem 1rem;
     margin-bottom: 0.5rem;
@@ -489,12 +510,12 @@ body {
 
 .rule-text {
     font-size: 0.8rem;
-    color: var(--gray-light);
+    color: var(--text-secondary);
     line-height: 1.4;
 }
 
 .rule-delete {
-    color: var(--gray);
+    color: var(--text-tertiary);
     font-size: 0.75rem;
     cursor: pointer;
     padding: 0.25rem;
@@ -506,23 +527,23 @@ body {
     justify-content: center;
     gap: 0.4rem;
     padding: 0.7rem;
-    border: 1px dashed var(--gray-dark);
+    border: 1px dashed var(--border-strong);
     border-radius: 10px;
-    color: var(--gray);
+    color: var(--text-tertiary);
     font-size: 0.8rem;
     cursor: pointer;
     transition: all 0.15s ease;
 }
 
 .add-rule:hover {
-    border-color: var(--gray);
-    color: var(--gray-light);
+    border-color: var(--text-tertiary);
+    color: var(--text-secondary);
 }
 
 /* ---- EXAMPLE EMAIL CARD ---- */
 .example-card {
-    background: var(--gray-darker);
-    border: 1px solid var(--gray-dark);
+    background: var(--bg-card);
+    border: 1px solid var(--border);
     border-radius: 10px;
     padding: 0.75rem 1rem;
     margin-bottom: 0.5rem;
@@ -540,24 +561,25 @@ body {
     font-weight: 600;
     text-transform: uppercase;
     letter-spacing: 0.05em;
-    color: var(--blue);
+    color: var(--wine);
 }
 
 .example-preview {
     font-size: 0.75rem;
-    color: var(--gray);
+    color: var(--text-secondary);
     line-height: 1.4;
     overflow: hidden;
     display: -webkit-box;
     -webkit-line-clamp: 2;
     -webkit-box-orient: vertical;
+    font-style: italic;
 }
 
 /* ---- SCREEN DIVIDER ---- */
 .screen-divider {
     margin: 2.5rem 0;
     padding: 2rem 0 0;
-    border-top: 1px solid var(--gray-dark);
+    border-top: 1px solid var(--border);
     position: relative;
 }
 
@@ -567,12 +589,12 @@ body {
     top: -0.6rem;
     left: 50%;
     transform: translateX(-50%);
-    background: var(--black);
+    background: var(--bg);
     padding: 0 0.75rem;
     font-size: 0.6rem;
     text-transform: uppercase;
     letter-spacing: 0.15em;
-    color: var(--gray);
+    color: var(--text-tertiary);
     font-weight: 600;
     white-space: nowrap;
 }
@@ -581,12 +603,12 @@ body {
 .footer {
     text-align: center;
     padding: 2rem 0 3rem;
-    color: var(--gray);
+    color: var(--text-tertiary);
     font-size: 0.7rem;
 }
 
 .footer a {
-    color: var(--red);
+    color: var(--wine);
     text-decoration: none;
 }
 
@@ -597,14 +619,15 @@ body {
 }
 
 .connect-screen h2 {
-    font-size: 1.3rem;
-    font-weight: 800;
-    letter-spacing: -0.03em;
+    font-family: 'DM Serif Display', Georgia, serif;
+    font-size: 1.4rem;
+    font-weight: 400;
+    letter-spacing: -0.02em;
     margin-bottom: 0.5rem;
 }
 
 .connect-screen p {
-    color: var(--gray-light);
+    color: var(--text-secondary);
     font-size: 0.85rem;
     margin-bottom: 1.5rem;
     line-height: 1.5;
@@ -615,11 +638,11 @@ body {
     align-items: center;
     gap: 0.6rem;
     padding: 0.85rem 1.5rem;
-    background: var(--white);
-    color: var(--black);
+    background: var(--text);
+    color: #fff;
     border: none;
     border-radius: 10px;
-    font-family: 'Inter', sans-serif;
+    font-family: 'DM Sans', sans-serif;
     font-size: 0.9rem;
     font-weight: 600;
     cursor: pointer;
@@ -634,14 +657,14 @@ body {
 .connect-note {
     margin-top: 1rem;
     font-size: 0.7rem;
-    color: var(--gray);
+    color: var(--text-tertiary);
     line-height: 1.5;
 }
 
 /* ---- STYLE PROFILE ---- */
 .profile-summary {
-    background: var(--gray-darker);
-    border: 1px solid var(--gray-dark);
+    background: var(--bg-card);
+    border: 1px solid var(--border);
     border-radius: 12px;
     padding: 1rem;
     margin-bottom: 1rem;
@@ -655,12 +678,12 @@ body {
 }
 
 .profile-row:not(:last-child) {
-    border-bottom: 1px solid rgba(255,255,255,0.04);
+    border-bottom: 1px solid var(--border);
 }
 
 .profile-key {
     font-size: 0.75rem;
-    color: var(--gray);
+    color: var(--text-tertiary);
     font-weight: 500;
 }
 
@@ -668,6 +691,7 @@ body {
     font-size: 0.75rem;
     font-weight: 600;
     text-align: right;
+    color: var(--text);
 }
 
 /* ---- ANIMATIONS ---- */
@@ -687,12 +711,12 @@ body {
 /* Expandable content */
 .expandable { display: none; }
 .email-card.expanded .expandable { display: block; }
-.email-card.expanded { border-color: var(--red); }
+.email-card.expanded { border-color: var(--wine); }
 
 /* ---- THREAD HISTORY ---- */
 .thread-history {
     margin-top: 0.75rem;
-    border-top: 1px solid var(--gray-dark);
+    border-top: 1px solid var(--border);
     padding-top: 0.75rem;
 }
 
@@ -701,7 +725,7 @@ body {
     align-items: center;
     gap: 0.4rem;
     font-size: 0.7rem;
-    color: var(--gray);
+    color: var(--text-tertiary);
     cursor: pointer;
     padding: 0.35rem 0;
     font-weight: 500;
@@ -709,7 +733,7 @@ body {
     user-select: none;
 }
 
-.thread-toggle:hover { color: var(--gray-light); }
+.thread-toggle:hover { color: var(--text-secondary); }
 
 .thread-toggle .chevron {
     transition: transform 0.2s ease;
@@ -727,12 +751,12 @@ body {
 
 .thread-msg {
     padding: 0.65rem 0.75rem;
-    border-left: 2px solid var(--gray-dark);
+    border-left: 2px solid var(--border);
     margin-bottom: 0.5rem;
     margin-left: 0.25rem;
 }
 
-.thread-msg.outbound { border-left-color: var(--red); }
+.thread-msg.outbound { border-left-color: var(--wine); }
 .thread-msg.inbound { border-left-color: var(--blue); }
 
 .thread-msg-header {
@@ -747,18 +771,18 @@ body {
     font-weight: 600;
 }
 
-.thread-msg-sender.you { color: var(--red); }
+.thread-msg-sender.you { color: var(--wine); }
 .thread-msg-sender.guest { color: var(--blue); }
 
 .thread-msg-time {
     font-size: 0.6rem;
-    color: var(--gray);
+    color: var(--text-tertiary);
 }
 
 .thread-msg-body {
     font-size: 0.75rem;
     line-height: 1.5;
-    color: var(--gray);
+    color: var(--text-secondary);
 }
 
 /* ---- BOOKING CARD (OpenTable handoff) ---- */
@@ -767,7 +791,7 @@ body {
     position: fixed;
     inset: 0;
     z-index: 200;
-    background: rgba(0, 0, 0, 0.75);
+    background: rgba(44, 37, 32, 0.5);
     backdrop-filter: blur(8px);
     -webkit-backdrop-filter: blur(8px);
     align-items: center;
@@ -780,18 +804,19 @@ body {
 }
 
 .booking-card {
-    background: var(--gray-darker);
-    border: 1px solid var(--gray-dark);
+    background: var(--bg-card);
+    border: 1px solid var(--border);
     border-radius: 16px;
     max-width: 420px;
     width: 100%;
     overflow: hidden;
     animation: slideUp 0.3s ease;
+    box-shadow: 0 16px 48px rgba(44, 37, 32, 0.15);
 }
 
 .booking-card-header {
     padding: 1.25rem;
-    border-bottom: 1px solid var(--gray-dark);
+    border-bottom: 1px solid var(--border);
     text-align: center;
 }
 
@@ -808,15 +833,16 @@ body {
 }
 
 .booking-card-header h3 {
-    font-size: 1rem;
-    font-weight: 700;
+    font-family: 'DM Serif Display', Georgia, serif;
+    font-size: 1.1rem;
+    font-weight: 400;
     letter-spacing: -0.02em;
     margin-bottom: 0.25rem;
 }
 
 .booking-card-header p {
     font-size: 0.75rem;
-    color: var(--gray-light);
+    color: var(--text-secondary);
 }
 
 .booking-card-details {
@@ -834,7 +860,7 @@ body {
 
 .booking-detail-label {
     font-size: 0.6rem;
-    color: var(--gray);
+    color: var(--text-tertiary);
     text-transform: uppercase;
     letter-spacing: 0.08em;
     font-weight: 500;
@@ -843,6 +869,7 @@ body {
 .booking-detail-value {
     font-size: 0.85rem;
     font-weight: 600;
+    color: var(--text);
 }
 
 .booking-detail.full {
@@ -854,7 +881,7 @@ body {
     display: flex;
     flex-direction: column;
     gap: 0.5rem;
-    border-top: 1px solid var(--gray-dark);
+    border-top: 1px solid var(--border);
 }
 
 .btn-opentable {
@@ -864,7 +891,7 @@ body {
     gap: 0.5rem;
     padding: 0.8rem;
     border-radius: 10px;
-    font-family: 'Inter', sans-serif;
+    font-family: 'DM Sans', sans-serif;
     font-size: 0.85rem;
     font-weight: 700;
     cursor: pointer;
@@ -885,40 +912,40 @@ body {
     gap: 0.5rem;
     padding: 0.7rem;
     border-radius: 10px;
-    font-family: 'Inter', sans-serif;
+    font-family: 'DM Sans', sans-serif;
     font-size: 0.8rem;
     font-weight: 600;
     cursor: pointer;
-    border: 1px solid var(--gray-dark);
+    border: 1px solid var(--border);
     background: none;
-    color: var(--gray-light);
+    color: var(--text-secondary);
     transition: all 0.15s ease;
 }
 
-.btn-copy:hover { border-color: var(--gray); color: var(--white); }
+.btn-copy:hover { border-color: var(--border-strong); color: var(--text); }
 
 .btn-dismiss {
     padding: 0.5rem;
     background: none;
     border: none;
-    color: var(--gray);
-    font-family: 'Inter', sans-serif;
+    color: var(--text-tertiary);
+    font-family: 'DM Sans', sans-serif;
     font-size: 0.75rem;
     cursor: pointer;
     text-align: center;
 }
 
-.btn-dismiss:hover { color: var(--gray-light); }
+.btn-dismiss:hover { color: var(--text-secondary); }
 
 .copy-text {
-    background: rgba(255,255,255,0.04);
-    border: 1px solid var(--gray-dark);
+    background: var(--bg-inset);
+    border: 1px solid var(--border);
     border-radius: 8px;
     padding: 0.6rem 0.75rem;
     font-size: 0.72rem;
-    color: var(--gray-light);
+    color: var(--text-secondary);
     line-height: 1.5;
-    font-family: 'Inter', monospace;
+    font-family: 'DM Sans', monospace;
     margin-bottom: 0.25rem;
 }
 </style>
@@ -1147,7 +1174,7 @@ body {
                 <div class="extracted-details">
                     <div class="detail-item">
                         <div class="detail-label">Party size</div>
-                        <div class="detail-value" style="color: var(--amber)">4 → 6</div>
+                        <div class="detail-value" style="color: var(--amber);">4 → 6</div>
                     </div>
                     <div class="detail-item">
                         <div class="detail-label">Date</div>
@@ -1281,15 +1308,15 @@ body {
         </div>
 
         <!-- EMAIL 6: Supplier (auto-archived) -->
-        <div class="email-card" style="opacity: 0.5;" onclick="toggleCard(event, this)">
+        <div class="email-card" style="opacity: 0.45;" onclick="toggleCard(event, this)">
             <div class="email-card-header">
                 <div class="email-sender">Bibendum Wine</div>
                 <div class="email-time">3:10am</div>
             </div>
             <div class="email-subject">March allocation - new Burgundy arrivals</div>
             <div class="email-tags">
-                <span class="tag" style="background: var(--gray-dark); color: var(--gray);">Supplier</span>
-                <span class="tag" style="background: var(--gray-dark); color: var(--gray);">Auto-archived</span>
+                <span class="tag" style="background: var(--bg-inset); color: var(--text-tertiary);">Supplier</span>
+                <span class="tag" style="background: var(--bg-inset); color: var(--text-tertiary);">Auto-archived</span>
             </div>
         </div>
 
@@ -1435,7 +1462,7 @@ body {
                 <div class="profile-val">8:00am</div>
             </div>
         </div>
-        <div style="font-size: 0.7rem; color: var(--gray); margin-top: 0.5rem; line-height: 1.5;">
+        <div style="font-size: 0.7rem; color: var(--text-tertiary); margin-top: 0.5rem; line-height: 1.5;">
             Emails arriving in this window are processed and drafts are ready when you wake up.
         </div>
     </div>
@@ -1453,10 +1480,10 @@ body {
             </div>
             <div class="profile-row">
                 <div class="profile-key">Booking integration</div>
-                <div class="profile-val" style="color: var(--amber)">Manual (copy details)</div>
+                <div class="profile-val" style="color: var(--amber);">Manual (copy details)</div>
             </div>
         </div>
-        <div style="font-size: 0.7rem; color: var(--gray); margin-top: 0.5rem; line-height: 1.5;">
+        <div style="font-size: 0.7rem; color: var(--text-tertiary); margin-top: 0.5rem; line-height: 1.5;">
             When you tap "Send & Book", we'll show a card with all the booking details ready to copy into OpenTable.
         </div>
     </div>
