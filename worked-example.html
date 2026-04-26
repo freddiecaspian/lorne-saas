@@ -1,0 +1,2208 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>NightDraft handles your big bookings - a worked example</title>
+<meta name="description" content="One inquiry in. A safe, on-voice draft in your Gmail before you sit down with coffee. A two-minute worked example for Lorne." />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #faf8f5;
+    --bg-card: #ffffff;
+    --bg-hover: #f5f2ee;
+    --bg-inset: #f0ece6;
+    --border: #e8e2d9;
+    --border-strong: #d4cdc2;
+    --text: #2c2520;
+    --text-secondary: #7a7067;
+    --text-tertiary: #a69e94;
+    --wine: #8b2252;
+    --wine-dim: rgba(139, 34, 82, 0.08);
+    --wine-light: #a63a6a;
+    --green: #2d7a4f;
+    --green-dim: rgba(45, 122, 79, 0.08);
+    --amber: #b8860b;
+    --amber-dim: rgba(184, 134, 11, 0.08);
+    --blue: #3d6b99;
+    --blue-dim: rgba(61, 107, 153, 0.08);
+    --red: #c24b3a;
+    --red-dim: rgba(194, 75, 58, 0.08);
+    --purple: #7b5ea7;
+    --purple-dim: rgba(123, 94, 167, 0.08);
+
+    --gmail-bg: #ffffff;
+    --gmail-panel: #f6f8fc;
+    --gmail-line: #e3e6eb;
+    --gmail-blue: #1a73e8;
+    --gmail-red: #ea4335;
+    --gmail-text: #202124;
+    --gmail-muted: #5f6368;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { font-size: 16px; scroll-behavior: smooth; }
+  body {
+    font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    min-height: 100dvh;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    line-height: 1.55;
+  }
+
+  .container {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 2.5rem 1.25rem 5rem;
+  }
+
+  /* HEADER */
+  .back {
+    display: inline-block;
+    color: var(--text-tertiary);
+    text-decoration: none;
+    font-size: 0.75rem;
+    margin-bottom: 1.5rem;
+    font-weight: 500;
+  }
+  .back:hover { color: var(--wine); }
+
+  .eyebrow {
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    font-size: 0.65rem;
+    color: var(--wine);
+    font-weight: 700;
+    margin-bottom: 0.75rem;
+  }
+  h1 {
+    font-family: 'DM Serif Display', Georgia, serif;
+    font-size: 2.25rem;
+    font-weight: 400;
+    letter-spacing: -0.02em;
+    line-height: 1.15;
+    color: var(--text);
+    margin-bottom: 0.6rem;
+  }
+  .lede {
+    font-size: 0.95rem;
+    color: var(--text-secondary);
+    margin-bottom: 1.5rem;
+    line-height: 1.55;
+  }
+
+  /* CONTROLS */
+  .controls {
+    display: flex;
+    align-items: center;
+    gap: 0.85rem;
+    margin: 1.5rem 0 1rem;
+    padding: 0.85rem 1rem;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    flex-wrap: wrap;
+  }
+  .replay-btn {
+    background: var(--wine);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    padding: 0.5rem 0.95rem;
+    font: 600 0.75rem/1 'DM Sans', sans-serif;
+    cursor: pointer;
+    letter-spacing: 0.02em;
+    transition: background 0.15s ease;
+  }
+  .replay-btn:hover { background: var(--wine-light); }
+
+  .toggle-btn {
+    background: var(--bg-inset);
+    color: var(--text-secondary);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 0.45rem 0.7rem;
+    font: 600 0.68rem/1 'DM Sans', sans-serif;
+    cursor: pointer;
+    letter-spacing: 0.02em;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+  }
+  .toggle-btn[aria-pressed="true"] {
+    background: var(--wine-dim);
+    color: var(--wine);
+    border-color: var(--wine);
+  }
+  .toggle-btn .dot {
+    width: 0.4rem; height: 0.4rem;
+    background: var(--text-tertiary);
+    border-radius: 50%;
+  }
+  .toggle-btn[aria-pressed="true"] .dot {
+    background: var(--wine);
+  }
+
+  .clock-tag {
+    color: var(--text-tertiary);
+    font-size: 0.6rem;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    font-weight: 600;
+  }
+  .clock {
+    color: var(--text);
+    font: 600 0.85rem/1 'DM Mono', ui-monospace, monospace;
+    letter-spacing: 0.05em;
+    margin-left: auto;
+  }
+
+  /* STAGE */
+  .stage {
+    background: var(--bg);
+    padding: 0;
+    margin-top: 0.5rem;
+  }
+
+  /* STEPS */
+  .step {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--border);
+    border-radius: 2px 12px 12px 2px;
+    padding: 1.25rem 1.25rem 1.25rem 1rem;
+    margin-bottom: 0.75rem;
+    box-shadow: 0 1px 3px rgba(44, 37, 32, 0.04);
+    display: none;
+  }
+  .step.visible { display: block; }
+  .step.active { border-left-color: var(--wine); box-shadow: 0 4px 20px rgba(44, 37, 32, 0.1); }
+  .step.done { border-left-color: var(--green); opacity: 0.92; }
+
+  .step-head {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.85rem;
+    margin-bottom: 0.4rem;
+  }
+  .step-num {
+    flex-shrink: 0;
+    width: 1.6rem; height: 1.6rem;
+    background: var(--bg-inset);
+    border: 1px solid var(--border);
+    color: var(--text-secondary);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font: 700 0.7rem/1 'DM Sans', sans-serif;
+    margin-top: 0.1rem;
+  }
+  .step.active .step-num {
+    background: var(--wine);
+    color: white;
+    border-color: var(--wine);
+  }
+  .step.done .step-num {
+    background: var(--green);
+    color: white;
+    border-color: var(--green);
+  }
+  .step-title h3 {
+    font-family: 'DM Serif Display', Georgia, serif;
+    font-size: 1.05rem;
+    font-weight: 400;
+    letter-spacing: -0.01em;
+    line-height: 1.25;
+    color: var(--text);
+    margin-bottom: 0.2rem;
+  }
+  .step-title p {
+    font-size: 0.78rem;
+    color: var(--text-secondary);
+    line-height: 1.5;
+  }
+
+  .step-body { margin-top: 0.85rem; }
+
+  /* SILENT-MODE LIVE CAPTION */
+  .live-caption {
+    margin-top: 0.65rem;
+    padding: 0.45rem 0.7rem;
+    background: var(--bg-inset);
+    border-left: 2px solid var(--text-tertiary);
+    font-size: 0.7rem;
+    color: var(--text-secondary);
+    line-height: 1.5;
+    font-style: italic;
+    border-radius: 0 4px 4px 0;
+  }
+  body.captions-off .live-caption { display: none; }
+
+  /* GMAIL CHROME */
+  .gmail {
+    background: var(--gmail-bg);
+    border: 1px solid var(--gmail-line);
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(44, 37, 32, 0.06);
+  }
+  .gmail-topbar {
+    background: var(--gmail-panel);
+    border-bottom: 1px solid var(--gmail-line);
+    padding: 0.5rem 0.85rem;
+    display: flex;
+    align-items: center;
+    gap: 0.65rem;
+    font-size: 0.75rem;
+    color: var(--gmail-text);
+  }
+  .gmail-logo {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    font-weight: 600;
+    font-size: 0.78rem;
+  }
+  .gmail-logo .M {
+    background: var(--gmail-red);
+    color: white;
+    width: 1.25rem; height: 1.25rem;
+    border-radius: 4px;
+    display: inline-flex; align-items: center; justify-content: center;
+    font-weight: 700; font-size: 0.72rem;
+  }
+  .gmail-search {
+    flex: 1;
+    background: var(--gmail-bg);
+    border: 1px solid var(--gmail-line);
+    border-radius: 4px;
+    padding: 0.3rem 0.6rem;
+    color: var(--gmail-muted);
+    font-size: 0.7rem;
+  }
+  .gmail-account {
+    width: 1.5rem; height: 1.5rem;
+    border-radius: 50%;
+    background: var(--wine);
+    color: white;
+    display: inline-flex; align-items: center; justify-content: center;
+    font-weight: 700; font-size: 0.7rem;
+  }
+  .nightdraft-toolbar-icon {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem;
+    color: var(--wine);
+    font-size: 0.65rem;
+    font-weight: 600;
+    padding: 0.2rem 0.55rem;
+    background: var(--wine-dim);
+    border-radius: 999px;
+  }
+  .moon {
+    display: inline-block;
+    width: 0.45rem; height: 0.45rem;
+    border-radius: 50%;
+    background: var(--wine);
+    animation: pulse-dot 2s ease-in-out infinite;
+  }
+
+  .gmail-body { display: flex; min-height: 18rem; }
+  .gmail-sidebar {
+    width: 8.5rem;
+    background: var(--gmail-panel);
+    border-right: 1px solid var(--gmail-line);
+    padding: 0.85rem 0.5rem;
+    font-size: 0.72rem;
+  }
+  .gmail-side-item {
+    padding: 0.35rem 0.6rem;
+    border-radius: 999px;
+    color: var(--gmail-muted);
+    margin-bottom: 0.15rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .gmail-side-item.active {
+    background: var(--wine-dim);
+    color: var(--wine);
+    font-weight: 700;
+  }
+  .gmail-side-item .badge {
+    background: var(--wine);
+    color: white;
+    font-size: 0.55rem;
+    padding: 0.05rem 0.4rem;
+    border-radius: 999px;
+    font-weight: 700;
+    display: none;
+  }
+  .gmail-side-item .badge.visible { display: inline-block; }
+
+  .gmail-content { flex: 1; }
+
+  /* INBOX */
+  .gmail-inbox-row {
+    display: grid;
+    grid-template-columns: 1.5rem 1.5rem 11rem 1fr 4.5rem;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.55rem 0.85rem;
+    border-bottom: 1px solid var(--gmail-line);
+    font-size: 0.78rem;
+    color: var(--gmail-muted);
+  }
+  .gmail-inbox-row.unread { color: var(--gmail-text); font-weight: 600; }
+  .gmail-inbox-row .star { color: #d4cdc2; }
+  .gmail-inbox-row .sender { font-weight: 500; }
+  .gmail-inbox-row .subject {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .gmail-inbox-row .subject .preview {
+    color: var(--gmail-muted);
+    font-weight: 400;
+    margin-left: 0.25rem;
+  }
+  .gmail-inbox-row .when { font-size: 0.68rem; text-align: right; }
+  .gmail-inbox-row.new { display: none; background: var(--wine-dim); color: var(--gmail-text); font-weight: 600; }
+  .gmail-inbox-row.new.arrived { display: grid; }
+
+  /* THREAD */
+  .gmail-thread { padding: 1rem 1.25rem; }
+  .gmail-thread-subject {
+    font-family: 'DM Serif Display', Georgia, serif;
+    font-size: 1.1rem;
+    font-weight: 400;
+    color: var(--gmail-text);
+    margin-bottom: 0.6rem;
+    letter-spacing: -0.01em;
+  }
+  .gmail-thread-tags { margin-bottom: 0.85rem; }
+  .thread-tag {
+    display: inline-block;
+    font-size: 0.6rem;
+    padding: 0.1rem 0.5rem;
+    border-radius: 6px;
+    background: var(--bg-inset);
+    color: var(--text-secondary);
+    margin-right: 0.3rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    font-weight: 600;
+  }
+  .gmail-msg {
+    border: 1px solid var(--gmail-line);
+    border-radius: 8px;
+    padding: 0.85rem 1rem;
+    margin-bottom: 0.6rem;
+    background: var(--gmail-bg);
+  }
+  .gmail-msg-head {
+    display: flex;
+    align-items: center;
+    gap: 0.65rem;
+    margin-bottom: 0.75rem;
+  }
+  .gmail-msg-avatar {
+    width: 2rem; height: 2rem;
+    border-radius: 50%;
+    color: white;
+    font-weight: 700; font-size: 0.75rem;
+    display: inline-flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+  }
+  .gmail-msg-meta { flex: 1; font-size: 0.8rem; }
+  .gmail-msg-meta .name { font-weight: 600; color: var(--gmail-text); }
+  .gmail-msg-meta .from { color: var(--gmail-muted); font-size: 0.65rem; margin-top: 0.1rem; }
+  .gmail-msg-meta .when { color: var(--gmail-muted); font-size: 0.65rem; }
+  .gmail-msg-body {
+    font-size: 0.85rem;
+    line-height: 1.6;
+    color: var(--gmail-text);
+    white-space: pre-wrap;
+    min-height: 3rem;
+  }
+  .typing-cursor {
+    display: inline-block;
+    width: 1.5px; height: 0.85rem;
+    background: var(--gmail-text);
+    margin-left: 1px;
+    vertical-align: text-bottom;
+    animation: blink 0.85s steps(2) infinite;
+  }
+
+  /* DRAFTS */
+  .gmail-drafts-header {
+    padding: 0.85rem 1.25rem;
+    border-bottom: 1px solid var(--gmail-line);
+    font-size: 0.78rem;
+    color: var(--gmail-muted);
+  }
+  .gmail-drafts-header strong { color: var(--gmail-text); margin-right: 0.5rem; }
+  .gmail-draft-row {
+    display: grid;
+    grid-template-columns: 1.5rem 1.5rem 11rem 1fr 4.5rem;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.65rem 0.85rem;
+    border-bottom: 1px solid var(--gmail-line);
+    font-size: 0.78rem;
+    color: var(--gmail-text);
+    background: var(--wine-dim);
+  }
+  .draft-tag {
+    color: var(--wine);
+    font-weight: 700;
+    font-size: 0.6rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-right: 0.4rem;
+  }
+
+  .view-mode { display: none; }
+  .view-mode.visible { display: block; }
+
+  /* TRIAGE */
+  .triage {
+    background: var(--bg-inset);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 0.95rem;
+  }
+  .triage-cols {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 0.85rem;
+  }
+  .triage-col {
+    border-right: 1px dashed var(--border-strong);
+    padding-right: 0.85rem;
+  }
+  .triage-col:last-child { border-right: none; padding-right: 0; }
+  .triage-col-label {
+    font-size: 0.55rem;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--text-tertiary);
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+  }
+  .triage-incoming {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 0.55rem;
+    font-size: 0.7rem;
+    color: var(--text);
+    display: none;
+  }
+  .triage-incoming.visible { display: block; }
+  .triage-incoming .from-line { color: var(--text-tertiary); margin-bottom: 0.2rem; font-size: 0.62rem; }
+  .triage-incoming .subj-line { font-weight: 600; line-height: 1.3; }
+
+  .triage-chips { display: flex; flex-direction: column; gap: 0.3rem; }
+  .triage-chip {
+    display: none;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.3rem 0.55rem;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 999px;
+    font-size: 0.65rem;
+    color: var(--text-secondary);
+  }
+  .triage-chip.visible { display: flex; }
+  .triage-chip .chip-label { font-weight: 500; }
+  .triage-chip .chip-val { font-family: 'DM Mono', ui-monospace, monospace; font-size: 0.62rem; }
+  .triage-chip.pass { color: var(--green); border-color: var(--green); background: var(--green-dim); }
+  .triage-chip.flag { color: var(--wine); border-color: var(--wine); background: var(--wine-dim); font-weight: 700; }
+
+  .triage-decision {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 0.85rem 0.6rem;
+    text-align: center;
+    font-size: 0.72rem;
+    color: var(--text-secondary);
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 0.35rem;
+  }
+  .triage-decision.engaged {
+    background: var(--wine-dim);
+    border-color: var(--wine);
+    color: var(--text);
+  }
+  .triage-decision .verdict {
+    font-size: 0.78rem;
+    font-weight: 700;
+    color: var(--wine);
+    display: none;
+  }
+  .triage-decision.engaged .verdict { display: block; }
+
+  /* TIER */
+  .tier {
+    background: var(--bg-inset);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 0.95rem;
+  }
+  .tier-pills {
+    display: flex;
+    gap: 0.4rem;
+    margin-bottom: 0.85rem;
+    flex-wrap: wrap;
+  }
+  .tier-pill {
+    padding: 0.35rem 0.85rem;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 999px;
+    font: 600 0.72rem/1 'DM Mono', ui-monospace, monospace;
+    color: var(--text-secondary);
+  }
+  .tier-pill.considering {
+    border-color: var(--wine-light);
+    color: var(--wine-light);
+  }
+  .tier-pill.selected {
+    background: var(--wine);
+    border-color: var(--wine);
+    color: white;
+    font-weight: 700;
+  }
+  .tier-rules {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--wine);
+    border-radius: 2px 8px 8px 2px;
+    padding: 0.85rem 1rem;
+    display: none;
+  }
+  .tier-rules.visible { display: block; }
+  .tier-rules-header {
+    font-size: 0.6rem;
+    font-weight: 700;
+    color: var(--wine);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: 0.55rem;
+  }
+  .tier-rule {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    padding: 0.4rem 0;
+    border-bottom: 1px dashed var(--border);
+    font-size: 0.78rem;
+    color: var(--text);
+  }
+  .tier-rule:last-child { border-bottom: none; }
+  .tier-rule .rule-prov {
+    font-size: 0.62rem;
+    color: var(--text-tertiary);
+    font-family: 'DM Mono', ui-monospace, monospace;
+    flex-shrink: 0;
+    margin-left: 0.85rem;
+  }
+
+  /* SOURCE PAIR */
+  .source-pair {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.6rem;
+  }
+  .source-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 0.85rem;
+  }
+  .source-card-label {
+    font-size: 0.55rem;
+    color: var(--wine);
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    font-weight: 700;
+    margin-bottom: 0.45rem;
+  }
+  .source-card h4 {
+    font-family: 'DM Serif Display', Georgia, serif;
+    font-size: 0.95rem;
+    font-weight: 400;
+    color: var(--text);
+    margin-bottom: 0.5rem;
+    letter-spacing: -0.005em;
+  }
+  .source-card ul { list-style: none; }
+  .source-card li {
+    padding: 0.2rem 0;
+    color: var(--text-secondary);
+    font-size: 0.72rem;
+    line-height: 1.5;
+    display: flex;
+    align-items: baseline;
+    gap: 0.4rem;
+  }
+  .source-card li::before {
+    content: "·";
+    color: var(--wine);
+    font-weight: 700;
+  }
+  .source-card .preview-quote {
+    font-size: 0.72rem;
+    color: var(--text-secondary);
+    line-height: 1.6;
+    font-style: italic;
+    border-left: 2px solid var(--wine);
+    padding-left: 0.6rem;
+    margin-top: 0.25rem;
+  }
+
+  /* DRAFT TYPER */
+  .draft-frame {
+    background: linear-gradient(to bottom, var(--bg-inset) 0%, rgba(240, 236, 230, 0.5) 100%);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--wine);
+    border-radius: 2px 8px 8px 2px;
+    padding: 1rem 1rem 0.85rem 1.1rem;
+    position: relative;
+  }
+  .draft-badge-row {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 0.55rem;
+  }
+  .draft-label {
+    font-size: 0.6rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--wine);
+    font-weight: 700;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem;
+  }
+  .draft-pulse {
+    display: inline-block;
+    width: 0.45rem; height: 0.45rem;
+    border-radius: 50%;
+    background: var(--wine);
+    animation: pulse-dot 1.6s ease-in-out infinite;
+  }
+  .draft-typer {
+    font-size: 0.82rem;
+    line-height: 1.7;
+    color: var(--text-secondary);
+    white-space: pre-wrap;
+    min-height: 9rem;
+    font-family: 'DM Sans', sans-serif;
+  }
+  .draft-typer .cursor {
+    display: inline-block;
+    width: 1.5px; height: 0.85rem;
+    background: var(--text);
+    margin-left: 1px;
+    vertical-align: text-bottom;
+    animation: blink 0.85s steps(2) infinite;
+  }
+  .ai-tab {
+    display: inline-block;
+    margin-top: 0.65rem;
+    font-size: 0.55rem;
+    padding: 0.2rem 0.55rem;
+    background: var(--bg-card);
+    border: 1px solid var(--wine);
+    border-radius: 4px;
+    color: var(--wine);
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+  .draft-learn-line {
+    margin-top: 0.7rem;
+    font-size: 0.65rem;
+    color: var(--text-tertiary);
+    font-style: italic;
+    display: none;
+  }
+  .draft-learn-line.visible { display: block; }
+
+  /* ATTACHMENTS */
+  .attachments {
+    margin-top: 0.85rem;
+    padding-top: 0.75rem;
+    border-top: 1px dashed var(--border-strong);
+    display: none;
+  }
+  .attachments.visible { display: block; }
+  .attachments-label {
+    font-size: 0.6rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--wine);
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+    display: none;
+  }
+  .attachments-label.visible { display: block; }
+  .attachment-chip {
+    display: none;
+    align-items: center;
+    gap: 0.55rem;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 0.5rem 0.7rem;
+    margin-bottom: 0.4rem;
+  }
+  .attachment-chip.visible { display: flex; }
+  .att-icon {
+    background: var(--wine-dim);
+    color: var(--wine);
+    width: 1.85rem; height: 1.85rem;
+    border-radius: 6px;
+    display: inline-flex; align-items: center; justify-content: center;
+    font-size: 0.85rem;
+    flex-shrink: 0;
+  }
+  .att-meta {
+    display: flex;
+    flex-direction: column;
+    gap: 0.1rem;
+    min-width: 0;
+  }
+  .att-name {
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--text);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .att-size {
+    font-size: 0.6rem;
+    color: var(--text-tertiary);
+    font-family: 'DM Mono', ui-monospace, monospace;
+  }
+
+  /* TELEGRAM */
+  .telegram-card {
+    background: #ffffff;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    overflow: hidden;
+    max-width: 22rem;
+    box-shadow: 0 4px 16px rgba(44, 37, 32, 0.08);
+  }
+  .tg-chrome {
+    background: var(--bg-inset);
+    padding: 0.65rem 0.85rem;
+    display: flex;
+    align-items: center;
+    gap: 0.55rem;
+    color: var(--text);
+    font-size: 0.78rem;
+    border-bottom: 1px solid var(--border);
+  }
+  .tg-back { font-size: 1.1rem; opacity: 0.5; }
+  .tg-avatar {
+    width: 2rem; height: 2rem;
+    background: var(--wine);
+    border-radius: 50%;
+    display: inline-flex; align-items: center; justify-content: center;
+    font-weight: 700; font-size: 0.78rem;
+    color: white;
+  }
+  .tg-titles { flex: 1; }
+  .tg-name { font-weight: 600; line-height: 1.2; }
+  .tg-status { font-size: 0.65rem; color: var(--text-tertiary); display: flex; align-items: center; gap: 0.25rem; }
+  .online-dot {
+    width: 0.4rem; height: 0.4rem;
+    background: var(--green);
+    border-radius: 50%;
+    display: inline-block;
+  }
+  .tg-actions { color: var(--text-tertiary); font-size: 0.95rem; }
+  .tg-body {
+    background: var(--bg-card);
+    padding: 0.85rem;
+  }
+  .tg-bubble {
+    background: var(--bg-inset);
+    padding: 0.65rem 0.85rem;
+    border-radius: 12px 12px 12px 2px;
+    font-size: 0.78rem;
+    line-height: 1.5;
+    color: var(--text);
+    white-space: pre-wrap;
+  }
+  .tg-bubble strong { color: var(--text); font-weight: 700; }
+  .tg-bubble-time {
+    display: block;
+    text-align: right;
+    color: var(--text-tertiary);
+    font-size: 0.6rem;
+    margin-top: 0.25rem;
+  }
+  .tg-buttons {
+    margin-top: 0.55rem;
+    display: flex;
+    gap: 0.4rem;
+    flex-wrap: wrap;
+  }
+  .tg-btn {
+    background: var(--bg-inset);
+    color: var(--wine);
+    border: 1px solid var(--border);
+    padding: 0.4rem 0.75rem;
+    border-radius: 6px;
+    font: 600 0.7rem/1 'DM Sans', sans-serif;
+    cursor: pointer;
+  }
+  .tg-input {
+    background: var(--bg-inset);
+    padding: 0.65rem 0.85rem;
+    color: var(--text-tertiary);
+    font-size: 0.7rem;
+    border-top: 1px solid var(--border);
+  }
+
+  /* INTERLUDE */
+  .interlude {
+    background: var(--bg-card);
+    border: 1px dashed var(--border-strong);
+    border-radius: 12px;
+    padding: 1.25rem;
+    margin: 0.75rem 0;
+    display: none;
+  }
+  .interlude.visible { display: block; }
+  .interlude-label {
+    font-size: 0.6rem;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: var(--text-tertiary);
+    font-weight: 700;
+    margin-bottom: 0.4rem;
+  }
+  .interlude-title {
+    font-family: 'DM Serif Display', Georgia, serif;
+    font-size: 1rem;
+    font-weight: 400;
+    color: var(--text);
+    margin-bottom: 0.85rem;
+    letter-spacing: -0.005em;
+  }
+  .cursor-trail {
+    display: inline-block;
+    margin-left: 0.4rem;
+    color: var(--wine);
+    font-weight: 700;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+  .cursor-trail.visible { opacity: 1; }
+  .edit-diff {
+    background: var(--bg-inset);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 0.7rem 0.85rem;
+    font-size: 0.78rem;
+    line-height: 1.55;
+    color: var(--text);
+    display: none;
+  }
+  .edit-diff.visible { display: block; }
+  .diff-old {
+    background: var(--red-dim);
+    color: var(--red);
+    text-decoration: line-through;
+    padding: 0.05rem 0.3rem;
+    border-radius: 3px;
+  }
+  .diff-new {
+    background: var(--green-dim);
+    color: var(--green);
+    padding: 0.05rem 0.3rem;
+    border-radius: 3px;
+    margin-left: 0.25rem;
+  }
+  .send-row {
+    display: none;
+    align-items: center;
+    gap: 0.6rem;
+    margin-top: 0.85rem;
+  }
+  .send-row.visible { display: flex; }
+  .send-btn {
+    background: var(--gmail-blue);
+    color: white;
+    border: none;
+    padding: 0.45rem 1.05rem;
+    border-radius: 999px;
+    font: 600 0.78rem/1 'DM Sans', sans-serif;
+    cursor: pointer;
+  }
+  .send-btn.pressed { background: #1457b8; }
+  .send-tag {
+    font-size: 0.72rem;
+    color: var(--green);
+    font-weight: 600;
+    display: none;
+  }
+  .send-tag.visible { display: inline; }
+
+  .reversal-line {
+    margin-top: 1rem;
+    font-family: 'DM Serif Display', Georgia, serif;
+    font-size: 1.05rem;
+    font-style: italic;
+    color: var(--wine);
+    line-height: 1.4;
+    display: none;
+    text-align: center;
+    border-top: 1px solid var(--border);
+    padding-top: 0.95rem;
+  }
+  .reversal-line.visible { display: block; }
+
+  /* ACT 2 */
+  .act2 { display: none; margin-top: 1.5rem; }
+  .act2.visible { display: block; }
+  .act2-label {
+    font-size: 0.6rem;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: var(--text-tertiary);
+    font-weight: 700;
+    margin-bottom: 0.85rem;
+    text-align: center;
+  }
+  .revenue-card {
+    background: var(--bg-card);
+    border: 1px solid var(--wine);
+    border-radius: 12px;
+    padding: 1.85rem 1.25rem;
+    text-align: center;
+    margin: 0.85rem 0;
+    box-shadow: 0 4px 16px rgba(139, 34, 82, 0.08);
+    transition: transform 0.5s ease, box-shadow 0.5s ease;
+  }
+  .revenue-card.peak {
+    transform: scale(1.015);
+    box-shadow: 0 8px 28px rgba(139, 34, 82, 0.18);
+  }
+  .revenue-hero {
+    font-family: 'DM Serif Display', Georgia, serif;
+    font-size: 2.4rem;
+    font-weight: 400;
+    color: var(--wine);
+    letter-spacing: -0.02em;
+    line-height: 1.05;
+    margin-bottom: 0.5rem;
+  }
+  .revenue-sub {
+    font-size: 0.82rem;
+    color: var(--text-secondary);
+    margin-bottom: 0.4rem;
+  }
+  .revenue-caption {
+    font-size: 0.78rem;
+    color: var(--wine);
+    font-style: italic;
+    margin-top: 0.65rem;
+    font-weight: 600;
+  }
+
+  /* CLOSING + CRED */
+  .closing, .credibility {
+    display: none;
+  }
+  .closing.visible { display: block; }
+  .credibility.visible { display: grid; }
+  .closing {
+    text-align: center;
+    margin-top: 2rem;
+    padding: 1.5rem 0 0;
+    border-top: 1px solid var(--border);
+  }
+  .closing h2 {
+    font-family: 'DM Serif Display', Georgia, serif;
+    font-size: 1.55rem;
+    font-weight: 400;
+    color: var(--text);
+    margin-bottom: 0.55rem;
+    letter-spacing: -0.015em;
+    line-height: 1.25;
+  }
+  .closing p {
+    color: var(--text-secondary);
+    font-size: 0.85rem;
+    line-height: 1.55;
+  }
+
+  .credibility {
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 0.75rem;
+    margin-top: 1.5rem;
+  }
+  .cred-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 0.95rem 0.75rem;
+    text-align: center;
+  }
+  .cred-card-label {
+    font-size: 0.55rem;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--wine);
+    font-weight: 700;
+    margin-bottom: 0.4rem;
+  }
+  .cred-card-body {
+    font-size: 0.72rem;
+    color: var(--text);
+    line-height: 1.5;
+  }
+
+  /* VERSION FOOTER */
+  .version-footer {
+    margin-top: 2rem;
+    padding: 0.85rem 1rem;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    font-size: 0.65rem;
+    color: var(--text-tertiary);
+    display: none;
+    line-height: 1.6;
+  }
+  .version-footer.visible { display: block; }
+  .version-footer a {
+    color: var(--wine);
+    text-decoration: none;
+    font-weight: 600;
+  }
+  .version-footer a:hover { text-decoration: underline; }
+
+  /* RESPONSIVE */
+  @media (max-width: 600px) {
+    h1 { font-size: 1.85rem; }
+    .credibility { grid-template-columns: 1fr; }
+    .source-pair { grid-template-columns: 1fr; }
+    .triage-cols { grid-template-columns: 1fr; }
+    .triage-col { border-right: none; border-bottom: 1px dashed var(--border-strong); padding-right: 0; padding-bottom: 0.85rem; }
+    .triage-col:last-child { border-bottom: none; padding-bottom: 0; }
+    .gmail-sidebar { display: none; }
+    .gmail-inbox-row, .gmail-draft-row { grid-template-columns: 1fr 4rem; }
+    .gmail-inbox-row .star, .gmail-inbox-row .when, .gmail-draft-row .star, .gmail-draft-row .when { display: none; }
+    .gmail-inbox-row .sender, .gmail-draft-row .sender { display: none; }
+  }
+
+  /* ANIMATIONS */
+  @keyframes pulse-dot {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.55; transform: scale(0.85); }
+  }
+  @keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
+  }
+  @keyframes whoosh-in {
+    0% { transform: translateY(-12px); opacity: 0; background: rgba(139, 34, 82, 0.25); }
+    60% { transform: translateY(0); opacity: 1; background: rgba(139, 34, 82, 0.18); }
+    100% { transform: translateY(0); opacity: 1; background: var(--wine-dim); }
+  }
+  .gmail-inbox-row.new.arrived { animation: whoosh-in 0.9s ease-out; }
+
+  /* Faux mouse cursor for click-onto-email */
+  .gmail { position: relative; }
+  .faux-cursor {
+    position: absolute;
+    width: 18px; height: 22px;
+    pointer-events: none;
+    z-index: 20;
+    opacity: 0;
+    transition: opacity 0.3s ease, top 1.2s cubic-bezier(.4,.1,.3,1), left 1.2s cubic-bezier(.4,.1,.3,1);
+    filter: drop-shadow(0 1px 2px rgba(0,0,0,0.25));
+  }
+  .faux-cursor.visible { opacity: 1; }
+  .faux-cursor svg { width: 100%; height: 100%; }
+  .faux-cursor.clicking::after {
+    content: '';
+    position: absolute;
+    top: 14px; left: 8px;
+    width: 24px; height: 24px;
+    border-radius: 50%;
+    border: 2px solid var(--wine);
+    transform: translate(-50%, -50%) scale(0);
+    animation: click-ripple 0.5s ease-out;
+  }
+  @keyframes click-ripple {
+    0% { transform: translate(-50%, -50%) scale(0); opacity: 1; }
+    100% { transform: translate(-50%, -50%) scale(1.8); opacity: 0; }
+  }
+
+  /* NightDraft scanner bar - moves down the open email body */
+  .gmail-msg { position: relative; overflow: hidden; }
+  .scanner {
+    position: absolute;
+    left: 0; right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, transparent 0%, var(--wine) 50%, transparent 100%);
+    box-shadow: 0 0 12px var(--wine), 0 0 4px var(--wine);
+    top: 0;
+    opacity: 0;
+    transition: top 2.4s cubic-bezier(.5,.1,.5,1), opacity 0.3s ease;
+    z-index: 5;
+    pointer-events: none;
+  }
+  .scanner.visible { opacity: 0.85; }
+  .nightdraft-reading-tag {
+    display: none;
+    align-items: center;
+    gap: 0.4rem;
+    margin-top: 0.6rem;
+    padding: 0.35rem 0.6rem;
+    background: var(--wine-dim);
+    border: 1px solid var(--wine);
+    border-radius: 999px;
+    font-size: 0.62rem;
+    color: var(--wine);
+    font-weight: 700;
+    width: fit-content;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+  .nightdraft-reading-tag.visible { display: inline-flex; }
+  .nightdraft-reading-tag .moon-pulse {
+    width: 0.4rem; height: 0.4rem;
+    border-radius: 50%;
+    background: var(--wine);
+    animation: pulse-dot 1.4s ease-in-out infinite;
+  }
+
+  /* Screen-reader-only */
+  .sr-only {
+    position: absolute;
+    width: 1px; height: 1px;
+    padding: 0; margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+  }
+
+  /* Cold-open frame */
+  .cold-open {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 2.25rem 1.5rem 2rem;
+    margin: 1.5rem 0 1rem;
+    text-align: center;
+    box-shadow: 0 2px 12px rgba(44, 37, 32, 0.05);
+  }
+  .cold-open .scene-eyebrow {
+    font-size: 0.6rem;
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    color: var(--text-tertiary);
+    font-weight: 700;
+    margin-bottom: 1rem;
+  }
+  .cold-open .scene-line {
+    font-family: 'DM Serif Display', Georgia, serif;
+    font-size: 1.15rem;
+    font-weight: 400;
+    color: var(--text);
+    line-height: 1.55;
+    letter-spacing: -0.005em;
+    max-width: 32rem;
+    margin: 0 auto;
+    min-height: 1.55em; /* reserve space so typewriter doesn't push layout */
+    opacity: 0;
+    transition: opacity 0.4s ease;
+  }
+  .cold-open .scene-line.appearing { opacity: 1; }
+  .cold-open .scene-line + .scene-line { margin-top: 0.55rem; }
+  .cold-open .scene-line strong { color: var(--wine); font-weight: 600; }
+  .cold-open .scene-line .type-cursor {
+    display: inline-block;
+    width: 1.5px;
+    height: 1em;
+    background: var(--wine);
+    margin-left: 2px;
+    vertical-align: text-bottom;
+    animation: blink 0.85s steps(2) infinite;
+  }
+  .cold-open .play-card {
+    margin-top: 1.85rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--border);
+    opacity: 0;
+    transition: opacity 0.6s ease;
+  }
+  .cold-open .play-card.appearing { opacity: 1; }
+  .cold-open .play-headline {
+    font-size: 0.78rem;
+    color: var(--text-secondary);
+    margin-bottom: 0.95rem;
+    font-weight: 500;
+  }
+  .cold-open .play-btn {
+    background: var(--wine);
+    color: white;
+    border: none;
+    border-radius: 999px;
+    padding: 0.85rem 1.6rem;
+    font: 600 0.95rem/1 'DM Sans', sans-serif;
+    cursor: pointer;
+    letter-spacing: 0.01em;
+    transition: background 0.15s ease, transform 0.15s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.55rem;
+  }
+  .cold-open .play-btn:hover { background: var(--wine-light); transform: scale(1.02); }
+  .cold-open .play-btn .triangle {
+    display: inline-block;
+    width: 0; height: 0;
+    border-left: 7px solid white;
+    border-top: 5px solid transparent;
+    border-bottom: 5px solid transparent;
+    margin-right: 0.15rem;
+  }
+  .cold-open .play-meta {
+    margin-top: 0.85rem;
+    font-size: 0.65rem;
+    color: var(--text-tertiary);
+    letter-spacing: 0.05em;
+  }
+  .cold-open .play-meta .dot { margin: 0 0.35rem; opacity: 0.6; }
+
+  .cold-open.hidden { display: none; }
+
+  /* Hide controls + stage until play has started */
+  .controls.hidden { display: none; }
+  .stage.hidden { display: none; }
+</style>
+</head>
+<body>
+
+<div class="container">
+  <a class="back" href="./mockup.html">‹ back to NightDraft</a>
+
+  <div class="eyebrow">A worked example · Lorne, Victoria · 12-top private dining</div>
+  <h1>NightDraft handles your big bookings.</h1>
+  <p class="lede">One inquiry in. A safe, on-voice draft in your Gmail before you sit down with coffee.</p>
+
+  <!-- COLD OPEN -->
+  <div class="cold-open" id="cold-open" role="region" aria-label="Set the scene before the worked example begins">
+    <div class="scene-eyebrow">▼ The scene ▼</div>
+    <p class="scene-line" id="line-1"></p>
+    <p class="scene-line" id="line-2"></p>
+    <p class="scene-line" id="line-3"></p>
+
+    <div class="play-card" id="play-card">
+      <div class="play-headline">Watch one big booking, end to end.</div>
+      <button class="play-btn" id="play-btn" aria-label="Play the worked example"><span class="triangle"></span> Play the story</button>
+      <div class="play-meta">~2 minutes <span class="dot">·</span> sound off <span class="dot">·</span> plays in real time</div>
+    </div>
+  </div>
+
+  <div class="controls hidden" id="controls">
+    <button class="replay-btn" id="replay" aria-label="Replay the worked example from the start">▶ Replay</button>
+    <button class="toggle-btn" id="captions-toggle" aria-pressed="true" aria-label="Toggle captions for silent viewing"><span class="dot"></span> Captions</button>
+    <span class="clock-tag">elapsed</span>
+    <span class="clock" id="clock" aria-live="polite">0.0s</span>
+  </div>
+
+  <div class="stage hidden" id="stage" role="region" aria-label="Worked example: a booking inquiry handled by NightDraft">
+
+    <!-- STEP 1 -->
+    <div class="step" id="step-1" role="article" aria-label="Step 1 of 8: An email lands in your Gmail inbox">
+      <div class="step-head">
+        <div class="step-num" aria-hidden="true">1</div>
+        <div class="step-title">
+          <h3>An email lands in your inbox</h3>
+          <p>You're not at your desk yet. Sarah from Penny PR is asking about a 12-top for Saturday 23 August.</p>
+        </div>
+      </div>
+      <div class="step-body">
+        <div class="gmail" id="gmail-chrome" role="img" aria-label="Mock Gmail interface showing Katie's bookings inbox. A new highlighted row from Sarah Penn appears, subject: Booking enquiry, table for 12, Sat 23 Aug.">
+          <div class="gmail-topbar">
+            <span class="gmail-logo"><span class="M">M</span> Gmail</span>
+            <span class="gmail-search">Search mail</span>
+            <span class="nightdraft-toolbar-icon"><span class="moon"></span> NightDraft · watching</span>
+            <span class="gmail-account">K</span>
+          </div>
+          <div class="gmail-body">
+            <div class="gmail-sidebar">
+              <div class="gmail-side-item active">Inbox <span class="badge" id="inbox-badge">1</span></div>
+              <div class="gmail-side-item">Starred</div>
+              <div class="gmail-side-item">Sent</div>
+              <div class="gmail-side-item">Drafts <span class="badge" id="drafts-badge">1</span></div>
+              <div class="gmail-side-item">All Mail</div>
+              <div class="gmail-side-item">Spam</div>
+            </div>
+            <div class="gmail-content">
+              <div class="view-mode visible" id="gmail-inbox-view">
+                <div class="gmail-inbox-row">
+                  <span class="star">☆</span>
+                  <span></span>
+                  <span class="sender">OpenTable</span>
+                  <span class="subject">New booking confirmation <span class="preview">Table for 2 · Sat 16 Aug 19:30 · Charles…</span></span>
+                  <span class="when">07:42</span>
+                </div>
+                <div class="gmail-inbox-row">
+                  <span class="star">☆</span>
+                  <span></span>
+                  <span class="sender">Riedel UK</span>
+                  <span class="subject">Spring catalogue <span class="preview">New Sommeliers range now available — 15% off through…</span></span>
+                  <span class="when">07:14</span>
+                </div>
+                <div class="gmail-inbox-row new" id="new-row">
+                  <span class="star">☆</span>
+                  <span></span>
+                  <span class="sender">Sarah Penn (Penny PR)</span>
+                  <span class="subject">Booking enquiry — table for 12, Sat 23 Aug <span class="preview">Hi, hoping you might have space for 12 of us…</span></span>
+                  <span class="when">09:11</span>
+                </div>
+                <div class="gmail-inbox-row">
+                  <span class="star">☆</span>
+                  <span></span>
+                  <span class="sender">Berry Bros &amp; Rudd</span>
+                  <span class="subject">Your March allocation <span class="preview">Hi Katie, your March allocation is ready for collection…</span></span>
+                  <span class="when">Wed</span>
+                </div>
+              </div>
+
+              <div class="view-mode" id="gmail-drafts-view">
+                <div class="gmail-drafts-header">
+                  <strong>Drafts</strong> 1 conversation
+                </div>
+                <div class="gmail-draft-row">
+                  <span class="star">☆</span>
+                  <span></span>
+                  <span class="sender"><span class="draft-tag">Draft</span> To Sarah</span>
+                  <span class="subject">Re: Booking enquiry — table for 12, Sat 23 Aug <span class="preview">Hi Sarah, thanks for thinking of us for the 23rd…</span></span>
+                  <span class="when">09:12</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- faux mouse cursor for click animation -->
+          <div class="faux-cursor" id="faux-cursor" aria-hidden="true">
+            <svg viewBox="0 0 18 22" xmlns="http://www.w3.org/2000/svg">
+              <path d="M2 1 L2 17 L6 13 L9 20 L11 19 L8 13 L14 13 Z" fill="#2c2520" stroke="#fff" stroke-width="1"/>
+            </svg>
+          </div>
+        </div>
+        <div class="live-caption">A new email lights up. NightDraft is watching the bookings inbox - the badge in the toolbar.</div>
+      </div>
+    </div>
+
+    <!-- STEP 2 - now owns its own viewport showing the open email -->
+    <div class="step" id="step-2" role="article" aria-label="Step 2 of 8: The email opens and you read it together with NightDraft">
+      <div class="step-head">
+        <div class="step-num" aria-hidden="true">2</div>
+        <div class="step-title">
+          <h3>You open it. NightDraft reads it too.</h3>
+          <p>Sarah's asking for 12 covers, Saturday, wine pairing.</p>
+        </div>
+      </div>
+      <div class="step-body">
+        <div class="gmail" role="img" aria-label="The same Gmail interface, now with Sarah's email open. A wine-coloured scanner bar moves down the message body as NightDraft reads it.">
+          <div class="gmail-topbar">
+            <span class="gmail-logo"><span class="M">M</span> Gmail</span>
+            <span class="gmail-search">Search mail</span>
+            <span class="nightdraft-toolbar-icon"><span class="moon"></span> NightDraft · reading</span>
+            <span class="gmail-account">K</span>
+          </div>
+          <div class="gmail-body">
+            <div class="gmail-sidebar">
+              <div class="gmail-side-item active">Inbox</div>
+              <div class="gmail-side-item">Starred</div>
+              <div class="gmail-side-item">Sent</div>
+              <div class="gmail-side-item">Drafts</div>
+              <div class="gmail-side-item">All Mail</div>
+            </div>
+            <div class="gmail-content">
+              <div class="gmail-thread">
+                <div class="gmail-thread-subject">Booking enquiry — table for 12, Sat 23 Aug</div>
+                <div class="gmail-thread-tags">
+                  <span class="thread-tag">Inbox</span>
+                  <span class="thread-tag">Bookings</span>
+                </div>
+                <div class="gmail-msg">
+                  <div class="gmail-msg-head">
+                    <div class="gmail-msg-avatar" style="background: #6366f1;">SP</div>
+                    <div class="gmail-msg-meta">
+                      <div class="name">Sarah Penn</div>
+                      <div class="from">sarah@pennypr.co.uk · to bookings@lornerestaurant.co.uk</div>
+                    </div>
+                    <div class="when">09:11</div>
+                  </div>
+                  <div class="scanner" id="scanner"></div>
+                  <div class="gmail-msg-body" id="inquiry-body-2">Hi,
+
+Hoping you might have space for 12 of us on Saturday 23rd August for a client dinner. We'd love to do the wine pairing if possible.
+
+Let me know what's needed to lock it in.
+
+Thanks,
+Sarah</div>
+                </div>
+                <div class="nightdraft-reading-tag" id="reading-tag"><span class="moon-pulse"></span> NightDraft is reading</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="live-caption" id="cap-step2">The email opens. The wine-coloured bar is NightDraft scanning what matters: 12 covers, the date, wine pairing.</div>
+      </div>
+    </div>
+
+    <!-- STEP 3 - now 4 chips, not 5 -->
+    <div class="step" id="step-3" role="article" aria-label="Step 3 of 8: Triage decides to engage">
+      <div class="step-head">
+        <div class="step-num" aria-hidden="true">3</div>
+        <div class="step-title">
+          <h3>Triage decides this one's yours</h3>
+          <p>Spam, 1-7 covers, supplier emails - left untouched.</p>
+        </div>
+      </div>
+      <div class="step-body">
+        <div class="triage" role="img" aria-label="Triage diagram. Sarah's inquiry slides into an Incoming column. Four classification chips appear: party_size 12, intent new_booking, tier 12 high-stakes, route engage. The decision column lights up: NightDraft handling this one.">
+          <div class="triage-cols">
+            <div class="triage-col">
+              <div class="triage-col-label">Incoming</div>
+              <div class="triage-incoming" id="triage-incoming">
+                <div class="from-line">Sarah Penn · 09:11</div>
+                <div class="subj-line">Booking enquiry — table for 12, Sat 23 Aug</div>
+              </div>
+            </div>
+            <div class="triage-col">
+              <div class="triage-col-label">Classify</div>
+              <div class="triage-chips" id="triage-chips">
+                <div class="triage-chip pass" data-chip="0"><span class="chip-label">party_size</span><span class="chip-val">12 ✓</span></div>
+                <div class="triage-chip pass" data-chip="1"><span class="chip-label">intent</span><span class="chip-val">new_booking ✓</span></div>
+                <div class="triage-chip flag" data-chip="2"><span class="chip-label">tier</span><span class="chip-val">12 · high-stakes</span></div>
+                <div class="triage-chip flag" data-chip="3"><span class="chip-label">route</span><span class="chip-val">engage</span></div>
+              </div>
+            </div>
+            <div class="triage-col">
+              <div class="triage-col-label">Decision</div>
+              <div class="triage-decision" id="triage-decision">
+                <div>Yours -</div>
+                <div class="verdict">NightDraft engages.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="live-caption">Four checks: how many, what kind, how much it matters, what to do. This one is yours - NightDraft writes it.</div>
+      </div>
+    </div>
+
+    <!-- STEP 4 - 3 pills, 3 rules -->
+    <div class="step" id="step-4" role="article" aria-label="Step 4 of 8: The 12-cover playbook tier loads">
+      <div class="step-head">
+        <div class="step-num" aria-hidden="true">4</div>
+        <div class="step-title">
+          <h3>Your 12-cover playbook loads</h3>
+          <p>Different rules for different sizes. Yours fires.</p>
+        </div>
+      </div>
+      <div class="step-body">
+        <div class="tier" role="img" aria-label="Tier selector. Three pills shown for 8, 12, and 16-plus covers. The 12 pill is selected. Three playbook rules appear: 30 pounds per person deposit, 24-hour cancellation, and set menu only.">
+          <div class="tier-pills" id="tier-pills">
+            <div class="tier-pill" data-pill="8">8</div>
+            <div class="tier-pill" data-pill="12">12</div>
+            <div class="tier-pill" data-pill="16+">16+</div>
+            <div class="tier-pill" data-pill="takeover">takeover</div>
+          </div>
+          <div class="tier-rules" id="tier-rules">
+            <div class="tier-rules-header">Your 12-cover rules</div>
+            <div class="tier-rule"><span>£30pp deposit, taken on booking</span><span class="rule-prov">R-014 · 04 Mar 26</span></div>
+            <div class="tier-rule"><span>24-hour cancellation, full charge after</span><span class="rule-prov">R-015 · 04 Mar 26</span></div>
+            <div class="tier-rule"><span>Set menu only for 8+ covers</span><span class="rule-prov">R-022 · 18 Mar 26</span></div>
+          </div>
+        </div>
+        <div class="live-caption">Your rules. Each one stamped with when you set it - so you can see what's enforced and roll back if you change your mind.</div>
+      </div>
+    </div>
+
+    <!-- STEP 5 - 3 voice bullets, last reply -->
+    <div class="step" id="step-5" role="article" aria-label="Step 5 of 8: Voice guide and last similar reply load side by side">
+      <div class="step-head">
+        <div class="step-num" aria-hidden="true">5</div>
+        <div class="step-title">
+          <h3>Your voice. Your last reply that worked.</h3>
+          <p>Two sources, side by side. The playbook says what to enforce. Your sent folder shows how you sound.</p>
+        </div>
+      </div>
+      <div class="step-body">
+        <div class="source-pair">
+          <div class="source-card" role="img" aria-label="Voice guide for Lorne with three rules: warm but not gushing, sign-off Best, bookings, no exclamation marks.">
+            <div class="source-card-label">Your voice · Lorne</div>
+            <h4>How you write</h4>
+            <ul>
+              <li>Warm but not gushing</li>
+              <li>Sign-off: <em>Best, bookings</em></li>
+              <li>No exclamation marks</li>
+            </ul>
+          </div>
+          <div class="source-card" role="img" aria-label="Last similar reply from 14 March 26 to a 10-top inquiry, beginning Hi Maddy, lovely to hear from you, we'd love to have the ten of you on the 22nd.">
+            <div class="source-card-label">Your last 10-top reply · 14 Mar 26</div>
+            <h4>Re: 10-top, 14 March</h4>
+            <div class="preview-quote">"Hi Maddy, lovely to hear from you, we'd love to have the ten of you on the 22nd. A few things to lock it in - the deposit, set menu, seated by 6:15pm…"</div>
+          </div>
+        </div>
+        <div class="live-caption">Three voice rules. One real reply you sent that worked. That's everything NightDraft needs to write this one.</div>
+      </div>
+    </div>
+
+    <!-- STEP 6 - draft writes itself, learning ghost line at end -->
+    <div class="step" id="step-6" role="article" aria-label="Step 6 of 8: The draft writes itself in your voice and attaches the menus">
+      <div class="step-head">
+        <div class="step-num" aria-hidden="true">6</div>
+        <div class="step-title">
+          <h3>The draft writes itself, in your voice - and attaches the menus</h3>
+          <p>Playbook plus voice plus the specifics of this thread. The 8+ tier with wine pairing also requires the group menus - attached automatically.</p>
+        </div>
+      </div>
+      <div class="step-body">
+        <div class="draft-frame">
+          <div class="draft-badge-row">
+            <span class="draft-label"><span class="draft-pulse"></span> Drafting in your voice</span>
+          </div>
+          <div class="draft-typer" id="draft-typer" role="region" aria-live="polite" aria-label="Draft email body, written in Katie's voice"><span class="cursor"></span></div>
+
+          <div class="attachments" id="attachments">
+            <div class="attachments-label" id="attachments-label">Attaching from your Drive…</div>
+            <div class="attachment-chip" id="att-wine">
+              <span class="att-icon" aria-hidden="true">📄</span>
+              <span class="att-meta">
+                <span class="att-name">Lorne · Wine List · Group Bookings.pdf</span>
+                <span class="att-size">2.4 MB</span>
+              </span>
+            </div>
+            <div class="attachment-chip" id="att-food">
+              <span class="att-icon" aria-hidden="true">📄</span>
+              <span class="att-meta">
+                <span class="att-name">Lorne · Group Set Menu · 8+ covers.pdf</span>
+                <span class="att-size">1.1 MB</span>
+              </span>
+            </div>
+          </div>
+
+          <span class="ai-tab">AI draft · review before sending</span>
+          <div class="draft-learn-line" id="draft-learn-line">Edit anything. NightDraft learns from every change.</div>
+        </div>
+        <div class="live-caption">The draft writes character by character, the way you would. Menus attach automatically. Nothing is sent.</div>
+      </div>
+    </div>
+
+    <!-- STEP 7 -->
+    <div class="step" id="step-7" role="article" aria-label="Step 7 of 8: The draft is saved to your Gmail drafts folder">
+      <div class="step-head">
+        <div class="step-num" aria-hidden="true">7</div>
+        <div class="step-title">
+          <h3>It's sitting in your Gmail drafts</h3>
+          <p>Nothing sent. Wine list and group menu already attached. Waiting for you to open Gmail like normal.</p>
+        </div>
+      </div>
+      <div class="step-body">
+        <div class="live-caption">Gmail switches to your Drafts folder. The draft is there, ready. Nothing left your machine.</div>
+      </div>
+    </div>
+
+    <!-- STEP 8 -->
+    <div class="step" id="step-8" role="article" aria-label="Step 8 of 8: A quiet Telegram ping arrives">
+      <div class="step-head">
+        <div class="step-num" aria-hidden="true">8</div>
+        <div class="step-title">
+          <h3>You get a quiet ping</h3>
+          <p>So you know there's a £2,250 inquiry waiting whenever you sit down with coffee.</p>
+        </div>
+      </div>
+      <div class="step-body">
+        <div class="telegram-card" role="img" aria-label="Mock Telegram notification from NightDraft: Draft ready, Sarah Penn, 12-top, Sat 23 Aug, four playbook rules applied, two menus attached, sitting in your Gmail drafts. Two buttons: Open in Gmail, I'll do it later.">
+          <div class="tg-chrome">
+            <span class="tg-back">‹</span>
+            <div class="tg-avatar">N</div>
+            <div class="tg-titles">
+              <div class="tg-name">NightDraft</div>
+              <div class="tg-status"><span class="online-dot"></span>bot</div>
+            </div>
+            <div class="tg-actions">⋮</div>
+          </div>
+          <div class="tg-body">
+            <div class="tg-bubble"><strong>🌙 Draft ready</strong>
+
+Sarah Penn · 12-top, Sat 23 Aug
+Tier: 12 · high-stakes
+3 playbook rules applied
+2 menus attached
+Sitting in your Gmail drafts.<span class="tg-bubble-time">09:11</span></div>
+            <div class="tg-buttons">
+              <button class="tg-btn">Open in Gmail</button>
+              <button class="tg-btn">I'll do it later</button>
+            </div>
+          </div>
+          <div class="tg-input">Message</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- INTERLUDE - the agency-shift reversal -->
+    <div class="interlude" id="interlude" role="article" aria-label="Interlude: You sit down with coffee, open the draft, edit one phrase, then send.">
+      <div class="interlude-label">▼ You sit down with coffee ▼</div>
+      <div class="interlude-title">Open Gmail. Drafts (1). Read it. Make it yours.</div>
+
+      <div class="edit-diff" id="edit-diff" role="img" aria-label="Inline edit. Original phrase 'to lock it in' struck through, replaced by 'to firm it up'.">
+        <div>"…a few details <span class="diff-old">to lock it in</span><span class="diff-new">to firm it up</span>: deposit, set menu, seated by 6:15pm…"</div>
+      </div>
+
+      <div class="send-row" id="send-row">
+        <button class="send-btn" id="send-btn" aria-label="Send the edited reply">Send</button>
+        <span class="send-tag" id="send-tag">✓ Sent · 09:14</span>
+      </div>
+
+      <div class="reversal-line" id="reversal-line">NightDraft proposes. You decide. Always.</div>
+      <div class="live-caption">You change one phrase. Then send. NightDraft never sent anything on its own.</div>
+    </div>
+
+    <!-- ACT 2 - reply lands, then peak hero -->
+    <div class="act2" id="act2" role="article" aria-label="Act 2: Sarah replies, the booking is confirmed.">
+      <div class="act2-label">▼ later that day ▼</div>
+
+      <div class="gmail">
+        <div class="gmail-topbar">
+          <span class="gmail-logo"><span class="M">M</span> Gmail</span>
+          <span class="gmail-search">Search mail</span>
+          <span class="nightdraft-toolbar-icon"><span class="moon"></span> NightDraft · watching</span>
+          <span class="gmail-account">K</span>
+        </div>
+        <div class="gmail-body">
+          <div class="gmail-sidebar">
+            <div class="gmail-side-item active">Inbox <span class="badge visible">1</span></div>
+            <div class="gmail-side-item">Sent</div>
+            <div class="gmail-side-item">Drafts</div>
+            <div class="gmail-side-item">All Mail</div>
+          </div>
+          <div class="gmail-content">
+            <div class="gmail-thread">
+              <div class="gmail-thread-subject">Re: Booking enquiry — table for 12, Sat 23 Aug</div>
+              <div class="gmail-msg">
+                <div class="gmail-msg-head">
+                  <div class="gmail-msg-avatar" style="background: #6366f1;">SP</div>
+                  <div class="gmail-msg-meta">
+                    <div class="name">Sarah Penn</div>
+                    <div class="from">sarah@pennypr.co.uk · to bookings@</div>
+                  </div>
+                  <div class="when">14:38</div>
+                </div>
+                <div class="gmail-msg-body" id="reply-body" aria-live="polite"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="revenue-card" id="revenue-card" role="img" aria-label="The hero result: 2,250 pound booking confirmed. 12 covers at 75 pounds average plus around 450 pounds wine spend.">
+        <div class="revenue-hero">£2,250 booked.</div>
+        <div class="revenue-sub">12 covers × £75 average + ~£450 wine spend</div>
+        <div class="revenue-caption">Your year, paid for.</div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="closing">
+    <h2>One inquiry in. £2,250 booked. In your voice. In 47 seconds.</h2>
+    <p>You open Gmail when you're ready. You edit if you want. You send. NightDraft handles the writing - never the sending.</p>
+  </div>
+
+  <div class="credibility">
+    <div class="cred-card">
+      <div class="cred-card-label">Founding partner</div>
+      <div class="cred-card-body">Lorne, Victoria · Bib Gourmand · 42 covers</div>
+    </div>
+    <div class="cred-card">
+      <div class="cred-card-label">Designed for</div>
+      <div class="cred-card-body">Independents handling 8+ inquiries by email</div>
+    </div>
+    <div class="cred-card">
+      <div class="cred-card-label">Not for</div>
+      <div class="cred-card-body">OpenTable's 1-7s · spam · auto-sending anything</div>
+    </div>
+  </div>
+
+</div>
+
+<script>
+  const steps = document.querySelectorAll('.step');
+  const clockEl = document.getElementById('clock');
+  const replayBtn = document.getElementById('replay');
+  const captionsToggle = document.getElementById('captions-toggle');
+
+  // Captions toggle (default ON)
+  captionsToggle.addEventListener('click', () => {
+    const pressed = captionsToggle.getAttribute('aria-pressed') === 'true';
+    const next = !pressed;
+    captionsToggle.setAttribute('aria-pressed', String(next));
+    document.body.classList.toggle('captions-off', !next);
+  });
+
+  const timing = [
+    { before: 600,  dwell: 0    },  // 1 - email arrives, cursor clicks, cut straight to step 2
+    { before: 300,  dwell: 2800 },  // 2 - email open, scanner reads down body, dwell to read
+    { before: 1800, dwell: 2800 },  // 3 - triage
+    { before: 1600, dwell: 2800 },  // 4 - tier (slightly longer with takeover pill)
+    { before: 1600, dwell: 3400 },  // 5 - sources
+    { before: 1600, dwell: 2800 },  // 6 - draft
+    { before: 1600, dwell: 2400 },  // 7 - saved
+    { before: 1600, dwell: 3400 },  // 8 - telegram
+  ];
+
+  let clockTimer = null;
+  let startTime = 0;
+
+  function startClock() {
+    startTime = performance.now();
+    clockTimer = setInterval(() => {
+      const elapsed = (performance.now() - startTime) / 1000;
+      clockEl.textContent = elapsed.toFixed(1) + 's';
+    }, 50);
+  }
+  function stopClock() {
+    if (clockTimer) { clearInterval(clockTimer); clockTimer = null; }
+  }
+
+  function setView(name) {
+    document.querySelectorAll('.view-mode').forEach(v => v.classList.remove('visible'));
+    const target = document.getElementById('gmail-' + name + '-view');
+    if (target) target.classList.add('visible');
+  }
+
+  async function reset() {
+    steps.forEach(s => s.classList.remove('visible', 'active', 'done'));
+    clockEl.textContent = '0.0s';
+    stopClock();
+
+    setView('inbox');
+    document.getElementById('new-row').classList.remove('arrived');
+    document.getElementById('inbox-badge').classList.remove('visible');
+    document.getElementById('drafts-badge').classList.remove('visible');
+
+    // Reset faux cursor
+    const fc = document.getElementById('faux-cursor');
+    if (fc) {
+      fc.classList.remove('visible', 'clicking');
+      fc.style.left = '40px';
+      fc.style.top = '300px';
+    }
+
+    // Reset step 2 scanner + reading tag
+    const sc = document.getElementById('scanner');
+    if (sc) {
+      sc.classList.remove('visible');
+      sc.style.top = '0px';
+    }
+    const rt = document.getElementById('reading-tag');
+    if (rt) rt.classList.remove('visible');
+
+    document.getElementById('triage-incoming').classList.remove('visible');
+    document.querySelectorAll('#triage-chips .triage-chip').forEach(c => c.classList.remove('visible'));
+    document.getElementById('triage-decision').classList.remove('engaged');
+
+    document.querySelectorAll('#tier-pills .tier-pill').forEach(p => {
+      p.classList.remove('selected', 'considering');
+    });
+    document.getElementById('tier-rules').classList.remove('visible');
+
+    const drafter = document.getElementById('draft-typer');
+    if (drafter) drafter.innerHTML = '<span class="cursor"></span>';
+
+    document.getElementById('attachments').classList.remove('visible');
+    document.getElementById('attachments-label').classList.remove('visible');
+    document.getElementById('att-wine').classList.remove('visible');
+    document.getElementById('att-food').classList.remove('visible');
+    document.getElementById('draft-learn-line').classList.remove('visible');
+
+    const interlude = document.getElementById('interlude');
+    interlude.classList.remove('visible');
+    document.getElementById('edit-diff').classList.remove('visible');
+    document.getElementById('send-row').classList.remove('visible');
+    document.getElementById('send-btn').classList.remove('pressed');
+    document.getElementById('send-btn').textContent = 'Send';
+    document.getElementById('send-tag').classList.remove('visible');
+    document.getElementById('reversal-line').classList.remove('visible');
+
+    document.getElementById('act2').classList.remove('visible');
+    document.getElementById('reply-body').innerHTML = '';
+    document.getElementById('revenue-card').classList.remove('peak');
+
+    document.querySelector('.closing').classList.remove('visible');
+    document.querySelector('.credibility').classList.remove('visible');
+    document.getElementById('version-footer')?.classList.remove('visible');
+  }
+
+  async function animateInquiryArrives() {
+    // Pause before anything happens - let the viewer absorb the inbox
+    await sleep(1500);
+
+    // Whoosh in the new row
+    const newRow = document.getElementById('new-row');
+    newRow.classList.add('arrived');
+    document.getElementById('inbox-badge').classList.add('visible');
+
+    // Hold on the highlight so the viewer registers what arrived
+    await sleep(2200);
+
+    // Cursor approaches the row, then clicks
+    const cursor = document.getElementById('faux-cursor');
+    const gmail = document.getElementById('gmail-chrome');
+    if (cursor && gmail && newRow) {
+      const gmailRect = gmail.getBoundingClientRect();
+      const rowRect = newRow.getBoundingClientRect();
+      cursor.style.left = '40px';
+      cursor.style.top = (gmailRect.height - 40) + 'px';
+      cursor.classList.add('visible');
+      await sleep(400);
+      const targetX = (rowRect.left - gmailRect.left) + 80;
+      const targetY = (rowRect.top - gmailRect.top) + 14;
+      cursor.style.left = targetX + 'px';
+      cursor.style.top = targetY + 'px';
+      await sleep(1500);
+      cursor.classList.add('clicking');
+      await sleep(600);
+      cursor.classList.remove('clicking');
+      await sleep(300);
+    }
+  }
+
+  async function animateInquiryBody() {
+    // Hide the cursor as we transition into the open email
+    const cursor = document.getElementById('faux-cursor');
+    if (cursor) cursor.classList.remove('visible');
+
+    // Pause first - let the viewer see the open email and read the subject
+    await sleep(900);
+
+    // Now NightDraft engages: reading tag pulses on
+    const tag = document.getElementById('reading-tag');
+    if (tag) tag.classList.add('visible');
+
+    // Brief beat after the tag appears, before the scan begins
+    await sleep(500);
+
+    const scanner = document.getElementById('scanner');
+    const body = document.getElementById('inquiry-body-2');
+    if (scanner && body) {
+      const msg = body.closest('.gmail-msg');
+      if (msg) {
+        scanner.style.top = '0px';
+        scanner.classList.add('visible');
+        await sleep(120);
+        const bodyTop = body.offsetTop;
+        const bodyHeight = body.offsetHeight;
+        scanner.style.top = (bodyTop + bodyHeight) + 'px';
+        await sleep(2400);
+        scanner.classList.remove('visible');
+      }
+    }
+  }
+
+  async function animateTriage() {
+    await sleep(1100);
+    document.getElementById('triage-incoming').classList.add('visible');
+    await sleep(1300);
+
+    const chips = document.querySelectorAll('#triage-chips .triage-chip');
+    // Variable cadence per principle 8
+    const chipDelays = [380, 520, 320, 640];
+    for (let i = 0; i < chips.length; i++) {
+      chips[i].classList.add('visible');
+      await sleep(chipDelays[i] || 500);
+    }
+
+    await sleep(700);
+    document.getElementById('triage-decision').classList.add('engaged');
+  }
+
+  async function animateTier() {
+    await sleep(1000);
+    const pills = document.querySelectorAll('#tier-pills .tier-pill');
+    for (let i = 0; i < pills.length; i++) {
+      pills[i].classList.add('considering');
+      await sleep(420);
+      if (pills[i].dataset.pill !== '12') pills[i].classList.remove('considering');
+    }
+    await sleep(500);
+    pills.forEach(p => {
+      if (p.dataset.pill === '12') {
+        p.classList.remove('considering');
+        p.classList.add('selected');
+      }
+    });
+    await sleep(900);
+    document.getElementById('tier-rules').classList.add('visible');
+  }
+
+  async function animateDraftTyping() {
+    const el = document.getElementById('draft-typer');
+    const text = `Hi Sarah,
+
+Thanks for thinking of us for the 23rd - we'd love to host the twelve of you, and yes the wine pairing is no problem at all.
+
+A few details to lock it in: a £30pp deposit (taken on booking, refundable up to 24 hours before), set menu only for parties of 8+, and we'd need everyone seated by 6:15pm so the kitchen can run the pairing properly.
+
+Could you also let me know any allergies or dietary requirements across the group?
+
+Let me know if that works and I'll send across the deposit link.
+
+Best,
+bookings`;
+    await sleep(1100);
+    el.innerHTML = '';
+    for (let i = 0; i < text.length; i++) {
+      el.textContent = text.slice(0, i + 1);
+      const ch = text[i];
+      let delay = 36 + Math.random() * 26;
+      if (ch === ' ') delay = 25;
+      if (ch === ',' || ch === '.') delay = 240;
+      if (ch === '\n') delay = 340;
+      await sleep(delay);
+    }
+    el.innerHTML = el.textContent;
+
+    await sleep(900);
+    document.getElementById('attachments').classList.add('visible');
+    document.getElementById('attachments-label').classList.add('visible');
+    await sleep(700);
+    document.getElementById('att-wine').classList.add('visible');
+    await sleep(700);
+    document.getElementById('att-food').classList.add('visible');
+
+    // The folded-in learning signal (was step 11 in v1)
+    await sleep(1100);
+    document.getElementById('draft-learn-line').classList.add('visible');
+  }
+
+  async function animateDraftSaved() {
+    await sleep(1200);
+    setView('drafts');
+    document.getElementById('drafts-badge').classList.add('visible');
+  }
+
+  // INTERLUDE - the agency-shift reversal
+  async function playInterlude() {
+    const interlude = document.getElementById('interlude');
+    interlude.classList.add('visible');
+    interlude.scrollIntoView({ behavior: 'smooth', block: 'center' });
+
+    await sleep(2000);
+    document.getElementById('edit-diff').classList.add('visible');
+    await sleep(2200);
+    document.getElementById('send-row').classList.add('visible');
+    await sleep(1400);
+
+    const sendBtn = document.getElementById('send-btn');
+    sendBtn.classList.add('pressed');
+    sendBtn.textContent = 'Sending…';
+    await sleep(1100);
+    sendBtn.textContent = 'Sent';
+    document.getElementById('send-tag').classList.add('visible');
+
+    // The midpoint reversal line
+    await sleep(900);
+    document.getElementById('reversal-line').classList.add('visible');
+  }
+
+  async function playAct2() {
+    const act2 = document.getElementById('act2');
+    act2.classList.add('visible');
+    await sleep(700);
+    act2.scrollIntoView({ behavior: 'smooth', block: 'start' });
+
+    const el = document.getElementById('reply-body');
+    const text = `Perfect, thank you - that all works. Credit card details for the deposit are below.
+
+Looking forward to it!
+
+Sarah`;
+    await sleep(1000);
+    for (let i = 0; i < text.length; i++) {
+      el.textContent = text.slice(0, i + 1);
+      const ch = text[i];
+      let delay = 34 + Math.random() * 22;
+      if (ch === ' ') delay = 22;
+      if (ch === ',' || ch === '.') delay = 200;
+      if (ch === '\n') delay = 280;
+      await sleep(delay);
+    }
+
+    // The peak: hold the £2,250 longer
+    await sleep(900);
+    const card = document.getElementById('revenue-card');
+    card.classList.add('peak');
+    card.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    // peak hold - 4s instead of 3s
+    await sleep(4000);
+  }
+
+  function sleep(ms) { return new Promise(r => setTimeout(r, ms)); }
+
+  const animators = [
+    animateInquiryArrives, // 0
+    animateInquiryBody,    // 1
+    animateTriage,         // 2
+    animateTier,           // 3
+    null,                  // 4 - sources, static
+    animateDraftTyping,    // 5
+    animateDraftSaved,     // 6
+    null,                  // 7 - telegram, static
+  ];
+
+  async function play() {
+    await reset();
+    await sleep(500);
+    startClock();
+
+    for (let i = 0; i < steps.length; i++) {
+      const step = steps[i];
+      const t = timing[i];
+
+      await sleep(t.before);
+
+      step.classList.add('visible');
+      step.classList.add('active');
+      step.scrollIntoView({ behavior: 'smooth', block: 'center' });
+
+      const fn = animators[i];
+      if (fn) await fn();
+
+      await sleep(t.dwell);
+
+      step.classList.remove('active');
+      step.classList.add('done');
+    }
+
+    stopClock();
+    await sleep(1500);
+    await playInterlude();
+    await sleep(2500);
+    await playAct2();
+
+    await sleep(1200);
+    document.querySelector('.closing').classList.add('visible');
+    document.querySelector('.credibility').classList.add('visible');
+    document.getElementById('version-footer')?.classList.add('visible');
+    document.querySelector('.closing').scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+
+  replayBtn.addEventListener('click', play);
+
+  // Cold-open gate: play only starts when the user presses ▶
+  const playBtn = document.getElementById('play-btn');
+  const coldOpen = document.getElementById('cold-open');
+  const controlsBar = document.getElementById('controls');
+  const stage = document.getElementById('stage');
+  const playCard = document.getElementById('play-card');
+
+  playBtn.addEventListener('click', () => {
+    coldOpen.classList.add('hidden');
+    controlsBar.classList.remove('hidden');
+    stage.classList.remove('hidden');
+    play();
+  });
+
+  // ──────────────────────────────────────────────────────────────
+  // COLD-OPEN TYPEWRITER - autoplay on page load
+  // Each line: array of segments. {t: text} for plain, {t: text, b: true} for wine-bold
+  // ──────────────────────────────────────────────────────────────
+  const coldOpenLines = [
+    { id: 'line-1', segments: [
+      { t: '', b: true, _: 'Katie' }, { t: ' owns Lorne, a Bib Gourmand bistro in Victoria.' }
+    ]},
+    { id: 'line-2', segments: [
+      { t: "It's 9:11 on a Thursday morning. She's just sat down with her coffee." }
+    ]},
+    { id: 'line-3', segments: [
+      { t: 'Her ' }, { t: '', b: true, _: 'bookings@' }, { t: ' inbox has a new email.' }
+    ]}
+  ];
+
+  function escHtml(s) {
+    return s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+  }
+
+  // Render the partially-typed line with a blinking cursor at the end
+  function renderLine(el, segments, charsTyped) {
+    let html = '';
+    let used = 0;
+    for (const seg of segments) {
+      const fullText = seg._ != null ? seg._ : seg.t;
+      if (used >= charsTyped) break;
+      const remaining = charsTyped - used;
+      const slice = fullText.slice(0, remaining);
+      if (seg.b) {
+        html += '<strong>' + escHtml(slice) + '</strong>';
+      } else {
+        html += escHtml(slice);
+      }
+      used += fullText.length;
+    }
+    el.innerHTML = html + '<span class="type-cursor"></span>';
+  }
+
+  async function typeLine(lineDef) {
+    const el = document.getElementById(lineDef.id);
+    el.classList.add('appearing');
+    const fullText = lineDef.segments.map(s => s._ != null ? s._ : s.t).join('');
+    for (let i = 0; i <= fullText.length; i++) {
+      renderLine(el, lineDef.segments, i);
+      const ch = fullText[i - 1] || '';
+      let delay = 28 + Math.random() * 22;
+      if (ch === ' ') delay = 22;
+      if (ch === ',' || ch === '.') delay = 220;
+      if (ch === "'") delay = 50;
+      await sleep(delay);
+    }
+    // Drop the cursor on completed lines
+    el.querySelector('.type-cursor')?.remove();
+  }
+
+  async function playColdOpen() {
+    await sleep(500);
+    for (let i = 0; i < coldOpenLines.length; i++) {
+      await typeLine(coldOpenLines[i]);
+      await sleep(450);
+    }
+    await sleep(600);
+    playCard.classList.add('appearing');
+  }
+
+  // Autoplay the cold-open as soon as the page loads
+  playColdOpen();
+</script>
+</body>
+</html>
