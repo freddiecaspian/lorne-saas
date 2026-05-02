@@ -700,6 +700,29 @@
     border: 4px solid var(--bg-card);
     box-shadow: 0 8px 32px -8px rgba(44, 37, 32, 0.22);
   }
+  /* Beat 1 crossfade: childhood -> Five Guys */
+  .o-xfade {
+    position: relative;
+    width: min(640px, 92%);
+    height: 60vh;
+  }
+  .o-xfade img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    border-radius: 14px;
+    box-shadow: 0 18px 48px -16px rgba(44, 37, 32, 0.28);
+    transition: opacity 900ms cubic-bezier(.22, 1, .36, 1);
+  }
+  .o-xfade .xf-a { opacity: 1; }
+  .o-xfade .xf-b { opacity: 0; }
+  .v-crossfade.is-on.show-b .xf-a { opacity: 0; }
+  .v-crossfade.is-on.show-b .xf-b { opacity: 1; }
+  .v-crossfade .cap-b { display: none; }
+  .v-crossfade.is-on.show-b .cap-a { display: none; }
+  .v-crossfade.is-on.show-b .cap-b { display: inline; }
   /* Writing stack: two articles overlapped */
   .o-writing-stack {
     position: relative;
@@ -1012,43 +1035,43 @@
       <article class="o-step" data-beat="1">
         <div class="o-eyebrow">Born around it</div>
         <h2>Hospitality from the beginning.</h2>
-        <p>Dad's a serial entrepreneur, brought Five Guys to the UK, owns pubs. I grew up in restaurants, not analysing them from outside.</p>
+        <p>My dad's a serial entrepreneur &mdash; brought Five Guys to the UK and Europe, owns a wine-led pub. I grew up in restaurants, not analysing them from outside. For a long time I thought my career might go down that path.</p>
       </article>
 
       <article class="o-step" data-beat="2">
         <div class="o-eyebrow">Trained in it</div>
         <h2>Then I learned to do it for real.</h2>
-        <p>Summer at The River Cafe. Met Chef Nick Anderer; followed him to NYC on a J1 visa, waiter then supervisor at Martina (Union Square Hospitality Group). Danny Meyer's school of high-stakes service.</p>
+        <p>Summer at The River Cafe in London (Ruth Rogers' iconic Michelin-starred restaurant) where I met Chef Nick Anderer. Followed him to NYC on a J1, waiter then supervisor at Martina &mdash; his fast-casual pizzeria in the East Village, part of Danny Meyer's Union Square Hospitality Group.</p>
       </article>
 
       <article class="o-step" data-beat="3">
         <div class="o-eyebrow">The design partner</div>
         <h2>The first user is not hypothetical.</h2>
-        <p>Six-year friendship with Katie Exton, owner of Lorne (Bib Gourmand, Victoria). I have watched her run a 42-cover restaurant from the inside. She is the operator NightDraft is built for.</p>
+        <p>Six-year friendship with Katie Exton, owner of Lorne (Bib Gourmand, Victoria). I still work part-time shifts when she's short-handed. She is the operator NightDraft is built for &mdash; the proof of concept lives in her inbox.</p>
       </article>
 
       <article class="o-step" data-beat="4">
         <div class="o-eyebrow">Could write it</div>
         <h2>The product depends on voice.</h2>
-        <p>Bylines in the Evening Standard ("Welcome to the Fat Badger", March 2025) and The Pass ("DFL Chronicles"). NightDraft is not automating replies. It is preserving tone, judgement, and hospitality.</p>
+        <p>Even though I'm not in the industry day-to-day, I have journalist credentials &mdash; bylines in the Evening Standard ("Welcome to the Fat Badger", March 2025) and The Pass ("DFL Chronicles"). NightDraft is not automating replies. It is preserving tone, judgement, and hospitality.</p>
       </article>
 
       <article class="o-step" data-beat="5">
         <div class="o-eyebrow">Built systems for it</div>
         <h2>Then came scale.</h2>
-        <p>Seven years at WPP. Built the network's first shared CRM: $163M+ pipeline, 1,247 users across 8 agencies, 82% of network revenue. Cannes Lions, Amazon $4.5BN media account.</p>
+        <p>Seven years at WPP developing technology systems for the creative agencies across EMEA. Built the network's first shared CRM &mdash; $163M+ pipeline, 1,247 users across 8 agencies, 82% of network revenue. I know how to build a product that people actually use.</p>
       </article>
 
       <article class="o-step" data-beat="6">
         <div class="o-eyebrow">Then the tools changed</div>
         <h2>I shipped, not just talked.</h2>
-        <p>GrapeSnap to the App Store, March 2026. Pushed my coding ability to its fullest with frontier AI tools. &pound;500 total cost, 25 user interviews. Cold-emailed Chris Barton (Shazam founder); his reply shaped the product. Now on the INSEAD AI Club steering committee.</p>
+        <p>Co-President of the INSEAD AI Club, elected by my classmates. Creative background + hospitality fluency + technical skill = I have built like never before. In March 2026 I shipped GrapeSnap to the App Store: a private, offline-first wine collecting platform. &pound;500 total cost, cold-emailed Chris Barton (Shazam founder); his reply shaped the product.</p>
       </article>
 
       <article class="o-step" data-beat="7">
         <div class="o-eyebrow">Convergence</div>
-        <h2>One product needed all of it.</h2>
-        <p>Hospitality + writing + systems + frontier LLMs + the design partner = NightDraft. The only product this founder could credibly build.</p>
+        <h2>It's only obvious in hindsight.</h2>
+        <p>This feels like it has come together in the last month, but my whole journey has led to this product. NightDraft is the only product this founder could credibly build.</p>
       </article>
 
     </div>
@@ -1061,9 +1084,12 @@
           <img src="me-portrait.png" alt="Portrait of Freddie Chambers" />
         </div>
 
-        <div class="o-visual" data-beat="1">
-          <img src="me-childhood.png" alt="Freddie as a child in a caf&eacute;" />
-          <div class="o-vcap">Born around it</div>
+        <div class="o-visual v-crossfade" data-beat="1">
+          <div class="o-xfade">
+            <img class="xf-a" src="me-childhood.png" alt="Freddie as a child in a caf&eacute;" />
+            <img class="xf-b" src="me-fiveguys.jpg" alt="Freddie at Five Guys with the team" />
+          </div>
+          <div class="o-vcap"><span class="cap-a">Born around it</span><span class="cap-b">Still in it &middot; Five Guys, brought to UK by my dad</span></div>
         </div>
 
         <div class="o-visual" data-beat="2">
@@ -1145,9 +1171,20 @@
     if (!slide || !root) return;
     var beats = root.querySelectorAll('.o-step');
     var visuals = root.querySelectorAll('.o-visual');
+    var xfadeTimer = null;
     function activate(n){
       beats.forEach(function(b){ b.classList.toggle('is-on', b.getAttribute('data-beat') === n); });
-      visuals.forEach(function(v){ v.classList.toggle('is-on', v.getAttribute('data-beat') === n); });
+      visuals.forEach(function(v){
+        var on = v.getAttribute('data-beat') === n;
+        v.classList.toggle('is-on', on);
+        if (!on) v.classList.remove('show-b');
+      });
+      // Crossfade beat 1 from childhood to Five Guys after a brief hold
+      if (xfadeTimer) { clearTimeout(xfadeTimer); xfadeTimer = null; }
+      if (n === '1') {
+        var xf = root.querySelector('.v-crossfade');
+        if (xf) xfadeTimer = setTimeout(function(){ xf.classList.add('show-b'); }, 1600);
+      }
     }
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
       beats.forEach(function(b){ b.classList.add('is-on'); });
