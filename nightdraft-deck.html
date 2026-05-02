@@ -1382,6 +1382,57 @@
     transition: opacity 400ms ease;
   }
   .audio-stage.is-playing .audio-hint { opacity: 0; }
+  /* ====== COOL 5 STRIP (Slide 19) - access game restaurants ====== */
+  .cool5 {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 0.6rem;
+    margin: 1.25rem 0 1.5rem;
+  }
+  .c5-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-top: 3px solid var(--wine);
+    border-radius: 8px;
+    padding: 0.85rem 0.85rem 0.95rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    min-height: 175px;
+  }
+  .c5-num {
+    font: 600 0.62rem/1 'DM Mono', monospace;
+    color: var(--text-tertiary);
+    letter-spacing: 0.1em;
+  }
+  .c5-name {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.2rem;
+    line-height: 1.05;
+    color: var(--text);
+    letter-spacing: -0.01em;
+    font-weight: 400;
+  }
+  .c5-cite {
+    font-size: 0.72rem;
+    line-height: 1.4;
+    color: var(--text-secondary);
+    flex: 1;
+  }
+  .c5-access {
+    margin-top: auto;
+    padding-top: 0.5rem;
+    border-top: 1px dashed var(--border);
+    font: 500 0.62rem/1.35 'DM Mono', monospace;
+    color: var(--wine);
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+  .c5-access.target { color: var(--text-tertiary); text-transform: none; font-style: italic; }
+  @media (max-width: 880px) {
+    .cool5 { grid-template-columns: repeat(2, 1fr); }
+  }
+
   /* PERCEPTUAL MAPS */
   .map-wrap {
     background: var(--bg-card);
@@ -2728,40 +2779,69 @@
 <!-- ============ SLIDE 17 - COMMUNICATION & BUDGET ============ -->
 <section class="slide" id="slide-19">
   <div class="slide-num">Slide 19 / 23</div>
-  <div class="eyebrow">Slide 19 &middot; Communication &amp; Budget</div>
-  <h1>Pay where the trust already exists. Earn the rest.</h1>
+  <div class="eyebrow">Slide 19 &middot; Distribution &amp; Access</div>
+  <h1>Hospitality is an in-club. We're already in it.</h1>
 
-  <div class="subhead">Communication objectives (5-decision process from S09)</div>
-  <table>
-    <thead><tr><th>Stage</th><th>Objective</th><th>Metric</th></tr></thead>
-    <tbody>
-      <tr><td>Awareness</td><td>Become the named tool when restaurateurs talk about high-stakes booking pain</td><td>Branded search; podcast mentions; share of voice</td></tr>
-      <tr><td>Consideration</td><td>Owner books a 30-min demo with the founder</td><td>Demos booked; demo-attended rate</td></tr>
-      <tr><td>Conversion</td><td>Single-conversation close on demo land</td><td>Demo-to-pilot rate; time-to-close</td></tr>
-      <tr><td>Retention</td><td>Edit-logging shows reply quality compounding</td><td>M3 quality &gt; M1; churn &lt; 25%/yr indie, &lt; 15%/yr group</td></tr>
-      <tr><td>Advocacy</td><td>Peer referrals</td><td>Referral rate; net new logos per existing</td></tr>
-    </tbody>
-  </table>
+  <p class="lede">London restaurant marketing is not a media-buy market &mdash; it's an access market. Operators don't read trade press to find tools; they hear about them at industry dinners and from operators they respect. NightDraft's distribution mirrors this: get the five most culturally-dominant restaurants in London first. The rest follow because we are now the tool the cool ones use.</p>
 
-  <div class="subhead">Year-1 budget &mdash; GBP 24,000 (~GBP 2,000/mo)</div>
+  <div class="subhead">The Cool 5 &middot; the wedge before the scale</div>
+  <div class="cool5">
+    <div class="c5-card">
+      <div class="c5-num">01</div>
+      <div class="c5-name">Lorne</div>
+      <div class="c5-cite">Bib Gourmand &middot; Victoria. The cult-favourite neighbourhood restaurant.</div>
+      <div class="c5-access">Katie Exton &middot; 6yr friendship &middot; design partner</div>
+    </div>
+    <div class="c5-card">
+      <div class="c5-num">02</div>
+      <div class="c5-name">Manteca</div>
+      <div class="c5-cite">Eater London #1 in 2022 &middot; Resy Top 50 &middot; still impossible to book.</div>
+      <div class="c5-access">David Carter &middot; cousin &middot; Restaurateur of the Year</div>
+    </div>
+    <div class="c5-card">
+      <div class="c5-num">03</div>
+      <div class="c5-name">Bouchon Racine</div>
+      <div class="c5-cite">"Best restaurant in London" 2024. Henry Harris's cult French upstairs above a pub.</div>
+      <div class="c5-access target">Founder warm-intro target via the Carter network</div>
+    </div>
+    <div class="c5-card">
+      <div class="c5-num">04</div>
+      <div class="c5-name">Dorian</div>
+      <div class="c5-cite">Michelin star Notting Hill. The marketer's restaurant. Six-concept group.</div>
+      <div class="c5-access">Chris D'Silva &middot; second design partner candidate</div>
+    </div>
+    <div class="c5-card">
+      <div class="c5-num">05</div>
+      <div class="c5-name">St. JOHN</div>
+      <div class="c5-cite">Fergus Henderson's elder statesman of British dining. The institutional kitemark.</div>
+      <div class="c5-access target">Founder warm-intro target via Carter / industry network</div>
+    </div>
+  </div>
+
+  <div class="subhead">Why this works structurally</div>
+  <div class="callout">
+    <p>London hospitality is a <strong>tight, gossip-driven industry</strong>. Operators take recommendations from operators they respect, not from trade press cold. The founder is already inside this network &mdash; Evening Standard column, family in food media (cousin = Michelin Restaurateur of the Year), six years embedded with Lorne, on the guest list at the parties where commissioning decisions happen. The wedge is to convert that access into product adoption at five culturally-dominant venues. Once those five run NightDraft, every other indie operator in the city has heard about it within a quarter.</p>
+  </div>
+
+  <div class="subhead">Year-1 budget &mdash; GBP 24,000 &middot; amplification, not acquisition</div>
   <table>
     <thead><tr><th>Channel</th><th class="right">Spend</th><th>Logic</th></tr></thead>
     <tbody>
-      <tr><td>GoToFood podcast sponsorship</td><td class="num">GBP 12,000</td><td>12 episodes &times; GBP 1,000. Trusted hospitality channel; direct buyer audience.</td></tr>
-      <tr><td>Founder PR / earned editorial</td><td class="num">GBP 0</td><td>Code Hospitality (Adam Hyman), The Pass, The Caterer, SquareMeal, Guardian food desk. Earned. Founder is on the guest list at the parties where commissioning decisions happen; friends with key editors. Distribution moat is the network, not the spend. Evening Standard column adds owned-media leverage.</td></tr>
-      <tr><td>Industry dinners / operator events</td><td class="num">GBP 6,000</td><td>Founder presence at hospitality events</td></tr>
-      <tr><td>Lorne case-study production</td><td class="num">GBP 3,000</td><td>Worked example + video</td></tr>
-      <tr><td>Reserve</td><td class="num">GBP 3,000</td><td>Operational</td></tr>
+      <tr><td><strong>Cool 5 onboarding</strong></td><td class="num">GBP 6,000</td><td>Free pilots, custom playbook setup, and case-study production (video, photography, written walkthroughs) at the five culturally-dominant restaurants. The "spend" is mostly founder time; this is the production cost.</td></tr>
+      <tr><td><strong>GoToFood podcast sponsorship</strong></td><td class="num">GBP 12,000</td><td>12 episodes &times; GBP 1,000. Amplification of social proof: "the cool ones use NightDraft" reaches every other indie operator in the audience. See Slide 20 for the produced spot.</td></tr>
+      <tr><td><strong>Industry dinners / operator events</strong></td><td class="num">GBP 4,000</td><td>Where the cool 5 &rarr; next 50 conversion happens in person. Founder presence at hospitality events.</td></tr>
+      <tr><td><strong>Reserve</strong></td><td class="num">GBP 2,000</td><td>Operational</td></tr>
     </tbody>
   </table>
 
   <div class="callout wine">
-    <strong>Binet &amp; Field 60-40.</strong> 60% brand-build (podcast, editorial, industry presence), 40% activation (case studies, demo-driving events). Matches S11 &amp; S12 Novela 95-5 Rule logic - most of the audience is not buying this quarter.
+    <strong>Binet &amp; Field 60-40, inverted.</strong> Brand-build = "be seen at the cool tables" (founder access, Cool 5 case studies). Activation = "podcast sponsorship that says we're at those tables." The framework holds; the channels are different because the market is different.
   </div>
 
   <div class="subhead">GEO not just SEO (from S09 reading)</div>
-  <p>NightDraft must be discoverable in LLM responses (when an operator asks ChatGPT/Claude "what's the best AI tool for restaurant big-booking emails?"). Required: owned content (Evening Standard column, NightDraft blog, case studies), earned media, structured-data optimisation, citation network. By 2027 GEO traffic &gt; SEO for new categories.</p>
+  <p>NightDraft must also be discoverable in LLM responses (when an operator asks ChatGPT/Claude "what's the best AI tool for restaurant big-booking emails?"). Required: owned content (Evening Standard column, NightDraft blog, Cool 5 case studies), earned media, structured-data optimisation, citation network. By 2027 GEO traffic &gt; SEO for new categories.</p>
 </section>
+
 
 <!-- ============ SLIDE 20 - AUDIO AD (PODCAST SPONSOR SPOT) ============ -->
 <section class="slide" id="slide-20">
@@ -2775,7 +2855,7 @@
     </div>
     <div class="audio-caption">
       Example asset &middot; NightDraft &times; The Go To Food Podcast
-      <span class="ac-line2">Mid-roll sponsor spot &middot; voiced demo &middot; produced May 2026</span>
+      <span class="ac-line2">Amplifying the in-group &middot; GoToFood mid-roll spot &middot; voiced demo &middot; produced May 2026</span>
     </div>
     <div class="audio-hint" id="audio-hint">click anywhere to play</div>
     <audio id="audio-el" preload="metadata" src="podcast-ad/nightdraft-podcast-ad.mp3"></audio>
