@@ -1,0 +1,1689 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>NightDraft - Strategic Marketing Plan (MCV, P2 2026)</title>
+<meta name="description" content="A Strategic Marketing Plan for NightDraft - the AI sales tool for restaurants. Managing Customer Value, INSEAD P2 2026." />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;500;600;700&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #faf8f5;
+    --bg-card: #ffffff;
+    --bg-hover: #f5f2ee;
+    --bg-inset: #f0ece6;
+    --border: #e8e2d9;
+    --border-strong: #d4cdc2;
+    --text: #2c2520;
+    --text-secondary: #7a7067;
+    --text-tertiary: #a69e94;
+    --wine: #8b2252;
+    --wine-dim: rgba(139, 34, 82, 0.08);
+    --wine-light: #a63a6a;
+    --green: #2d7a4f;
+    --green-dim: rgba(45, 122, 79, 0.08);
+    --amber: #b8860b;
+    --amber-dim: rgba(184, 134, 11, 0.08);
+    --blue: #3d6b99;
+    --blue-dim: rgba(61, 107, 153, 0.08);
+    --red: #c24b3a;
+    --red-dim: rgba(194, 75, 58, 0.08);
+    --purple: #7b5ea7;
+    --purple-dim: rgba(123, 94, 167, 0.08);
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { font-size: 16px; }
+  body {
+    font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    height: 100vh;
+    overflow: hidden;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    line-height: 1.55;
+  }
+
+  .deck {
+    width: 100%;
+    height: 100vh;
+    position: relative;
+  }
+
+  .slide {
+    position: absolute;
+    inset: 0;
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 3rem 1.5rem 4.5rem;
+    overflow-y: auto;
+    overflow-x: hidden;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.25s ease;
+  }
+  .slide.active {
+    opacity: 1;
+    pointer-events: auto;
+  }
+  .slide::-webkit-scrollbar { width: 6px; }
+  .slide::-webkit-scrollbar-track { background: transparent; }
+  .slide::-webkit-scrollbar-thumb { background: var(--border-strong); border-radius: 3px; }
+
+  .slide-num {
+    position: absolute;
+    top: 1rem;
+    right: 1.25rem;
+    font: 500 0.7rem/1 'DM Mono', ui-monospace, monospace;
+    color: var(--text-tertiary);
+    letter-spacing: 0.05em;
+    z-index: 5;
+  }
+
+  /* NAVIGATION */
+  .nav-bar {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 2.75rem;
+    background: var(--bg);
+    border-top: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    z-index: 100;
+    padding: 0 1rem;
+  }
+  .nav-btn {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    color: var(--text-secondary);
+    border-radius: 6px;
+    width: 1.85rem;
+    height: 1.85rem;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font: 600 0.85rem/1 'DM Sans', sans-serif;
+    transition: all 0.15s ease;
+    user-select: none;
+  }
+  .nav-btn:hover:not(:disabled) {
+    background: var(--wine);
+    color: white;
+    border-color: var(--wine);
+  }
+  .nav-btn:disabled {
+    opacity: 0.35;
+    cursor: not-allowed;
+  }
+  .nav-counter {
+    font: 600 0.72rem/1 'DM Mono', ui-monospace, monospace;
+    color: var(--text-secondary);
+    letter-spacing: 0.05em;
+    min-width: 5rem;
+    text-align: center;
+  }
+  .nav-progress {
+    flex: 1;
+    max-width: 14rem;
+    height: 2px;
+    background: var(--border);
+    border-radius: 1px;
+    overflow: hidden;
+    margin: 0 0.5rem;
+  }
+  .nav-progress-fill {
+    height: 100%;
+    background: var(--wine);
+    transition: width 0.25s ease;
+  }
+  .nav-hint {
+    font-size: 0.65rem;
+    color: var(--text-tertiary);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-left: 0.5rem;
+  }
+  @media (max-width: 600px) {
+    .nav-hint { display: none; }
+  }
+
+  .eyebrow {
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    font-size: 0.65rem;
+    color: var(--wine);
+    font-weight: 700;
+    margin-bottom: 0.85rem;
+  }
+
+  h1 {
+    font-family: 'DM Serif Display', Georgia, serif;
+    font-size: 2.4rem;
+    font-weight: 400;
+    letter-spacing: -0.02em;
+    line-height: 1.15;
+    color: var(--text);
+    margin-bottom: 0.75rem;
+  }
+  h2 {
+    font-family: 'DM Serif Display', Georgia, serif;
+    font-size: 1.9rem;
+    font-weight: 400;
+    letter-spacing: -0.02em;
+    line-height: 1.18;
+    color: var(--text);
+    margin-bottom: 0.65rem;
+  }
+  h3 {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.95rem;
+    font-weight: 700;
+    letter-spacing: -0.005em;
+    color: var(--text);
+    margin-bottom: 0.5rem;
+  }
+  .subhead {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.78rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--text-secondary);
+    margin: 1.75rem 0 0.85rem;
+  }
+
+  .lede {
+    font-size: 0.98rem;
+    color: var(--text-secondary);
+    margin-bottom: 1.4rem;
+    line-height: 1.55;
+  }
+
+  p { font-size: 0.92rem; color: var(--text); line-height: 1.6; margin-bottom: 0.85rem; }
+  p.muted { color: var(--text-secondary); }
+
+  ul, ol { padding-left: 1.1rem; margin-bottom: 1rem; }
+  li { font-size: 0.9rem; color: var(--text); line-height: 1.6; margin-bottom: 0.4rem; }
+
+  /* CARDS */
+  .card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--wine);
+    border-radius: 2px 12px 12px 2px;
+    padding: 1.1rem 1.25rem;
+    margin-bottom: 0.75rem;
+    box-shadow: 0 1px 3px rgba(44, 37, 32, 0.04);
+  }
+  .card.flat {
+    border-left: 3px solid var(--border);
+  }
+  .card.green { border-left-color: var(--green); }
+  .card.amber { border-left-color: var(--amber); }
+  .card.blue  { border-left-color: var(--blue); }
+  .card.red   { border-left-color: var(--red); }
+  .card.purple{ border-left-color: var(--purple); }
+
+  .card h3 { margin-bottom: 0.35rem; }
+  .card p { font-size: 0.88rem; line-height: 1.55; margin-bottom: 0.4rem; }
+  .card p:last-child { margin-bottom: 0; }
+  .card ul { margin-bottom: 0; }
+
+  .num-card {
+    display: grid;
+    grid-template-columns: 1.5rem 1fr;
+    gap: 0.85rem;
+    align-items: start;
+  }
+  .num-card .num {
+    width: 1.5rem; height: 1.5rem;
+    background: var(--wine);
+    color: white;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font: 700 0.7rem/1 'DM Sans', sans-serif;
+    margin-top: 0.15rem;
+  }
+
+  /* CALLOUT - inset, bg-inset */
+  .callout {
+    background: var(--bg-inset);
+    border-radius: 8px;
+    padding: 1rem 1.15rem;
+    margin: 1rem 0;
+    font-size: 0.9rem;
+    line-height: 1.55;
+    color: var(--text);
+  }
+  .callout.wine { background: var(--wine-dim); }
+  .callout.green { background: var(--green-dim); }
+  .callout.amber { background: var(--amber-dim); }
+  .callout.red { background: var(--red-dim); }
+  .callout.blue { background: var(--blue-dim); }
+  .callout strong { color: var(--text); font-weight: 700; }
+  .callout .num { font-family: 'DM Mono', ui-monospace, monospace; }
+
+  .callout-headline {
+    font-family: 'DM Serif Display', Georgia, serif;
+    font-size: 1.4rem;
+    line-height: 1.25;
+    letter-spacing: -0.015em;
+    color: var(--text);
+    text-align: center;
+    padding: 1.5rem 1.25rem;
+    background: var(--bg-inset);
+    border-radius: 12px;
+    margin: 1rem 0 1.5rem;
+  }
+  .callout-headline em {
+    font-style: italic;
+    color: var(--wine);
+  }
+
+  /* QUOTE */
+  blockquote {
+    border-left: 3px solid var(--wine);
+    background: var(--bg-card);
+    padding: 0.95rem 1.15rem;
+    border-radius: 0 12px 12px 0;
+    margin: 1rem 0;
+    font-size: 0.95rem;
+    font-style: italic;
+    color: var(--text);
+    line-height: 1.5;
+    box-shadow: 0 1px 3px rgba(44, 37, 32, 0.04);
+  }
+  blockquote .attr {
+    display: block;
+    font-style: normal;
+    font-size: 0.72rem;
+    color: var(--text-tertiary);
+    margin-top: 0.5rem;
+    letter-spacing: 0.02em;
+  }
+  blockquote .attr .star { color: var(--wine); margin-left: 0.2rem; }
+
+  /* TABLE */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 0.85rem 0 1.25rem;
+    font-size: 0.82rem;
+  }
+  th, td {
+    text-align: left;
+    padding: 0.65rem 0.7rem;
+    border-bottom: 1px solid var(--border);
+    vertical-align: top;
+    line-height: 1.45;
+  }
+  th {
+    font-weight: 700;
+    color: var(--text-secondary);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    font-size: 0.7rem;
+    border-bottom: 1px solid var(--border-strong);
+  }
+  td:first-child {
+    font-weight: 600;
+    color: var(--text);
+    width: 32%;
+  }
+  td.num, td.right { font-family: 'DM Mono', ui-monospace, monospace; text-align: right; white-space: nowrap; }
+  th.num, th.right { text-align: right; }
+
+  /* PILL */
+  .pill {
+    display: inline-block;
+    font-size: 0.62rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    padding: 0.2rem 0.55rem;
+    border-radius: 999px;
+    background: var(--wine-dim);
+    color: var(--wine);
+    margin-right: 0.35rem;
+  }
+  .pill.green { background: var(--green-dim); color: var(--green); }
+  .pill.amber { background: var(--amber-dim); color: var(--amber); }
+  .pill.blue  { background: var(--blue-dim); color: var(--blue); }
+  .pill.red   { background: var(--red-dim); color: var(--red); }
+  .pill.purple{ background: var(--purple-dim); color: var(--purple); }
+  .pill.muted { background: var(--bg-inset); color: var(--text-secondary); }
+
+  /* TWO-COL GRID */
+  .grid-2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    margin: 1rem 0;
+  }
+  .grid-3 {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 0.75rem;
+    margin: 1rem 0;
+  }
+  @media (max-width: 640px) {
+    .grid-2, .grid-3 { grid-template-columns: 1fr; }
+  }
+
+  /* TITLE / DIVIDER SLIDES - centered content */
+  .slide.title-slide,
+  .slide.divider {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  .slide.title-slide { text-align: left; }
+  .wordmark {
+    font-family: 'DM Serif Display', Georgia, serif;
+    font-size: 4.5rem;
+    font-weight: 400;
+    letter-spacing: -0.04em;
+    line-height: 1;
+    color: var(--text);
+    margin: 1.5rem 0 1rem;
+  }
+  .tagline {
+    font-family: 'DM Serif Display', Georgia, serif;
+    font-style: italic;
+    font-size: 1.4rem;
+    color: var(--wine);
+    margin-bottom: 2.5rem;
+    letter-spacing: -0.01em;
+  }
+  .meta-list {
+    list-style: none;
+    padding: 0;
+    border-top: 1px solid var(--border);
+    padding-top: 1.5rem;
+    margin-top: 1rem;
+  }
+  .meta-list li {
+    display: grid;
+    grid-template-columns: 9rem 1fr;
+    gap: 1rem;
+    font-size: 0.85rem;
+    padding: 0.5rem 0;
+    border-bottom: 1px solid var(--border);
+  }
+  .meta-list li .k {
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    font-size: 0.65rem;
+    color: var(--text-tertiary);
+    font-weight: 700;
+    padding-top: 0.15rem;
+  }
+  .meta-list li .v { color: var(--text); font-weight: 500; }
+
+  .divider .part-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--wine);
+    border-radius: 2px 12px 12px 2px;
+    padding: 3rem 2rem;
+    box-shadow: 0 1px 3px rgba(44, 37, 32, 0.04);
+  }
+  .divider h2 {
+    font-size: 3rem;
+    margin-bottom: 0.85rem;
+  }
+  .divider .div-sub {
+    font-size: 1rem;
+    color: var(--text-secondary);
+    line-height: 1.5;
+  }
+
+  /* PERSONA IMG */
+  .persona-img {
+    width: 100%;
+    max-width: 720px;
+    border-radius: 12px;
+    margin: 1.5rem 0;
+    border: 1px solid var(--border);
+    background: var(--bg-card);
+    display: block;
+  }
+  .persona-fallback {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    border-radius: 12px;
+    margin: 1.5rem 0;
+    background: var(--bg-inset);
+    border: 1px dashed var(--border-strong);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-tertiary);
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+  }
+
+  /* PERCEPTUAL MAPS */
+  .map-wrap {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 1rem;
+    box-shadow: 0 1px 3px rgba(44, 37, 32, 0.04);
+  }
+  .map-title {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--text-secondary);
+    margin-bottom: 0.65rem;
+  }
+  .map-svg { width: 100%; height: auto; display: block; }
+
+  /* FUNNEL */
+  .funnel {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--wine);
+    border-radius: 2px 12px 12px 2px;
+    padding: 1rem 1.15rem;
+    box-shadow: 0 1px 3px rgba(44, 37, 32, 0.04);
+  }
+  .funnel.b { border-left-color: var(--blue); }
+  .funnel h3 { margin-bottom: 0.85rem; }
+  .funnel-step {
+    border-bottom: 1px dashed var(--border);
+    padding: 0.55rem 0;
+  }
+  .funnel-step:last-child { border-bottom: none; }
+  .funnel-step .stage-label {
+    font-size: 0.65rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--wine);
+    margin-bottom: 0.2rem;
+  }
+  .funnel.b .funnel-step .stage-label { color: var(--blue); }
+  .funnel-step p { font-size: 0.78rem; color: var(--text); margin-bottom: 0; line-height: 1.5; }
+
+  /* THREAD WORKED EXAMPLE - 3 col */
+  .thread-cols {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 0.75rem;
+    margin: 1rem 0;
+  }
+  .thread-col {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 0.85rem 0.95rem;
+    font-size: 0.78rem;
+    line-height: 1.5;
+  }
+  .thread-col .label {
+    font-size: 0.6rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--text-tertiary);
+    margin-bottom: 0.45rem;
+  }
+  .thread-col p { font-size: 0.78rem; margin-bottom: 0.5rem; line-height: 1.5; }
+  .thread-col p:last-child { margin-bottom: 0; }
+  .thread-col.draft { border-left: 3px solid var(--wine); border-radius: 2px 8px 8px 2px; }
+  .thread-col.sent  { border-left: 3px solid var(--green); border-radius: 2px 8px 8px 2px; }
+  @media (max-width: 720px) {
+    .thread-cols { grid-template-columns: 1fr; }
+  }
+
+  /* SIGNATURE END */
+  .signature {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--wine);
+    border-radius: 2px 12px 12px 2px;
+    padding: 2rem 1.5rem;
+    text-align: center;
+    box-shadow: 0 1px 3px rgba(44, 37, 32, 0.04);
+    margin-top: 2rem;
+  }
+  .signature .sig-name {
+    font-family: 'DM Serif Display', Georgia, serif;
+    font-size: 1.8rem;
+    color: var(--text);
+    margin-bottom: 0.25rem;
+    letter-spacing: -0.02em;
+  }
+  .signature .sig-tag {
+    font-family: 'DM Serif Display', Georgia, serif;
+    font-style: italic;
+    color: var(--wine);
+    font-size: 1rem;
+    margin-bottom: 1rem;
+  }
+  .signature .sig-meta {
+    font-size: 0.78rem;
+    color: var(--text-secondary);
+    line-height: 1.6;
+  }
+
+  /* PRINT */
+  @media print {
+    body { background: white; height: auto; overflow: visible; }
+    .deck { height: auto; }
+    .nav-bar { display: none; }
+    .slide {
+      position: static;
+      opacity: 1 !important;
+      pointer-events: auto !important;
+      page-break-after: always;
+      overflow: visible;
+      padding: 1.5rem 1rem 2rem;
+      display: block !important;
+    }
+    .slide-num { position: static; display: block; margin-bottom: 0.5rem; }
+  }
+</style>
+</head>
+<body>
+<main class="deck">
+
+<!-- ============ SLIDE 1 - TITLE ============ -->
+<section class="slide title-slide active" id="slide-1">
+  <div class="slide-num">Slide 1 / 20</div>
+  <div class="eyebrow">Managing Customer Value &middot; Strategic Marketing Plan</div>
+  <div class="wordmark">NightDraft</div>
+  <div class="tagline">Take the pain out of big bookings.</div>
+  <p class="lede">A Strategic Marketing Plan for the AI sales tool that handles a restaurant's most valuable inquiries.</p>
+  <ul class="meta-list">
+    <li><span class="k">Course</span><span class="v">Managing Customer Value (P2 2026)</span></li>
+    <li><span class="k">Professor</span><span class="v">Paulo Albuquerque</span></li>
+    <li><span class="k">Author</span><span class="v">Freddie Chambers</span></li>
+    <li><span class="k">Institution</span><span class="v">INSEAD</span></li>
+  </ul>
+</section>
+
+<!-- ============ SLIDE 2 - OBJECTIVES & CUSTOMER NEEDS ============ -->
+<section class="slide" id="slide-2">
+  <div class="slide-num">Slide 2 / 20</div>
+  <div class="eyebrow">Slide 2 &middot; Objectives &amp; Customer Needs</div>
+  <h1>A sales tool for the most valuable email a restaurant receives all week.</h1>
+  <p class="lede">Hospitality has automated the easy bookings and ignored the hard ones. NightDraft is the first tool built for the segment OpenTable abandoned.</p>
+
+  <p>Every elite restaurant in London uses OpenTable, SevenRooms, Resy or Tock for tables of 1-6. Fully automated. Customer self-serves, restaurant gets the data, no human needed.</p>
+  <p>But for the bookings that actually move the P&amp;L - takeovers, private dining, 8+ parties, corporate events, tasting menus - the same restaurants put "For larger bookings, please email us" on their website. The biggest transactions of the week get routed back to a slow, manual, error-prone email process.</p>
+  <p>A great first reply converts. A slow, generic, or under-priced one loses the booking.</p>
+
+  <div class="subhead">What NightDraft does</div>
+  <div class="card num-card">
+    <div class="num">1</div>
+    <div><h3>Reads every inbound high-stakes inquiry</h3><p>Within seconds of arrival.</p></div>
+  </div>
+  <div class="card num-card">
+    <div class="num">2</div>
+    <div><h3>Researches the guest lightly</h3><p>Via public sources (LinkedIn role, company, online presence) to surface context the host would have looked up anyway, faster. Soft signal: "this guest works at a private equity firm, lean into the wine pairing menu."</p></div>
+  </div>
+  <div class="card num-card">
+    <div class="num">3</div>
+    <div><h3>Codifies the owner's playbook</h3><p>Table-of-10 rules, takeover rules, voice, seasonality, exceptions - all into a private rules engine.</p></div>
+  </div>
+  <div class="card num-card">
+    <div class="num">4</div>
+    <div><h3>Drafts a tailored first reply into Gmail drafts</h3><p>Same product, different reply for a GBP 2,000 takeover vs a GBP 400 birthday. Junior staff can deploy with the owner's voice when the owner can't.</p></div>
+  </div>
+
+  <div class="subhead">The AI/ML edge - two compounding loops, both newly possible in 2025</div>
+  <div class="card flat">
+    <h3>Learning loop</h3>
+    <p>Every owner edit before sending updates the playbook. The same mistake never happens twice.</p>
+  </div>
+  <div class="card flat">
+    <h3>Guest intelligence loop</h3>
+    <p>An agent (Playwright-style web automation) researches every inbound inquiry. Builds a private guest-context layer that sharpens with every inquiry.</p>
+  </div>
+
+  <div class="subhead">Why this is only possible now</div>
+  <p>Per-guest research at indie-restaurant economics is genuinely new. Two years ago it was impossible:</p>
+  <ul>
+    <li><strong>Pre-LLM:</strong> required a human concierge (~GBP 600/mo) or custom NLP pipeline (GBP 50k+ build).</li>
+    <li><strong>Pre-frontier-models:</strong> synthesis ("this guest is a PE partner, lean into wine pairing") was unreliable.</li>
+    <li><strong>Pre-vibe-coding:</strong> agent build would have taken a 5-person engineering team.</li>
+  </ul>
+
+  <div class="callout wine">
+    For the first time in hospitality history, a Bib Gourmand restaurant can have per-guest research running automatically on every high-stakes inquiry, at <strong>GBP 179/mo</strong>. What Michelin three-star restaurants pay full-time concierge teams to deliver, NightDraft brings to the indie segment. After 6 months your NightDraft is uniquely yours - a compounding moat ChatGPT and Claude cannot replicate.
+  </div>
+
+  <blockquote>
+    "Big bookings are the most valuable email I get all week. They're also the only ones I write from scratch."
+    <span class="attr">Indie restaurateur, London</span>
+  </blockquote>
+</section>
+
+<!-- ============ SLIDE 3 - STRATEGIC OBJECTIVE ============ -->
+<section class="slide" id="slide-3">
+  <div class="slide-num">Slide 3 / 20</div>
+  <div class="eyebrow">Slide 3 &middot; Strategic Objective</div>
+  <h1>Demand is in hand, not hypothesised.</h1>
+  <p class="lede"><strong>Strategic objective:</strong> Become the default sales-tool for the high-stakes booking segment that OpenTable has explicitly abandoned. Starting with London independent fine-dining in 2026, scaling to multi-venue groups across the UK by 2028.</p>
+
+  <div class="subhead">Decomposed</div>
+  <table>
+    <thead><tr><th>Dimension</th><th>Answer</th></tr></thead>
+    <tbody>
+      <tr><td>When</td><td>2026 paid wedge (5 paying logos by year-end). 2027 indie scale. 2028 group expansion.</td></tr>
+      <tr><td>Where</td><td>London 2026-27 (the first 5 leads sit within 30 minutes of each other). UK by 2028.</td></tr>
+      <tr><td>Who</td><td>Independent fine-dining operators (Katie shape) for the wedge; multi-venue operator-marketers (Chris D'Silva / David Carter shape) for scale.</td></tr>
+      <tr><td>What</td><td>Own the high-stakes inquiry-to-booking conversion as a distinct SaaS category.</td></tr>
+    </tbody>
+  </table>
+
+  <div class="subhead">5 named warm leads ready to pay</div>
+  <div class="card num-card">
+    <div class="num">1</div>
+    <div><h3>Katie Exton - Lorne</h3><p>Bib Gourmand, Victoria London. Founding design partner.</p></div>
+  </div>
+  <div class="card num-card">
+    <div class="num">2</div>
+    <div><h3>Chris D'Silva - Dorian Group</h3><p>6 concepts incl. Michelin Dorian, Notting Hill Fish Shop. Ex-Grey advertising, ex-Chevrolet marketing. Confirmed willingness to be second logo.</p></div>
+  </div>
+  <div class="card num-card">
+    <div class="num">3</div>
+    <div><h3>David Carter (cousin)</h3><p>Manteca / Agora / Oma / Smokestak. Michelin Guide Restaurateur of the Year. Has expressed direct interest.</p></div>
+  </div>
+  <div class="card num-card">
+    <div class="num">4</div>
+    <div><h3>Inbound indie operator A</h3><p>London independent fine-dining, name held back pending consent.</p></div>
+  </div>
+  <div class="card num-card">
+    <div class="num">5</div>
+    <div><h3>Inbound indie operator B</h3><p>London independent fine-dining, name held back pending consent.</p></div>
+  </div>
+
+  <div class="callout wine"><strong>The bottleneck is founder bandwidth, not demand.</strong></div>
+
+  <blockquote>
+    "In terms of reputation which matters to me a lot. I really hate making mistakes on emails. Makes me very angry."
+    <span class="attr">Katie Exton, Lorne <span class="star">&#9733;</span> from 15-04-26 discovery interview</span>
+  </blockquote>
+
+  <div class="subhead">Demand evidence from the Lorne 24-thread dataset (April 2026)</div>
+  <ul>
+    <li><strong>30% of threads (7 of 24)</strong> did not visibly close.</li>
+    <li><strong>3 named threads</strong> sat unanswered for 3-7+ days. Total lost revenue: <strong>GBP 4,000-6,000.</strong></li>
+    <li><strong>First-reply speed</strong> is the single biggest conversion driver. Sub-1hr first replies converted. 4-day delays all lost.</li>
+    <li><strong>48% from corporate Executive Assistants</strong> - the dominant high-stakes buyer.</li>
+  </ul>
+
+  <div class="subhead">Targets</div>
+  <table>
+    <thead>
+      <tr><th>End of period</th><th>Paying logos</th><th>ARR</th><th>Key milestone</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>2026 (Q4)</td><td>5 paying + 1 design partner (Lorne)</td><td>~GBP 12k</td><td>Edit-logging proves the playbook codifies</td></tr>
+      <tr><td>2027 (Q4)</td><td>50 paying venues</td><td>~GBP 150-200k</td><td>Outbound channel beyond founder warm network</td></tr>
+      <tr><td>2028 (Q4)</td><td>200 venues across 30+ groups</td><td>~GBP 700-900k</td><td>Path to 43% EBIT margin</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<!-- ============ SLIDE 4 - DIVIDER: MARKET ANALYSIS ============ -->
+<section class="slide divider" id="slide-4">
+  <div class="slide-num">Slide 4 / 20</div>
+  <div class="part-card">
+    <div class="eyebrow">Part 2 of 4</div>
+    <h2>Market Analysis</h2>
+    <p class="div-sub">Understanding our customers.</p>
+  </div>
+</section>
+
+<!-- ============ SLIDE 5 - SEGMENTATION + FUNNEL ============ -->
+<section class="slide" id="slide-5">
+  <div class="slide-num">Slide 5 / 20</div>
+  <div class="eyebrow">Slide 5 &middot; Customer Segmentation</div>
+
+  <div class="callout-headline">
+    The same product. Two different sales pitches.<br/>
+    <em>Katie buys back her Tuesday afternoon. Chris captures lost revenue.</em>
+  </div>
+
+  <img src="personas.png" alt="Two restaurateur persona portraits - Katie and Chris" class="persona-img" onerror="this.outerHTML='<div class=&quot;persona-fallback&quot;>persona comic - personas.png</div>'" />
+
+  <div class="subhead">The size band</div>
+  <p>NightDraft serves a structurally specific size band: restaurants where the owner is still hands-on with bookings but bookings are not yet a dedicated role.</p>
+
+  <div class="card flat">
+    <h3>Below the band</h3>
+    <p>Under 30 covers, casual. Inquiry volume too low. OpenTable handles everything.</p>
+  </div>
+  <div class="card">
+    <h3>The band &mdash; NightDraft's market</h3>
+    <p>30-80 covers, indie or small-group, owner-operated. Bookings fall between people. It's a faff.</p>
+  </div>
+  <div class="card flat">
+    <h3>Above the band</h3>
+    <p>Four Seasons / Claridges / large hotel F&amp;B. Dedicated reservations manager already exists. NightDraft is awkward fit.</p>
+  </div>
+
+  <div class="subhead">Segment A &mdash; The Hospitality-Led Indie (Katie shape)</div>
+  <div class="card">
+    <table>
+      <thead><tr><th>Dimension</th><th>Description</th></tr></thead>
+      <tbody>
+        <tr><td>Who</td><td>30-60 covers, Bib Gourmand or Michelin-tier, owner-operator. ~600 venues in London Bib+ tier, ~5,000 UK indie fine-dining.</td></tr>
+        <tr><td>Buying motivation</td><td>Time, not money. "Get back on the floor doing what you love."</td></tr>
+        <tr><td>The job NightDraft does</td><td>Frees the owner from the most boring part of running the restaurant.</td></tr>
+        <tr><td>Decision unit</td><td>The owner alone.</td></tr>
+        <tr><td>WTP anchor</td><td>GBP 179/mo.</td></tr>
+        <tr><td>Sales cycle</td><td>2-6 weeks. Founder-led warm intro.</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <blockquote>
+    "A relief."
+    <span class="attr">Katie Exton, Lorne, when asked if outsourcing the writing would feel like a loss vs gain <span class="star">&#9733;</span></span>
+  </blockquote>
+
+  <div class="subhead">Segment B &mdash; The Operator-Marketer Group (Chris / David shape)</div>
+  <div class="card blue">
+    <table>
+      <thead><tr><th>Dimension</th><th>Description</th></tr></thead>
+      <tbody>
+        <tr><td>Who</td><td>Multi-venue groups, 3-10 concepts, marketing-trained or brand-led founder. ~50 in London, ~200 UK-wide.</td></tr>
+        <tr><td>Buying motivation</td><td>Money, plus brand voice. "Sales tool. You will capture bookings you're losing today."</td></tr>
+        <tr><td>The job NightDraft does</td><td>Captures revenue currently leaking out of the inbox. Functions as a marketing-department subscription.</td></tr>
+        <tr><td>Decision unit</td><td>Owner-operator. Marketing-decisive.</td></tr>
+        <tr><td>WTP anchor</td><td>GBP 400+/venue/mo. Group of 5 = GBP 2,000/mo per logo.</td></tr>
+        <tr><td>Sales cycle</td><td>2-4 months. Slower per logo, far higher ACV.</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <blockquote>
+    "I've got six concepts and six different reply styles. None of them are mine anymore."
+    <span class="attr">Multi-venue operator, London</span>
+  </blockquote>
+
+  <div class="subhead">Purchase funnel by segment</div>
+  <div class="grid-2">
+    <div class="funnel">
+      <h3>Segment A &mdash; Katie</h3>
+      <div class="funnel-step"><div class="stage-label">Awareness</div><p>Paid placement on trusted hospitality channels + earned editorial. GoToFood podcast sponsorship (~GBP 500-2,000/episode). Editorial in The Pass, The Caterer, Code Hospitality, SquareMeal. Founder appearances. Industry-dinner demos. Zero performance-marketing.</p></div>
+      <div class="funnel-step"><div class="stage-label">Consideration</div><p>30-min demo. Lorne worked example. Edit-logging dashboard preview.</p></div>
+      <div class="funnel-step"><div class="stage-label">Trial</div><p>30-day free pilot on actual inbox.</p></div>
+      <div class="funnel-step"><div class="stage-label">Purchase</div><p>GBP 179/mo. Month-to-month.</p></div>
+      <div class="funnel-step"><div class="stage-label">Retention</div><p>Self-improving learning loop. M3 quality &gt; M1.</p></div>
+      <div class="funnel-step"><div class="stage-label">Advocacy</div><p>Tuesday-afternoon dividend testimonials. Indie peer referrals.</p></div>
+    </div>
+    <div class="funnel b">
+      <h3>Segment B &mdash; Chris / David</h3>
+      <div class="funnel-step"><div class="stage-label">Awareness</div><p>Founder warm intros. Operator dinners. Group-operator coverage.</p></div>
+      <div class="funnel-step"><div class="stage-label">Consideration</div><p>60-min strategic conversation. Marketing-department-subscription framing.</p></div>
+      <div class="funnel-step"><div class="stage-label">Trial</div><p>Pilot at 1 concept (founder picks).</p></div>
+      <div class="funnel-step"><div class="stage-label">Purchase</div><p>Per-venue licensing. GBP 400+/venue/mo. 12-month commitment.</p></div>
+      <div class="funnel-step"><div class="stage-label">Retention</div><p>Cross-concept playbook learnings transfer.</p></div>
+      <div class="funnel-step"><div class="stage-label">Advocacy</div><p>Logo on website. Co-marketing case study.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ SLIDE 6 - CONSUMER CHOICE ============ -->
+<section class="slide" id="slide-6">
+  <div class="slide-num">Slide 6 / 20</div>
+  <div class="eyebrow">Slide 6 &middot; Consumer Choice</div>
+
+  <div class="callout-headline">
+    Restaurant operators are not enterprise buyers. They are owner-operators in the weeds. There is no RFI, no procurement, no committee.<br/>
+    <em>The sale closes when two filters pass: "Does someone I trust already use it?" and "Am I in control of it?"</em>
+  </div>
+
+  <div class="subhead">The decision frame</div>
+  <div class="card">
+    <h3><span class="pill">Filter 1</span> Trust signal</h3>
+    <p>"Does someone I respect already use this?" Peer reference is the single highest-impact signal. Founder credibility is part of this filter. This is why door-to-door selling still works in restaurants - operators are used to enthusiastic founders walking in between services (10-11am or 3-4pm windows).</p>
+  </div>
+  <div class="card blue">
+    <h3><span class="pill blue">Filter 2</span> Control</h3>
+    <p>"Am I in charge, or is the software making decisions for me?" Hard rejection of autosend. NightDraft embeds in the owner's existing workflow. Draft lands in Gmail drafts. Owner edits and sends. Nothing happens without the owner's hand on it. Filter 2 also absorbs "tech stack" concerns.</p>
+  </div>
+
+  <blockquote>
+    "I wouldn't want it just kind of sent off."
+    <span class="attr">Katie Exton, Lorne <span class="star">&#9733;</span></span>
+  </blockquote>
+  <blockquote>
+    "If it sends without me, I'm not buying it. End of conversation."
+    <span class="attr">Indie restaurateur, London</span>
+  </blockquote>
+
+  <div class="callout wine">
+    <strong>Implications</strong>
+    <ul style="margin-top: 0.5rem;">
+      <li>The motion is founder-led warm-network outreach.</li>
+      <li>Single-conversation close is realistic when the demo lands.</li>
+      <li>Sales-cycle: 2-6 weeks for Segment A; 4-8 weeks for Segment B.</li>
+    </ul>
+  </div>
+
+  <div class="subhead">Acceptance criteria</div>
+  <table>
+    <thead><tr><th>Attribute</th><th>What "good" looks like at trial</th></tr></thead>
+    <tbody>
+      <tr><td>Voice fit</td><td>First draft sounds like the owner. One bad draft kills the trial.</td></tr>
+      <tr><td>No-autosend</td><td>Owner approves every reply. Hard line.</td></tr>
+      <tr><td>Learning loop</td><td>Edit-logging shows the system getting better week-on-week.</td></tr>
+      <tr><td>Junior-staff usability</td><td>The owner's manager can use it without retraining.</td></tr>
+      <tr><td>Guest intelligence (Segment B)</td><td>Visible value-add for operator-marketers. Not weighted by Segment A.</td></tr>
+    </tbody>
+  </table>
+
+  <div class="callout">
+    <strong>Where AI/ML sits.</strong> AI/ML is table stakes, not a top driver. Operators do not care that it is AI. They care that the draft is good and they are in control. AI/ML is the engine that makes Filter 1 deliverable and Filter 2 controllable - not a purchase driver.
+  </div>
+</section>
+
+<!-- ============ SLIDE 7 - CLV & SEGMENT ATTRACTIVENESS ============ -->
+<section class="slide" id="slide-7">
+  <div class="slide-num">Slide 7 / 20</div>
+  <div class="eyebrow">Slide 7 &middot; CLV &amp; Segment Attractiveness</div>
+  <h1>One group logo is worth ~18 indie logos in CLV.</h1>
+
+  <div class="subhead">CLV formula (S03)</div>
+  <div class="callout"><strong>CLV = (m &times; r) / (1 + i - r) - AC</strong></div>
+
+  <div class="grid-2">
+    <div class="card">
+      <h3>Segment A &mdash; Hospitality-Led Indie</h3>
+      <table>
+        <tbody>
+          <tr><td>Annual revenue per logo</td><td class="num">GBP 2,148</td></tr>
+          <tr><td>Gross margin</td><td class="num">85%</td></tr>
+          <tr><td>Annual contribution margin (m)</td><td class="num">GBP 1,826</td></tr>
+          <tr><td>Annual retention (r)</td><td class="num">75%</td></tr>
+          <tr><td>Discount rate (i)</td><td class="num">18%</td></tr>
+          <tr><td>Gross CLV</td><td class="num">GBP 3,182</td></tr>
+          <tr><td>CAC</td><td class="num">GBP 200</td></tr>
+          <tr><td><strong>Net CLV (A)</strong></td><td class="num"><strong>~GBP 2,982</strong></td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="card blue">
+      <h3>Segment B &mdash; Operator-Marketer Group</h3>
+      <table>
+        <tbody>
+          <tr><td>Annual revenue per logo</td><td class="num">GBP 24,000</td></tr>
+          <tr><td>Gross margin</td><td class="num">88%</td></tr>
+          <tr><td>Annual contribution margin (m)</td><td class="num">GBP 21,120</td></tr>
+          <tr><td>Annual retention (r)</td><td class="num">85%</td></tr>
+          <tr><td>Discount rate (i)</td><td class="num">18%</td></tr>
+          <tr><td>Gross CLV</td><td class="num">GBP 54,367</td></tr>
+          <tr><td>CAC</td><td class="num">GBP 1,500</td></tr>
+          <tr><td><strong>Net CLV (B)</strong></td><td class="num"><strong>~GBP 52,867</strong></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="subhead">Attractiveness summary</div>
+  <table>
+    <thead>
+      <tr><th>Dimension</th><th class="right">Segment A (Indie)</th><th class="right">Segment B (Group)</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>Annual revenue per logo</td><td class="num">GBP 2,148</td><td class="num">GBP 24,000</td></tr>
+      <tr><td>Net CLV per logo</td><td class="num">GBP 2,982</td><td class="num">GBP 52,867</td></tr>
+      <tr><td>CLV/CAC ratio</td><td class="num">15x</td><td class="num">35x</td></tr>
+      <tr><td>Sales cycle</td><td class="num">2-6 weeks</td><td class="num">4-8 weeks</td></tr>
+      <tr><td>Total addressable market (UK)</td><td class="num">~5,000 venues</td><td class="num">~200 groups (~1,000 venues)</td></tr>
+      <tr><td>Strategic role</td><td class="num">Wedge</td><td class="num">Scale</td></tr>
+    </tbody>
+  </table>
+
+  <div class="callout wine">
+    <strong>Verdict.</strong> Wedge with A. Scale with B. Run both in parallel from year one because the demand is already there for both.
+  </div>
+</section>
+
+<!-- ============ SLIDE 8 - COMPETITION & WARFARE ============ -->
+<section class="slide" id="slide-8">
+  <div class="slide-num">Slide 8 / 20</div>
+  <div class="eyebrow">Slide 8 &middot; Competition &amp; Warfare</div>
+  <h1>This category did not exist before 2025.</h1>
+  <p class="lede">The technology to deliver it - LLMs that codify a restaurant's playbook and draft in the owner's voice, at indie price points - became commercially viable only in the last 18 months. Legacy booking platforms cannot build this even if they wanted to. NightDraft sits alone at an intersection that did not exist before.</p>
+
+  <div class="subhead">Why the segment was abandoned</div>
+  <table>
+    <thead><tr><th>Era</th><th>What was possible</th><th>Why this segment was unreachable</th></tr></thead>
+    <tbody>
+      <tr><td>Pre-2023</td><td>Rules-engine drafting required NLP fine-tuning, classifier stacks, expensive linguistic engineering.</td><td>Cost-prohibitive for indies. Generic AI not viable.</td></tr>
+      <tr><td>2023-2024</td><td>LLMs could draft text. Voice-fit threshold not yet cleared. Operators tried it, abandoned it.</td><td>Voice broke. No vertical depth. No integration.</td></tr>
+      <tr><td>2025+</td><td>Frontier LLMs cleared voice-fit. Vibe-coding compressed build time 10x. One founder + warm network + AI/ML product capability ships vertical product in months.</td><td>NightDraft becomes viable for the first time.</td></tr>
+    </tbody>
+  </table>
+
+  <div class="subhead">Competitive landscape - Segment A</div>
+  <table>
+    <thead><tr><th>Competitor</th><th>Warfare type</th><th>Why they cannot compete</th></tr></thead>
+    <tbody>
+      <tr><td>OpenTable / SevenRooms / Resy</td><td>Leader (in 1-6)</td><td>Walked away from 8+. No AI/ML product talent. By the time they buy or build, NightDraft owns the playbook library.</td></tr>
+      <tr><td>ChatGPT / Claude (consumer DIY)</td><td>DIY substitute</td><td>No playbook access. No Gmail integration. No learning loop. Katie tried, abandoned.</td></tr>
+      <tr><td>Word doc templates</td><td>DIY status quo</td><td>Rot. Don't learn.</td></tr>
+      <tr><td>Sent-folder copy-paste</td><td>Status quo</td><td>1-in-8 inquiries lost.</td></tr>
+    </tbody>
+  </table>
+
+  <div class="subhead">Competitive landscape - Segment B</div>
+  <table>
+    <thead><tr><th>Competitor</th><th>Warfare type</th><th>Why they cannot compete</th></tr></thead>
+    <tbody>
+      <tr><td>Hiring a reservations manager per concept</td><td>Status quo (above-band)</td><td>GBP 35-45k/yr per venue. 5 concepts = GBP 200k+. NightDraft = GBP 28,800/group/yr. 10x cheaper.</td></tr>
+      <tr><td>GM time on bookings</td><td>Status quo (de facto)</td><td>Wastes GM time. Inconsistent voice across concepts.</td></tr>
+      <tr><td>Outsourced VA agencies</td><td>Substitute</td><td>No voice fit. Brand-voice damage risk.</td></tr>
+      <tr><td>Generic CRM repurposed (Hubspot)</td><td>DIY workaround</td><td>No hospitality depth. No playbook codification.</td></tr>
+    </tbody>
+  </table>
+
+  <blockquote>
+    "Even sometimes the kind of copying it, putting it into a different platform... I've ended up not doing it."
+    <span class="attr">Katie Exton, Lorne <span class="star">&#9733;</span></span>
+  </blockquote>
+
+  <div class="subhead">NightDraft's position - niche specialist in a structurally vacated segment</div>
+  <p>The leaders have made a deliberate choice to ignore the high-stakes inquiry segment. OpenTable's revenue is per-cover commission on 1-6 volume. The 8+ segment is bespoke, infrequent, and does not fit their model. NightDraft is not a frontal challenger. It is a niche specialist in a segment the leaders cannot enter quickly even if they wanted to.</p>
+
+  <div class="subhead">The dataset is part of the moat</div>
+  <p>Lorne 24-thread dataset (April 2026) is structured, tagged, and pattern-extracted. NightDraft v1 ships with: a 9-template voice library, a 5-register sign-off ladder, an 8-failure-mode operational playbook, a complete 30-80-cover capacity matrix, and a 7-tier pricing matrix - all mined from real customer behaviour. No competitor has this depth of evidence.</p>
+
+  <div class="subhead">The moat - founder + technology window + interface design</div>
+  <div class="card num-card">
+    <div class="num">1</div>
+    <div><h3>Founder-led customer intimacy</h3><p>The founder has done service at the restaurants he is now selling to - The River Cafe, Lorne (the founding customer's own restaurant), Danny Meyer's Union Square Cafe in New York. Writes for the Evening Standard about food.</p></div>
+  </div>
+  <div class="card num-card">
+    <div class="num">2</div>
+    <div><h3>AI/ML product capability</h3><p>LLM-native build, vibe-coded fast, Anthropic API economics that make GBP 179/mo viable.</p></div>
+  </div>
+  <div class="card num-card">
+    <div class="num">3</div>
+    <div><h3>The interface is the moat</h3><p>Starting at the onboarding call. NightDraft does not ask Katie to write a 30-page rules document. Onboarding starts with an agentic interview: "walk me through your last takeover. What would you do if a 14-cover comes in for a Sunday lunch in August." Each answer becomes a captured rule. The same Jack &amp; Jill long-term context capture pattern.</p></div>
+  </div>
+  <div class="card num-card">
+    <div class="num">4</div>
+    <div><h3>Distribution unfair advantage</h3><p>The warm-network GTM (founder-led, podcast-amplified).</p></div>
+  </div>
+
+  <blockquote>
+    "I'm running a Michelin restaurant. I'm not running an inbox."
+    <span class="attr">Operator-marketer, London group</span>
+  </blockquote>
+</section>
+
+<!-- ============ SLIDE 9 - DIVIDER: MARKETING STRATEGY ============ -->
+<section class="slide divider" id="slide-9">
+  <div class="slide-num">Slide 9 / 20</div>
+  <div class="part-card">
+    <div class="eyebrow">Part 3 of 4</div>
+    <h2>Marketing Strategy</h2>
+    <p class="div-sub">Long-term planning.</p>
+  </div>
+</section>
+
+<!-- ============ SLIDE 10 - PERCEPTUAL MAPS ============ -->
+<section class="slide" id="slide-10">
+  <div class="slide-num">Slide 10 / 20</div>
+  <div class="eyebrow">Slide 10 &middot; Perceptual Maps</div>
+  <h1>NightDraft sits alone in the strong quadrant on both maps.</h1>
+  <p class="lede">Two maps. The first shows what customers want (voice-fit + AI/ML need). The second shows why competitors cannot replicate (owner control + self-improvement). Both segments' ideal points sit inside or adjacent to NightDraft's quadrant.</p>
+
+  <div class="grid-2">
+    <div class="map-wrap">
+      <div class="map-title">Map 1 &mdash; AI/ML capability &times; Voice fit</div>
+      <svg class="map-svg" viewBox="0 0 320 320" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Perceptual map: AI/ML capability vs voice fit">
+        <!-- axes -->
+        <line x1="40" y1="280" x2="300" y2="280" stroke="#d4cdc2" stroke-width="1"/>
+        <line x1="40" y1="40"  x2="40"  y2="280" stroke="#d4cdc2" stroke-width="1"/>
+        <!-- grid mid -->
+        <line x1="170" y1="40" x2="170" y2="280" stroke="#e8e2d9" stroke-width="1" stroke-dasharray="3 3"/>
+        <line x1="40" y1="160" x2="300" y2="160" stroke="#e8e2d9" stroke-width="1" stroke-dasharray="3 3"/>
+        <!-- axis labels -->
+        <text x="170" y="305" text-anchor="middle" font-family="DM Sans" font-size="10" font-weight="700" fill="#7a7067" letter-spacing="1.2">AI/ML CAPABILITY &rarr;</text>
+        <text x="20" y="160" text-anchor="middle" font-family="DM Sans" font-size="10" font-weight="700" fill="#7a7067" letter-spacing="1.2" transform="rotate(-90 20 160)">VOICE FIT &rarr;</text>
+        <!-- helper to map: x = 40 + value*26, y = 280 - value*26 (1-10 scale) -->
+        <!-- ChatGPT/Claude: 8,4 -> (248, 176) -->
+        <circle cx="248" cy="176" r="5" fill="#a69e94"/>
+        <text x="255" y="178" font-family="DM Sans" font-size="9" fill="#7a7067">ChatGPT / Claude</text>
+        <!-- Word doc: 1,8 -> (66, 72) -->
+        <circle cx="66" cy="72" r="5" fill="#a69e94"/>
+        <text x="73" y="74" font-family="DM Sans" font-size="9" fill="#7a7067">Word doc templates</text>
+        <!-- OpenTable: 3,1 -> (118, 254) -->
+        <circle cx="118" cy="254" r="5" fill="#a69e94"/>
+        <text x="125" y="256" font-family="DM Sans" font-size="9" fill="#7a7067">OpenTable / SevenRooms</text>
+        <!-- VA agencies: 1,2 -> (66, 228) -->
+        <circle cx="66" cy="228" r="5" fill="#a69e94"/>
+        <text x="73" y="230" font-family="DM Sans" font-size="9" fill="#7a7067">VA agencies</text>
+        <!-- NightDraft: 9,9 -> (274, 46) -->
+        <circle cx="274" cy="46" r="9" fill="#8b2252"/>
+        <text x="265" y="35" text-anchor="end" font-family="DM Serif Display" font-size="13" fill="#8b2252" font-weight="400">NightDraft</text>
+        <!-- Segment A ideal: 7,9 -> (222, 46) star -->
+        <polygon points="222,38 224.5,45 232,45 226,49.5 228,57 222,52 216,57 218,49.5 212,45 219.5,45" fill="#b8860b"/>
+        <text x="222" y="68" text-anchor="middle" font-family="DM Sans" font-size="8.5" fill="#b8860b" font-weight="700">Segment A ideal</text>
+        <!-- Segment B ideal: 9,9 -> (274,46) - offset -->
+        <polygon points="290,90 292.5,97 300,97 294,101.5 296,109 290,104 284,109 286,101.5 280,97 287.5,97" fill="#3d6b99"/>
+        <text x="290" y="120" text-anchor="middle" font-family="DM Sans" font-size="8.5" fill="#3d6b99" font-weight="700">Segment B ideal</text>
+      </svg>
+    </div>
+
+    <div class="map-wrap">
+      <div class="map-title">Map 2 &mdash; Owner control &times; Self-improvement</div>
+      <svg class="map-svg" viewBox="0 0 320 320" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Perceptual map: Owner control vs Self-improvement">
+        <line x1="40" y1="280" x2="300" y2="280" stroke="#d4cdc2" stroke-width="1"/>
+        <line x1="40" y1="40"  x2="40"  y2="280" stroke="#d4cdc2" stroke-width="1"/>
+        <line x1="170" y1="40" x2="170" y2="280" stroke="#e8e2d9" stroke-width="1" stroke-dasharray="3 3"/>
+        <line x1="40" y1="160" x2="300" y2="160" stroke="#e8e2d9" stroke-width="1" stroke-dasharray="3 3"/>
+        <text x="170" y="305" text-anchor="middle" font-family="DM Sans" font-size="10" font-weight="700" fill="#7a7067" letter-spacing="1.2">OWNER CONTROL &rarr;</text>
+        <text x="20" y="160" text-anchor="middle" font-family="DM Sans" font-size="10" font-weight="700" fill="#7a7067" letter-spacing="1.2" transform="rotate(-90 20 160)">SELF-IMPROVEMENT &rarr;</text>
+        <!-- ChatGPT/Claude: 9,1 -> (274,254) -->
+        <circle cx="274" cy="254" r="5" fill="#a69e94"/>
+        <text x="269" y="270" text-anchor="end" font-family="DM Sans" font-size="9" fill="#7a7067">ChatGPT / Claude</text>
+        <!-- Word doc: 10,1 -> (300,254) -->
+        <circle cx="295" cy="254" r="5" fill="#a69e94"/>
+        <text x="290" y="244" text-anchor="end" font-family="DM Sans" font-size="9" fill="#7a7067">Word doc</text>
+        <!-- OpenTable: 5,3 -> (170,202) -->
+        <circle cx="170" cy="202" r="5" fill="#a69e94"/>
+        <text x="177" y="204" font-family="DM Sans" font-size="9" fill="#7a7067">OpenTable</text>
+        <!-- VA agencies: 2,2 -> (92, 228) -->
+        <circle cx="92" cy="228" r="5" fill="#a69e94"/>
+        <text x="99" y="230" font-family="DM Sans" font-size="9" fill="#7a7067">VA agencies</text>
+        <!-- Reservations manager hire: 8,5 -> (248, 150) -->
+        <circle cx="248" cy="150" r="5" fill="#a69e94"/>
+        <text x="243" y="142" text-anchor="end" font-family="DM Sans" font-size="9" fill="#7a7067">Reservations manager</text>
+        <!-- NightDraft: 10,9 -> (300,46) -->
+        <circle cx="295" cy="46" r="9" fill="#8b2252"/>
+        <text x="285" y="35" text-anchor="end" font-family="DM Serif Display" font-size="13" fill="#8b2252" font-weight="400">NightDraft</text>
+        <!-- Segment A ideal: 10,6 -> (300,124) -->
+        <polygon points="290,116 292.5,123 300,123 294,127.5 296,135 290,130 284,135 286,127.5 280,123 287.5,123" fill="#b8860b"/>
+        <text x="290" y="148" text-anchor="middle" font-family="DM Sans" font-size="8.5" fill="#b8860b" font-weight="700">Segment A ideal</text>
+        <!-- Segment B ideal: 10,9 -> (300,46) - offset -->
+        <polygon points="265,72 267.5,79 275,79 269,83.5 271,91 265,86 259,91 261,83.5 255,79 262.5,79" fill="#3d6b99"/>
+        <text x="265" y="104" text-anchor="middle" font-family="DM Sans" font-size="8.5" fill="#3d6b99" font-weight="700">Segment B ideal</text>
+      </svg>
+    </div>
+  </div>
+
+  <div class="callout wine">
+    <strong>Strategic claim.</strong> Map 1 = "what customers want" (demand fit). Map 2 = "why competitors cannot replicate" (competitive defence). Separates demand from defence.
+  </div>
+</section>
+
+<!-- ============ SLIDE 11 - TARGETING & POSITIONING ============ -->
+<section class="slide" id="slide-11">
+  <div class="slide-num">Slide 11 / 20</div>
+  <div class="eyebrow">Slide 11 &middot; Targeting &amp; Positioning</div>
+
+  <div class="callout-headline">
+    <em>The most important booking is the most complex one. NightDraft handles those.</em>
+  </div>
+
+  <div class="subhead">Positioning statement (For/Is/Unlike)</div>
+  <div class="card">
+    <p><strong>For</strong> owner-operated independent restaurants and small operator-marketer groups serving 30-80 covers,</p>
+    <p><strong>NightDraft is</strong> the AI-powered sales tool for high-stakes booking inquiries - 8+ parties, takeovers, private dining. The bookings with the most money on the line, the most people in the room, and the most complexity in the reply.</p>
+    <p><strong>Unlike</strong> OpenTable, ChatGPT, or hiring a reservations manager,</p>
+    <p>NightDraft codifies the owner's playbook conversationally over time, drafts every reply in the owner's voice into Gmail, and learns from every edit - so the same mistake never happens twice.</p>
+  </div>
+
+  <div class="callout">
+    <strong>Category of reference.</strong> Vertical AI sales tools for restaurant operators. A category that did not exist before 2025. The comparison set is the cost of doing nothing (1-in-8 inquiries lost) or hiring a reservations manager (10x more expensive), not OpenTable.
+  </div>
+
+  <div class="grid-2">
+    <div class="card flat">
+      <h3>Points of parity</h3>
+      <ul>
+        <li>Email-based interaction (no new tool to learn)</li>
+        <li>No-autosend, owner-approves-everything</li>
+        <li>Per-month SaaS subscription pricing</li>
+        <li>Web app + Gmail integration</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3>Points of difference</h3>
+      <table>
+        <tbody>
+          <tr><td>Conversational playbook capture</td><td>No memory in generic AI; no drafting layer in OpenTable</td></tr>
+          <tr><td>Voice-fit drafting</td><td>Vertical depth + Lorne dataset + edit-logging</td></tr>
+          <tr><td>Self-improving learning loop</td><td>Data-flywheel moat</td></tr>
+          <tr><td>Guest intelligence</td><td>No competitor combines drafting + research</td></tr>
+          <tr><td>Founder-as-moat</td><td>Lived hospitality + AI/ML capability + warm network</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="subhead">Targeting</div>
+  <div class="card">
+    <ul>
+      <li><strong>Wedge with Segment A (indies).</strong> 50 paying logos in 2026-27. Founder warm network + podcast-amplified.</li>
+      <li><strong>Scale with Segment B (groups).</strong> 30+ groups by 2028.</li>
+    </ul>
+  </div>
+
+  <div class="subhead">About the founder</div>
+  <div class="card flat">
+    <p>The founder has done service at the restaurants he is now selling to. River Cafe, Lorne (founding customer's own restaurant), Danny Meyer's Union Square Cafe (NYC). Evening Standard food columnist. Head of INSEAD AI Club. Five named warm leads in hand.</p>
+  </div>
+
+  <blockquote>
+    "I want it to feel like the founder built it for me. Not a tech company."
+    <span class="attr">Multi-venue operator, London</span>
+  </blockquote>
+
+  <div class="callout wine">
+    <strong>Brand purpose.</strong> The most important booking is the most complex one. We handle those.
+  </div>
+</section>
+
+<!-- ============ SLIDE 12 - DIVIDER: TACTICS ============ -->
+<section class="slide divider" id="slide-12">
+  <div class="slide-num">Slide 12 / 20</div>
+  <div class="part-card">
+    <div class="eyebrow">Part 4 of 4</div>
+    <h2>Tactics and Marketing Efforts</h2>
+    <p class="div-sub">Short-term planning.</p>
+  </div>
+</section>
+
+<!-- ============ SLIDE 13 - NAMING & ASSOCIATIONS ============ -->
+<section class="slide" id="slide-13">
+  <div class="slide-num">Slide 13 / 20</div>
+  <div class="eyebrow">Slide 13 &middot; Naming &amp; Associations</div>
+  <h1>NightDraft.</h1>
+  <p class="lede">Cody Schneider playbook: clean, two-beat, knows what it is in one read. "Overnight" was the original concept (drafts ready when the owner wakes up); the name kept the connection while the product evolved. SEO landscape was uncontested at naming time - "NightDraft" had no existing branded competitor, which matters in a category that does not yet exist. In a vacated segment, the name has to own its keyword from day one.</p>
+
+  <div class="subhead">Brand associations (AI/ML threaded)</div>
+  <div class="card num-card">
+    <div class="num">1</div>
+    <div><h3>Quiet expertise</h3><p>The product works in the background while the owner is on the floor. Reflects founder's lived hospitality experience and operator preference for tools that disappear into workflow.</p></div>
+  </div>
+  <div class="card num-card">
+    <div class="num">2</div>
+    <div><h3>The most important booking is the most complex one</h3><p>The product's purpose. Operator-language. Reinforced everywhere.</p></div>
+  </div>
+  <div class="card num-card">
+    <div class="num">3</div>
+    <div><h3>Self-improving / compounding</h3><p>The AI/ML association. Every edit makes the next draft better. Learning curve, not chatbot iconography.</p></div>
+  </div>
+
+  <blockquote>
+    "There are sort of conditions for eight, there are conditions for ten."
+    <span class="attr">Katie Exton, Lorne <span class="star">&#9733;</span></span>
+  </blockquote>
+
+  <div class="subhead">Real-thread worked example</div>
+  <div class="thread-cols">
+    <div class="thread-col">
+      <div class="label">Inbound inquiry</div>
+      <p><strong>From:</strong> corporate Executive Assistant</p>
+      <p><strong>Party:</strong> 9 covers, dinner</p>
+      <p><strong>Date:</strong> Thursday, 6 weeks out</p>
+      <p>"Looking for a dinner for 9 of our partners. Open to the kitchen's recommendation on menu - happy to discuss."</p>
+    </div>
+    <div class="thread-col draft">
+      <div class="label">NightDraft draft</div>
+      <p>Generated from the playbook - <strong>9-cover tier</strong>, set-menu pitch, <strong>48h cancellation</strong>, "Best, Bookings" sign-off.</p>
+      <p>"Thank you for thinking of us. For a party of 9 we'd recommend our set tasting menu at GBP 75/head, with optional wine pairing... 50% deposit at booking, 48h cancellation."</p>
+    </div>
+    <div class="thread-col sent">
+      <div class="label">Katie's edit + final sent</div>
+      <p>Added the <strong>"fish might change" seasonal hedge</strong> because the booking is 6 weeks out.</p>
+      <p>"...note our menu shifts seasonally so the fish course may change between now and then; we'll confirm closer to the date."</p>
+      <p><strong>Outcome:</strong> booking confirmed.</p>
+    </div>
+  </div>
+  <p class="muted" style="font-size: 0.78rem;">One thread from the Lorne 24-thread dataset (April 2026). Real input, real draft, real edit, real outcome.</p>
+</section>
+
+<!-- ============ SLIDE 14 - VISUAL IDENTITY ============ -->
+<section class="slide" id="slide-14">
+  <div class="slide-num">Slide 14 / 20</div>
+  <div class="eyebrow">Slide 14 &middot; Visual Identity</div>
+  <h1>Editorial restraint is the differentiation.</h1>
+  <p class="lede">Most AI products shout. NightDraft does not. The brand is hospitality-first, AI second.</p>
+
+  <div class="subhead">Visual identity</div>
+  <div class="card">
+    <ul>
+      <li><strong>Background:</strong> warm cream <span style="font-family:'DM Mono',monospace;">#faf8f5</span></li>
+      <li><strong>Brand accent:</strong> wine <span style="font-family:'DM Mono',monospace;">#8b2252</span> &mdash; the single brand colour signature</li>
+      <li><strong>Typography:</strong> DM Serif Display (headlines, food-magazine register), DM Sans (body, UI), DM Mono (timestamps)</li>
+      <li><strong>Layout:</strong> narrow editorial column (720px max), card-based content blocks, asymmetric border-radius signature</li>
+      <li><strong>Photography:</strong> real restaurant interiors, real plates, real service. No stock AI imagery.</li>
+      <li><strong>Tone:</strong> founder-led editorial, Evening Standard register</li>
+    </ul>
+  </div>
+
+  <div class="callout red">
+    <strong>We explicitly avoid:</strong>
+    <ul style="margin-top: 0.5rem;">
+      <li>Robot icons, sparkle emojis, "AI-powered" splash badges</li>
+      <li>Gradients of any kind, glassmorphism, soft shadows</li>
+      <li>Stock photography</li>
+      <li>Full-bleed sections (deck stays in narrow editorial column)</li>
+      <li>Rounded-corner-everything</li>
+    </ul>
+  </div>
+
+  <div class="callout">
+    <strong>Aesthetic reference.</strong> Stripe-editorial &times; Notion-restraint &times; food-magazine-typography. <em>NOT</em> Apple, <em>NOT</em> ASOS, <em>NOT</em> dark-UI, <em>NOT</em> SaaS-purple-gradient.
+  </div>
+</section>
+
+<!-- ============ SLIDE 15 - REFERENCE PRICE ============ -->
+<section class="slide" id="slide-15">
+  <div class="slide-num">Slide 15 / 20</div>
+  <div class="eyebrow">Slide 15 &middot; Reference Price</div>
+  <h1>One captured booking pays for the year.</h1>
+
+  <div class="subhead">Reference-price anchors</div>
+  <table>
+    <thead><tr><th>Anchor</th><th>Price</th><th>Buyer's logic</th></tr></thead>
+    <tbody>
+      <tr><td>Doing nothing / sent-folder copy-paste</td><td class="num">GBP 0</td><td>"But I'm losing 1-in-8 inquiries = GBP 30-100k/yr leaking out"</td></tr>
+      <tr><td>Word doc templates</td><td class="num">GBP 0</td><td>"Mine rotted - this is broken-by-default"</td></tr>
+      <tr><td>ChatGPT Pro</td><td class="num">GBP 20/mo</td><td>"Doesn't do what NightDraft does, but the number is known"</td></tr>
+      <tr><td>Part-time inbox VA</td><td class="num">GBP 800-1,500/mo</td><td>"Quality risk, off-shore voice mismatch"</td></tr>
+      <tr><td>Hiring a reservations manager</td><td class="num">GBP 35-45k/yr</td><td>"Too expensive for one venue, prohibitive across a group"</td></tr>
+      <tr><td><strong>NightDraft (Indie)</strong></td><td class="num"><strong>GBP 179/mo</strong></td><td>"One captured booking = pays for itself"</td></tr>
+      <tr><td><strong>NightDraft (Group Starter)</strong></td><td class="num"><strong>GBP 400/venue/mo</strong></td><td>"Reservations-manager-equivalent at 1/10 the cost"</td></tr>
+    </tbody>
+  </table>
+
+  <div class="subhead">AI/ML pricing methods</div>
+  <p>NightDraft's edit-logging and guest research generate price-elasticity data for the restaurant's own bookings. The AI/ML does not just price NightDraft - it gives the restaurant a price-discovery tool for its own high-stakes bookings.</p>
+
+  <div class="card num-card">
+    <div class="num">1</div>
+    <div><h3>Per-restaurant pricing tier validation</h3><p>The system observes which inquiries accept which deposit / minimum-spend / package rate. Surfaces back: "your 12-cover Tuesday inquiries accept GBP 75/head minimum; could push to GBP 85."</p></div>
+  </div>
+  <div class="card num-card">
+    <div class="num">2</div>
+    <div><h3>Outcome-based upsell tiering</h3><p>Hybrid SaaS + per-booking pricing flagged as v2 option. v1 is flat SaaS.</p></div>
+  </div>
+  <div class="card num-card">
+    <div class="num">3</div>
+    <div><h3>Cohort-pricing intelligence</h3><p>Across 50+ restaurants by 2027, market-wide price elasticity becomes visible (anonymised, opt-in).</p></div>
+  </div>
+</section>
+
+<!-- ============ SLIDE 16 - PRICING & DISCRIMINATION ============ -->
+<section class="slide" id="slide-16">
+  <div class="slide-num">Slide 16 / 20</div>
+  <div class="eyebrow">Slide 16 &middot; Pricing &amp; Discrimination</div>
+  <h1>Three tiers. Same product. Different value-prop wrappers.</h1>
+
+  <table>
+    <thead><tr><th>Tier</th><th>Who</th><th>Price</th><th>What they get</th></tr></thead>
+    <tbody>
+      <tr>
+        <td><strong>Indie</strong></td>
+        <td>Segment A (single restaurant)</td>
+        <td class="num">GBP 179/mo</td>
+        <td>Core: drafting, voice fit, learning loop, guest research</td>
+      </tr>
+      <tr>
+        <td><strong>Group Starter</strong></td>
+        <td>Segment B (3-6 concepts)</td>
+        <td class="num">GBP 400/venue/mo (12-mo)</td>
+        <td>Core + cross-concept playbook + group dashboard</td>
+      </tr>
+      <tr>
+        <td><strong>Group Premium</strong></td>
+        <td>7+ concepts</td>
+        <td class="num">GBP 500/venue/mo (annual)</td>
+        <td>Core + cross-concept playbook + dedicated success rep + custom integrations (OpenTable / SevenRooms when ready)</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="subhead">Why three tiers, not flat pricing</div>
+  <ul>
+    <li>Different segments have different WTP. Flat pricing leaves money on the table for groups.</li>
+    <li>Tiering preserves the indie wedge while capturing group economics.</li>
+    <li>Per-venue pricing for groups mirrors hospitality SaaS norms (OpenTable, SevenRooms).</li>
+  </ul>
+
+  <div class="subhead">Price discrimination justified by</div>
+  <div class="card num-card">
+    <div class="num">1</div>
+    <div><h3>Volume of value</h3><p>Groups capture more per venue: more inquiries &times; higher AOV.</p></div>
+  </div>
+  <div class="card num-card">
+    <div class="num">2</div>
+    <div><h3>Implementation depth</h3><p>Group accounts get cross-concept playbook integration.</p></div>
+  </div>
+  <div class="card num-card">
+    <div class="num">3</div>
+    <div><h3>Self-selection</h3><p>Indies don't need group features; groups need them.</p></div>
+  </div>
+
+  <div class="subhead">Price-war prevention (S08 lecture)</div>
+  <div class="callout">
+    <ul>
+      <li><strong>Don't compete with OpenTable on price</strong> (10x larger, always wins on volume).</li>
+      <li><strong>Don't compete with ChatGPT on price</strong> (free / GBP 20).</li>
+      <li><strong>Compete on category, not price.</strong> "Only sales tool for high-stakes inquiries."</li>
+      <li><strong>Ladder up via segments</strong> (indie &rarr; group &rarr; premium), not discount down.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ============ SLIDE 17 - COMMUNICATION & BUDGET ============ -->
+<section class="slide" id="slide-17">
+  <div class="slide-num">Slide 17 / 20</div>
+  <div class="eyebrow">Slide 17 &middot; Communication &amp; Budget</div>
+  <h1>Pay where the trust already exists. Earn the rest.</h1>
+
+  <div class="subhead">Communication objectives (5-decision process from S09)</div>
+  <table>
+    <thead><tr><th>Stage</th><th>Objective</th><th>Metric</th></tr></thead>
+    <tbody>
+      <tr><td>Awareness</td><td>Become the named tool when restaurateurs talk about high-stakes booking pain</td><td>Branded search; podcast mentions; share of voice</td></tr>
+      <tr><td>Consideration</td><td>Owner books a 30-min demo with the founder</td><td>Demos booked; demo-attended rate</td></tr>
+      <tr><td>Conversion</td><td>Single-conversation close on demo land</td><td>Demo-to-pilot rate; time-to-close</td></tr>
+      <tr><td>Retention</td><td>Edit-logging shows reply quality compounding</td><td>M3 quality &gt; M1; churn &lt; 25%/yr indie, &lt; 15%/yr group</td></tr>
+      <tr><td>Advocacy</td><td>Peer referrals</td><td>Referral rate; net new logos per existing</td></tr>
+    </tbody>
+  </table>
+
+  <div class="subhead">Year-1 budget &mdash; GBP 24,000 (~GBP 2,000/mo)</div>
+  <table>
+    <thead><tr><th>Channel</th><th class="right">Spend</th><th>Logic</th></tr></thead>
+    <tbody>
+      <tr><td>GoToFood podcast sponsorship</td><td class="num">GBP 12,000</td><td>12 episodes &times; GBP 1,000. Trusted hospitality channel; direct buyer audience.</td></tr>
+      <tr><td>Founder PR / earned editorial</td><td class="num">GBP 0</td><td>Code Hospitality (Adam Hyman), The Pass, The Caterer, SquareMeal, Guardian food desk. Earned. Founder is on the guest list at the parties where commissioning decisions happen; friends with key editors. Distribution moat is the network, not the spend. Evening Standard column adds owned-media leverage.</td></tr>
+      <tr><td>Industry dinners / operator events</td><td class="num">GBP 6,000</td><td>Founder presence at hospitality events</td></tr>
+      <tr><td>Lorne case-study production</td><td class="num">GBP 3,000</td><td>Worked example + video</td></tr>
+      <tr><td>Reserve</td><td class="num">GBP 3,000</td><td>Operational</td></tr>
+    </tbody>
+  </table>
+
+  <div class="callout wine">
+    <strong>Binet &amp; Field 60-40.</strong> 60% brand-build (podcast, editorial, industry presence), 40% activation (case studies, demo-driving events). Matches S11 &amp; S12 Novela 95-5 Rule logic - most of the audience is not buying this quarter.
+  </div>
+
+  <div class="subhead">GEO not just SEO (from S09 reading)</div>
+  <p>NightDraft must be discoverable in LLM responses (when an operator asks ChatGPT/Claude "what's the best AI tool for restaurant big-booking emails?"). Required: owned content (Evening Standard column, NightDraft blog, case studies), earned media, structured-data optimisation, citation network. By 2027 GEO traffic &gt; SEO for new categories.</p>
+</section>
+
+<!-- ============ SLIDE 18 - DISTRIBUTION ============ -->
+<section class="slide" id="slide-18">
+  <div class="slide-num">Slide 18 / 20</div>
+  <div class="eyebrow">Slide 18 &middot; Distribution &amp; Markets</div>
+  <h1>Founder-led warm network is the channel. Onboarding-as-channel is the secret weapon.</h1>
+
+  <div class="subhead">Onboarding-as-channel</div>
+  <div class="callout wine">
+    The first paying touchpoint is the agentic onboarding call - NightDraft (with founder in early days) interviews the operator about their booking practice and codifies the playbook conversationally in 30-60 minutes. <strong>Value delivered on Day 1, not Day 30.</strong> Operators who experience it tell peers, generating referrals.
+  </div>
+
+  <div class="subhead">Three-stage channel evolution</div>
+  <table>
+    <thead><tr><th>Stage</th><th>Period</th><th>Channel mix</th><th>What it looks like</th></tr></thead>
+    <tbody>
+      <tr><td>Stage 1: Wedge</td><td>2026</td><td>90% founder warm network + 10% earned editorial</td><td>5 paying logos closed via direct intros (Katie design partner + Chris + David + 2 indies)</td></tr>
+      <tr><td>Stage 2: Inbound</td><td>2027</td><td>50% warm network + 30% podcast/PR-driven inbound + 20% peer referrals</td><td>Founder still leads sales; podcasts and editorial drive incremental demos</td></tr>
+      <tr><td>Stage 3: Repeatable</td><td>2028</td><td>30% founder + 40% inbound + 30% group operator-network</td><td>First sales hire; group accounts compound via cross-concept adoption</td></tr>
+    </tbody>
+  </table>
+
+  <div class="subhead">Channel selection (S10 lecture)</div>
+  <div class="callout">
+    <ul>
+      <li>Trusted, low-friction, hospitality-native channels only.</li>
+      <li>No paid performance marketing (segment too small, too trust-led).</li>
+      <li>Lean into channels where founder has unfair advantage (Evening Standard column, INSEAD AI Club, hospitality network).</li>
+    </ul>
+  </div>
+
+  <div class="subhead">Geographic markets</div>
+  <div class="card flat">
+    <ul>
+      <li><strong>2026-27:</strong> London only (network density + lead concentration).</li>
+      <li><strong>2028:</strong> UK-wide (groups expand naturally).</li>
+      <li><strong>Beyond 2028:</strong> NYC adjacency (founder Union Square Cafe history) parked.</li>
+    </ul>
+  </div>
+
+  <div class="callout">
+    <strong>Staggered vs simultaneous.</strong> Staggered. Indie wedge first (Segment A); groups in parallel from year one but become primary in 2028.
+  </div>
+</section>
+
+<!-- ============ SLIDE 19 - DEMAND PREDICTION ============ -->
+<section class="slide" id="slide-19">
+  <div class="slide-num">Slide 19 / 20</div>
+  <div class="eyebrow">Slide 19 &middot; Demand Prediction</div>
+  <h1>200 venues by 2028. 3% of TAM. Conservative.</h1>
+
+  <div class="subhead">S13 stack applied</div>
+  <p class="muted">PLC &rarr; Chasm &rarr; Industry Rule of Thumb &rarr; Bass Diffusion &rarr; ACCORD.</p>
+
+  <div class="card flat">
+    <h3><span class="pill muted">PLC</span></h3>
+    <p>Introduction 2026, early Growth 2027-28. Category brand-new.</p>
+  </div>
+
+  <div class="card flat">
+    <h3><span class="pill muted">Chasm</span></h3>
+    <p>First 5-15 logos = innovators (Katie, Chris, David, warm leads). Crossing to early-majority (2027-28) requires category awareness (PR + podcast), peer references (first cohort), defensible case studies (Lorne worked example + early group).</p>
+  </div>
+
+  <div class="card flat">
+    <h3><span class="pill muted">Industry Rule of Thumb</span></h3>
+    <ul>
+      <li>UK indie fine-dining (30-80 covers, owner-operated, Bib+ tier): ~5,000.</li>
+      <li>UK operator-marketer groups (3-10 concepts): ~200 = ~1,000 venues.</li>
+      <li>Year-3 TAM: ~6,000 venues.</li>
+      <li><strong>2028 target: 200 venues = 3% of TAM. Conservative.</strong></li>
+    </ul>
+  </div>
+
+  <div class="subhead">Bass Diffusion (p ~ 0.005, q ~ 0.3)</div>
+  <table>
+    <thead><tr><th>Year</th><th class="right">Total venues</th><th class="right">Innovators</th><th class="right">Imitators</th><th class="right">New venues this year</th></tr></thead>
+    <tbody>
+      <tr><td>2026</td><td class="num">5</td><td class="num">5 (founder warm network)</td><td class="num">0</td><td class="num">5</td></tr>
+      <tr><td>2027</td><td class="num">50</td><td class="num">3</td><td class="num">42 (peer referral + inbound)</td><td class="num">45</td></tr>
+      <tr><td>2028</td><td class="num">200</td><td class="num">0</td><td class="num">150 (indie inbound + group multi-venue rollout)</td><td class="num">150</td></tr>
+    </tbody>
+  </table>
+
+  <div class="subhead">ACCORD framework</div>
+  <table>
+    <thead><tr><th>Factor</th><th>NightDraft 2028</th></tr></thead>
+    <tbody>
+      <tr><td>Advantage (vs status quo)</td><td>High - 1-in-8 inquiries lost = quantified pain. Met.</td></tr>
+      <tr><td>Compatibility (Gmail-native)</td><td>High - no new tool to learn. Met.</td></tr>
+      <tr><td>Complexity</td><td>Low - 1-hour setup, conversational onboarding. Met.</td></tr>
+      <tr><td>Observability</td><td>High - edit-logging dashboard, captured-booking count. Met.</td></tr>
+      <tr><td>Risk perception</td><td>Medium - AI fatigue + control worry. Mitigated by no-autosend + founder trust.</td></tr>
+      <tr><td>Divisibility</td><td>High - 30-day free pilot. Met.</td></tr>
+    </tbody>
+  </table>
+
+  <div class="callout wine">
+    <strong>Demand evidence.</strong> A 24-thread sample from one restaurant showed 30% unresolved (7 of 24), with 3 named threads sitting 3-7+ days unanswered = GBP 4-6k lost revenue. Extrapolated across the wedge segment (5,000 venues &times; similar pattern) the recoverable lost-revenue pool is multi-hundred-million GBP. NightDraft's 200-venue 2028 target captures &lt; 5% of that pool.
+  </div>
+</section>
+
+<!-- ============ SLIDE 20 - P&L ============ -->
+<section class="slide" id="slide-20">
+  <div class="slide-num">Slide 20 / 20</div>
+  <div class="eyebrow">Slide 20 &middot; P&amp;L (3-Year)</div>
+  <h1>46% EBIT margin by 2028.</h1>
+
+  <table>
+    <thead>
+      <tr><th>Line item</th><th class="right">2026</th><th class="right">2027</th><th class="right">2028</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>Indie venues (paying)</td><td class="num">5</td><td class="num">50</td><td class="num">170</td></tr>
+      <tr><td>Group venues (paying)</td><td class="num">0</td><td class="num">5</td><td class="num">30</td></tr>
+      <tr><td>Indie revenue (GBP)</td><td class="num">10,740</td><td class="num">107,400</td><td class="num">365,160</td></tr>
+      <tr><td>Group revenue (GBP)</td><td class="num">0</td><td class="num">24,000</td><td class="num">144,000</td></tr>
+      <tr><td><strong>Total revenue</strong></td><td class="num"><strong>10,740</strong></td><td class="num"><strong>131,400</strong></td><td class="num"><strong>509,160</strong></td></tr>
+      <tr><td>Variable costs (Anthropic API + hosting, ~12% rev)</td><td class="num">(1,289)</td><td class="num">(15,768)</td><td class="num">(61,099)</td></tr>
+      <tr><td><strong>Gross margin</strong></td><td class="num"><strong>9,451 (88%)</strong></td><td class="num"><strong>115,632 (88%)</strong></td><td class="num"><strong>448,061 (88%)</strong></td></tr>
+      <tr><td>Marketing spend</td><td class="num">(24,000)</td><td class="num">(40,000)</td><td class="num">(60,000)</td></tr>
+      <tr><td>Founder cost (forgone salary, partial)</td><td class="num">(60,000)</td><td class="num">(80,000)</td><td class="num">(90,000)</td></tr>
+      <tr><td>Tech / tools / contractors</td><td class="num">(10,000)</td><td class="num">(25,000)</td><td class="num">(50,000)</td></tr>
+      <tr><td>Legal / admin</td><td class="num">(5,000)</td><td class="num">(8,000)</td><td class="num">(15,000)</td></tr>
+      <tr><td><strong>Operating expenses</strong></td><td class="num"><strong>(99,000)</strong></td><td class="num"><strong>(153,000)</strong></td><td class="num"><strong>(215,000)</strong></td></tr>
+      <tr><td><strong>EBIT</strong></td><td class="num"><strong>(89,549)</strong></td><td class="num"><strong>(37,368)</strong></td><td class="num"><strong>233,061</strong></td></tr>
+      <tr><td><strong>EBIT margin</strong></td><td class="num"><strong>-834%</strong></td><td class="num"><strong>-28%</strong></td><td class="num"><strong>+46%</strong></td></tr>
+    </tbody>
+  </table>
+
+  <div class="callout">
+    <ul>
+      <li><strong>2026 investment year</strong> - marketing dominates, founder solo.</li>
+      <li><strong>2027 chasm-crossing</strong> - indie volume scales, first group revenue, approaching breakeven.</li>
+      <li><strong>2028 profitable</strong> - GBP 509k revenue, GBP 448k gross margin, GBP 215k OpEx, GBP 233k EBIT, 46% margin.</li>
+    </ul>
+  </div>
+
+  <div class="subhead">2028 marketing budget breakdown</div>
+  <table>
+    <thead><tr><th>Line</th><th class="right">Spend</th></tr></thead>
+    <tbody>
+      <tr><td>Podcast sponsorship</td><td class="num">GBP 24,000</td></tr>
+      <tr><td>Earned media + content production</td><td class="num">GBP 12,000</td></tr>
+      <tr><td>Industry events + operator dinners</td><td class="num">GBP 12,000</td></tr>
+      <tr><td>Case studies / PR</td><td class="num">GBP 6,000</td></tr>
+      <tr><td>Reserve</td><td class="num">GBP 6,000</td></tr>
+      <tr><td><strong>Total</strong></td><td class="num"><strong>GBP 60,000</strong></td></tr>
+    </tbody>
+  </table>
+
+  <div class="callout wine">
+    <strong>Sensitivity.</strong>
+    <ul style="margin-top: 0.5rem;">
+      <li>Group ACV swing: GBP 350 (not 400) per venue &rarr; 2028 revenue ~GBP 472k. Still profitable.</li>
+      <li>Indie retention 70% (not 75%): CLV -12%. 2028 still works.</li>
+      <li>Conservative on volume; aggressive on operator-network execution.</li>
+    </ul>
+  </div>
+
+  <div class="signature">
+    <div class="sig-name">NightDraft.</div>
+    <div class="sig-tag">Take the pain out of big bookings.</div>
+    <div class="sig-meta">
+      A Strategic Marketing Plan by Freddie Chambers.<br/>
+      Managing Customer Value (P2 2026), Professor Paulo Albuquerque, INSEAD.
+    </div>
+  </div>
+</section>
+
+</main>
+
+<nav class="nav-bar" role="navigation" aria-label="Slide navigation">
+  <button class="nav-btn" id="nav-prev" aria-label="Previous slide">&larr;</button>
+  <div class="nav-progress" aria-hidden="true"><div class="nav-progress-fill" id="nav-progress-fill"></div></div>
+  <div class="nav-counter" id="nav-counter">01 / 20</div>
+  <button class="nav-btn" id="nav-next" aria-label="Next slide">&rarr;</button>
+  <span class="nav-hint">&larr; &rarr; or click to advance</span>
+</nav>
+
+<script>
+(function () {
+  var slides = Array.prototype.slice.call(document.querySelectorAll('.slide'));
+  var total = slides.length;
+  var current = 0;
+  var prevBtn = document.getElementById('nav-prev');
+  var nextBtn = document.getElementById('nav-next');
+  var counter = document.getElementById('nav-counter');
+  var progress = document.getElementById('nav-progress-fill');
+
+  function pad(n) { return n < 10 ? '0' + n : '' + n; }
+
+  function show(i) {
+    if (i < 0) i = 0;
+    if (i > total - 1) i = total - 1;
+    slides[current].classList.remove('active');
+    current = i;
+    slides[current].classList.add('active');
+    slides[current].scrollTop = 0;
+    counter.textContent = pad(current + 1) + ' / ' + pad(total);
+    progress.style.width = ((current + 1) / total * 100) + '%';
+    prevBtn.disabled = current === 0;
+    nextBtn.disabled = current === total - 1;
+    if (history.replaceState) {
+      history.replaceState(null, '', '#slide-' + (current + 1));
+    }
+  }
+
+  function next() { show(current + 1); }
+  function prev() { show(current - 1); }
+
+  prevBtn.addEventListener('click', prev);
+  nextBtn.addEventListener('click', next);
+
+  document.addEventListener('keydown', function (e) {
+    if (e.target && (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA')) return;
+    if (e.key === 'ArrowRight' || e.key === 'PageDown' || e.key === ' ') {
+      e.preventDefault();
+      next();
+    } else if (e.key === 'ArrowLeft' || e.key === 'PageUp') {
+      e.preventDefault();
+      prev();
+    } else if (e.key === 'Home') {
+      e.preventDefault();
+      show(0);
+    } else if (e.key === 'End') {
+      e.preventDefault();
+      show(total - 1);
+    }
+  });
+
+  // Click anywhere on the slide to advance (except interactive elements)
+  document.querySelector('.deck').addEventListener('click', function (e) {
+    var t = e.target;
+    while (t && t !== document.body) {
+      var tag = t.tagName;
+      if (tag === 'A' || tag === 'BUTTON' || tag === 'INPUT' || tag === 'TEXTAREA' || tag === 'SELECT') return;
+      t = t.parentNode;
+    }
+    next();
+  });
+
+  // Deep-link support: open #slide-N to start at that slide
+  var hash = window.location.hash.match(/^#slide-(\d+)$/);
+  if (hash) {
+    var n = parseInt(hash[1], 10) - 1;
+    if (n >= 0 && n < total) {
+      slides[0].classList.remove('active');
+      slides[n].classList.add('active');
+      current = n;
+    }
+  }
+  show(current);
+})();
+</script>
+
+</body>
+</html>
