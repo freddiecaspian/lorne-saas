@@ -1273,6 +1273,115 @@
     .demo-stage { position: relative; height: auto; }
   }
 
+  /* ====== AUDIO AD SLIDE (Slide 20) - black full-bleed with waveform ====== */
+  #slide-20 {
+    padding: 0;
+    max-width: none;
+    background: #0a0a0a;
+    color: #f5f5f5;
+  }
+  #slide-20 .slide-num {
+    z-index: 20;
+    background: rgba(255,255,255,0.06);
+    color: rgba(255,255,255,0.55);
+    padding: 0.2rem 0.5rem;
+    border-radius: 4px;
+  }
+  .audio-stage {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1.5rem;
+    cursor: pointer;
+    user-select: none;
+    overflow: hidden;
+    background: radial-gradient(ellipse at center, #14181c 0%, #050708 70%);
+  }
+  .audio-eyebrow {
+    position: absolute;
+    top: 1.25rem;
+    left: 1.5rem;
+    font: 500 0.7rem/1 'DM Mono', monospace;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: rgba(255,255,255,0.45);
+  }
+  .audio-time {
+    font: 500 0.78rem/1 'DM Mono', monospace;
+    color: rgba(255,255,255,0.55);
+    letter-spacing: 0.08em;
+  }
+  .audio-canvas-wrap {
+    position: relative;
+    width: min(720px, 84vw);
+    height: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .audio-canvas {
+    width: 100%;
+    height: 100%;
+    display: block;
+  }
+  .audio-play-btn {
+    position: absolute;
+    width: 88px;
+    height: 88px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.08);
+    border: 1.5px solid rgba(255,255,255,0.4);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    backdrop-filter: blur(8px);
+    transition: all 280ms cubic-bezier(.22, 1, .36, 1);
+    pointer-events: none;
+    opacity: 1;
+  }
+  .audio-stage.is-playing .audio-play-btn {
+    opacity: 0;
+    transform: scale(0.7);
+  }
+  .audio-play-btn::before {
+    content: "";
+    width: 0;
+    height: 0;
+    border-left: 22px solid #f5f5f5;
+    border-top: 14px solid transparent;
+    border-bottom: 14px solid transparent;
+    margin-left: 6px;
+  }
+  .audio-caption {
+    text-align: center;
+    font: 500 0.75rem/1.5 'DM Mono', monospace;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    color: rgba(255,255,255,0.7);
+    max-width: 92vw;
+  }
+  .audio-caption .ac-line2 {
+    display: block;
+    margin-top: 0.5rem;
+    font-size: 0.65rem;
+    color: rgba(255,255,255,0.42);
+    letter-spacing: 0.1em;
+  }
+  .audio-hint {
+    position: absolute;
+    bottom: 4rem;
+    left: 50%;
+    transform: translateX(-50%);
+    font: 500 0.65rem/1 'DM Mono', monospace;
+    color: rgba(255,255,255,0.35);
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    transition: opacity 400ms ease;
+  }
+  .audio-stage.is-playing .audio-hint { opacity: 0; }
   /* PERCEPTUAL MAPS */
   .map-wrap {
     background: var(--bg-card);
@@ -1404,7 +1513,7 @@
 
 <!-- ============ SLIDE 1 - TITLE ============ -->
 <section class="slide title-slide active" id="slide-1">
-  <div class="slide-num">Slide 1 / 22</div>
+  <div class="slide-num">Slide 1 / 23</div>
   <div class="eyebrow">Managing Customer Value &middot; Strategic Marketing Plan</div>
   <div class="wordmark">NightDraft</div>
   <div class="tagline">Take the pain out of big bookings.</div>
@@ -1419,7 +1528,7 @@
 
 <!-- ============ SLIDE 2 - WHY ME, WHY THIS ============ -->
 <section class="slide" id="slide-2">
-  <div class="slide-num">Slide 2 / 22</div>
+  <div class="slide-num">Slide 2 / 23</div>
   <div class="origin" id="origin-root">
     <!-- LEFT: scrolling text column -->
     <div class="origin-text">
@@ -1608,7 +1717,7 @@
 
 <!-- ============ SLIDE 3 - OBJECTIVES & CUSTOMER NEEDS ============ -->
 <section class="slide" id="slide-3">
-  <div class="slide-num">Slide 3 / 22</div>
+  <div class="slide-num">Slide 3 / 23</div>
   <div class="eyebrow">Slide 3 &middot; Objectives &amp; Customer Needs</div>
   <h1>A sales tool for the most valuable email a restaurant receives all week.</h1>
   <p class="lede">Hospitality has automated the easy bookings and ignored the hard ones. NightDraft is the first tool built for the segment OpenTable abandoned.</p>
@@ -1665,7 +1774,7 @@
 
 <!-- ============ SLIDE 4 - HOW IT WORKS (DEMO) ============ -->
 <section class="slide" id="slide-4">
-  <div class="slide-num">Slide 4 / 22</div>
+  <div class="slide-num">Slide 4 / 23</div>
   <div class="demo" id="demo-root">
 
     <!-- LEFT: scrolling text column -->
@@ -1870,7 +1979,7 @@
 
 <!-- ============ SLIDE 5 - STRATEGIC OBJECTIVE ============ -->
 <section class="slide" id="slide-5">
-  <div class="slide-num">Slide 5 / 22</div>
+  <div class="slide-num">Slide 5 / 23</div>
   <div class="eyebrow">Slide 5 &middot; Strategic Objective</div>
   <h1>Demand is in hand, not hypothesised.</h1>
   <p class="lede"><strong>Strategic objective:</strong> Become the default sales-tool for the high-stakes booking segment that OpenTable has explicitly abandoned. Starting with London independent fine-dining in 2026, scaling to multi-venue groups across the UK by 2028.</p>
@@ -1938,7 +2047,7 @@
 
 <!-- ============ SLIDE 4 - DIVIDER: MARKET ANALYSIS ============ -->
 <section class="slide divider" id="slide-6">
-  <div class="slide-num">Slide 6 / 22</div>
+  <div class="slide-num">Slide 6 / 23</div>
   <div class="part-card">
     <div class="eyebrow">Part 2 of 4</div>
     <h2>Market Analysis</h2>
@@ -1948,7 +2057,7 @@
 
 <!-- ============ SLIDE 5 - SEGMENTATION + FUNNEL ============ -->
 <section class="slide" id="slide-7">
-  <div class="slide-num">Slide 7 / 22</div>
+  <div class="slide-num">Slide 7 / 23</div>
   <div class="eyebrow">Slide 7 &middot; Customer Segmentation</div>
 
   <div class="callout-headline">
@@ -1977,7 +2086,7 @@
       <ul>
         <li><strong>Background:</strong> Ex-Grey advertising, ex-Chevrolet marketing. Brand-led founder, not chef-led.</li>
         <li><strong>Tier:</strong> 6 venues, ~&pound;230/head at Dorian (Michelin-starred), multi-concept group spanning fine-dining to neighbourhood.</li>
-        <li><strong>What makes him tick:</strong> Revenue per cover, brand consistency, the marketing minute. Six concepts means six different reply styles.</li>
+        <li><strong>What makes him tick:</strong> Money. Revenue per cover, brand consistency, the marketing minute. Six concepts means six different reply styles.</li>
         <li><strong>Buys for:</strong> A marketing-department subscription. Booking-revenue recovery. Brand voice control across the estate.</li>
       </ul>
     </div>
@@ -2068,7 +2177,7 @@
 
 <!-- ============ SLIDE 6 - CONSUMER CHOICE ============ -->
 <section class="slide" id="slide-8">
-  <div class="slide-num">Slide 8 / 22</div>
+  <div class="slide-num">Slide 8 / 23</div>
   <div class="eyebrow">Slide 8 &middot; Consumer Choice</div>
 
   <div class="callout-headline">
@@ -2123,7 +2232,7 @@
 
 <!-- ============ SLIDE 7 - CLV & SEGMENT ATTRACTIVENESS ============ -->
 <section class="slide" id="slide-9">
-  <div class="slide-num">Slide 9 / 22</div>
+  <div class="slide-num">Slide 9 / 23</div>
   <div class="eyebrow">Slide 9 &middot; CLV &amp; Segment Attractiveness</div>
   <h1>One group logo is worth ~18 indie logos in CLV.</h1>
 
@@ -2185,7 +2294,7 @@
 
 <!-- ============ SLIDE 8 - COMPETITION & WARFARE ============ -->
 <section class="slide" id="slide-10">
-  <div class="slide-num">Slide 10 / 22</div>
+  <div class="slide-num">Slide 10 / 23</div>
   <div class="eyebrow">Slide 10 &middot; Competition &amp; Warfare</div>
   <h1>This category did not exist before 2025.</h1>
   <p class="lede">The technology to deliver it - LLMs that codify a restaurant's playbook and draft in the owner's voice, at indie price points - became commercially viable only in the last 18 months. Legacy booking platforms cannot build this even if they wanted to. NightDraft sits alone at an intersection that did not exist before.</p>
@@ -2259,7 +2368,7 @@
 
 <!-- ============ SLIDE 9 - DIVIDER: MARKETING STRATEGY ============ -->
 <section class="slide divider" id="slide-11">
-  <div class="slide-num">Slide 11 / 22</div>
+  <div class="slide-num">Slide 11 / 23</div>
   <div class="part-card">
     <div class="eyebrow">Part 3 of 4</div>
     <h2>Marketing Strategy</h2>
@@ -2269,7 +2378,7 @@
 
 <!-- ============ SLIDE 10 - PERCEPTUAL MAPS ============ -->
 <section class="slide" id="slide-12">
-  <div class="slide-num">Slide 12 / 22</div>
+  <div class="slide-num">Slide 12 / 23</div>
   <div class="eyebrow">Slide 12 &middot; Perceptual Maps</div>
   <h1>NightDraft sits alone in the strong quadrant on both maps.</h1>
   <p class="lede">Two maps. The first shows what customers want (voice-fit + AI/ML need). The second shows why competitors cannot replicate (owner control + self-improvement). Both segments' ideal points sit inside or adjacent to NightDraft's quadrant.</p>
@@ -2356,7 +2465,7 @@
 
 <!-- ============ SLIDE 11 - TARGETING & POSITIONING ============ -->
 <section class="slide" id="slide-13">
-  <div class="slide-num">Slide 13 / 22</div>
+  <div class="slide-num">Slide 13 / 23</div>
   <div class="eyebrow">Slide 13 &middot; Targeting &amp; Positioning</div>
 
   <div class="callout-headline">
@@ -2424,7 +2533,7 @@
 
 <!-- ============ SLIDE 12 - DIVIDER: TACTICS ============ -->
 <section class="slide divider" id="slide-14">
-  <div class="slide-num">Slide 14 / 22</div>
+  <div class="slide-num">Slide 14 / 23</div>
   <div class="part-card">
     <div class="eyebrow">Part 4 of 4</div>
     <h2>Tactics and Marketing Efforts</h2>
@@ -2434,7 +2543,7 @@
 
 <!-- ============ SLIDE 13 - NAMING & ASSOCIATIONS ============ -->
 <section class="slide" id="slide-15">
-  <div class="slide-num">Slide 15 / 22</div>
+  <div class="slide-num">Slide 15 / 23</div>
   <div class="eyebrow">Slide 15 &middot; Naming &amp; Associations</div>
   <h1>NightDraft.</h1>
   <p class="lede">Cody Schneider playbook: clean, two-beat, knows what it is in one read. "Overnight" was the original concept (drafts ready when the owner wakes up); the name kept the connection while the product evolved. SEO landscape was uncontested at naming time - "NightDraft" had no existing branded competitor, which matters in a category that does not yet exist. In a vacated segment, the name has to own its keyword from day one.</p>
@@ -2484,7 +2593,7 @@
 
 <!-- ============ SLIDE 14 - VISUAL IDENTITY ============ -->
 <section class="slide" id="slide-16">
-  <div class="slide-num">Slide 16 / 22</div>
+  <div class="slide-num">Slide 16 / 23</div>
   <div class="eyebrow">Slide 16 &middot; Visual Identity</div>
   <h1>Editorial restraint is the differentiation.</h1>
   <p class="lede">Most AI products shout. NightDraft does not. The brand is hospitality-first, AI second.</p>
@@ -2519,7 +2628,7 @@
 
 <!-- ============ SLIDE 15 - REFERENCE PRICE ============ -->
 <section class="slide" id="slide-17">
-  <div class="slide-num">Slide 17 / 22</div>
+  <div class="slide-num">Slide 17 / 23</div>
   <div class="eyebrow">Slide 17 &middot; Reference Price</div>
   <h1>One captured booking pays for the year.</h1>
 
@@ -2556,7 +2665,7 @@
 
 <!-- ============ SLIDE 16 - PRICING & DISCRIMINATION ============ -->
 <section class="slide" id="slide-18">
-  <div class="slide-num">Slide 18 / 22</div>
+  <div class="slide-num">Slide 18 / 23</div>
   <div class="eyebrow">Slide 18 &middot; Pricing &amp; Discrimination</div>
   <h1>Three tiers. Same product. Different value-prop wrappers.</h1>
 
@@ -2618,7 +2727,7 @@
 
 <!-- ============ SLIDE 17 - COMMUNICATION & BUDGET ============ -->
 <section class="slide" id="slide-19">
-  <div class="slide-num">Slide 19 / 22</div>
+  <div class="slide-num">Slide 19 / 23</div>
   <div class="eyebrow">Slide 19 &middot; Communication &amp; Budget</div>
   <h1>Pay where the trust already exists. Earn the rest.</h1>
 
@@ -2654,10 +2763,213 @@
   <p>NightDraft must be discoverable in LLM responses (when an operator asks ChatGPT/Claude "what's the best AI tool for restaurant big-booking emails?"). Required: owned content (Evening Standard column, NightDraft blog, case studies), earned media, structured-data optimisation, citation network. By 2027 GEO traffic &gt; SEO for new categories.</p>
 </section>
 
-<!-- ============ SLIDE 18 - DISTRIBUTION ============ -->
+<!-- ============ SLIDE 20 - AUDIO AD (PODCAST SPONSOR SPOT) ============ -->
 <section class="slide" id="slide-20">
-  <div class="slide-num">Slide 20 / 22</div>
-  <div class="eyebrow">Slide 20 &middot; Distribution &amp; Markets</div>
+  <div class="slide-num">Slide 20 / 23</div>
+  <div class="audio-stage" id="audio-stage" role="button" tabindex="0" aria-label="Play NightDraft podcast ad sample">
+    <div class="audio-eyebrow">Slide 20 &middot; Asset</div>
+    <div class="audio-time" id="audio-time">0:00 / 0:45</div>
+    <div class="audio-canvas-wrap">
+      <canvas class="audio-canvas" id="audio-canvas" width="1440" height="400"></canvas>
+      <div class="audio-play-btn" id="audio-play-btn" aria-hidden="true"></div>
+    </div>
+    <div class="audio-caption">
+      Example asset &middot; NightDraft &times; The Go To Food Podcast
+      <span class="ac-line2">Mid-roll sponsor spot &middot; voiced demo &middot; produced May 2026</span>
+    </div>
+    <div class="audio-hint" id="audio-hint">click anywhere to play</div>
+    <audio id="audio-el" preload="metadata" src="podcast-ad/nightdraft-podcast-ad.mp3"></audio>
+  </div>
+
+  <script>
+  (function(){
+    var slide = document.getElementById('slide-20');
+    var stage = document.getElementById('audio-stage');
+    var canvas = document.getElementById('audio-canvas');
+    var ctx = canvas.getContext('2d');
+    var audio = document.getElementById('audio-el');
+    var timeEl = document.getElementById('audio-time');
+    if (!slide || !stage || !audio) return;
+
+    var audioCtx = null;
+    var analyser = null;
+    var dataArr = null;
+    var rafId = null;
+    var initialised = false;
+    var fadeFrame = 0;
+
+    // Resize canvas for crispness
+    function sizeCanvas(){
+      var dpr = window.devicePixelRatio || 1;
+      var w = canvas.clientWidth;
+      var h = canvas.clientHeight;
+      canvas.width = Math.round(w * dpr);
+      canvas.height = Math.round(h * dpr);
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    }
+    sizeCanvas();
+    window.addEventListener('resize', sizeCanvas);
+
+    function fmt(t){
+      if (!isFinite(t)) return '0:00';
+      var m = Math.floor(t/60);
+      var s = Math.floor(t%60);
+      return m + ':' + (s<10 ? '0'+s : s);
+    }
+
+    function updateTime(){
+      var dur = isFinite(audio.duration) ? audio.duration : 45;
+      timeEl.textContent = fmt(audio.currentTime) + ' / ' + fmt(dur);
+    }
+
+    function initAudioContext(){
+      if (initialised) return;
+      try {
+        audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+        var src = audioCtx.createMediaElementSource(audio);
+        analyser = audioCtx.createAnalyser();
+        analyser.fftSize = 512;
+        analyser.smoothingTimeConstant = 0.85;
+        src.connect(analyser);
+        analyser.connect(audioCtx.destination);
+        dataArr = new Uint8Array(analyser.frequencyBinCount);
+        initialised = true;
+      } catch(e){ console.warn('AudioContext init failed', e); }
+    }
+
+    function draw(){
+      var w = canvas.clientWidth;
+      var h = canvas.clientHeight;
+      ctx.clearRect(0, 0, w, h);
+
+      var bars = 56;
+      var gap = 4;
+      var barWidth = (w - gap*(bars-1)) / bars;
+      var cx = w / 2;
+      var cy = h / 2;
+      var maxBarH = h * 0.85;
+
+      // Get frequency data if playing
+      var values = new Array(bars).fill(0);
+      if (analyser && !audio.paused) {
+        analyser.getByteFrequencyData(dataArr);
+        var step = Math.floor(dataArr.length / bars);
+        for (var i = 0; i < bars; i++){
+          var v = 0;
+          for (var j = 0; j < step; j++){
+            v += dataArr[i*step + j];
+          }
+          values[i] = (v/step) / 255;
+        }
+      } else {
+        // Idle pulse — gentle sine wave so it's not flat
+        var t = Date.now() / 600;
+        for (var i = 0; i < bars; i++){
+          var d = Math.abs(i - bars/2) / (bars/2);
+          values[i] = (Math.sin(t + i*0.18) * 0.05 + 0.08) * (1 - d*0.6);
+        }
+      }
+
+      // Draw bars from centre outward, mirrored
+      for (var i = 0; i < bars; i++){
+        var x = i * (barWidth + gap);
+        // Taper from centre — bell curve emphasis
+        var distFromCentre = Math.abs(i - (bars-1)/2) / ((bars-1)/2);
+        var taper = Math.cos(distFromCentre * Math.PI/2);
+        taper = Math.pow(taper, 1.4);
+        var amp = values[i] * taper;
+        var barH = Math.max(2, amp * maxBarH);
+
+        // Cyan-blue gradient
+        var hue = 188 + (1 - distFromCentre) * 18; // 188-206
+        var lightness = 55 + amp * 25;
+        var alpha = 0.55 + amp * 0.45;
+        ctx.fillStyle = 'hsla(' + hue + ', 95%, ' + lightness + '%, ' + alpha + ')';
+
+        // Rounded bars — render as rect with radius via path
+        var y = cy - barH/2;
+        var r = Math.min(barWidth/2, 3);
+        ctx.beginPath();
+        ctx.moveTo(x+r, y);
+        ctx.lineTo(x+barWidth-r, y);
+        ctx.quadraticCurveTo(x+barWidth, y, x+barWidth, y+r);
+        ctx.lineTo(x+barWidth, y+barH-r);
+        ctx.quadraticCurveTo(x+barWidth, y+barH, x+barWidth-r, y+barH);
+        ctx.lineTo(x+r, y+barH);
+        ctx.quadraticCurveTo(x, y+barH, x, y+barH-r);
+        ctx.lineTo(x, y+r);
+        ctx.quadraticCurveTo(x, y, x+r, y);
+        ctx.closePath();
+        ctx.fill();
+      }
+
+      // Soft glow underlay
+      ctx.shadowColor = 'rgba(80, 200, 255, 0.4)';
+      ctx.shadowBlur = 20;
+    }
+
+    function loop(){
+      draw();
+      updateTime();
+      rafId = requestAnimationFrame(loop);
+    }
+
+    function startPlayback(){
+      initAudioContext();
+      if (audioCtx && audioCtx.state === 'suspended') audioCtx.resume();
+      audio.play().then(function(){
+        stage.classList.add('is-playing');
+      }).catch(function(e){
+        console.warn('Play failed', e);
+      });
+    }
+
+    function stopPlayback(){
+      audio.pause();
+      stage.classList.remove('is-playing');
+    }
+
+    function togglePlayback(){
+      if (audio.paused) startPlayback();
+      else stopPlayback();
+    }
+
+    stage.addEventListener('click', togglePlayback);
+    stage.addEventListener('keydown', function(e){
+      if (e.key === ' ' || e.key === 'Enter') { e.preventDefault(); togglePlayback(); }
+    });
+
+    audio.addEventListener('ended', function(){
+      stage.classList.remove('is-playing');
+    });
+
+    audio.addEventListener('loadedmetadata', updateTime);
+
+    // Pause when slide loses .active
+    new MutationObserver(function(){
+      if (!slide.classList.contains('active') && !audio.paused) {
+        stopPlayback();
+      } else if (slide.classList.contains('active')) {
+        // Try autoplay on slide entry — will only succeed after first user gesture elsewhere on the page
+        var p = audio.play();
+        if (p && p.then) {
+          p.then(function(){ stage.classList.add('is-playing'); }).catch(function(){
+            // Browser blocked autoplay — that's fine, click-to-play is the fallback
+          });
+        }
+      }
+    }).observe(slide, { attributes: true, attributeFilter: ['class'] });
+
+    // Start the render loop immediately so the idle waveform pulses
+    loop();
+  })();
+  </script>
+</section>
+
+<!-- ============ SLIDE 21 - DISTRIBUTION ============ -->
+<section class="slide" id="slide-21">
+  <div class="slide-num">Slide 21 / 23</div>
+  <div class="eyebrow">Slide 21 &middot; Distribution &amp; Markets</div>
   <h1>Founder-led warm network is the channel. Onboarding-as-channel is the secret weapon.</h1>
 
   <div class="subhead">Onboarding-as-channel</div>
@@ -2699,9 +3011,9 @@
 </section>
 
 <!-- ============ SLIDE 19 - DEMAND PREDICTION ============ -->
-<section class="slide" id="slide-21">
-  <div class="slide-num">Slide 21 / 22</div>
-  <div class="eyebrow">Slide 21 &middot; Demand Prediction</div>
+<section class="slide" id="slide-22">
+  <div class="slide-num">Slide 22 / 23</div>
+  <div class="eyebrow">Slide 22 &middot; Demand Prediction</div>
   <h1>200 venues by 2028. 3% of TAM. Conservative.</h1>
 
   <div class="subhead">S13 stack applied</div>
@@ -2756,9 +3068,9 @@
 </section>
 
 <!-- ============ SLIDE 20 - P&L ============ -->
-<section class="slide" id="slide-22">
-  <div class="slide-num">Slide 22 / 22</div>
-  <div class="eyebrow">Slide 22 &middot; P&amp;L (3-Year)</div>
+<section class="slide" id="slide-23">
+  <div class="slide-num">Slide 23 / 23</div>
+  <div class="eyebrow">Slide 23 &middot; P&amp;L (3-Year)</div>
   <h1>46% EBIT margin by 2028.</h1>
 
   <table>
@@ -2828,7 +3140,7 @@
 <nav class="nav-bar" role="navigation" aria-label="Slide navigation">
   <button class="nav-btn" id="nav-prev" aria-label="Previous slide">&larr;</button>
   <div class="nav-progress" aria-hidden="true"><div class="nav-progress-fill" id="nav-progress-fill"></div></div>
-  <div class="nav-counter" id="nav-counter">01 / 22</div>
+  <div class="nav-counter" id="nav-counter">01 / 23</div>
   <button class="nav-btn" id="nav-next" aria-label="Next slide">&rarr;</button>
   <span class="nav-hint">&larr; &rarr; or click to advance</span>
 </nav>
