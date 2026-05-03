@@ -571,13 +571,13 @@
     .segment-split { grid-template-columns: 1fr; }
   }
 
-  /* ====== ORIGIN STORY (Slide 2) - Flexbox sticky-stage scrollytelling ====== */
-  /* Override the deck's slide max-width for this slide only - we want full bleed */
-  #slide-2 {
+  /* ====== ORIGIN STORY - Flexbox sticky-stage scrollytelling ====== */
+  /* Slides tagged .has-scroll-narrative go full-bleed (override the deck's slide max-width) */
+  .slide.has-scroll-narrative {
     padding: 0;
     max-width: none;
   }
-  #slide-2 .slide-num {
+  .slide.has-scroll-narrative .slide-num {
     z-index: 20;
     background: var(--bg);
     padding: 0.2rem 0.45rem;
@@ -876,8 +876,9 @@
   }
 
   /* ====== HOW IT WORKS (Slide 4) - same sticky-stage architecture ====== */
-  #slide-4 { padding: 0; max-width: none; }
-  #slide-4 .slide-num { z-index: 20; background: var(--bg); padding: 0.2rem 0.45rem; border-radius: 4px; }
+  /* Slides tagged .has-howitworks also go full-bleed */
+  .slide.has-howitworks { padding: 0; max-width: none; }
+  .slide.has-howitworks .slide-num { z-index: 20; background: var(--bg); padding: 0.2rem 0.45rem; border-radius: 4px; }
   .demo {
     display: flex;
     flex-direction: row;
@@ -1273,8 +1274,22 @@
     .demo-stage { position: relative; height: auto; }
   }
 
-  /* ====== AUDIO AD SLIDE (Slide 21) - editorial cream layout, dark contained audio card ====== */
-  /* (slide background stays default cream like every other deck slide) */
+  /* ====== AUDIO AD SLIDE - editorial cream layout, dark contained audio card ====== */
+  /* (slide background stays default cream like every other deck slide. Use .slide-dark on a slide if you want the old full-bleed dark look back.) */
+  .slide-dark {
+    /* Reserved for slides that want to go full dark theatre (e.g. an immersive video). Currently unused. */
+    background: #0a0a0a;
+    color: #f5f5f5;
+    padding: 0;
+    max-width: none;
+  }
+  .slide-dark .slide-num {
+    z-index: 20;
+    background: rgba(255,255,255,0.06);
+    color: rgba(255,255,255,0.55);
+    padding: 0.2rem 0.5rem;
+    border-radius: 4px;
+  }
   .audio-card {
     background: #0a0a0a;
     color: #f5f5f5;
@@ -1667,7 +1682,7 @@
 </section>
 
 <!-- ============ SLIDE 2 - WHY ME, WHY THIS ============ -->
-<section class="slide" id="slide-2">
+<section class="slide has-scroll-narrative" id="slide-2">
   <div class="slide-num">Slide 2 / 24</div>
   <div class="origin" id="origin-root">
     <!-- LEFT: scrolling text column -->
@@ -1813,7 +1828,7 @@
 
   <script>
   (function(){
-    var slide = document.getElementById('slide-2');
+    var slide = document.querySelector('section.slide.has-scroll-narrative');
     var root = document.getElementById('origin-root');
     if (!slide || !root) return;
     var beats = root.querySelectorAll('.o-step');
@@ -1913,7 +1928,7 @@
 </section>
 
 <!-- ============ SLIDE 4 - HOW IT WORKS (DEMO) ============ -->
-<section class="slide" id="slide-4">
+<section class="slide has-howitworks" id="slide-4">
   <div class="slide-num">Slide 4 / 24</div>
   <div class="demo" id="demo-root">
 
@@ -2087,7 +2102,7 @@
 
   <script>
   (function(){
-    var slide = document.getElementById('slide-4');
+    var slide = document.querySelector('section.slide.has-howitworks');
     var root = document.getElementById('demo-root');
     if (!slide || !root) return;
     var beats = root.querySelectorAll('.d-step');
@@ -2971,7 +2986,7 @@
 
 
 <!-- ============ SLIDE 21 - AUDIO AD (PODCAST SPONSOR SPOT) ============ -->
-<section class="slide" id="slide-21">
+<section class="slide has-audio" id="slide-21">
   <div class="slide-num">Slide 21 / 24</div>
   <div class="eyebrow">Slide 21 &middot; Communication Asset &middot; The Go To Food Podcast</div>
   <h1>Go to the most trusted hospitality podcast &mdash; where the trust already exists.</h1>
@@ -3038,7 +3053,7 @@
 
   <script>
   (function(){
-    var slide = document.getElementById('slide-21');
+    var slide = document.querySelector('section.slide.has-audio');
     var stage = document.getElementById('audio-stage');
     var canvas = document.getElementById('audio-canvas');
     var ctx = canvas.getContext('2d');
@@ -3389,10 +3404,30 @@
   <div class="nav-progress" aria-hidden="true"><div class="nav-progress-fill" id="nav-progress-fill"></div></div>
   <div class="nav-counter" id="nav-counter">01 / 24</div>
   <button class="nav-btn" id="nav-next" aria-label="Next slide">&rarr;</button>
-  <span class="nav-hint">&larr; &rarr; or click to advance</span>
+  <span class="nav-hint">&larr; &rarr; arrow keys or buttons to navigate</span>
 </nav>
 
 <script>
+/* ============================================================================
+   DECK NAVIGATION CONTRACT (deck-v2)
+   ----------------------------------------------------------------------------
+   Advance:  ArrowRight  |  PageDown  |  Space  |  nav-bar Next button
+   Back:     ArrowLeft   |  PageUp    |  nav-bar Prev button
+   Jump:     Home (first slide)  |  End (last slide)  |  #slide-N URL hash
+
+   Click-anywhere-to-advance is intentionally NOT bound (was removed in v2).
+   This keeps the audio card on the GoToFood slide click-to-play, keeps images
+   click-inspectable, and stops accidental advances during presenting.
+
+   Slide-specific behaviours are tagged via classes on the section element,
+   not hardcoded slide-N IDs:
+     .slide.has-scroll-narrative  - Origin-story scroll choreography (Slide 2)
+     .slide.has-howitworks        - "How it works" demo flow         (Slide 4)
+     .slide.has-audio             - Audio-card playback              (Slide 21)
+     .slide-dark                  - Reserved for future dark-theatre slides
+   This means inserting / reordering slides will not break observer wiring -
+   the JS finds slides by behaviour class, not by index.
+   ============================================================================ */
 (function () {
   var slides = Array.prototype.slice.call(document.querySelectorAll('.slide'));
   var total = slides.length;
@@ -3443,16 +3478,10 @@
     }
   });
 
-  // Click anywhere on the slide to advance (except interactive elements)
-  document.querySelector('.deck').addEventListener('click', function (e) {
-    var t = e.target;
-    while (t && t !== document.body) {
-      var tag = t.tagName;
-      if (tag === 'A' || tag === 'BUTTON' || tag === 'INPUT' || tag === 'TEXTAREA' || tag === 'SELECT') return;
-      t = t.parentNode;
-    }
-    next();
-  });
+  // Click-anywhere-to-advance has been removed.
+  // Navigation contract (locked): arrow keys (or PageUp/PageDown/Home/End/Space) and the nav-bar prev/next buttons only.
+  // This means clicking the audio card on the GoToFood slide plays audio without advancing the deck,
+  // clicking the press-coverage image lets you inspect it without advancing, etc.
 
   // Deep-link support: open #slide-N to start at that slide
   var hash = window.location.hash.match(/^#slide-(\d+)$/);
