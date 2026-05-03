@@ -1614,6 +1614,45 @@
     .waymo-beats { grid-template-columns: 1fr; }
   }
 
+  /* SCROLL CUE - sits at bottom of full-bleed scrollytelling slides (Slide 2, 4) */
+  .scroll-cue {
+    position: absolute;
+    bottom: 1.5rem;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--wine);
+    font-family: 'DM Sans', -apple-system, sans-serif;
+    font-size: 0.65rem;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    pointer-events: none;
+    z-index: 30;
+    transition: opacity 0.35s ease;
+    animation: scroll-cue-fade-in 0.6s ease 0.4s both;
+  }
+  .scroll-cue.is-hidden { opacity: 0; }
+  .scroll-cue .scroll-cue-chevron {
+    width: 1rem;
+    height: 1rem;
+    border-right: 2px solid var(--wine);
+    border-bottom: 2px solid var(--wine);
+    transform: rotate(45deg);
+    animation: scroll-cue-bob 1.6s ease-in-out infinite;
+  }
+  @keyframes scroll-cue-fade-in {
+    from { opacity: 0; transform: translate(-50%, 0.5rem); }
+    to { opacity: 1; transform: translate(-50%, 0); }
+  }
+  @keyframes scroll-cue-bob {
+    0%, 100% { transform: rotate(45deg) translate(0, 0); opacity: 0.5; }
+    50% { transform: rotate(45deg) translate(0.18rem, 0.18rem); opacity: 1; }
+  }
+
   /* SIGNATURE END */
   .signature {
     background: var(--bg-card);
@@ -1868,6 +1907,11 @@
     }).observe(slide, { attributes: true, attributeFilter: ['class'] });
   })();
   </script>
+
+  <div class="scroll-cue" data-scroll-cue>
+    <span>Scroll to find out more</span>
+    <span class="scroll-cue-chevron" aria-hidden="true"></span>
+  </div>
 </section>
 
 <!-- ============ SLIDE 3 - OBJECTIVES & CUSTOMER NEEDS ============ -->
@@ -2130,6 +2174,11 @@
     }).observe(slide, { attributes: true, attributeFilter: ['class'] });
   })();
   </script>
+
+  <div class="scroll-cue" data-scroll-cue>
+    <span>Scroll to find out more</span>
+    <span class="scroll-cue-chevron" aria-hidden="true"></span>
+  </div>
 </section>
 
 <!-- ============ SLIDE 5 - STRATEGIC OBJECTIVE ============ -->
@@ -3482,6 +3531,20 @@
   // Navigation contract (locked): arrow keys (or PageUp/PageDown/Home/End/Space) and the nav-bar prev/next buttons only.
   // This means clicking the audio card on the GoToFood slide plays audio without advancing the deck,
   // clicking the press-coverage image lets you inspect it without advancing, etc.
+
+  // Scroll-cue auto-hide: any scroll inside a scrollytelling slide hides its cue.
+  // Cue reappears when the user lands on the slide for the first time and the slide is at scroll-top.
+  Array.prototype.forEach.call(document.querySelectorAll('[data-scroll-cue]'), function(cue){
+    var slide = cue.closest('.slide');
+    if (!slide) return;
+    slide.addEventListener('scroll', function(){
+      if (slide.scrollTop > 30) {
+        cue.classList.add('is-hidden');
+      } else {
+        cue.classList.remove('is-hidden');
+      }
+    }, { passive: true });
+  });
 
   // Deep-link support: open #slide-N to start at that slide
   var hash = window.location.hash.match(/^#slide-(\d+)$/);
