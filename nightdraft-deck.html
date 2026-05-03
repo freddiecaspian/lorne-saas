@@ -1510,6 +1510,66 @@
     .thread-cols { grid-template-columns: 1fr; }
   }
 
+  /* WAYMO STUNT + PRESS-COVERAGE FIGURES */
+  .press-figure, .waymo-figure {
+    margin: 1.25rem 0 1.5rem;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--wine);
+    border-radius: 2px 12px 12px 2px;
+    overflow: hidden;
+    box-shadow: 0 1px 3px rgba(44, 37, 32, 0.04);
+  }
+  .press-image, .waymo-image {
+    display: block;
+    width: 100%;
+    height: auto;
+    border-bottom: 1px solid var(--border);
+  }
+  .press-figure figcaption, .waymo-figure figcaption {
+    padding: 0.85rem 1rem;
+    font-size: 0.78rem;
+    color: var(--text-secondary);
+    line-height: 1.5;
+    background: var(--bg-inset);
+  }
+  .waymo-beats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.75rem;
+    margin: 1rem 0 1.25rem;
+  }
+  .waymo-beat {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 0.85rem 1rem;
+  }
+  .waymo-beat .beat-num {
+    font-family: 'DM Mono', ui-monospace, monospace;
+    font-size: 0.65rem;
+    color: var(--wine);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    font-weight: 700;
+    margin-bottom: 0.35rem;
+  }
+  .waymo-beat .beat-name {
+    font-family: 'DM Serif Display', Georgia, serif;
+    font-size: 1.05rem;
+    color: var(--text);
+    margin-bottom: 0.3rem;
+    letter-spacing: -0.01em;
+  }
+  .waymo-beat .beat-body {
+    font-size: 0.82rem;
+    color: var(--text-secondary);
+    line-height: 1.5;
+  }
+  @media (max-width: 600px) {
+    .waymo-beats { grid-template-columns: 1fr; }
+  }
+
   /* SIGNATURE END */
   .signature {
     background: var(--bg-card);
@@ -1564,7 +1624,7 @@
 
 <!-- ============ SLIDE 1 - TITLE ============ -->
 <section class="slide title-slide active" id="slide-1">
-  <div class="slide-num">Slide 1 / 23</div>
+  <div class="slide-num">Slide 1 / 24</div>
   <div class="eyebrow">Managing Customer Value &middot; Strategic Marketing Plan</div>
   <div class="wordmark">NightDraft</div>
   <div class="tagline">Take the pain out of big bookings.</div>
@@ -1579,7 +1639,7 @@
 
 <!-- ============ SLIDE 2 - WHY ME, WHY THIS ============ -->
 <section class="slide" id="slide-2">
-  <div class="slide-num">Slide 2 / 23</div>
+  <div class="slide-num">Slide 2 / 24</div>
   <div class="origin" id="origin-root">
     <!-- LEFT: scrolling text column -->
     <div class="origin-text">
@@ -1768,7 +1828,7 @@
 
 <!-- ============ SLIDE 3 - OBJECTIVES & CUSTOMER NEEDS ============ -->
 <section class="slide" id="slide-3">
-  <div class="slide-num">Slide 3 / 23</div>
+  <div class="slide-num">Slide 3 / 24</div>
   <div class="eyebrow">Slide 3 &middot; Objectives &amp; Customer Needs</div>
   <h1>A sales tool for the most valuable email a restaurant receives all week.</h1>
   <p class="lede">Hospitality has automated the easy bookings and ignored the hard ones. NightDraft is the first tool built for the segment OpenTable abandoned.</p>
@@ -1825,7 +1885,7 @@
 
 <!-- ============ SLIDE 4 - HOW IT WORKS (DEMO) ============ -->
 <section class="slide" id="slide-4">
-  <div class="slide-num">Slide 4 / 23</div>
+  <div class="slide-num">Slide 4 / 24</div>
   <div class="demo" id="demo-root">
 
     <!-- LEFT: scrolling text column -->
@@ -2030,7 +2090,7 @@
 
 <!-- ============ SLIDE 5 - STRATEGIC OBJECTIVE ============ -->
 <section class="slide" id="slide-5">
-  <div class="slide-num">Slide 5 / 23</div>
+  <div class="slide-num">Slide 5 / 24</div>
   <div class="eyebrow">Slide 5 &middot; Strategic Objective</div>
   <h1>Demand is in hand, not hypothesised.</h1>
   <p class="lede"><strong>Strategic objective:</strong> Become the default sales-tool for the high-stakes booking segment that OpenTable has explicitly abandoned. Starting with London independent fine-dining in 2026, scaling to multi-venue groups across the UK by 2028.</p>
@@ -2098,7 +2158,7 @@
 
 <!-- ============ SLIDE 4 - DIVIDER: MARKET ANALYSIS ============ -->
 <section class="slide divider" id="slide-6">
-  <div class="slide-num">Slide 6 / 23</div>
+  <div class="slide-num">Slide 6 / 24</div>
   <div class="part-card">
     <div class="eyebrow">Part 2 of 4</div>
     <h2>Market Analysis</h2>
@@ -2108,7 +2168,7 @@
 
 <!-- ============ SLIDE 5 - SEGMENTATION + FUNNEL ============ -->
 <section class="slide" id="slide-7">
-  <div class="slide-num">Slide 7 / 23</div>
+  <div class="slide-num">Slide 7 / 24</div>
   <div class="eyebrow">Slide 7 &middot; Customer Segmentation</div>
 
   <div class="callout-headline">
@@ -2228,7 +2288,7 @@
 
 <!-- ============ SLIDE 6 - CONSUMER CHOICE ============ -->
 <section class="slide" id="slide-8">
-  <div class="slide-num">Slide 8 / 23</div>
+  <div class="slide-num">Slide 8 / 24</div>
   <div class="eyebrow">Slide 8 &middot; Consumer Choice</div>
 
   <div class="callout-headline">
@@ -2283,7 +2343,7 @@
 
 <!-- ============ SLIDE 7 - CLV & SEGMENT ATTRACTIVENESS ============ -->
 <section class="slide" id="slide-9">
-  <div class="slide-num">Slide 9 / 23</div>
+  <div class="slide-num">Slide 9 / 24</div>
   <div class="eyebrow">Slide 9 &middot; CLV &amp; Segment Attractiveness</div>
   <h1>One group logo is worth ~18 indie logos in CLV.</h1>
 
@@ -2345,7 +2405,7 @@
 
 <!-- ============ SLIDE 8 - COMPETITION & WARFARE ============ -->
 <section class="slide" id="slide-10">
-  <div class="slide-num">Slide 10 / 23</div>
+  <div class="slide-num">Slide 10 / 24</div>
   <div class="eyebrow">Slide 10 &middot; Competition &amp; Warfare</div>
   <h1>This category did not exist before 2025.</h1>
   <p class="lede">The technology to deliver it - LLMs that codify a restaurant's playbook and draft in the owner's voice, at indie price points - became commercially viable only in the last 18 months. Legacy booking platforms cannot build this even if they wanted to. NightDraft sits alone at an intersection that did not exist before.</p>
@@ -2419,7 +2479,7 @@
 
 <!-- ============ SLIDE 9 - DIVIDER: MARKETING STRATEGY ============ -->
 <section class="slide divider" id="slide-11">
-  <div class="slide-num">Slide 11 / 23</div>
+  <div class="slide-num">Slide 11 / 24</div>
   <div class="part-card">
     <div class="eyebrow">Part 3 of 4</div>
     <h2>Marketing Strategy</h2>
@@ -2429,7 +2489,7 @@
 
 <!-- ============ SLIDE 10 - PERCEPTUAL MAPS ============ -->
 <section class="slide" id="slide-12">
-  <div class="slide-num">Slide 12 / 23</div>
+  <div class="slide-num">Slide 12 / 24</div>
   <div class="eyebrow">Slide 12 &middot; Perceptual Maps</div>
   <h1>NightDraft sits alone in the strong quadrant on both maps.</h1>
   <p class="lede">Two maps. The first shows what customers want (voice-fit + AI/ML need). The second shows why competitors cannot replicate (owner control + self-improvement). Both segments' ideal points sit inside or adjacent to NightDraft's quadrant.</p>
@@ -2516,7 +2576,7 @@
 
 <!-- ============ SLIDE 11 - TARGETING & POSITIONING ============ -->
 <section class="slide" id="slide-13">
-  <div class="slide-num">Slide 13 / 23</div>
+  <div class="slide-num">Slide 13 / 24</div>
   <div class="eyebrow">Slide 13 &middot; Targeting &amp; Positioning</div>
 
   <div class="callout-headline">
@@ -2584,7 +2644,7 @@
 
 <!-- ============ SLIDE 12 - DIVIDER: TACTICS ============ -->
 <section class="slide divider" id="slide-14">
-  <div class="slide-num">Slide 14 / 23</div>
+  <div class="slide-num">Slide 14 / 24</div>
   <div class="part-card">
     <div class="eyebrow">Part 4 of 4</div>
     <h2>Tactics and Marketing Efforts</h2>
@@ -2594,7 +2654,7 @@
 
 <!-- ============ SLIDE 13 - NAMING & ASSOCIATIONS ============ -->
 <section class="slide" id="slide-15">
-  <div class="slide-num">Slide 15 / 23</div>
+  <div class="slide-num">Slide 15 / 24</div>
   <div class="eyebrow">Slide 15 &middot; Naming &amp; Associations</div>
   <h1>NightDraft.</h1>
   <p class="lede">Cody Schneider playbook: clean, two-beat, knows what it is in one read. "Overnight" was the original concept (drafts ready when the owner wakes up); the name kept the connection while the product evolved. SEO landscape was uncontested at naming time - "NightDraft" had no existing branded competitor, which matters in a category that does not yet exist. In a vacated segment, the name has to own its keyword from day one.</p>
@@ -2644,7 +2704,7 @@
 
 <!-- ============ SLIDE 14 - VISUAL IDENTITY ============ -->
 <section class="slide" id="slide-16">
-  <div class="slide-num">Slide 16 / 23</div>
+  <div class="slide-num">Slide 16 / 24</div>
   <div class="eyebrow">Slide 16 &middot; Visual Identity</div>
   <h1>Editorial restraint is the differentiation.</h1>
   <p class="lede">Most AI products shout. NightDraft does not. The brand is hospitality-first, AI second.</p>
@@ -2679,7 +2739,7 @@
 
 <!-- ============ SLIDE 15 - REFERENCE PRICE ============ -->
 <section class="slide" id="slide-17">
-  <div class="slide-num">Slide 17 / 23</div>
+  <div class="slide-num">Slide 17 / 24</div>
   <div class="eyebrow">Slide 17 &middot; Reference Price</div>
   <h1>One captured booking pays for the year.</h1>
 
@@ -2716,7 +2776,7 @@
 
 <!-- ============ SLIDE 16 - PRICING & DISCRIMINATION ============ -->
 <section class="slide" id="slide-18">
-  <div class="slide-num">Slide 18 / 23</div>
+  <div class="slide-num">Slide 18 / 24</div>
   <div class="eyebrow">Slide 18 &middot; Pricing &amp; Discrimination</div>
   <h1>Three tiers. Same product. Different value-prop wrappers.</h1>
 
@@ -2778,7 +2838,7 @@
 
 <!-- ============ SLIDE 17 - COMMUNICATION & BUDGET ============ -->
 <section class="slide" id="slide-19">
-  <div class="slide-num">Slide 19 / 23</div>
+  <div class="slide-num">Slide 19 / 24</div>
   <div class="eyebrow">Slide 19 &middot; Distribution &amp; Access</div>
   <h1>Hospitality is an in-club. We're already in it.</h1>
 
@@ -2818,6 +2878,12 @@
     </div>
   </div>
 
+  <div class="subhead">What the access delivers &middot; press coverage we earn, not buy</div>
+  <figure class="press-figure">
+    <img src="press-coverage.png" alt="Mockups of NightDraft press coverage in Eater London, The Guardian Food, and The Pass" class="press-image" />
+    <figcaption>Illustrative mockups. Earned coverage in Eater London, The Guardian Food, and The Pass &mdash; the three publications the in-club actually reads. Earned-media equivalent value of the Waymo Onboarding stunt alone (Slide 20): est. GBP 40-60k for a GBP 3,000 cash spend.</figcaption>
+  </figure>
+
   <div class="subhead">Why this works structurally</div>
   <div class="callout">
     <p>London hospitality is a <strong>tight, gossip-driven industry</strong>. Operators take recommendations from operators they respect, not from trade press cold. The founder is already inside this network &mdash; Evening Standard column, family in food media (cousin = Michelin Restaurateur of the Year), six years embedded with Lorne, on the guest list at the parties where commissioning decisions happen. The wedge is to convert that access into product adoption at five culturally-dominant venues. Once those five run NightDraft, every other indie operator in the city has heard about it within a quarter.</p>
@@ -2843,11 +2909,75 @@
 </section>
 
 
-<!-- ============ SLIDE 20 - AUDIO AD (PODCAST SPONSOR SPOT) ============ -->
+<!-- ============ SLIDE 20 - WAYMO ONBOARDING STUNT ============ -->
 <section class="slide" id="slide-20">
-  <div class="slide-num">Slide 20 / 23</div>
+  <div class="slide-num">Slide 20 / 24</div>
+  <div class="eyebrow">Slide 20 &middot; Communication Tactic &middot; The Waymo Onboarding</div>
+  <h1>Onboarded before the meter stops.</h1>
+
+  <p class="lede">A Waymo isn't weird tech. It's just a cab. But it's the only thirty minutes a London restaurant owner ever sits still without an interruption. We use that thirty minutes to onboard them &mdash; and let The Pass, Eater, and the Guardian watch.</p>
+
+  <figure class="waymo-figure">
+    <img src="waymo-onboarding.png" alt="Three-panel editorial illustration: pickup, codification, drop-off" class="waymo-image" />
+    <figcaption>Pickup &middot; Codification &middot; Drop-off. A single 25-30 minute round trip in a Waymo Jaguar I-Pace. Aligned with Waymo London's September 2026 commercial launch.</figcaption>
+  </figure>
+
+  <div class="callout wine callout-headline">
+    <em>Tech as treat, not as theatre.</em><br/>
+    Operators are pathologically interruptible. The cab is novel enough to be earned-media bait, mundane enough that the operator doesn't feel they're being marketed at. The product moment IS the marketing moment.
+  </div>
+
+  <div class="subhead">Three beats &middot; mirrors the product flow on Slide 4</div>
+  <div class="waymo-beats">
+    <div class="waymo-beat">
+      <div class="beat-num">01 &middot; Pickup</div>
+      <div class="beat-name">3pm at the kerb</div>
+      <div class="beat-body">A Waymo pulls up outside a London restaurant in the post-service window. The operator gets in. The dashboard shows the onboarding interface, ready to go.</div>
+    </div>
+    <div class="waymo-beat">
+      <div class="beat-num">02 &middot; Codification</div>
+      <div class="beat-name">The same questions Katie answered</div>
+      <div class="beat-body">Inquiry volume, party-size tiers, takeover policy, voice patterns, deposit rules. The cab loops Mayfair &rarr; Soho &rarr; Mayfair. The operator answers as the playbook codifies in real time.</div>
+    </div>
+    <div class="waymo-beat">
+      <div class="beat-num">03 &middot; Drop-off</div>
+      <div class="beat-name">Three drafts already in the inbox</div>
+      <div class="beat-body">Operator gets out at the same restaurant. Their inbox has the first three NightDraft replies ready to send. Sub-30-min onboarding, made visible.</div>
+    </div>
+  </div>
+
+  <div class="callout">
+    <strong>The main message, per medium:</strong>
+    <ul style="margin-top: 0.5rem;">
+      <li><em>Stunt artefact:</em> "Onboarded before the meter stops." Operator stays the protagonist.</li>
+      <li><em>Earned coverage (Eater / Guardian / Pass):</em> "NightDraft is the tool the cool restaurants use." Slide 19 mockups.</li>
+      <li><em>Founder op-ed (Evening Standard):</em> "I onboarded my friend's restaurant to AI in a self-driving cab."</li>
+      <li><em>Go To Food podcast (organic guest spot, post-stunt):</em> "Sub-30-minute onboarding, made visible."</li>
+    </ul>
+    Each message ladders back to the brand associations on Slide 15: <em>quiet expertise</em> and <em>the most important booking is the most complex one</em>.
+  </div>
+
+  <div class="callout wine">
+    <strong>Budget &middot; flows into the Year-1 marketing line on Slide 19.</strong>
+    <ul style="margin-top: 0.5rem;">
+      <li>Waymo cab fares (5 round trips &times; ~GBP 50) &mdash; <span class="num">GBP 250</span></li>
+      <li>Videographer (half-day per ride &times; 5) &mdash; <span class="num">GBP 1,500</span></li>
+      <li>Photographer (half-day per ride &times; 5) &mdash; <span class="num">GBP 750</span></li>
+      <li>Reserve / contingency &mdash; <span class="num">GBP 500</span></li>
+      <li><strong>Total cash spend &mdash; <span class="num">GBP 3,000</span></strong></li>
+      <li>Earned-media equivalent value &mdash; <span class="num">est. GBP 40-60k</span> (one Eater feature, one Guardian column, three to five trade-press pickups, one Go To Food guest spot).</li>
+    </ul>
+  </div>
+
+  <p class="muted">Stunt window: August-October 2026. Five Cool 5 candidates already named on Slide 19 (Katie, Chris, David, plus two warm-intro targets). Visual hero generated via Gemini using the brand-system reference bundle &mdash; GenAI used in service of the brand, not in place of it. Full plan: <em>NightDraft &mdash; The Waymo Onboarding Stunt</em>.</p>
+</section>
+
+
+<!-- ============ SLIDE 21 - AUDIO AD (PODCAST SPONSOR SPOT) ============ -->
+<section class="slide" id="slide-21">
+  <div class="slide-num">Slide 21 / 24</div>
   <div class="audio-stage" id="audio-stage" role="button" tabindex="0" aria-label="Play NightDraft podcast ad sample">
-    <div class="audio-eyebrow">Slide 20 &middot; Asset</div>
+    <div class="audio-eyebrow">Slide 21 &middot; Asset</div>
     <div class="audio-time" id="audio-time">0:00 / 0:45</div>
     <div class="audio-canvas-wrap">
       <canvas class="audio-canvas" id="audio-canvas" width="1440" height="400"></canvas>
@@ -3046,10 +3176,10 @@
   </script>
 </section>
 
-<!-- ============ SLIDE 21 - DISTRIBUTION ============ -->
-<section class="slide" id="slide-21">
-  <div class="slide-num">Slide 21 / 23</div>
-  <div class="eyebrow">Slide 21 &middot; Distribution &amp; Markets</div>
+<!-- ============ SLIDE 22 - DISTRIBUTION ============ -->
+<section class="slide" id="slide-22">
+  <div class="slide-num">Slide 22 / 24</div>
+  <div class="eyebrow">Slide 22 &middot; Distribution &amp; Markets</div>
   <h1>Founder-led warm network is the channel. Onboarding-as-channel is the secret weapon.</h1>
 
   <div class="subhead">Onboarding-as-channel</div>
@@ -3091,9 +3221,9 @@
 </section>
 
 <!-- ============ SLIDE 19 - DEMAND PREDICTION ============ -->
-<section class="slide" id="slide-22">
-  <div class="slide-num">Slide 22 / 23</div>
-  <div class="eyebrow">Slide 22 &middot; Demand Prediction</div>
+<section class="slide" id="slide-23">
+  <div class="slide-num">Slide 23 / 24</div>
+  <div class="eyebrow">Slide 23 &middot; Demand Prediction</div>
   <h1>200 venues by 2028. 3% of TAM. Conservative.</h1>
 
   <div class="subhead">S13 stack applied</div>
@@ -3147,10 +3277,10 @@
   </div>
 </section>
 
-<!-- ============ SLIDE 20 - P&L ============ -->
-<section class="slide" id="slide-23">
-  <div class="slide-num">Slide 23 / 23</div>
-  <div class="eyebrow">Slide 23 &middot; P&amp;L (3-Year)</div>
+<!-- ============ SLIDE 24 - P&L ============ -->
+<section class="slide" id="slide-24">
+  <div class="slide-num">Slide 24 / 24</div>
+  <div class="eyebrow">Slide 24 &middot; P&amp;L (3-Year)</div>
   <h1>46% EBIT margin by 2028.</h1>
 
   <table>
@@ -3220,7 +3350,7 @@
 <nav class="nav-bar" role="navigation" aria-label="Slide navigation">
   <button class="nav-btn" id="nav-prev" aria-label="Previous slide">&larr;</button>
   <div class="nav-progress" aria-hidden="true"><div class="nav-progress-fill" id="nav-progress-fill"></div></div>
-  <div class="nav-counter" id="nav-counter">01 / 23</div>
+  <div class="nav-counter" id="nav-counter">01 / 24</div>
   <button class="nav-btn" id="nav-next" aria-label="Next slide">&rarr;</button>
   <span class="nav-hint">&larr; &rarr; or click to advance</span>
 </nav>
