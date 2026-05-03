@@ -1273,19 +1273,48 @@
     .demo-stage { position: relative; height: auto; }
   }
 
-  /* ====== AUDIO AD SLIDE (Slide 21) - black full-bleed with waveform ====== */
-  #slide-21 {
-    padding: 0;
-    max-width: none;
+  /* ====== AUDIO AD SLIDE (Slide 21) - editorial cream layout, dark contained audio card ====== */
+  /* (slide background stays default cream like every other deck slide) */
+  .audio-card {
     background: #0a0a0a;
     color: #f5f5f5;
+    border-radius: 2px 12px 12px 2px;
+    border-left: 3px solid var(--wine);
+    padding: 1.25rem 1rem;
+    margin: 1rem 0;
+    box-shadow: 0 1px 3px rgba(44, 37, 32, 0.04);
   }
-  #slide-21 .slide-num {
-    z-index: 20;
-    background: rgba(255,255,255,0.06);
+  .audio-card .audio-card-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 0.75rem;
+    font-family: 'DM Mono', ui-monospace, monospace;
+    font-size: 0.7rem;
     color: rgba(255,255,255,0.55);
-    padding: 0.2rem 0.5rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+  .audio-card .audio-card-banner {
+    display: block;
+    width: 100%;
+    height: auto;
     border-radius: 4px;
+    margin-bottom: 0.75rem;
+  }
+  .gotofood-figure {
+    margin: 1.25rem 0;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--wine);
+    border-radius: 2px 12px 12px 2px;
+    overflow: hidden;
+    box-shadow: 0 1px 3px rgba(44, 37, 32, 0.04);
+  }
+  .gotofood-figure img {
+    display: block;
+    width: 100%;
+    height: auto;
   }
   .audio-stage {
     position: absolute;
@@ -2944,20 +2973,68 @@
 <!-- ============ SLIDE 21 - AUDIO AD (PODCAST SPONSOR SPOT) ============ -->
 <section class="slide" id="slide-21">
   <div class="slide-num">Slide 21 / 24</div>
-  <div class="audio-stage" id="audio-stage" role="button" tabindex="0" aria-label="Play NightDraft podcast ad sample">
-    <div class="audio-eyebrow">Slide 21 &middot; Asset</div>
-    <div class="audio-time" id="audio-time">0:00 / 0:45</div>
+  <div class="eyebrow">Slide 21 &middot; Communication Asset &middot; The Go To Food Podcast</div>
+  <h1>Go to the most trusted hospitality podcast &mdash; where the trust already exists.</h1>
+
+  <p class="lede">Indie operators (the cool ones) are highly sceptical of paid media. The Go To Food Podcast is the industry-leading standard. Hosts are operators themselves. Listeners are owner-decision-makers in the band we want. So that's where we buy &mdash; and ideally, the rights to the show itself.</p>
+
+  <div class="callout wine">
+    <strong>Why this medium &middot; pure brand-build, the right kind of spend.</strong>
+    <p style="margin-top:0.4rem;">No targeting waste. No paid-acquisition lift to chase. Trust transfers from the hosts to NightDraft because the hosts are operators, not advertisers. Binet &amp; Field 60-40 rule (S09 lecture); S11&amp;12 Novela 95-5 logic &mdash; most of the audience is not buying this quarter, but when they are, NightDraft is the named tool.</p>
+  </div>
+
+  <div class="subhead">Communication objectives &amp; main message per medium</div>
+  <table>
+    <thead><tr><th>Stage</th><th>Objective</th><th>Main message</th></tr></thead>
+    <tbody>
+      <tr>
+        <td><strong>Awareness</strong></td>
+        <td>Become the named tool when operators talk about big-booking pain</td>
+        <td><em>"NightDraft is the tool the cool restaurants use."</em></td>
+      </tr>
+      <tr>
+        <td><strong>Trust transfer</strong></td>
+        <td>Have a respected industry voice say our name</td>
+        <td>Host-read endorsement framing &mdash; not corporate read. Founder VO with host bookends.</td>
+      </tr>
+      <tr>
+        <td><strong>Recall</strong></td>
+        <td>Be top-of-mind when an operator next misses a GBP 2,000 inquiry</td>
+        <td><em>"Onboarded before the meter stops."</em> Repeated across episodes.</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="callout">
+    <strong>Budget &middot; flows into the Year-1 marketing line on Slide 19.</strong>
+    <span style="display:block; margin-top:0.4rem;">
+      12 host-read mid-roll spots &times; ~<span class="num">GBP 1,000</span> = <strong><span class="num">GBP 12,000</span></strong> &middot; 50% of the total Year-1 marketing budget. Brand-build line.
+    </span>
+    <span style="display:block; margin-top:0.3rem;">
+      Aspirational: title-sponsor / acquire the rights to the show itself in Year 2 once retention is proven on the indie cohort.
+    </span>
+  </div>
+
+  <div class="subhead">The asset</div>
+
+  <figure class="gotofood-figure">
+    <img src="gotofood-banner.png" alt="The Go To Food Podcast - Spotify-style player banner with hosts and Nightdraft as featured episode" />
+  </figure>
+
+  <div class="audio-card" id="audio-stage" role="button" tabindex="0" aria-label="Play NightDraft podcast ad sample">
+    <div class="audio-card-head">
+      <span>Listen &middot; founder VO with host bookends</span>
+      <span class="audio-time" id="audio-time">0:00 / 1:13</span>
+    </div>
     <div class="audio-canvas-wrap">
-      <canvas class="audio-canvas" id="audio-canvas" width="1440" height="400"></canvas>
+      <canvas class="audio-canvas" id="audio-canvas" width="1440" height="280"></canvas>
       <div class="audio-play-btn" id="audio-play-btn" aria-hidden="true"></div>
     </div>
-    <div class="audio-caption">
-      Example asset &middot; NightDraft &times; The Go To Food Podcast
-      <span class="ac-line2">Amplifying the in-group &middot; GoToFood mid-roll spot &middot; voiced demo &middot; produced May 2026</span>
-    </div>
-    <div class="audio-hint" id="audio-hint">click anywhere to play</div>
-    <audio id="audio-el" preload="metadata" src="podcast-ad/nightdraft-podcast-ad.mp3"></audio>
+    <div class="audio-hint" id="audio-hint" style="margin-top:0.5rem; font-size:0.7rem; color:rgba(255,255,255,0.55); letter-spacing:0.04em;">click anywhere on this card to play</div>
+    <audio id="audio-el" preload="metadata" src="podcast-ad/nightdraft-podcast-ad-v2.m4a"></audio>
   </div>
+
+  <p class="muted">Founder voiceover recorded by Freddie Chambers, May 2026. Host intro &amp; outro voiced by ElevenLabs (George, British male) &mdash; placeholder until paid host-read deal closes. GenAI used for the host bookends only; the founder voice is real. Brand associations laddered up from Slide 15 (<em>quiet expertise</em>, <em>the most important booking is the most complex one</em>).</p>
 
   <script>
   (function(){
@@ -3123,18 +3200,10 @@
 
     audio.addEventListener('loadedmetadata', updateTime);
 
-    // Pause when slide loses .active
+    // Pause when slide loses .active. Click-to-play only - no auto-play on slide entry.
     new MutationObserver(function(){
       if (!slide.classList.contains('active') && !audio.paused) {
         stopPlayback();
-      } else if (slide.classList.contains('active')) {
-        // Try autoplay on slide entry — will only succeed after first user gesture elsewhere on the page
-        var p = audio.play();
-        if (p && p.then) {
-          p.then(function(){ stage.classList.add('is-playing'); }).catch(function(){
-            // Browser blocked autoplay — that's fine, click-to-play is the fallback
-          });
-        }
       }
     }).observe(slide, { attributes: true, attributeFilter: ['class'] });
 
