@@ -1700,6 +1700,39 @@
     }
     .slide-num { position: static; display: block; margin-bottom: 0.5rem; }
   }
+
+  /* Slide 8 - Consumer Choice rule cards (flex bottom-anchored quotes) */
+  .slide8-rule-grid { align-items: stretch; }
+  .slide8-rule-card { display: flex; flex-direction: column; }
+  .slide8-rule-card.amber-tag { border-top: 3px solid var(--amber); }
+  .slide8-rule-card.blue-tag { border-top: 3px solid var(--blue); }
+  .slide8-rule-label {
+    font-family: 'DM Mono', ui-monospace, monospace;
+    font-size: 0.68rem;
+    font-weight: 700;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    margin-bottom: 0.4rem;
+  }
+  .slide8-rule-card.amber-tag .slide8-rule-label { color: var(--amber); }
+  .slide8-rule-card.blue-tag .slide8-rule-label { color: var(--blue); }
+  .slide8-quote-stack { margin-top: auto; padding-top: 1rem; }
+  .slide8-quote {
+    font-size: 0.84rem;
+    font-style: italic;
+    color: var(--text-secondary);
+    border-left: 2px solid var(--border-strong);
+    padding-left: 0.75rem;
+    margin: 0 0 0.75rem 0;
+  }
+  .slide8-quote:last-child { margin-bottom: 0; }
+  .slide8-quote .attr {
+    display: block;
+    font-style: normal;
+    font-size: 0.7rem;
+    color: var(--text-tertiary);
+    margin-top: 0.2rem;
+  }
 </style>
 </head>
 <body>
@@ -2371,52 +2404,99 @@
   <div class="eyebrow">Slide 8 &middot; Consumer Choice</div>
 
   <div class="callout-headline">
-    Restaurant operators are not enterprise buyers. They are owner-operators in the weeds. There is no RFI, no procurement, no committee.<br/>
-    <em>The sale closes when two filters pass: "Does someone I trust already use it?" and "Am I in control of it?"</em>
+    From who they are, to how they buy.
   </div>
-
-  <div class="subhead">The decision frame</div>
-  <div class="card">
-    <h3><span class="pill">Filter 1</span> Trust signal</h3>
-    <p>"Does someone I respect already use this?" Peer reference is the single highest-impact signal. Founder credibility is part of this filter. This is why door-to-door selling still works in restaurants - operators are used to enthusiastic founders walking in between services (10-11am or 3-4pm windows).</p>
-  </div>
-  <div class="card blue">
-    <h3><span class="pill blue">Filter 2</span> Control</h3>
-    <p>"Am I in charge, or is the software making decisions for me?" Hard rejection of autosend. NightDraft embeds in the owner's existing workflow. Draft lands in Gmail drafts. Owner edits and sends. Nothing happens without the owner's hand on it. Filter 2 also absorbs "tech stack" concerns.</p>
-  </div>
-
-  <blockquote>
-    "I wouldn't want it just kind of sent off."
-    <span class="attr">Katie Exton, Lorne <span class="star">&#9733;</span></span>
-  </blockquote>
-  <blockquote>
-    "If it sends without me, I'm not buying it. End of conversation."
-    <span class="attr">Indie restaurateur, London</span>
-  </blockquote>
-
-  <div class="callout wine">
-    <strong>Implications</strong>
-    <ul style="margin-top: 0.5rem;">
-      <li>The motion is founder-led warm-network outreach.</li>
-      <li>Single-conversation close is realistic when the demo lands.</li>
-      <li>Sales-cycle: 2-6 weeks for Segment A; 4-8 weeks for Segment B.</li>
-    </ul>
-  </div>
-
-  <div class="subhead">Acceptance criteria</div>
-  <table>
-    <thead><tr><th>Attribute</th><th>What "good" looks like at trial</th></tr></thead>
-    <tbody>
-      <tr><td>Voice fit</td><td>First draft sounds like the owner. One bad draft kills the trial.</td></tr>
-      <tr><td>No-autosend</td><td>Owner approves every reply. Hard line.</td></tr>
-      <tr><td>Learning loop</td><td>Edit-logging shows the system getting better week-on-week.</td></tr>
-      <tr><td>Junior-staff usability</td><td>The owner's manager can use it without retraining.</td></tr>
-      <tr><td>Guest intelligence (Segment B)</td><td>Visible value-add for operator-marketers. Not weighted by Segment A.</td></tr>
-    </tbody>
-  </table>
+  <p class="muted" style="font-style:italic; margin-bottom:1.5rem;">Slide 7 named the two segments. This slide explains why selling to them is two different jobs - and where AI/ML lands in each.</p>
 
   <div class="callout">
-    <strong>Where AI/ML sits.</strong> AI/ML is table stakes, not a top driver. Operators do not care that it is AI. They care that the draft is good and they are in control. AI/ML is the engine that makes Filter 1 deliverable and Filter 2 controllable - not a purchase driver.
+    <strong>What they share.</strong>
+    <p style="margin-top:0.5rem;">Owner-operators are some of the busiest people I've met. How they maintain a family and run a restaurant is beyond me. So when it comes to buying, there's no RFI, no procurement, no committee, no buying group. The decision-maker is in the room.</p>
+    <p>Restaurants like the ones we're targeting close in one conversation. If something looks like it'll work, they can impulse-purchase. <strong>Get in the room and you're more likely to close.</strong></p>
+    <p style="margin-bottom:0;">Where Katie and Chris differ is how they decide once they're listening.</p>
+  </div>
+
+  <div class="subhead">How each segment makes the choice</div>
+  <div class="grid-2 slide8-rule-grid">
+    <div class="card slide8-rule-card amber-tag">
+      <div class="slide8-rule-label">Segment A - Katie</div>
+      <h3 style="margin:0 0 0.5rem;">Katie has dealbreakers.</h3>
+      <p>If the AI doesn't write in her voice, she won't buy - no matter how cheap, fast, or clever the rest of it is.</p>
+      <p style="font-size:0.92rem; color:var(--text-secondary);">Risk-averse. Reputation is the asset. <strong>She didn't flag speed or volume as the problem</strong> - she flagged voice and the dread of a sloppy reply going out under her name. The AI is doing one job for her: replicating her voice well enough that she can send the draft without rewriting it. Time saved is a side effect, not the purchase driver. What she's really buying is autonomy - the ability to delegate the writing without losing the voice.</p>
+      <div class="slide8-quote-stack">
+        <blockquote class="slide8-quote">
+          "I wouldn't want a reply going out under my name without me reading it first."
+          <span class="attr">Katie Exton, Lorne</span>
+        </blockquote>
+        <blockquote class="slide8-quote">
+          "My manager keeps getting the booking framework wrong. I end up redoing it."
+          <span class="attr">Katie Exton, Lorne</span>
+        </blockquote>
+      </div>
+    </div>
+
+    <div class="card slide8-rule-card blue blue-tag">
+      <div class="slide8-rule-label">Segment B - Chris</div>
+      <h3 style="margin:0 0 0.5rem;">Chris weighs everything up.</h3>
+      <p>A weakness in one area is fine if another area makes up for it - he'll do the maths in his head and decide.</p>
+      <p style="font-size:0.92rem; color:var(--text-secondary);">Risk-tolerant. Founder-operators with no investors, multi-venue, time-pressured. They lose &pound;2k inquiries when the first reply is slow or generic. They need to know <em>who</em> is writing in (PE EA vs casual diner) so the reply is appropriately tailored.</p>
+      <div class="slide8-quote-stack">
+        <blockquote class="slide8-quote">
+          "99% of places on the high street are effectively charity shops who aren't interested in making money."
+          <span class="attr">Chris D'Silva, Dorian Group</span>
+        </blockquote>
+        <blockquote class="slide8-quote">
+          "It's a numbers game. If the maths works, I act."
+          <span class="attr">Chris D'Silva, Dorian Group</span>
+        </blockquote>
+        <blockquote class="slide8-quote">
+          "Did &pound;180k a week, final week of December, in a 40-cover restaurant."
+          <span class="attr">Chris D'Silva, Dorian Group</span>
+        </blockquote>
+      </div>
+    </div>
+  </div>
+
+  <div class="subhead">Same five attributes, weighted very differently</div>
+  <table>
+    <thead>
+      <tr>
+        <th>Attribute</th>
+        <th style="text-align:center;">Katie (indie)</th>
+        <th style="text-align:center;">Chris (group)</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>AI-driven voice fidelity</strong> <span style="color:var(--text-tertiary); font-size:0.78rem;">(draft sounds like the owner)</span></td>
+        <td class="num" style="text-align:center; background:var(--wine-dim); color:var(--wine); font-weight:700;">5 (filter)</td>
+        <td class="num" style="text-align:center;">3</td>
+      </tr>
+      <tr>
+        <td><strong>AI-driven speed of first reply</strong> <span style="color:var(--text-tertiary); font-size:0.78rem;">(reply within minutes, not days)</span></td>
+        <td class="num" style="text-align:center; color:var(--text-tertiary);">2 - she didn't flag this</td>
+        <td class="num" style="text-align:center; background:var(--wine-dim); color:var(--wine); font-weight:700;">5</td>
+      </tr>
+      <tr>
+        <td><strong>AI-driven guest intelligence</strong> <span style="color:var(--text-tertiary); font-size:0.78rem;">(who is writing in, what they need)</span></td>
+        <td class="num" style="text-align:center;">3</td>
+        <td class="num" style="text-align:center; background:var(--wine-dim); color:var(--wine); font-weight:700;">5</td>
+      </tr>
+      <tr>
+        <td><strong>No-autosend control</strong> <span style="color:var(--text-tertiary); font-size:0.78rem;">(owner approves every reply)</span></td>
+        <td class="num" style="text-align:center; background:var(--wine-dim); color:var(--wine); font-weight:700;">5 (filter)</td>
+        <td class="num" style="text-align:center;">3</td>
+      </tr>
+      <tr>
+        <td><strong>Multi-venue dashboard / rollup</strong></td>
+        <td class="num" style="text-align:center; color:var(--text-tertiary);">1</td>
+        <td class="num" style="text-align:center; background:var(--wine-dim); color:var(--wine); font-weight:700;">5</td>
+      </tr>
+    </tbody>
+  </table>
+  <p class="muted" style="font-size:0.78rem; font-style:italic; margin-top:0.4rem;">Slide 7 told you what each segment broadly buys for (relief vs revenue). This breaks that down attribute-by-attribute - and shows AI/ML doing different jobs in each segment. Voice replication for Katie. Speed plus guest intelligence plus playbook codification for Chris.</p>
+
+  <div class="callout wine" style="margin-top:1rem;">
+    <strong>AI/ML as key driver - in both segments, doing different jobs.</strong>
   </div>
 </section>
 
