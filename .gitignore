@@ -32,6 +32,7 @@ next-env.d.ts
 
 # evaluator screenshots & playwright logs
 *.png
+!logos/*.png
 .playwright-mcp/
 .claude/
 
