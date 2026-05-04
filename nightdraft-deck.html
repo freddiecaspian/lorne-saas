@@ -1701,6 +1701,31 @@
     .slide-num { position: static; display: block; margin-bottom: 0.5rem; }
   }
 
+  /* Slide 22 - audio clip cards */
+  .slide22-clip-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 4px 12px 4px 12px;
+    padding: 0.875rem 1.125rem;
+    margin: 0.75rem 0;
+  }
+  .slide22-clip-title {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.05rem;
+    color: var(--text);
+    margin: 0 0 0.5rem;
+  }
+  .slide22-clip-card audio {
+    width: 100%;
+    margin: 0.5rem 0;
+  }
+  .slide22-clip-caption {
+    font-size: 0.84rem;
+    color: var(--text-secondary);
+    font-style: italic;
+    margin: 0.5rem 0 0;
+  }
+
   /* Slide 8 - Consumer Choice rule cards (flex bottom-anchored quotes) */
   .slide8-rule-grid { align-items: stretch; }
   .slide8-rule-card { display: flex; flex-direction: column; }
@@ -3438,14 +3463,35 @@
   </div>
 
   <div class="callout wine">
-    <strong>AI/ML and channel adoption.</strong>
-    <p style="margin-top:0.4rem;">The 30-minute agentic onboarding call is the channel mechanism, not just a setup step. Two consequences:</p>
-    <ol style="margin: 0.3rem 0 0 1.2rem; padding: 0;">
-      <li>The Jack &amp; Jill long-term context capture pattern (Slide 10) codifies the operator's playbook conversationally and delivers value on Day 1, not Day 30. Operators who experience it tell peers - the call itself is the referral artefact.</li>
-      <li>Off the back of the call, NightDraft auto-generates a personalised 35-minute podcast episode of the operator's own playbook in their own words. Operators forward it to peers - other owners, GMs, hospitality directors. The AI/ML doesn't just deliver internal value; it produces something share-worthy that pulls peers into the channel. <strong>No other booking tool does this.</strong></li>
-    </ol>
-    <p style="margin-top:0.5rem;"><em>Working prototype: &#9654; <a href="https://freddiecaspian.github.io/morning-briefing/episodes/nightdraft-progress-2026-05-01.mp3" target="_blank" rel="noopener">"NightDraft - 24 Threads In"</a> - generated from a 24-thread Lorne session, 1 May 2026.</em></p>
+    <strong>How does the AI/ML help convince channels to adopt the product?</strong>
+    <p style="margin-top:0.5rem;">The AI doesn't just power the product. It powers the channel itself. A 30-minute agentic onboarding call captures the operator's playbook in their own words - the rules, the voice, the edge cases - in a way no questionnaire ever could. The operator delivers their own instruction manual to the system without realising it.</p>
   </div>
+
+  <div class="callout">
+    <strong>The asset itself - what the operator gets back.</strong>
+    <p style="margin-top:0.5rem;">Off the back of the call, NightDraft generates a personalised debrief: a podcast episode in which two AI hosts walk the operator through what they just shared - the patterns they didn't realise they had, the rules in their head that had never been written down, what the system has now captured. <strong>A doctor's report in podcast form.</strong></p>
+    <p style="margin-top:0.5rem;">Three clips below. Press play.</p>
+  </div>
+
+  <div class="slide22-clip-card">
+    <div class="slide22-clip-title">&#9654; "What we found."</div>
+    <audio controls preload="metadata" src="https://freddiecaspian.github.io/morning-briefing/episodes/nightdraft-clip-1-what-we-found-2026-05-04.mp3"></audio>
+    <p class="slide22-clip-caption">The AI frames the call as discovery. "Five different sign-offs. Three different cancellation policies. Twenty years of pattern-matching, sitting in one woman's brain. Until now."</p>
+  </div>
+
+  <div class="slide22-clip-card">
+    <div class="slide22-clip-title">&#9654; "The unwritten ladder."</div>
+    <audio controls preload="metadata" src="https://freddiecaspian.github.io/morning-briefing/episodes/nightdraft-clip-2-unwritten-ladder-2026-05-04.mp3"></audio>
+    <p class="slide22-clip-caption">One specific finding, named. The five-rung sign-off ladder - "Best, Bookings" as armour through to "Best, K" for friends. The bit you'd assume an AI couldn't do, captured.</p>
+  </div>
+
+  <div class="slide22-clip-card">
+    <div class="slide22-clip-title">&#9654; "What you get back."</div>
+    <audio controls preload="metadata" src="https://freddiecaspian.github.io/morning-briefing/episodes/nightdraft-clip-3-what-you-get-back-2026-05-04.mp3"></audio>
+    <p class="slide22-clip-caption">The post-call payoff. The system has the playbook. The assistant manager who kept getting the framework wrong now gets it right - in every draft, automatically.</p>
+  </div>
+
+  <p class="muted" style="margin-top:1rem; font-size:0.86rem; font-style:italic;">Working prototype: &#9654; <a href="https://freddiecaspian.github.io/morning-briefing/episodes/nightdraft-progress-2026-05-01.mp3" target="_blank" rel="noopener">"NightDraft - 24 Threads In"</a> - the full 35-minute episode this is generated from, 1 May 2026.</p>
 </section>
 
 <!-- ============ SLIDE 19 - DEMAND PREDICTION ============ -->
