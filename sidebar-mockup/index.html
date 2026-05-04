@@ -1,0 +1,950 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>NightDraft — Sidebar Plugin Mockup</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=DM+Serif+Display&family=Google+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --gmail-bg: #f6f8fc;
+  --gmail-bg-deep: #ebeef3;
+  --gmail-border: #e0e3e7;
+  --gmail-text: #202124;
+  --gmail-text-secondary: #5f6368;
+  --gmail-blue: #1a73e8;
+  --gmail-red: #d93025;
+  --gmail-amber: #f9ab00;
+  --gmail-green: #1e8e3e;
+  --gmail-tab-hover: #f1f3f4;
+  /* NightDraft brand (from existing landing page) */
+  --nd-bg: #faf8f5;
+  --nd-bg-card: #ffffff;
+  --nd-bg-inset: #f5f2ee;
+  --nd-bg-deep: #f0ece6;
+  --nd-border: #e8e2d9;
+  --nd-border-strong: #d4cdc2;
+  --nd-text: #2c2520;
+  --nd-text-secondary: #7a7067;
+  --nd-text-tertiary: #a69e94;
+  --nd-wine: #8b2252;
+  --nd-wine-dim: rgba(139, 34, 82, 0.08);
+  --nd-green: #2d7a4f;
+  --nd-green-dim: rgba(45, 122, 79, 0.10);
+  --nd-amber: #b8860b;
+  --nd-amber-dim: rgba(184, 134, 11, 0.10);
+  --nd-blue: #3d6b99;
+  --nd-blue-dim: rgba(61, 107, 153, 0.10);
+  --nd-red: #c24b3a;
+  --nd-red-dim: rgba(194, 75, 58, 0.10);
+}
+html, body { height: 100%; }
+body {
+  font-family: 'Google Sans', Roboto, -apple-system, sans-serif;
+  background: #1f2933;
+  color: var(--gmail-text);
+  -webkit-font-smoothing: antialiased;
+  padding: 32px 0 64px;
+}
+.viewer-header {
+  max-width: 1400px; margin: 0 auto 24px; padding: 0 24px;
+  color: #fff;
+}
+.viewer-header h1 {
+  font-family: 'DM Serif Display', serif;
+  font-size: 28px; font-weight: 400; letter-spacing: -0.01em;
+  margin-bottom: 4px;
+}
+.viewer-header p { color: #b6c2cf; font-size: 14px; max-width: 720px; }
+.viewer-tabs {
+  max-width: 1400px; margin: 0 auto 16px; padding: 0 24px;
+  display: flex; gap: 8px;
+}
+.viewer-tab {
+  background: rgba(255,255,255,0.08); color: #fff;
+  border: 1px solid rgba(255,255,255,0.12);
+  padding: 8px 16px; border-radius: 999px;
+  font-size: 13px; font-weight: 500; cursor: pointer;
+  transition: all 0.15s;
+}
+.viewer-tab:hover { background: rgba(255,255,255,0.15); }
+.viewer-tab.active { background: var(--nd-wine); border-color: var(--nd-wine); }
+
+/* ---- The Gmail frame (the surrounding chrome we're mocking) ---- */
+.gmail-frame {
+  max-width: 1400px;
+  margin: 0 auto;
+  background: var(--gmail-bg);
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 24px 48px -12px rgba(0,0,0,0.4), 0 0 0 1px rgba(0,0,0,0.05);
+  display: none;
+}
+.gmail-frame.active { display: block; }
+.gmail-topbar {
+  height: 64px; background: var(--gmail-bg);
+  display: flex; align-items: center; padding: 0 16px;
+  border-bottom: 1px solid var(--gmail-border);
+  gap: 16px;
+}
+.gmail-menu { width: 32px; height: 32px; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: var(--gmail-text-secondary); cursor: pointer; }
+.gmail-menu:hover { background: var(--gmail-tab-hover); }
+.gmail-logo {
+  display: flex; align-items: center; gap: 8px;
+  font-size: 22px; color: var(--gmail-text-secondary); letter-spacing: -0.5px;
+  width: 200px;
+}
+.gmail-logo-icon { width: 40px; height: 28px; }
+.gmail-search {
+  flex: 1; max-width: 720px; height: 48px;
+  background: var(--gmail-bg-deep); border-radius: 8px;
+  display: flex; align-items: center; padding: 0 16px; gap: 12px;
+  color: var(--gmail-text-secondary); font-size: 14px;
+}
+.gmail-search:hover { background: #fff; box-shadow: 0 1px 1px rgba(0,0,0,0.07); }
+.gmail-right { margin-left: auto; display: flex; align-items: center; gap: 8px; }
+.gmail-iconbtn { width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: var(--gmail-text-secondary); cursor: pointer; }
+.gmail-iconbtn:hover { background: var(--gmail-tab-hover); }
+.gmail-avatar { width: 32px; height: 32px; border-radius: 50%; background: linear-gradient(135deg, #6366f1, #8b5cf6); display: flex; align-items: center; justify-content: center; color: #fff; font-weight: 600; font-size: 14px; margin-left: 8px; }
+
+/* ---- Gmail body layout: left rail + main + right rail ---- */
+.gmail-body {
+  display: flex;
+  min-height: 760px;
+  background: var(--gmail-bg);
+}
+.gmail-leftrail {
+  width: 256px;
+  padding: 16px 0;
+  flex-shrink: 0;
+  border-right: 1px solid var(--gmail-border);
+  background: var(--gmail-bg);
+}
+.gmail-compose {
+  margin: 0 12px 16px;
+  background: #c2e7ff; color: #001d35;
+  border: none; padding: 16px 24px;
+  border-radius: 16px;
+  display: inline-flex; align-items: center; gap: 12px;
+  font-family: inherit; font-size: 14px; font-weight: 500;
+  cursor: pointer;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.07);
+}
+.gmail-compose:hover { box-shadow: 0 1px 3px rgba(0,0,0,0.15); }
+.gmail-folder {
+  display: flex; align-items: center; gap: 16px;
+  padding: 0 24px 0 24px; height: 32px;
+  font-size: 14px; color: var(--gmail-text);
+  cursor: pointer; border-radius: 0 16px 16px 0;
+  margin-right: 8px;
+  font-weight: 500;
+}
+.gmail-folder:hover { background: var(--gmail-tab-hover); }
+.gmail-folder.active { background: #d3e3fd; color: #001d35; font-weight: 600; }
+.gmail-folder-count { margin-left: auto; font-size: 12px; color: var(--gmail-text-secondary); }
+.gmail-folder.active .gmail-folder-count { color: #001d35; }
+
+/* ---- Main pane: email viewer ---- */
+.gmail-main {
+  flex: 1; padding: 8px 24px; overflow: auto;
+  background: var(--gmail-bg);
+}
+.email-card {
+  background: #fff; border-radius: 16px;
+  padding: 24px 32px;
+  margin-bottom: 8px;
+}
+.email-subject {
+  font-size: 22px; font-weight: 400; margin-bottom: 16px;
+  display: flex; align-items: center; gap: 12px;
+}
+.email-label { background: var(--gmail-bg-deep); color: var(--gmail-text-secondary); font-size: 11px; padding: 2px 8px; border-radius: 4px; font-weight: 500; }
+.email-from {
+  display: flex; gap: 12px; align-items: flex-start;
+  padding-bottom: 16px; border-bottom: 1px solid var(--gmail-border);
+}
+.email-avatar { width: 40px; height: 40px; border-radius: 50%; background: #fce8e6; color: #ea4335; display: flex; align-items: center; justify-content: center; font-weight: 600; font-size: 16px; flex-shrink: 0; }
+.email-meta { flex: 1; font-size: 14px; }
+.email-name { font-weight: 600; }
+.email-address { color: var(--gmail-text-secondary); font-size: 13px; }
+.email-time { color: var(--gmail-text-secondary); font-size: 12px; margin-left: auto; white-space: nowrap; }
+.email-body { padding: 24px 0; font-size: 14px; line-height: 1.7; color: var(--gmail-text); }
+.email-body p { margin-bottom: 14px; }
+.email-sig { color: var(--gmail-text-secondary); font-size: 12px; line-height: 1.6; padding-top: 8px; border-top: 1px solid var(--gmail-border); margin-top: 12px; }
+
+/* ---- Right rail (Workspace add-ons icon strip - ALWAYS 56px wide) ---- */
+.gmail-rightrail {
+  width: 56px; flex-shrink: 0;
+  background: var(--gmail-bg);
+  border-left: 1px solid var(--gmail-border);
+  display: flex; flex-direction: column; align-items: center;
+  padding: 8px 0;
+  gap: 4px;
+}
+.rail-icon {
+  width: 40px; height: 40px; border-radius: 8px;
+  display: flex; align-items: center; justify-content: center;
+  color: var(--gmail-text-secondary); cursor: pointer;
+  position: relative;
+  transition: background 0.15s;
+}
+.rail-icon:hover { background: var(--gmail-tab-hover); }
+.rail-icon.active { background: var(--nd-wine-dim); }
+.rail-icon.active .rail-icon-emoji { filter: none; }
+.rail-divider { height: 1px; width: 32px; background: var(--gmail-border); margin: 8px 0; }
+.rail-badge {
+  position: absolute; top: 2px; right: 2px;
+  width: 16px; height: 16px;
+  background: var(--gmail-red); color: #fff;
+  border-radius: 50%; font-size: 10px; font-weight: 700;
+  display: flex; align-items: center; justify-content: center;
+  border: 2px solid var(--gmail-bg);
+}
+.rail-icon-square {
+  width: 24px; height: 24px; border-radius: 4px;
+  background: var(--nd-wine); color: #fff;
+  font-family: 'DM Serif Display', serif; font-size: 16px;
+  display: flex; align-items: center; justify-content: center;
+  font-weight: 400;
+}
+
+/* ---- The NightDraft expanded panel (the hero of the mockup) ---- */
+.nd-panel {
+  width: 380px;
+  background: var(--nd-bg);
+  border-left: 1px solid var(--nd-border);
+  display: flex; flex-direction: column;
+  font-family: 'DM Sans', sans-serif;
+  flex-shrink: 0;
+  overflow: hidden;
+}
+.nd-header {
+  padding: 14px 16px;
+  background: var(--nd-bg-card);
+  border-bottom: 1px solid var(--nd-border);
+  display: flex; align-items: center; gap: 12px;
+}
+.nd-logo {
+  width: 32px; height: 32px; border-radius: 8px;
+  background: var(--nd-wine); color: #fff;
+  font-family: 'DM Serif Display', serif; font-size: 20px;
+  display: flex; align-items: center; justify-content: center;
+}
+.nd-header-text { flex: 1; }
+.nd-wordmark {
+  font-family: 'DM Serif Display', serif;
+  font-size: 18px; color: var(--nd-text); letter-spacing: -0.01em;
+  line-height: 1;
+}
+.nd-tagline { font-size: 11px; color: var(--nd-text-secondary); margin-top: 2px; }
+.nd-header-close {
+  width: 28px; height: 28px; border-radius: 6px;
+  display: flex; align-items: center; justify-content: center;
+  color: var(--nd-text-secondary); cursor: pointer;
+}
+.nd-header-close:hover { background: var(--nd-bg-inset); }
+
+.nd-status-strip {
+  padding: 10px 16px;
+  background: var(--nd-green-dim);
+  border-bottom: 1px solid var(--nd-border);
+  display: flex; align-items: center; gap: 10px;
+  font-size: 12px;
+}
+.nd-status-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--nd-green); flex-shrink: 0; box-shadow: 0 0 0 3px var(--nd-green-dim); animation: pulse 2s infinite; }
+@keyframes pulse {
+  0%, 100% { box-shadow: 0 0 0 3px var(--nd-green-dim); }
+  50% { box-shadow: 0 0 0 6px rgba(45, 122, 79, 0.04); }
+}
+.nd-status-strip strong { font-weight: 600; color: var(--nd-text); }
+.nd-status-time { margin-left: auto; color: var(--nd-text-secondary); font-size: 11px; }
+
+.nd-body {
+  flex: 1;
+  padding: 16px;
+}
+.nd-section { margin-bottom: 18px; }
+.nd-section-label {
+  font-size: 10px; letter-spacing: 0.08em; text-transform: uppercase;
+  color: var(--nd-text-tertiary); font-weight: 600;
+  margin-bottom: 8px;
+}
+
+/* ---- Who's asking ---- */
+.nd-sender {
+  background: var(--nd-bg-card);
+  border: 1px solid var(--nd-border);
+  border-radius: 10px;
+  padding: 12px 14px;
+}
+.nd-sender-row1 {
+  display: flex; align-items: flex-start; gap: 10px;
+  margin-bottom: 10px;
+}
+.nd-sender-avatar {
+  width: 36px; height: 36px; border-radius: 50%;
+  background: var(--nd-blue-dim); color: var(--nd-blue);
+  display: flex; align-items: center; justify-content: center;
+  font-weight: 700; font-size: 13px; flex-shrink: 0;
+}
+.nd-sender-name { font-weight: 600; font-size: 14px; color: var(--nd-text); }
+.nd-sender-title { font-size: 12px; color: var(--nd-text-secondary); margin-top: 1px; }
+.nd-sender-org { font-size: 12px; color: var(--nd-blue); font-weight: 500; margin-top: 4px; }
+.nd-tags { display: flex; flex-wrap: wrap; gap: 4px; margin-top: 8px; }
+.nd-tag {
+  font-size: 10px; padding: 2px 7px; border-radius: 4px;
+  background: var(--nd-bg-inset); color: var(--nd-text-secondary);
+  font-weight: 500;
+}
+.nd-tag.tag-amber { background: var(--nd-amber-dim); color: var(--nd-amber); }
+.nd-tag.tag-green { background: var(--nd-green-dim); color: var(--nd-green); }
+.nd-tag.tag-blue { background: var(--nd-blue-dim); color: var(--nd-blue); }
+.nd-tag.tag-wine { background: var(--nd-wine-dim); color: var(--nd-wine); }
+.nd-sender-stats {
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px;
+  padding-top: 10px; margin-top: 10px;
+  border-top: 1px solid var(--nd-border);
+}
+.nd-stat { text-align: left; }
+.nd-stat-num { font-size: 14px; font-weight: 700; color: var(--nd-text); }
+.nd-stat-label { font-size: 10px; color: var(--nd-text-tertiary); margin-top: 2px; }
+
+/* ---- Reasoning steps ---- */
+.nd-reasoning {
+  background: var(--nd-bg-card);
+  border: 1px solid var(--nd-border);
+  border-radius: 10px;
+  overflow: hidden;
+}
+.nd-step {
+  padding: 10px 12px;
+  display: flex; gap: 10px;
+  border-bottom: 1px solid var(--nd-border);
+  font-size: 12px;
+  align-items: flex-start;
+}
+.nd-step:last-child { border-bottom: none; }
+.nd-step-icon {
+  width: 18px; height: 18px; border-radius: 50%;
+  background: var(--nd-green-dim); color: var(--nd-green);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 11px; font-weight: 700; flex-shrink: 0;
+  margin-top: 1px;
+}
+.nd-step-icon.flag { background: var(--nd-amber-dim); color: var(--nd-amber); }
+.nd-step-text { flex: 1; line-height: 1.4; }
+.nd-step-rule { color: var(--nd-text-secondary); }
+.nd-step-rule strong { color: var(--nd-text); font-weight: 600; }
+.nd-step-source {
+  font-size: 10px; color: var(--nd-text-tertiary); margin-top: 3px;
+  font-family: 'DM Sans', sans-serif;
+}
+
+/* ---- The draft preview ---- */
+.nd-draft {
+  background: var(--nd-bg-card);
+  border: 1px solid var(--nd-border);
+  border-radius: 10px;
+  padding: 14px;
+  font-size: 12px; line-height: 1.6;
+  color: var(--nd-text);
+}
+.nd-draft p { margin-bottom: 10px; }
+.nd-draft .draft-signoff { margin-top: 14px; }
+
+/* ---- Cross-system check (OpenTable) ---- */
+.nd-crosscheck {
+  background: var(--nd-bg-card);
+  border: 1px solid var(--nd-border);
+  border-radius: 10px;
+  padding: 12px 14px;
+  display: flex; align-items: center; gap: 10px;
+  font-size: 12px;
+}
+.nd-crosscheck-icon {
+  width: 28px; height: 28px; border-radius: 6px;
+  background: #da3743; color: #fff;
+  display: flex; align-items: center; justify-content: center;
+  font-weight: 700; font-size: 14px; flex-shrink: 0;
+}
+.nd-crosscheck-text { flex: 1; }
+.nd-crosscheck-title { font-weight: 600; color: var(--nd-text); }
+.nd-crosscheck-detail { color: var(--nd-text-secondary); font-size: 11px; margin-top: 2px; }
+.nd-crosscheck-status {
+  font-size: 10px; padding: 3px 8px; border-radius: 4px;
+  background: var(--nd-green-dim); color: var(--nd-green);
+  font-weight: 600;
+}
+
+/* ---- What I didn't decide ---- */
+.nd-question {
+  background: var(--nd-amber-dim);
+  border: 1px solid rgba(184, 134, 11, 0.2);
+  border-radius: 10px;
+  padding: 11px 14px;
+  font-size: 12px; line-height: 1.5;
+}
+.nd-question-label { font-weight: 600; color: var(--nd-amber); font-size: 11px; margin-bottom: 4px; text-transform: uppercase; letter-spacing: 0.04em; }
+.nd-question-text { color: var(--nd-text); }
+.nd-question-actions { display: flex; gap: 6px; margin-top: 8px; }
+.nd-q-btn {
+  font-size: 11px; padding: 4px 10px; border-radius: 6px;
+  background: var(--nd-bg-card); border: 1px solid var(--nd-border-strong);
+  color: var(--nd-text); cursor: pointer; font-family: inherit;
+}
+.nd-q-btn:hover { background: var(--nd-bg-inset); }
+
+/* ---- Bottom action bar ---- */
+.nd-actions {
+  padding: 12px 16px;
+  border-top: 1px solid var(--nd-border);
+  background: var(--nd-bg-card);
+  display: flex; gap: 8px;
+}
+.nd-btn {
+  flex: 1; padding: 10px 12px; border-radius: 8px;
+  font-family: inherit; font-size: 13px; font-weight: 600;
+  cursor: pointer; border: none;
+  transition: all 0.15s;
+}
+.nd-btn-primary {
+  background: var(--nd-wine); color: #fff;
+}
+.nd-btn-primary:hover { background: #6f1c41; }
+.nd-btn-secondary {
+  background: var(--nd-bg-inset); color: var(--nd-text);
+  border: 1px solid var(--nd-border);
+}
+.nd-btn-secondary:hover { background: var(--nd-bg-deep); }
+.nd-btn-ghost {
+  background: transparent; color: var(--nd-text-secondary);
+  border: 1px solid transparent;
+}
+.nd-btn-ghost:hover { background: var(--nd-bg-inset); }
+
+/* ---- Caption below the frame ---- */
+.frame-caption {
+  max-width: 1400px; margin: 16px auto 0; padding: 0 24px;
+  color: #b6c2cf; font-size: 13px; text-align: center;
+}
+.frame-caption code { background: rgba(255,255,255,0.08); padding: 2px 6px; border-radius: 4px; font-size: 12px; }
+
+/* ====================== VIEW 2: COLLAPSED ====================== */
+#view2 .gmail-rightrail .rail-badge { animation: pulse-badge 2s infinite; }
+@keyframes pulse-badge {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.15); }
+}
+
+/* ====================== VIEW 3: MOBILE ====================== */
+.mobile-frame {
+  max-width: 390px;
+  margin: 0 auto;
+  background: #000; border-radius: 32px;
+  padding: 12px;
+  box-shadow: 0 24px 48px -12px rgba(0,0,0,0.4);
+  display: none;
+}
+.mobile-frame.active { display: block; }
+.mobile-screen {
+  background: var(--gmail-bg); border-radius: 22px;
+  height: 760px; overflow: hidden;
+  position: relative;
+  display: flex; flex-direction: column;
+}
+.mobile-statusbar { height: 32px; background: #fff; display: flex; align-items: center; justify-content: space-between; padding: 0 24px; font-size: 12px; font-weight: 600; }
+.mobile-app-header {
+  background: #fff; padding: 12px 16px;
+  display: flex; align-items: center; gap: 12px;
+  border-bottom: 1px solid var(--gmail-border);
+}
+.mobile-app-header h2 { font-size: 16px; font-weight: 500; flex: 1; }
+.mobile-email {
+  background: #fff; padding: 16px 20px;
+  border-bottom: 1px solid var(--gmail-border);
+  flex-shrink: 0;
+}
+.mobile-email-from { font-size: 13px; color: var(--gmail-text-secondary); margin-bottom: 4px; }
+.mobile-email-subject { font-size: 16px; font-weight: 500; margin-bottom: 8px; }
+.mobile-email-preview { font-size: 13px; color: var(--gmail-text-secondary); line-height: 1.5; }
+/* The bottom sheet */
+.mobile-sheet {
+  position: absolute; bottom: 0; left: 0; right: 0;
+  background: var(--nd-bg);
+  border-top-left-radius: 22px;
+  border-top-right-radius: 22px;
+  box-shadow: 0 -8px 24px rgba(0,0,0,0.12);
+  font-family: 'DM Sans', sans-serif;
+  height: 65%;
+  display: flex; flex-direction: column;
+}
+.mobile-sheet-handle {
+  width: 36px; height: 4px; border-radius: 2px;
+  background: var(--nd-border-strong);
+  margin: 8px auto;
+}
+.mobile-sheet-header {
+  padding: 4px 16px 12px; border-bottom: 1px solid var(--nd-border);
+  display: flex; align-items: center; gap: 10px;
+}
+.mobile-sheet-content { flex: 1; overflow-y: auto; padding: 12px 16px; }
+
+/* ---- Print-friendly ---- */
+@media print {
+  body { background: #fff; padding: 0; }
+  .viewer-header, .viewer-tabs, .frame-caption { display: none; }
+  .gmail-frame { box-shadow: none; border: 1px solid #ccc; max-width: none; border-radius: 0; }
+}
+</style>
+</head>
+<body>
+
+<div class="viewer-header">
+  <h1>NightDraft — Gmail Sidebar Plugin</h1>
+  <p>The plugin lives in the right-hand sidebar of Gmail (the same surface as Calendar, Keep, Tasks, Contacts). NightDraft pre-drafts the reply automatically when an inbound 8+ inquiry arrives, then explains its reasoning step-by-step. Real Lorne data: Laura Stinson (Advent International EA), 14p Thu 28 May 18:00, sat unanswered four days = ~£1,000 lost booking.</p>
+</div>
+
+<div class="viewer-tabs">
+  <button class="viewer-tab active" data-view="view1">1. Expanded panel</button>
+  <button class="viewer-tab" data-view="view2">2. Collapsed (resting)</button>
+  <button class="viewer-tab" data-view="view3">3. Mobile</button>
+</div>
+
+<!-- ============================================================ -->
+<!-- VIEW 1: EXPANDED -->
+<!-- ============================================================ -->
+<div class="gmail-frame active" id="view1">
+  <div class="gmail-topbar">
+    <div class="gmail-menu">≡</div>
+    <div class="gmail-logo">
+      <svg class="gmail-logo-icon" viewBox="0 0 40 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M3 26V8l17 13L37 8v18a2 2 0 01-2 2H5a2 2 0 01-2-2z" fill="#4285F4"/>
+        <path d="M3 8l17 13L37 8" stroke="#fff" stroke-width="0"/>
+        <path d="M37 8v0L20 21 3 8s0-3 4-3h26c4 0 4 3 4 3z" fill="#EA4335"/>
+        <path d="M3 8l17 13V8H3z" fill="#C5221F" opacity="0.4"/>
+        <path d="M37 8L20 21V8h17z" fill="#34A853" opacity="0.4"/>
+      </svg>
+      Gmail
+    </div>
+    <div class="gmail-search">
+      <span style="font-size: 18px;">🔍</span>
+      Search mail
+    </div>
+    <div class="gmail-right">
+      <div class="gmail-iconbtn">⚙</div>
+      <div class="gmail-iconbtn">⋮</div>
+      <div class="gmail-avatar">K</div>
+    </div>
+  </div>
+
+  <div class="gmail-body">
+    <!-- Left rail -->
+    <div class="gmail-leftrail">
+      <button class="gmail-compose">✏️ Compose</button>
+      <div class="gmail-folder active">📥 Inbox <span class="gmail-folder-count">8</span></div>
+      <div class="gmail-folder">⭐ Starred</div>
+      <div class="gmail-folder">⏰ Snoozed</div>
+      <div class="gmail-folder">📤 Sent</div>
+      <div class="gmail-folder">📝 Drafts <span class="gmail-folder-count">3</span></div>
+      <div class="gmail-folder">🏷 Labels</div>
+      <div style="padding: 16px 24px; font-size: 11px; color: var(--gmail-text-tertiary); margin-top: 12px;">LABELS</div>
+      <div class="gmail-folder">🍷 bookings@</div>
+      <div class="gmail-folder">📧 info@</div>
+      <div class="gmail-folder">💼 Suppliers</div>
+    </div>
+
+    <!-- Main pane: the actual email -->
+    <div class="gmail-main">
+      <div class="email-card">
+        <div class="email-subject">
+          Thurs 28th May - table for ~14 guests, 6pm
+          <span class="email-label">Inbox</span>
+          <span class="email-label">bookings@</span>
+        </div>
+        <div class="email-from">
+          <div class="email-avatar">L</div>
+          <div class="email-meta">
+            <div><span class="email-name">Stinson, Laura</span> <span class="email-address">&lt;LStinson@adventinternational.co.uk&gt;</span></div>
+            <div style="color: var(--gmail-text-secondary); margin-top: 2px;">to bookings@lornerestaurant.co.uk</div>
+          </div>
+          <div class="email-time">Thu, 23 Apr, 11:34 (4 days ago)</div>
+        </div>
+        <div class="email-body">
+          <p>Hi there,</p>
+          <p>Hope you're well! Do you have space for the above reservation, or is it too large a group?</p>
+          <p>Kind regards</p>
+          <div class="email-sig">
+            Laura Stinson<br>
+            Executive Assistant<br>
+            Advent International Ltd<br>
+            160 Victoria Street, London, SW1E 5LB<br>
+            D +44 207 333 5598 &nbsp;|&nbsp; M +44 791 830 3690<br>
+            www.adventinternational.com
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Right rail (the icon strip - this is the canonical 56px Gmail add-on rail) -->
+    <div class="gmail-rightrail">
+      <div class="rail-icon" title="Calendar">📅</div>
+      <div class="rail-icon" title="Keep">💡</div>
+      <div class="rail-icon" title="Tasks">✓</div>
+      <div class="rail-icon" title="Contacts">👤</div>
+      <div class="rail-divider"></div>
+      <div class="rail-icon active" title="NightDraft">
+        <div class="rail-icon-square">N</div>
+      </div>
+      <div class="rail-icon" title="Get add-ons">+</div>
+    </div>
+
+    <!-- The NightDraft expanded panel -->
+    <div class="nd-panel">
+      <div class="nd-header">
+        <div class="nd-logo">N</div>
+        <div class="nd-header-text">
+          <div class="nd-wordmark">NightDraft</div>
+          <div class="nd-tagline">Lorne · Bookings playbook v2026</div>
+        </div>
+        <div class="nd-header-close">✕</div>
+      </div>
+
+      <div class="nd-status-strip">
+        <div class="nd-status-dot"></div>
+        <span><strong>Drafted 14 sec after arrival</strong> · awaiting your review</span>
+        <span class="nd-status-time">4 days ago</span>
+      </div>
+
+      <div class="nd-body">
+
+        <!-- Who's asking (CRM enrichment) -->
+        <div class="nd-section">
+          <div class="nd-section-label">Who's asking</div>
+          <div class="nd-sender">
+            <div class="nd-sender-row1">
+              <div class="nd-sender-avatar">LS</div>
+              <div>
+                <div class="nd-sender-name">Laura Stinson</div>
+                <div class="nd-sender-title">Executive Assistant</div>
+                <div class="nd-sender-org">Advent International · £20bn AUM PE</div>
+              </div>
+            </div>
+            <div class="nd-tags">
+              <span class="nd-tag tag-amber">High propensity</span>
+              <span class="nd-tag tag-blue">Corporate PA</span>
+              <span class="nd-tag">160 Victoria St · 5 min away</span>
+              <span class="nd-tag">First contact</span>
+            </div>
+            <div class="nd-sender-stats">
+              <div class="nd-stat">
+                <div class="nd-stat-num">£1,400+</div>
+                <div class="nd-stat-label">expected booking value</div>
+              </div>
+              <div class="nd-stat">
+                <div class="nd-stat-num">0</div>
+                <div class="nd-stat-label">prior bookings</div>
+              </div>
+              <div class="nd-stat">
+                <div class="nd-stat-num">3</div>
+                <div class="nd-stat-label">colleagues seen</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Reasoning -->
+        <div class="nd-section">
+          <div class="nd-section-label">Why this draft</div>
+          <div class="nd-reasoning">
+            <div class="nd-step">
+              <div class="nd-step-icon">1</div>
+              <div class="nd-step-text">
+                <div class="nd-step-rule"><strong>Tier match: 14p group menu (10+).</strong> Semi-private recommended (cap 14, comfort 12).</div>
+                <div class="nd-step-source">Playbook §1 capacity matrix · canonical doc 2026</div>
+              </div>
+            </div>
+            <div class="nd-step">
+              <div class="nd-step-icon">2</div>
+              <div class="nd-step-text">
+                <div class="nd-step-rule"><strong>Pricing applied:</strong> £70 / £77 / £87 / £95 group menu options.</div>
+                <div class="nd-step-source">Playbook §2a · 4 live group menu prices</div>
+              </div>
+            </div>
+            <div class="nd-step">
+              <div class="nd-step-icon">3</div>
+              <div class="nd-step-text">
+                <div class="nd-step-rule"><strong>Cancellation:</strong> 96h notice, £30/head fee. Credit card to secure, no deposit.</div>
+                <div class="nd-step-source">Playbook §3 · 10+ regime</div>
+              </div>
+            </div>
+            <div class="nd-step">
+              <div class="nd-step-icon">4</div>
+              <div class="nd-step-text">
+                <div class="nd-step-rule"><strong>Pre-order required:</strong> menu sent 5-7 days ahead, pre-order 72h before.</div>
+                <div class="nd-step-source">Playbook §4 · 10+ trigger</div>
+              </div>
+            </div>
+            <div class="nd-step">
+              <div class="nd-step-icon">5</div>
+              <div class="nd-step-text">
+                <div class="nd-step-rule"><strong>Voice:</strong> cold default register · sign-off "Best, Bookings" · sales-grade tone (info-dense, warm close).</div>
+                <div class="nd-step-source">Playbook §8 · first reply, corporate domain</div>
+              </div>
+            </div>
+            <div class="nd-step">
+              <div class="nd-step-icon flag">!</div>
+              <div class="nd-step-text">
+                <div class="nd-step-rule"><strong>Flag: this thread sat unanswered for 4 days.</strong> Surfaced at 24h SLA breach.</div>
+                <div class="nd-step-source">Lost-booking detection · est. £1,000+ at risk</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- The draft -->
+        <div class="nd-section">
+          <div class="nd-section-label">Draft reply</div>
+          <div class="nd-draft">
+            <p>Dear Laura,</p>
+            <p>Thanks for your email and interest in Lorne. We do have availability on Thursday 28 May for a table of 14.</p>
+            <p>For a group of your size, we would normally seat you in our semi-private area at the back of the restaurant, which works very well for groups of up to 14. You would be offered one of our group menus, and I have attached a sample for reference. We currently offer 3 courses at £70/head, or £77 with canapé and madeleines, with 4-course options at £87 / £95.</p>
+            <p>For groups of 10 and above, we ask guests to pre-order. We send the final menu 5-7 days before your booking and ask for the pre-order 72 hours prior to arrival. We require credit card details to secure the booking, though no deposit is taken. We require 96 hours' notice for cancellation, with a £30/head fee within that window.</p>
+            <p>If this is of interest, please let us know and we'll arrange everything for you.</p>
+            <p class="draft-signoff">Best,<br>Bookings</p>
+          </div>
+        </div>
+
+        <!-- Cross-system check -->
+        <div class="nd-section">
+          <div class="nd-section-label">Calendar check</div>
+          <div class="nd-crosscheck">
+            <div class="nd-crosscheck-icon">OT</div>
+            <div class="nd-crosscheck-text">
+              <div class="nd-crosscheck-title">Thu 28 May, 18:00 · semi-private</div>
+              <div class="nd-crosscheck-detail">Available · 8 covers booked elsewhere that night · main room has space at 16</div>
+            </div>
+            <div class="nd-crosscheck-status">CLEAR</div>
+          </div>
+        </div>
+
+        <!-- What I didn't decide -->
+        <div class="nd-section">
+          <div class="nd-section-label">Want me to handle this too?</div>
+          <div class="nd-question">
+            <div class="nd-question-label">Open question</div>
+            <div class="nd-question-text">She hasn't asked about menu specifics. The Sample Group Menu PDF you usually attach for 10+ groups is on Google Drive. Add it to the draft?</div>
+            <div class="nd-question-actions">
+              <button class="nd-q-btn">Yes, attach it</button>
+              <button class="nd-q-btn">Skip</button>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Action bar -->
+      <div class="nd-actions">
+        <button class="nd-btn nd-btn-primary">Send to Drafts</button>
+        <button class="nd-btn nd-btn-secondary">Edit</button>
+        <button class="nd-btn nd-btn-ghost">Skip</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="frame-caption" id="caption1">
+  Real Gmail dimensions: 56px right-rail, 64px topbar. Sidebar panel 380px wide. NightDraft icon slots below the divider with user-installed add-ons (alongside Calendar, Keep, Tasks, Contacts).
+</div>
+
+<!-- ============================================================ -->
+<!-- VIEW 2: COLLAPSED (resting state) -->
+<!-- ============================================================ -->
+<div class="gmail-frame" id="view2">
+  <div class="gmail-topbar">
+    <div class="gmail-menu">≡</div>
+    <div class="gmail-logo">
+      <svg class="gmail-logo-icon" viewBox="0 0 40 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M3 26V8l17 13L37 8v18a2 2 0 01-2 2H5a2 2 0 01-2-2z" fill="#4285F4"/>
+        <path d="M37 8v0L20 21 3 8s0-3 4-3h26c4 0 4 3 4 3z" fill="#EA4335"/>
+        <path d="M3 8l17 13V8H3z" fill="#C5221F" opacity="0.4"/>
+        <path d="M37 8L20 21V8h17z" fill="#34A853" opacity="0.4"/>
+      </svg>
+      Gmail
+    </div>
+    <div class="gmail-search">
+      <span style="font-size: 18px;">🔍</span>
+      Search mail
+    </div>
+    <div class="gmail-right">
+      <div class="gmail-iconbtn">⚙</div>
+      <div class="gmail-iconbtn">⋮</div>
+      <div class="gmail-avatar">K</div>
+    </div>
+  </div>
+  <div class="gmail-body">
+    <div class="gmail-leftrail">
+      <button class="gmail-compose">✏️ Compose</button>
+      <div class="gmail-folder active">📥 Inbox <span class="gmail-folder-count">8</span></div>
+      <div class="gmail-folder">⭐ Starred</div>
+      <div class="gmail-folder">⏰ Snoozed</div>
+      <div class="gmail-folder">📤 Sent</div>
+      <div class="gmail-folder">📝 Drafts <span class="gmail-folder-count">3</span></div>
+      <div class="gmail-folder">🏷 Labels</div>
+      <div style="padding: 16px 24px; font-size: 11px; color: var(--gmail-text-tertiary); margin-top: 12px;">LABELS</div>
+      <div class="gmail-folder">🍷 bookings@</div>
+      <div class="gmail-folder">📧 info@</div>
+      <div class="gmail-folder">💼 Suppliers</div>
+    </div>
+    <div class="gmail-main">
+      <div class="email-card">
+        <div class="email-subject">
+          Thurs 28th May - table for ~14 guests, 6pm
+          <span class="email-label">Inbox</span>
+          <span class="email-label">bookings@</span>
+        </div>
+        <div class="email-from">
+          <div class="email-avatar">L</div>
+          <div class="email-meta">
+            <div><span class="email-name">Stinson, Laura</span> <span class="email-address">&lt;LStinson@adventinternational.co.uk&gt;</span></div>
+            <div style="color: var(--gmail-text-secondary); margin-top: 2px;">to bookings@lornerestaurant.co.uk</div>
+          </div>
+          <div class="email-time">Thu, 23 Apr, 11:34</div>
+        </div>
+        <div class="email-body">
+          <p>Hi there,</p>
+          <p>Hope you're well! Do you have space for the above reservation, or is it too large a group?</p>
+          <p>Kind regards</p>
+          <div class="email-sig">
+            Laura Stinson<br>
+            Executive Assistant<br>
+            Advent International Ltd
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="gmail-rightrail" style="margin-left: auto;">
+      <div class="rail-icon" title="Calendar">📅</div>
+      <div class="rail-icon" title="Keep">💡</div>
+      <div class="rail-icon" title="Tasks">✓</div>
+      <div class="rail-icon" title="Contacts">👤</div>
+      <div class="rail-divider"></div>
+      <div class="rail-icon" title="NightDraft has 1 awaiting review">
+        <div class="rail-icon-square">N</div>
+        <div class="rail-badge">1</div>
+      </div>
+      <div class="rail-icon" title="Get add-ons">+</div>
+    </div>
+  </div>
+</div>
+
+<div class="frame-caption" id="caption2" style="display:none;">
+  Collapsed (resting) state: NightDraft is a 40px square in the right-rail, with a red badge showing inbox-awaiting count. Same surface as Calendar/Keep/Tasks/Contacts. Click the icon to expand to view 1.
+</div>
+
+<!-- ============================================================ -->
+<!-- VIEW 3: MOBILE -->
+<!-- ============================================================ -->
+<div class="mobile-frame" id="view3">
+  <div class="mobile-screen">
+    <div class="mobile-statusbar">
+      <span>9:41</span>
+      <span>📶 📡 🔋</span>
+    </div>
+    <div class="mobile-app-header">
+      <div style="font-size: 22px;">←</div>
+      <h2></h2>
+      <div style="font-size: 18px;">⋮</div>
+    </div>
+    <div class="mobile-email">
+      <div class="mobile-email-from">Stinson, Laura · 4d ago</div>
+      <div class="mobile-email-subject">Thurs 28th May - table for ~14 guests, 6pm</div>
+      <div class="mobile-email-preview">Hi there, Hope you're well! Do you have space for the above reservation, or is it too large a group?</div>
+    </div>
+    <div class="mobile-sheet">
+      <div class="mobile-sheet-handle"></div>
+      <div class="mobile-sheet-header">
+        <div class="nd-logo" style="width: 28px; height: 28px; font-size: 16px;">N</div>
+        <div style="flex: 1;">
+          <div class="nd-wordmark" style="font-size: 16px;">NightDraft</div>
+          <div class="nd-tagline">Drafted 14 sec after arrival</div>
+        </div>
+        <div class="nd-header-close">⌃</div>
+      </div>
+      <div class="mobile-sheet-content">
+
+        <div class="nd-section">
+          <div class="nd-sender">
+            <div class="nd-sender-row1">
+              <div class="nd-sender-avatar">LS</div>
+              <div>
+                <div class="nd-sender-name">Laura Stinson · EA</div>
+                <div class="nd-sender-org">Advent International</div>
+              </div>
+            </div>
+            <div class="nd-tags">
+              <span class="nd-tag tag-amber">High propensity</span>
+              <span class="nd-tag">14p · Thu 28 May</span>
+              <span class="nd-tag tag-green">~£1,400+</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="nd-section">
+          <div class="nd-section-label">Why this draft (tap to expand)</div>
+          <div class="nd-reasoning">
+            <div class="nd-step">
+              <div class="nd-step-icon">1</div>
+              <div class="nd-step-text"><strong>14p · group menu, semi-private.</strong></div>
+            </div>
+            <div class="nd-step">
+              <div class="nd-step-icon">2</div>
+              <div class="nd-step-text"><strong>£70-£95/head</strong> · pre-order required.</div>
+            </div>
+            <div class="nd-step">
+              <div class="nd-step-icon flag">!</div>
+              <div class="nd-step-text"><strong>4 days unanswered</strong> · est. £1,000+ at risk.</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="nd-section">
+          <div class="nd-section-label">Draft</div>
+          <div class="nd-draft" style="font-size: 11px;">
+            <p>Dear Laura, thanks for your email and interest in Lorne. We do have availability on Thursday 28 May for a table of 14...</p>
+            <p style="color: var(--nd-text-secondary); font-style: italic;">+3 more paragraphs</p>
+          </div>
+        </div>
+
+      </div>
+      <div class="nd-actions" style="padding: 10px 14px;">
+        <button class="nd-btn nd-btn-primary">Send to Drafts</button>
+        <button class="nd-btn nd-btn-secondary">Edit</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="frame-caption" id="caption3" style="display:none;">
+  On mobile (Gmail iOS/Android), the sidebar becomes a bottom sheet that pulls up over the email. Reasoning is condensed to one-line summaries that tap to expand. Same content as desktop, lower density.
+</div>
+
+<script>
+  document.querySelectorAll('.viewer-tab').forEach(tab => {
+    tab.addEventListener('click', () => {
+      const view = tab.dataset.view;
+      document.querySelectorAll('.viewer-tab').forEach(t => t.classList.remove('active'));
+      tab.classList.add('active');
+      document.querySelectorAll('.gmail-frame, .mobile-frame').forEach(f => f.classList.remove('active'));
+      document.getElementById(view).classList.add('active');
+      document.querySelectorAll('.frame-caption').forEach(c => c.style.display = 'none');
+      const cap = document.getElementById('caption' + view.charAt(view.length - 1));
+      if (cap) cap.style.display = 'block';
+    });
+  });
+</script>
+
+</body>
+</html>

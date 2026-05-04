@@ -33,6 +33,7 @@ next-env.d.ts
 # evaluator screenshots & playwright logs
 *.png
 !logos/*.png
+!sidebar-mockup/*.png
 .playwright-mcp/
 .claude/
 
