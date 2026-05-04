@@ -1701,6 +1701,134 @@
     .slide-num { position: static; display: block; margin-bottom: 0.5rem; }
   }
 
+  /* Slide 4 - One inquiry, two outcomes (side-by-side comparison) */
+  .slide4-anchor-quote {
+    background: var(--bg-inset);
+    border-left: 3px solid var(--border-strong);
+    padding: 14px 18px;
+    border-radius: 0 8px 8px 0;
+    font-size: 0.92rem;
+    color: var(--text-secondary);
+    font-style: italic;
+    margin: 16px 0 28px;
+  }
+  .slide4-anchor-quote strong { color: var(--text); font-style: normal; }
+  .slide4-compare-header {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    margin-bottom: 8px;
+  }
+  .slide4-col-header {
+    padding: 12px 18px;
+    border-radius: 4px 12px 4px 12px;
+    text-align: center;
+  }
+  .slide4-col-header.fumble {
+    background: var(--red-dim);
+    color: var(--red);
+    border: 1px dashed var(--red);
+  }
+  .slide4-col-header.save {
+    background: var(--wine-dim);
+    color: var(--wine);
+    border: 1px solid var(--wine);
+  }
+  .slide4-col-header .tag {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    margin-bottom: 2px;
+    display: block;
+  }
+  .slide4-col-header h3 {
+    font-family: 'DM Serif Display', serif;
+    font-weight: 400;
+    font-size: 1.2rem;
+    margin: 0;
+    color: inherit;
+  }
+  .slide4-compare-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    margin: 14px 0;
+    align-items: stretch;
+  }
+  .slide4-row-label {
+    grid-column: 1 / -1;
+    font-family: 'DM Mono', monospace;
+    font-size: 0.7rem;
+    font-weight: 700;
+    color: var(--text-tertiary);
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    margin: 14px 0 -6px;
+  }
+  .slide4-cell {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 4px 12px 4px 12px;
+    padding: 14px 18px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  .slide4-cell.fumble { border-left: 3px solid var(--red); }
+  .slide4-cell.save { border-left: 3px solid var(--wine); }
+  .slide4-cell-icon {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    color: var(--text-tertiary);
+  }
+  .slide4-cell.fumble .slide4-cell-icon { color: var(--red); }
+  .slide4-cell.save .slide4-cell-icon { color: var(--wine); }
+  .slide4-cell h4 {
+    font-family: 'DM Serif Display', serif;
+    font-weight: 400;
+    font-size: 1rem;
+    margin: 0;
+    color: var(--text);
+  }
+  .slide4-cell p {
+    font-size: 0.88rem;
+    margin: 0;
+    color: var(--text-secondary);
+  }
+  .slide4-punch {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    margin-top: 4px;
+    padding: 6px 10px;
+    border-radius: 4px;
+    display: inline-block;
+    align-self: flex-start;
+  }
+  .slide4-cell.fumble .slide4-punch { background: var(--red-dim); color: var(--red); }
+  .slide4-cell.save .slide4-punch { background: var(--green-dim); color: var(--green); }
+  .slide4-footer-row {
+    margin-top: 28px;
+    padding-top: 18px;
+    border-top: 1px solid var(--border);
+    font-size: 0.88rem;
+    color: var(--text-secondary);
+    font-style: italic;
+    text-align: center;
+  }
+  .slide4-footer-row a {
+    color: var(--wine);
+    font-weight: 700;
+    text-decoration: none;
+    font-style: normal;
+  }
+  .slide4-footer-row a:hover { text-decoration: underline; }
+
   /* Slide 12 - Perceptual Maps */
   .slide12-legend {
     margin-top: 12px;
@@ -2146,213 +2274,75 @@
 </section>
 
 <!-- ============ SLIDE 4 - HOW IT WORKS (DEMO) ============ -->
-<section class="slide has-howitworks" id="slide-4">
+<section class="slide" id="slide-4">
   <div class="slide-num">Slide 4 / 24</div>
-  <div class="demo" id="demo-root">
+  <div class="eyebrow">Slide 4 &middot; How it works</div>
 
-    <!-- LEFT: scrolling text column -->
-    <div class="demo-text">
+  <h1>One inquiry. Two outcomes.</h1>
+  <p class="lede">Same email from Laura Stinson at Advent International. Same Thursday booking, 14 covers. The only difference is whether NightDraft is running.</p>
 
-      <article class="d-step is-on" data-beat="0">
-        <div class="d-eyebrow">Slide 4 &middot; How it works</div>
-        <h2>This is what fumbled looks like.</h2>
-        <p>On <strong>Thursday 23 April 2026 at 11:34am</strong>, Laura Stinson - Executive Assistant at <strong>Advent International</strong> ($100B+ private equity firm, 5 minutes from Lorne) - emailed asking for a 14-cover Thursday booking.</p>
-        <p>Lorne saw it <strong>four days later</strong>. By then, Advent had booked elsewhere.</p>
-        <span class="d-stat">~&pound;1,000 booking lost &middot; 1 of 30% that go unanswered</span>
-      </article>
+  <div class="slide4-anchor-quote">
+    <strong>The inquiry.</strong> Thursday 23 April 2026, 11:34am. Laura Stinson, Executive Assistant at Advent International (a &dollar;100B private equity firm five minutes from Lorne), emails Lorne asking for a 14-cover Thursday booking. Worth ~&pound;1,000.
+  </div>
 
-      <article class="d-step" data-beat="1">
-        <div class="d-eyebrow">Day one</div>
-        <h2>Build the playbook with the operator.</h2>
-        <p>Today, NightDraft does a <strong>45-minute discovery session</strong> with the owner. Voice samples, party-size tiers, sign-off ladder, cancellation policy, awkward-conversation patterns. Manual now - founder in the room.</p>
-        <p>The <strong>v2 is an AI agent</strong> that runs the same call. Same structured output. Onboards a new restaurant in a day, not a week. Scales without us.</p>
-      </article>
-
-      <article class="d-step" data-beat="2">
-        <div class="d-eyebrow">Two minutes after Laura's email lands</div>
-        <h2>This is in Katie's drafts.</h2>
-        <p>NightDraft enriches the sender, applies the right tier (semi-private, &pound;35/head minimum, 48hr cancellation), drafts the reply in Katie's voice. Lands in her Gmail drafts.</p>
-        <p>Katie reviews, edits if she wants, hits send. <strong>30 seconds, not 30 minutes.</strong> Nothing goes out without her hand on it.</p>
-        <span class="d-stat">&pound;1,000 booking secured &middot; reply 1 was the conversion lever</span>
-      </article>
-
+  <div class="slide4-compare-header">
+    <div class="slide4-col-header fumble">
+      <span class="tag">Without NightDraft</span>
+      <h3>The fumble</h3>
     </div>
-
-    <!-- RIGHT: sticky visual stage -->
-    <div class="demo-stage">
-      <div class="demo-stage-inner">
-
-        <!-- BEAT 0: chaotic inbox with Laura's email buried -->
-        <div class="d-visual is-on" data-beat="0">
-          <div class="inbox" role="img" aria-label="Lorne bookings inbox showing Laura Stinson's unanswered email">
-            <div class="inbox-bar">
-              <span class="dot"></span><span class="dot"></span><span class="dot"></span>
-              <span style="margin-left: 0.4rem;">bookings@lornerestaurant.co.uk</span>
-              <span class="acct">L</span>
-            </div>
-            <div class="inbox-row muted">
-              <span><span class="sender">OpenTable</span></span>
-              <span>New booking confirmation <span class="preview">Table for 2 &middot; Sat 25 Apr 19:30 &middot; Charles...</span></span>
-              <span class="when">Mon</span>
-            </div>
-            <div class="inbox-row muted">
-              <span><span class="sender">Berry Bros &amp; Rudd</span></span>
-              <span>Your March allocation <span class="preview">Hi Katie, your March allocation is ready...</span></span>
-              <span class="when">Mon</span>
-            </div>
-            <div class="inbox-row urgent">
-              <span><span class="sender">Laura Stinson (Advent)</span></span>
-              <span>Thurs 28th May - table for ~14 guests, 6pm <span class="preview">Hi there, Hope you're well! Do you have space for the above reservation, or is it too large a group?</span></span>
-              <span class="when">4d ago</span>
-            </div>
-            <div class="inbox-row muted">
-              <span><span class="sender">Riedel UK</span></span>
-              <span>Spring catalogue <span class="preview">New Sommeliers range now available - 15% off through...</span></span>
-              <span class="when">Tue</span>
-            </div>
-            <div class="inbox-row muted">
-              <span><span class="sender">Square (Receipts)</span></span>
-              <span>Daily summary <span class="preview">Yesterday's takings: &pound;3,421.50 across 47 covers...</span></span>
-              <span class="when">Wed</span>
-            </div>
-            <div class="inbox-foot">
-              UNANSWERED 4 DAYS &middot; ADVENT BOOKED ELSEWHERE &middot; ~&pound;1,000 LOST
-            </div>
-          </div>
-        </div>
-
-        <!-- BEAT 1: agent intake call mockup -->
-        <div class="d-visual" data-beat="1">
-          <div class="agent">
-            <div class="agent-call">
-              <div class="agent-bar">
-                <span class="live-dot"></span>
-                <span>NIGHTDRAFT INTAKE &middot; KATIE EXTON</span>
-                <span class="secs">12:43</span>
-              </div>
-              <div class="agent-body">
-                <div class="bubble from-agent">
-                  <div class="who">Agent</div>
-                  So if 14 people want lunch on a Sunday, what's your move?
-                </div>
-                <div class="bubble from-katie">
-                  <div class="who">Katie</div>
-                  We'd push to private dining min spend, never less than &pound;30/head. And only Tuesday to Friday.
-                </div>
-                <div class="bubble from-agent">
-                  <div class="who">Agent</div>
-                  Got it. And card details - do you take them at booking?
-                </div>
-                <div class="bubble from-katie">
-                  <div class="who">Katie</div>
-                  Anything 8+ covers, yes. 48-hour cancellation. &pound;30/head charge.
-                </div>
-              </div>
-            </div>
-            <div class="agent-output">
-              <h4>Playbook v1 &middot; captured live</h4>
-              <ul class="playbook-list">
-                <li><span class="ck">&check;</span> 8-cover terms &middot; capacity matrix</li>
-                <li><span class="ck">&check;</span> Sign-off ladder &middot; 5 registers</li>
-                <li><span class="ck">&check;</span> 48hr cancellation &middot; &pound;30/head</li>
-                <li><span class="ck">&check;</span> Voice profile &middot; tone, warmth, sign-off</li>
-                <li><span class="ck">&check;</span> Tier pricing &middot; lunch / dinner / takeover</li>
-                <li><span class="ck">&check;</span> Awkward-conversation patterns</li>
-              </ul>
-              <div class="agent-foot">Manual today (founder in the room). v2 is an AI agent that runs the same call. Same output. Scales to thousands of venues.</div>
-            </div>
-          </div>
-        </div>
-
-        <!-- BEAT 2: Gmail draft + enrichment side-panel -->
-        <div class="d-visual" data-beat="2">
-          <div class="after">
-            <div class="gm">
-              <div class="gm-bar">
-                <span class="dot"></span><span class="dot"></span><span class="dot"></span>
-                <span style="margin-left: 0.4rem;">Gmail &middot; bookings@lornerestaurant.co.uk</span>
-                <span class="draft-tag">Draft &middot; 09:36</span>
-              </div>
-              <div class="gm-head">
-                <div class="gm-subj">Re: Thurs 28th May - table for ~14 guests, 6pm</div>
-                <div class="gm-meta"><span class="to">To:</span> Laura Stinson &lt;LStinson@adventinternational.co.uk&gt;</div>
-              </div>
-              <div class="gm-body">
-                <p>Hi Laura,</p>
-                <p>Thanks for thinking of us for the 28th - 14 of you on a Thursday at 6pm works nicely. We'd put you in the back room (semi-private), &pound;35/head minimum spend.</p>
-                <p>I'll need card details to hold it (we charge &pound;30/head for cancellations under 48 hours). Happy to send menus over once we have everyone confirmed.</p>
-                <p>Look forward to having you in.</p>
-                <p>Best,<br>Katie</p>
-              </div>
-              <div class="gm-foot">
-                <span class="gm-send">Send</span>
-                <span class="gm-icon">&#128206;</span>
-                <span class="gm-icon">&#128247;</span>
-                <span class="gm-icon">&#128279;</span>
-                <span style="margin-left: auto; font: 500 0.66rem 'DM Mono', monospace; color: var(--text-tertiary);">EDITS LOGGED</span>
-              </div>
-            </div>
-
-            <aside class="enrich" role="complementary" aria-label="NightDraft enrichment side panel">
-              <h4>NightDraft &middot; enrichment</h4>
-              <div>
-                <div class="name">Laura Stinson</div>
-                <div class="role">Executive Assistant &middot; Advent International</div>
-              </div>
-              <div class="enrich-grid">
-                <div class="enrich-row"><span class="ek">Firm</span><span class="ev">PE &middot; ~$100B AUM</span></div>
-                <div class="enrich-row"><span class="ek">Domain</span><span class="ev high">Verified</span></div>
-                <div class="enrich-row"><span class="ek">Distance</span><span class="ev">5 min walk</span></div>
-                <div class="enrich-row"><span class="ek">Past bookings</span><span class="ev">0 (new)</span></div>
-                <div class="enrich-row"><span class="ek">Tier match</span><span class="ev">Semi-private</span></div>
-                <div class="enrich-row"><span class="ek">Propensity</span><span class="ev high">HIGH</span></div>
-              </div>
-              <div class="signal">
-                <strong>Cluster signal:</strong> 160 Victoria St (Advent's address) hosts <strong>3 firms</strong> who have booked Lorne <strong>5&times; in 2024</strong>. Treat as warm, not cold.
-              </div>
-            </aside>
-          </div>
-        </div>
-
-      </div>
+    <div class="slide4-col-header save">
+      <span class="tag">With NightDraft</span>
+      <h3>The save</h3>
     </div>
   </div>
 
-  <script>
-  (function(){
-    var slide = document.querySelector('section.slide.has-howitworks');
-    var root = document.getElementById('demo-root');
-    if (!slide || !root) return;
-    var beats = root.querySelectorAll('.d-step');
-    var visuals = root.querySelectorAll('.d-visual');
-    function activate(n){
-      beats.forEach(function(b){ b.classList.toggle('is-on', b.getAttribute('data-beat') === n); });
-      visuals.forEach(function(v){ v.classList.toggle('is-on', v.getAttribute('data-beat') === n); });
-    }
-    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-      beats.forEach(function(b){ b.classList.add('is-on'); });
-      visuals.forEach(function(v){ v.classList.add('is-on'); });
-      return;
-    }
-    var io = new IntersectionObserver(function(entries){
-      entries.forEach(function(entry){
-        if (entry.isIntersecting) activate(entry.target.getAttribute('data-beat'));
-      });
-    }, { root: slide, threshold: 0, rootMargin: '-40% 0px -50% 0px' });
-    beats.forEach(function(b){ io.observe(b); });
-    new MutationObserver(function(){
-      if (slide.classList.contains('active')) {
-        slide.scrollTop = 0;
-        activate('0');
-      }
-    }).observe(slide, { attributes: true, attributeFilter: ['class'] });
-  })();
-  </script>
-
-  <div class="scroll-cue" data-scroll-cue>
-    <span>Scroll to find out more</span>
-    <span class="scroll-cue-chevron" aria-hidden="true"></span>
+  <div class="slide4-row-label">1 &middot; The email arrives</div>
+  <div class="slide4-compare-row">
+    <div class="slide4-cell fumble">
+      <span class="slide4-cell-icon">11:34</span>
+      <h4>Buried in the inbox.</h4>
+      <p>Laura's email lands among 40+ unread between OpenTable confirmations, supplier emails, and Square receipts. No flag, no priority, no triage. Katie is on the floor.</p>
+    </div>
+    <div class="slide4-cell save">
+      <span class="slide4-cell-icon">11:34 + 30 SECONDS</span>
+      <h4>NightDraft reads it.</h4>
+      <p>The agent watches the inbox 24/7. Laura's email triggers triage in 30 seconds. Domain, sender, party size, urgency, distance from Lorne all checked. Tier matched: semi-private, 12+ cover playbook.</p>
+    </div>
   </div>
+
+  <div class="slide4-row-label">2 &middot; The response</div>
+  <div class="slide4-compare-row">
+    <div class="slide4-cell fumble">
+      <span class="slide4-cell-icon">+ 4 DAYS</span>
+      <h4>No reply.</h4>
+      <p>Katie sees the email four days later, mid-service prep. By then the booking has gone cold. The reputational lever - first reply within hours - has been pulled by a competitor.</p>
+    </div>
+    <div class="slide4-cell save">
+      <span class="slide4-cell-icon">+ 2 MINUTES</span>
+      <h4>Draft in Katie's Gmail.</h4>
+      <p>Reply written in Katie's voice, applying her playbook (semi-private, &pound;35/head min, 48hr cancellation). Draft saved to Katie's Gmail drafts. Sender enriched: Advent verified, 5-minute walk, propensity HIGH.</p>
+    </div>
+  </div>
+
+  <div class="slide4-row-label">3 &middot; The outcome</div>
+  <div class="slide4-compare-row">
+    <div class="slide4-cell fumble">
+      <span class="slide4-cell-icon">OUTCOME</span>
+      <h4>Advent books elsewhere.</h4>
+      <p>Laura needed an answer. She didn't get one. Lorne never knew Advent had reached out, never knew the table was lost, never knew the firm five minutes away just chose someone else.</p>
+      <span class="slide4-punch">~&pound;1,000 booking lost &middot; 1 of 30% unanswered</span>
+    </div>
+    <div class="slide4-cell save">
+      <span class="slide4-cell-icon">OUTCOME</span>
+      <h4>Katie reviews, edits, sends.</h4>
+      <p>30 seconds, not 30 minutes. Nothing goes out without her hand on it. Laura confirms within the hour. The repeat-booking flag captures Advent into Lorne's CRM for the next inquiry.</p>
+      <span class="slide4-punch">~&pound;1,000 booking saved &middot; reply 1 was the lever</span>
+    </div>
+  </div>
+
+  <p class="slide4-footer-row">
+    The full eight-step interactive walkthrough &middot; <a href="worked-example.html">how NightDraft handles a real Lorne booking inquiry, end to end &rarr;</a>
+  </p>
 </section>
 
 <!-- ============ SLIDE 5 - STRATEGIC OBJECTIVE ============ -->
