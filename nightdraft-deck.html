@@ -2840,8 +2840,28 @@
     </ul>
   </div>
 
+  <div class="callout wine">
+    <strong>Why these choices.</strong>
+    <p style="margin-top:0.4rem;">Restaurateurs are hospitality-led, not tech-led. The visual system has to land "we built this for you, not for our investors" in three seconds, before the operator has read a word. Every choice ladders back to a brand association from Slide 15.</p>
+    <table style="margin-top:0.6rem;">
+      <thead><tr><th>Choice</th><th>Why this, not the obvious alternative</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Cream + wine, not white + purple</strong></td><td>"Quiet expertise." White-and-purple is the SaaS-default tell. Cream + wine reads restaurant-magazine, not founder-investor-deck.</td></tr>
+        <tr><td><strong>DM Serif Display for headlines</strong></td><td>"The most important booking is the most complex one." A serif headline carries gravitas - the register a Bib Gourmand operator uses for their own menu. Sans-serif at the headline level reads tech-bro.</td></tr>
+        <tr><td><strong>Narrow editorial column (720px)</strong></td><td>"Quiet expertise." Full-bleed SaaS pages signal "we have something to sell." A narrow column signals "we have something to say."</td></tr>
+        <tr><td><strong>Real-restaurant photography, no stock</strong></td><td>The first thing an operator notices is fake hospitality imagery. One stock plate kills the trust signal that Slide 8 said is Filter 1.</td></tr>
+        <tr><td><strong>No AI iconography (no robots, sparkles, gradients)</strong></td><td>"Self-improving / compounding" without saying so. AI-shaped UI signals "this is the AI tool." NightDraft's positioning is the opposite: hospitality-first, AI second.</td></tr>
+      </tbody>
+    </table>
+  </div>
+
   <div class="callout">
-    <strong>Aesthetic reference.</strong> Stripe-editorial &times; Notion-restraint &times; food-magazine-typography. <em>NOT</em> Apple, <em>NOT</em> ASOS, <em>NOT</em> dark-UI, <em>NOT</em> SaaS-purple-gradient.
+    <strong>Aside - how this was designed, with no budget.</strong>
+    <p style="margin-top:0.4rem;">No designer was hired. Instead: a self-built fresh-context evaluator loop. Each iteration <strong>a brand-new AI agent is spawned</strong> with no access to the source code or prior iterations - it only sees the live page via screenshots and Playwright interaction. That isolation matters: it stops the generator (the model writing the code) from grading its own work. <strong>The grader has no memory of who built what.</strong></p>
+    <p style="margin-top:0.4rem;">The evaluator scores against four weighted criteria with <strong>anchored calibration</strong> verbatim in every prompt: 5/10 = generic SaaS, 7/10 = made for this product, 9/10 = could only be for this product. Anchoring is the lever - without it, AI evaluators inflate to 7+ on everything.</p>
+    <p style="margin-top:0.4rem;">Decision rule per iteration: <strong>refine</strong> (small fixes) or <strong>pivot</strong> (change the layout, metaphor, or density - not just hex values). Each iteration committed to git, so any can be rolled back if the next is worse.</p>
+    <p style="margin-top:0.4rem;">Iterated until all four scores cleared 8/10. The slide you're looking at is the surviving direction.</p>
+    <p style="margin-top:0.5rem;"><em>Visual identity assets across the deck (Waymo illustration, podcast ad, brand mockups) generated with Gemini and ElevenLabs using a curated brand-system bundle. GenAI used in service of the brand, not in place of it.</em></p>
   </div>
 </section>
 
