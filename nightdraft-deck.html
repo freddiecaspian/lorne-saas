@@ -1701,6 +1701,37 @@
     .slide-num { position: static; display: block; margin-bottom: 0.5rem; }
   }
 
+  /* Slide 12 - Perceptual Maps */
+  .slide12-legend {
+    margin-top: 12px;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 4px 18px;
+    font-size: 0.82rem;
+  }
+  .slide12-legend-row {
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    padding: 4px 0;
+  }
+  .slide12-legend-num {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.72rem;
+    font-weight: 700;
+    color: var(--wine);
+    background: var(--wine-dim);
+    padding: 2px 6px;
+    border-radius: 3px;
+    min-width: 22px;
+    text-align: center;
+    flex-shrink: 0;
+  }
+  .slide12-legend-row .name { font-weight: 700; color: var(--text); }
+  .slide12-legend-row .why { color: var(--text-secondary); }
+  .slide12-pin-num { font-family: 'DM Mono', monospace; font-size: 9px; font-weight: 700; fill: #ffffff; }
+  .slide12-pin-num-bg { fill: var(--wine); }
+
   /* Slide 10 - Competition & Warfare two-column landscape */
   .slide10-methodology {
     background: var(--bg-inset);
@@ -2829,139 +2860,196 @@
 <section class="slide" id="slide-12">
   <div class="slide-num">Slide 12 / 24</div>
   <div class="eyebrow">Slide 12 &middot; Perceptual Maps</div>
-  <h1>NightDraft sits alone in the strong quadrant on both maps.</h1>
-  <p class="lede">A perceptual map is a picture of how customers actually arrange competing options in their head. It exposes whitespace (empty quadrants), competitor vulnerability, and whether your differentiation is genuinely perceived. We built two maps because demand fit and competitive defence are different questions.</p>
+  <h1>Where customers see NightDraft, vs everyone else.</h1>
+  <p class="lede">Slide 8 set the five attributes that drive segment choice. This slide plots NightDraft and twelve competitors against pairs of those attributes - one map per segment's filter view.</p>
 
   <div class="callout">
-    <strong>How to read a perceptual map.</strong>
-    <ol style="margin: 0.5rem 0 0 1.2rem; padding: 0;">
-      <li><strong>Two axes</strong> = the two attributes that drive the customer's choice.</li>
-      <li><strong>Each dot</strong> = a player in the market (you and your competitors).</li>
-      <li><strong>Empty quadrants</strong> = whitespace; <strong>clusters</strong> = commoditisation; <strong>stars</strong> = "ideal points" - where each customer segment wishes the perfect product sat.</li>
-    </ol>
+    <strong>Methodology.</strong> Based on author's perception (no formal conjoint study). MCV S04.2 attribute-rating approach, factor-collapsed to two dimensions per map. Sources: Lorne 24-thread dataset, Katie discovery interview (15 April 2026), and the <a href="competitive-landscape.html" style="color:var(--wine); font-weight:700;">multi-AI competitive landscape research</a> (May 2026).
   </div>
 
-  <div class="subhead">Map 1 &middot; Demand fit &middot; what customers want</div>
+  <div class="subhead">Map 1 &middot; Katie's filter view</div>
+  <p style="font-size:0.92rem; color:var(--text-secondary); font-style:italic; margin: 0 0 14px;">Where does NightDraft sit on the two attributes Katie filters on - <em>does the draft sound like her, and does it land fast enough?</em></p>
 
   <div class="map-wrap">
-    <div class="map-title">AI/ML capability &times; Voice fit</div>
-    <svg class="map-svg" viewBox="0 0 360 340" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Perceptual map: AI/ML capability vs voice fit">
-      <!-- axes -->
-      <line x1="50" y1="290" x2="320" y2="290" stroke="#d4cdc2" stroke-width="1"/>
-      <line x1="50" y1="40"  x2="50"  y2="290" stroke="#d4cdc2" stroke-width="1"/>
-      <!-- grid mid -->
-      <line x1="185" y1="40" x2="185" y2="290" stroke="#e8e2d9" stroke-width="1" stroke-dasharray="3 3"/>
-      <line x1="50" y1="165" x2="320" y2="165" stroke="#e8e2d9" stroke-width="1" stroke-dasharray="3 3"/>
-      <!-- axis labels -->
-      <text x="185" y="318" text-anchor="middle" font-family="DM Sans" font-size="11" font-weight="700" fill="#7a7067" letter-spacing="1.4">AI/ML CAPABILITY &rarr;</text>
-      <text x="22" y="165" text-anchor="middle" font-family="DM Sans" font-size="11" font-weight="700" fill="#7a7067" letter-spacing="1.4" transform="rotate(-90 22 165)">VOICE FIT &rarr;</text>
-      <!-- helper to map: x = 50 + value*27, y = 290 - value*27 (1-10 scale) -->
-      <!-- (1) ChatGPT/Claude: 8,4 -> (266, 182) -->
-      <circle cx="266" cy="182" r="11" fill="#f0ece6" stroke="#a69e94" stroke-width="1.5"/>
-      <text x="266" y="186" text-anchor="middle" font-family="DM Sans" font-size="11" font-weight="700" fill="#7a7067">1</text>
-      <!-- (2) Word doc: 1,8 -> (77, 74) -->
-      <circle cx="77" cy="74" r="11" fill="#f0ece6" stroke="#a69e94" stroke-width="1.5"/>
-      <text x="77" y="78" text-anchor="middle" font-family="DM Sans" font-size="11" font-weight="700" fill="#7a7067">2</text>
-      <!-- (3) OpenTable: 3,1 -> (131, 263) -->
-      <circle cx="131" cy="263" r="11" fill="#f0ece6" stroke="#a69e94" stroke-width="1.5"/>
-      <text x="131" y="267" text-anchor="middle" font-family="DM Sans" font-size="11" font-weight="700" fill="#7a7067">3</text>
-      <!-- (4) VA agencies: 1,2 -> (77, 236) -->
-      <circle cx="77" cy="236" r="11" fill="#f0ece6" stroke="#a69e94" stroke-width="1.5"/>
-      <text x="77" y="240" text-anchor="middle" font-family="DM Sans" font-size="11" font-weight="700" fill="#7a7067">4</text>
-      <!-- (5) Aedan Rose (voice AI): 7,3 -> (239, 209) -->
-      <circle cx="239" cy="209" r="11" fill="#f0ece6" stroke="#a69e94" stroke-width="1.5"/>
-      <text x="239" y="213" text-anchor="middle" font-family="DM Sans" font-size="11" font-weight="700" fill="#7a7067">5</text>
-      <!-- NightDraft: 9,9 -> (293, 47) -->
-      <circle cx="293" cy="47" r="13" fill="#8b2252"/>
-      <text x="293" y="52" text-anchor="middle" font-family="DM Serif Display" font-size="14" font-weight="400" fill="#ffffff">N</text>
-      <text x="293" y="22" text-anchor="middle" font-family="DM Serif Display" font-size="13" fill="#8b2252" font-weight="400">NightDraft</text>
-      <!-- Segment A ideal: 7,9 -> (239, 47) star -->
-      <polygon points="239,38 241.5,46 250,46 243.5,51 246,59 239,54 232,59 234.5,51 228,46 236.5,46" fill="#b8860b"/>
-      <text x="239" y="78" text-anchor="middle" font-family="DM Sans" font-size="9.5" fill="#b8860b" font-weight="700">Segment A ideal (Katie)</text>
-      <!-- Segment B ideal: 9,9 -> (293, 47), offset to avoid overlap -->
-      <polygon points="318,90 320.5,98 329,98 322.5,103 325,111 318,106 311,111 313.5,103 307,98 315.5,98" fill="#3d6b99"/>
-      <text x="318" y="125" text-anchor="middle" font-family="DM Sans" font-size="9.5" fill="#3d6b99" font-weight="700">Segment B ideal (Chris)</text>
+    <svg class="map-svg" viewBox="0 0 720 460" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Perceptual Map 1: Sounds like the owner vs Speed of first reply">
+      <line x1="80" y1="40" x2="80" y2="400" stroke="#d4cdc2" stroke-width="1.5"/>
+      <line x1="80" y1="400" x2="660" y2="400" stroke="#d4cdc2" stroke-width="1.5"/>
+      <line x1="370" y1="40" x2="370" y2="400" stroke="#e8e2d9" stroke-width="1" stroke-dasharray="3 3"/>
+      <line x1="80" y1="220" x2="660" y2="220" stroke="#e8e2d9" stroke-width="1" stroke-dasharray="3 3"/>
+      <text x="370" y="430" text-anchor="middle" font-family="DM Sans" font-size="13" font-weight="700" fill="#2c2520" letter-spacing="0.1em">SPEED OF FIRST REPLY &rarr;</text>
+      <text x="40" y="220" text-anchor="middle" font-family="DM Sans" font-size="13" font-weight="700" fill="#2c2520" letter-spacing="0.1em" transform="rotate(-90 40 220)">SOUNDS LIKE THE OWNER &rarr;</text>
+      <text x="220" y="55" text-anchor="middle" font-family="DM Mono" font-size="9" fill="#a69e94" letter-spacing="0.14em">SLOW &middot; SOUNDS LIKE OWNER</text>
+      <text x="520" y="55" text-anchor="middle" font-family="DM Mono" font-size="9" fill="#a69e94" letter-spacing="0.14em">FAST &middot; SOUNDS LIKE OWNER</text>
+      <text x="220" y="395" text-anchor="middle" font-family="DM Mono" font-size="9" fill="#a69e94" letter-spacing="0.14em">SLOW &middot; GENERIC</text>
+      <text x="520" y="395" text-anchor="middle" font-family="DM Mono" font-size="9" fill="#a69e94" letter-spacing="0.14em">FAST &middot; GENERIC</text>
+
+      <circle cx="602" cy="76" r="22" fill="#8b2252"/>
+      <text x="602" y="83" text-anchor="middle" font-family="DM Serif Display" font-size="22" fill="#ffffff">N</text>
+      <text x="602" y="116" text-anchor="middle" font-family="DM Serif Display" font-size="13" fill="#8b2252">NightDraft</text>
+
+      <image href="logos/microsoft-word.svg" x="124" y="134" width="28" height="28"/>
+      <circle cx="154" cy="138" r="9" class="slide12-pin-num-bg"/>
+      <text x="154" y="142" text-anchor="middle" class="slide12-pin-num">2</text>
+
+      <circle cx="370" cy="256" r="14" fill="#e8e2d9" stroke="#a69e94" stroke-width="1.2"/>
+      <text x="370" y="260" text-anchor="middle" font-family="DM Mono" font-size="9" fill="#7a7067" font-weight="700">VA</text>
+      <circle cx="390" cy="242" r="9" class="slide12-pin-num-bg"/>
+      <text x="390" y="246" text-anchor="middle" class="slide12-pin-num">3</text>
+
+      <image href="logos/chatgpt.svg" x="528" y="240" width="28" height="28"/>
+      <circle cx="558" cy="244" r="9" class="slide12-pin-num-bg"/>
+      <text x="558" y="248" text-anchor="middle" class="slide12-pin-num">4</text>
+
+      <image href="logos/claude.svg" x="490" y="210" width="28" height="28"/>
+      <circle cx="520" cy="214" r="9" class="slide12-pin-num-bg"/>
+      <text x="520" y="218" text-anchor="middle" class="slide12-pin-num">5</text>
+
+      <image href="logos/superhuman.svg" x="588" y="170" width="28" height="28"/>
+      <circle cx="618" cy="174" r="9" class="slide12-pin-num-bg"/>
+      <text x="618" y="178" text-anchor="middle" class="slide12-pin-num">6</text>
+
+      <image href="logos/opentable.svg" x="588" y="314" width="28" height="28"/>
+      <circle cx="618" cy="318" r="9" class="slide12-pin-num-bg"/>
+      <text x="618" y="322" text-anchor="middle" class="slide12-pin-num">7</text>
+
+      <image href="logos/sevenrooms.svg" x="442" y="282" width="28" height="28"/>
+      <circle cx="472" cy="286" r="9" class="slide12-pin-num-bg"/>
+      <text x="472" y="290" text-anchor="middle" class="slide12-pin-num">8</text>
+
+      <image href="logos/resy.svg" x="540" y="346" width="28" height="20"/>
+      <circle cx="570" cy="350" r="9" class="slide12-pin-num-bg"/>
+      <text x="570" y="354" text-anchor="middle" class="slide12-pin-num">9</text>
+
+      <image href="logos/tock.svg" x="370" y="318" width="28" height="20"/>
+      <circle cx="400" cy="322" r="9" class="slide12-pin-num-bg"/>
+      <text x="400" y="326" text-anchor="middle" class="slide12-pin-num">10</text>
+
+      <image href="logos/aedan-rose-small.png" x="412" y="240" width="28" height="28"/>
+      <circle cx="442" cy="244" r="9" class="slide12-pin-num-bg"/>
+      <text x="442" y="248" text-anchor="middle" class="slide12-pin-num">11</text>
+
+      <image href="logos/hostie-ai.png" x="298" y="282" width="56" height="22" preserveAspectRatio="xMidYMid meet"/>
+      <circle cx="358" cy="286" r="9" class="slide12-pin-num-bg"/>
+      <text x="358" y="290" text-anchor="middle" class="slide12-pin-num">12</text>
+
+      <polygon points="486,60 491,73 504,73 494,82 498,95 486,87 474,95 478,82 468,73 481,73" fill="#b8860b"/>
+      <text x="486" y="118" text-anchor="middle" font-family="DM Sans" font-size="11" font-weight="700" fill="#b8860b">Segment A ideal (Katie)</text>
+
+      <polygon points="620,160 624,170 634,170 626,177 630,187 620,181 610,187 614,177 606,170 616,170" fill="#3d6b99"/>
+      <text x="620" y="200" text-anchor="middle" font-family="DM Sans" font-size="11" font-weight="700" fill="#3d6b99">Segment B ideal (Chris)</text>
     </svg>
   </div>
 
-  <div class="callout wine">
-    <strong>Why these axes.</strong> AI/ML capability is mandated by the assignment AND is the engine that makes the playbook codify (the brief requires AI/ML to be a key value-prop dimension). Voice fit is the operator's #1 make-or-break - one bad draft kills the trial (Katie's verbatim rejection of generic AI: <em>"not suitable"</em>). Together they answer the operator's central question: <em>"is this actually good at writing replies in my voice?"</em>
+  <div class="slide12-legend">
+    <div class="slide12-legend-row"><span class="slide12-legend-num">1</span><span><span class="name">NightDraft</span> &middot; <span class="why">top-right alone. Voice-tuned + fast.</span></span></div>
+    <div class="slide12-legend-row"><span class="slide12-legend-num">2</span><span><span class="name">Word doc templates</span> &middot; <span class="why">owner's voice but slow per reply, rots.</span></span></div>
+    <div class="slide12-legend-row"><span class="slide12-legend-num">3</span><span><span class="name">VA agency</span> &middot; <span class="why">stranger writing in your voice; mid speed.</span></span></div>
+    <div class="slide12-legend-row"><span class="slide12-legend-num">4</span><span><span class="name">ChatGPT</span> &middot; <span class="why">fast, generic AI voice, no playbook.</span></span></div>
+    <div class="slide12-legend-row"><span class="slide12-legend-num">5</span><span><span class="name">Claude</span> &middot; <span class="why">slightly better with prompting, still generic.</span></span></div>
+    <div class="slide12-legend-row"><span class="slide12-legend-num">6</span><span><span class="name">Superhuman</span> &middot; <span class="why">fast email AI; static rules, no learning.</span></span></div>
+    <div class="slide12-legend-row"><span class="slide12-legend-num">7</span><span><span class="name">OpenTable</span> &middot; <span class="why">fast standard confirmations; doesn't draft 8+.</span></span></div>
+    <div class="slide12-legend-row"><span class="slide12-legend-num">8</span><span><span class="name">SevenRooms</span> &middot; <span class="why">CRM-driven, no operator-voice drafting.</span></span></div>
+    <div class="slide12-legend-row"><span class="slide12-legend-num">9</span><span><span class="name">Resy</span> &middot; <span class="why">fast confirmations, generic voice.</span></span></div>
+    <div class="slide12-legend-row"><span class="slide12-legend-num">10</span><span><span class="name">Tock</span> &middot; <span class="why">event-focused, manual on big inquiries.</span></span></div>
+    <div class="slide12-legend-row"><span class="slide12-legend-num">11</span><span><span class="name">Aedan Rose</span> &middot; <span class="why">broad AI surface, generic restaurant voice.</span></span></div>
+    <div class="slide12-legend-row"><span class="slide12-legend-num">12</span><span><span class="name">Hostie AI</span> &middot; <span class="why">phone AI, generic, not in owner's voice.</span></span></div>
   </div>
 
-  <div class="callout">
-    <strong>Where each player sits and why.</strong>
-    <ul style="margin: 0.5rem 0 0 1.2rem; padding: 0;">
-      <li><strong>1. ChatGPT / Claude</strong> - frontier AI capability, generic voice. No playbook access, no Lorne dataset, no learning. Output reads "AI-shaped".</li>
-      <li><strong>2. Word doc templates</strong> - no AI, but the owner wrote them so voice is genuinely theirs. Until they rot.</li>
-      <li><strong>3. OpenTable / SevenRooms</strong> - some AI for matching, none for drafting. They don't reply to high-stakes inquiries at all (Slide 3).</li>
-      <li><strong>4. VA agencies</strong> - human, but a stranger writing in your voice. Brand-damage risk.</li>
-      <li><strong>5. Aedan Rose (voice AI)</strong> - broad AI surface area (chat, voice, booking widgets) but no email drafting, no Lorne playbook, no operator-tuned voice. The only adjacent AI player flagged Medium threat in the <a href="competitive-landscape.html" style="color:var(--wine); font-weight:700;">competitive landscape research</a>.</li>
-      <li><strong>NightDraft</strong> - LLM-native + Lorne 24-thread playbook + 9-template voice library + 5-register sign-off ladder + edit-logging compounding loop. <em>Top-right alone.</em></li>
-      <li><strong>★ Segment A ideal (Katie)</strong> - voice fit critical, AI/ML invisible to her ("she doesn't care it's AI as long as it works"). Sits inside NightDraft's quadrant.</li>
-      <li><strong>★ Segment B ideal (Chris)</strong> - marketing-trained brain wants both. Sits adjacent to NightDraft.</li>
-    </ul>
-  </div>
-
-  <div class="subhead">Map 2 &middot; Competitive defence &middot; why competitors can't replicate</div>
+  <div class="subhead">Map 2 &middot; Chris's compensatory view</div>
+  <p style="font-size:0.92rem; color:var(--text-secondary); font-style:italic; margin: 0 0 14px;">Where does NightDraft sit on the two attributes Chris weighs trade-offs against - <em>does it know who is writing in, and does it scale across his restaurants?</em></p>
 
   <div class="map-wrap">
-    <div class="map-title">Owner control &times; Self-improvement</div>
-    <svg class="map-svg" viewBox="0 0 360 340" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Perceptual map: Owner control vs Self-improvement">
-      <line x1="50" y1="290" x2="320" y2="290" stroke="#d4cdc2" stroke-width="1"/>
-      <line x1="50" y1="40"  x2="50"  y2="290" stroke="#d4cdc2" stroke-width="1"/>
-      <line x1="185" y1="40" x2="185" y2="290" stroke="#e8e2d9" stroke-width="1" stroke-dasharray="3 3"/>
-      <line x1="50" y1="165" x2="320" y2="165" stroke="#e8e2d9" stroke-width="1" stroke-dasharray="3 3"/>
-      <text x="185" y="318" text-anchor="middle" font-family="DM Sans" font-size="11" font-weight="700" fill="#7a7067" letter-spacing="1.4">OWNER CONTROL &rarr;</text>
-      <text x="22" y="165" text-anchor="middle" font-family="DM Sans" font-size="11" font-weight="700" fill="#7a7067" letter-spacing="1.4" transform="rotate(-90 22 165)">SELF-IMPROVEMENT &rarr;</text>
-      <!-- (1) ChatGPT/Claude: 9,1 -> (293, 263) -->
-      <circle cx="293" cy="263" r="11" fill="#f0ece6" stroke="#a69e94" stroke-width="1.5"/>
-      <text x="293" y="267" text-anchor="middle" font-family="DM Sans" font-size="11" font-weight="700" fill="#7a7067">1</text>
-      <!-- (2) Word doc: 10,1 -> (320,263) -->
-      <circle cx="318" cy="263" r="11" fill="#f0ece6" stroke="#a69e94" stroke-width="1.5"/>
-      <text x="318" y="267" text-anchor="middle" font-family="DM Sans" font-size="11" font-weight="700" fill="#7a7067">2</text>
-      <!-- (3) OpenTable: 5,3 -> (185, 209) -->
-      <circle cx="185" cy="209" r="11" fill="#f0ece6" stroke="#a69e94" stroke-width="1.5"/>
-      <text x="185" y="213" text-anchor="middle" font-family="DM Sans" font-size="11" font-weight="700" fill="#7a7067">3</text>
-      <!-- (4) VA agencies: 2,2 -> (104, 236) -->
-      <circle cx="104" cy="236" r="11" fill="#f0ece6" stroke="#a69e94" stroke-width="1.5"/>
-      <text x="104" y="240" text-anchor="middle" font-family="DM Sans" font-size="11" font-weight="700" fill="#7a7067">4</text>
-      <!-- (5) Reservations manager hire: 8,5 -> (266, 155) -->
-      <circle cx="266" cy="155" r="11" fill="#f0ece6" stroke="#a69e94" stroke-width="1.5"/>
-      <text x="266" y="159" text-anchor="middle" font-family="DM Sans" font-size="11" font-weight="700" fill="#7a7067">5</text>
-      <!-- NightDraft: 10,9 -> (320,47), pull slightly inward to keep label readable -->
-      <circle cx="312" cy="47" r="13" fill="#8b2252"/>
-      <text x="312" y="52" text-anchor="middle" font-family="DM Serif Display" font-size="14" font-weight="400" fill="#ffffff">N</text>
-      <text x="312" y="22" text-anchor="middle" font-family="DM Serif Display" font-size="13" fill="#8b2252" font-weight="400">NightDraft</text>
-      <!-- Segment A ideal: 10,6 -> (320,128) -->
-      <polygon points="312,120 314.5,128 323,128 316.5,133 319,141 312,136 305,141 307.5,133 301,128 309.5,128" fill="#b8860b"/>
-      <text x="312" y="158" text-anchor="middle" font-family="DM Sans" font-size="9.5" fill="#b8860b" font-weight="700">Segment A ideal</text>
-      <!-- Segment B ideal: 10,9 -> (320,47), offset -->
-      <polygon points="280,72 282.5,80 291,80 284.5,85 287,93 280,88 273,93 275.5,85 269,80 277.5,80" fill="#3d6b99"/>
-      <text x="280" y="108" text-anchor="middle" font-family="DM Sans" font-size="9.5" fill="#3d6b99" font-weight="700">Segment B ideal</text>
+    <svg class="map-svg" viewBox="0 0 720 460" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Perceptual Map 2: Knows who is writing in vs One view across multiple restaurants">
+      <line x1="80" y1="40" x2="80" y2="400" stroke="#d4cdc2" stroke-width="1.5"/>
+      <line x1="80" y1="400" x2="660" y2="400" stroke="#d4cdc2" stroke-width="1.5"/>
+      <line x1="370" y1="40" x2="370" y2="400" stroke="#e8e2d9" stroke-width="1" stroke-dasharray="3 3"/>
+      <line x1="80" y1="220" x2="660" y2="220" stroke="#e8e2d9" stroke-width="1" stroke-dasharray="3 3"/>
+      <text x="370" y="430" text-anchor="middle" font-family="DM Sans" font-size="13" font-weight="700" fill="#2c2520" letter-spacing="0.1em">ONE VIEW ACROSS MULTIPLE RESTAURANTS &rarr;</text>
+      <text x="40" y="220" text-anchor="middle" font-family="DM Sans" font-size="13" font-weight="700" fill="#2c2520" letter-spacing="0.1em" transform="rotate(-90 40 220)">KNOWS WHO IS WRITING IN &rarr;</text>
+      <text x="220" y="55" text-anchor="middle" font-family="DM Mono" font-size="9" fill="#a69e94" letter-spacing="0.14em">SINGLE VENUE &middot; KNOWS GUEST</text>
+      <text x="520" y="55" text-anchor="middle" font-family="DM Mono" font-size="9" fill="#a69e94" letter-spacing="0.14em">MULTI-VENUE &middot; KNOWS GUEST</text>
+      <text x="220" y="395" text-anchor="middle" font-family="DM Mono" font-size="9" fill="#a69e94" letter-spacing="0.14em">SINGLE VENUE &middot; NO GUEST INTEL</text>
+      <text x="520" y="395" text-anchor="middle" font-family="DM Mono" font-size="9" fill="#a69e94" letter-spacing="0.14em">MULTI-VENUE &middot; NO GUEST INTEL</text>
+
+      <circle cx="602" cy="76" r="22" fill="#8b2252"/>
+      <text x="602" y="83" text-anchor="middle" font-family="DM Serif Display" font-size="22" fill="#ffffff">N</text>
+      <text x="602" y="116" text-anchor="middle" font-family="DM Serif Display" font-size="13" fill="#8b2252">NightDraft</text>
+
+      <circle cx="138" cy="112" r="14" fill="#e8e2d9" stroke="#a69e94" stroke-width="1.2"/>
+      <text x="138" y="116" text-anchor="middle" font-family="DM Mono" font-size="9" fill="#7a7067" font-weight="700">RM</text>
+      <circle cx="158" cy="98" r="9" class="slide12-pin-num-bg"/>
+      <text x="158" y="102" text-anchor="middle" class="slide12-pin-num">2</text>
+
+      <circle cx="196" cy="184" r="14" fill="#e8e2d9" stroke="#a69e94" stroke-width="1.2"/>
+      <text x="196" y="188" text-anchor="middle" font-family="DM Mono" font-size="9" fill="#7a7067" font-weight="700">GM</text>
+      <circle cx="216" cy="170" r="9" class="slide12-pin-num-bg"/>
+      <text x="216" y="174" text-anchor="middle" class="slide12-pin-num">3</text>
+
+      <image href="logos/chatgpt.svg" x="124" y="278" width="28" height="28"/>
+      <circle cx="154" cy="282" r="9" class="slide12-pin-num-bg"/>
+      <text x="154" y="286" text-anchor="middle" class="slide12-pin-num">4</text>
+
+      <circle cx="196" cy="328" r="14" fill="#e8e2d9" stroke="#a69e94" stroke-width="1.2"/>
+      <text x="196" y="332" text-anchor="middle" font-family="DM Mono" font-size="9" fill="#7a7067" font-weight="700">VA</text>
+      <circle cx="216" cy="314" r="9" class="slide12-pin-num-bg"/>
+      <text x="216" y="318" text-anchor="middle" class="slide12-pin-num">5</text>
+
+      <image href="logos/opentable.svg" x="298" y="206" width="28" height="28"/>
+      <circle cx="328" cy="210" r="9" class="slide12-pin-num-bg"/>
+      <text x="328" y="214" text-anchor="middle" class="slide12-pin-num">6</text>
+
+      <image href="logos/resy.svg" x="356" y="248" width="28" height="20"/>
+      <circle cx="386" cy="252" r="9" class="slide12-pin-num-bg"/>
+      <text x="386" y="256" text-anchor="middle" class="slide12-pin-num">7</text>
+
+      <image href="logos/tock.svg" x="240" y="248" width="28" height="20"/>
+      <circle cx="270" cy="252" r="9" class="slide12-pin-num-bg"/>
+      <text x="270" y="256" text-anchor="middle" class="slide12-pin-num">8</text>
+
+      <image href="logos/sevenrooms.svg" x="472" y="170" width="28" height="28"/>
+      <circle cx="502" cy="174" r="9" class="slide12-pin-num-bg"/>
+      <text x="502" y="178" text-anchor="middle" class="slide12-pin-num">9</text>
+
+      <image href="logos/hubspot.svg" x="472" y="242" width="28" height="28"/>
+      <circle cx="502" cy="246" r="9" class="slide12-pin-num-bg"/>
+      <text x="502" y="250" text-anchor="middle" class="slide12-pin-num">10</text>
+
+      <image href="logos/quadranet.svg" x="356" y="282" width="28" height="20"/>
+      <circle cx="386" cy="286" r="9" class="slide12-pin-num-bg"/>
+      <text x="386" y="290" text-anchor="middle" class="slide12-pin-num">11</text>
+
+      <image href="logos/bookatable.png" x="240" y="314" width="28" height="28"/>
+      <circle cx="270" cy="318" r="9" class="slide12-pin-num-bg"/>
+      <text x="270" y="322" text-anchor="middle" class="slide12-pin-num">12</text>
+
+      <polygon points="138,238 142,250 154,250 145,258 149,270 138,263 127,270 131,258 122,250 134,250" fill="#b8860b"/>
+      <text x="138" y="294" text-anchor="middle" font-family="DM Sans" font-size="11" font-weight="700" fill="#b8860b">Segment A ideal (Katie)</text>
+
+      <polygon points="620,160 624,170 634,170 626,177 630,187 620,181 610,187 614,177 606,170 616,170" fill="#3d6b99"/>
+      <text x="620" y="200" text-anchor="middle" font-family="DM Sans" font-size="11" font-weight="700" fill="#3d6b99">Segment B ideal (Chris)</text>
     </svg>
   </div>
 
+  <div class="slide12-legend">
+    <div class="slide12-legend-row"><span class="slide12-legend-num">1</span><span><span class="name">NightDraft</span> &middot; <span class="why">top-right alone. Active guest research + multi-venue rollup.</span></span></div>
+    <div class="slide12-legend-row"><span class="slide12-legend-num">2</span><span><span class="name">Reservations manager hire</span> &middot; <span class="why">human knows the regulars; one venue only. GBP 35-45k/yr.</span></span></div>
+    <div class="slide12-legend-row"><span class="slide12-legend-num">3</span><span><span class="name">GM time on bookings</span> &middot; <span class="why">memory-based, single venue; not their job.</span></span></div>
+    <div class="slide12-legend-row"><span class="slide12-legend-num">4</span><span><span class="name">ChatGPT</span> &middot; <span class="why">no memory, no rollup. Generic each time.</span></span></div>
+    <div class="slide12-legend-row"><span class="slide12-legend-num">5</span><span><span class="name">VA agency</span> &middot; <span class="why">cheap, no real guest knowledge, no rollup.</span></span></div>
+    <div class="slide12-legend-row"><span class="slide12-legend-num">6</span><span><span class="name">OpenTable</span> &middot; <span class="why">guest profiles within its system; partial multi-venue.</span></span></div>
+    <div class="slide12-legend-row"><span class="slide12-legend-num">7</span><span><span class="name">Resy</span> &middot; <span class="why">similar to OpenTable; member data on Amex side.</span></span></div>
+    <div class="slide12-legend-row"><span class="slide12-legend-num">8</span><span><span class="name">Tock</span> &middot; <span class="why">event/prepayment focused; weaker on guest CRM.</span></span></div>
+    <div class="slide12-legend-row"><span class="slide12-legend-num">9</span><span><span class="name">SevenRooms</span> &middot; <span class="why">premium CRM, designed for groups; doesn't actively research inbound.</span></span></div>
+    <div class="slide12-legend-row"><span class="slide12-legend-num">10</span><span><span class="name">HubSpot</span> &middot; <span class="why">multi-venue CRM but not hospitality-specific.</span></span></div>
+    <div class="slide12-legend-row"><span class="slide12-legend-num">11</span><span><span class="name">Quadranet (UK)</span> &middot; <span class="why">UK booking system, partial multi-venue, low guest intel.</span></span></div>
+    <div class="slide12-legend-row"><span class="slide12-legend-num">12</span><span><span class="name">Bookatable / TheFork</span> &middot; <span class="why">basic booking flow, low on both axes.</span></span></div>
+  </div>
+
   <div class="callout wine">
-    <strong>Why these axes.</strong> Owner control is Filter 2 from Slide 8 (the hard rejection of autosend - Katie verbatim: <em>"I wouldn't want it just kind of sent off"</em>). Self-improvement is the moat - the data flywheel that compounds privately per restaurant, the same Y Combinator / Gary Tan thesis on defensible AI products. Together they answer: <em>"why won't ChatGPT or OpenTable just copy this?"</em>
+    <strong>Strategic claim.</strong> NightDraft sits alone in the top-right of both maps. Map 1 shows it for Katie's filter view (sounds like the owner + lands fast). Map 2 shows it for Chris's compensatory view (knows who's writing + scales across restaurants). The whitespace claim is segment-specific, not generic.
   </div>
 
-  <div class="callout">
-    <strong>Where each player sits and why.</strong>
-    <ul style="margin: 0.5rem 0 0 1.2rem; padding: 0;">
-      <li><strong>1. ChatGPT / Claude</strong> - you copy-paste, you decide; max control, but no memory between conversations. No learning loop.</li>
-      <li><strong>2. Word doc templates</strong> - you wrote it, you control it; can't update itself. It rots.</li>
-      <li><strong>3. OpenTable / SevenRooms</strong> - rule-based, you set up rules but updating them is manual.</li>
-      <li><strong>4. VA agencies</strong> - out of your hands; high turnover destroys any institutional learning.</li>
-      <li><strong>5. Reservations manager hire</strong> - your hire, learns over time, but only one head; leaves and the knowledge leaves with them. <em>Plus: GBP 35-45k/yr puts it economically out of reach for indies.</em></li>
-      <li><strong>NightDraft</strong> - no autosend (max control). Edit-logging + Jack &amp; Jill conversational context capture (compounding learning). <em>Top-right alone again.</em></li>
-    </ul>
-  </div>
-
-  <div class="callout wine">
-    <strong>Strategic claim.</strong> NightDraft sits alone in the top-right of both maps because <strong>(1)</strong> no one combined frontier AI with restaurant-specific vertical depth at indie price points until 2025, and <strong>(2)</strong> the learning loop compounds privately per restaurant - every edit makes the next draft better, every restaurant's playbook becomes irreplicable. Demand fit + competitive defence, both confirmed.
-  </div>
-
-  <p class="muted" style="font-size: 0.7rem; font-style: italic; margin-top: 1rem;">Based on author's own perception. Maps assume a 1-10 scale; positions are justified in the per-map "where each player sits" callouts above. Methodology follows MCV S04 attribute-rating approach (factor-analysed to two dimensions per map). Sources: Lorne 24-thread dataset (April 2026), Katie discovery interview (15-04-26), MCV S04.2 Perceptual Map Explained.</p>
+  <p class="muted" style="font-size: 0.78rem; font-style: italic; margin-top: 1rem;">Logos used as visual pins are property of their respective owners. Positions are author's perception, not surveyed data. Full competitive landscape (13 tools, threat scoring, source citations) at <a href="competitive-landscape.html" style="color:var(--wine); font-weight:700;">competitive-landscape.html</a>.</p>
 </section>
 
 <!-- ============ SLIDE 11 - TARGETING & POSITIONING ============ -->
