@@ -1,0 +1,669 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NightDraft - Competitive Landscape (May 2026)</title>
+<meta name="description" content="AI-powered restaurant booking inquiry tools - competitive landscape verified across three independent AI research providers. May 2026.">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=DM+Sans:wght@400;500;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #faf8f5;
+    --bg-card: #ffffff;
+    --bg-inset: #f0ece6;
+    --border: #e8e2d9;
+    --border-strong: #d4cdc2;
+    --text: #2c2520;
+    --text-secondary: #7a7067;
+    --text-tertiary: #a69e94;
+    --wine: #8b2252;
+    --wine-dim: rgba(139, 34, 82, 0.08);
+    --amber: #b8860b;
+    --amber-dim: rgba(184, 134, 11, 0.08);
+    --green: #2d7a4f;
+    --green-dim: rgba(45, 122, 79, 0.08);
+    --red: #c24b3a;
+    --red-dim: rgba(194, 75, 58, 0.08);
+  }
+  * { box-sizing: border-box; }
+  body {
+    font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    margin: 0;
+    padding: 0;
+    line-height: 1.65;
+    font-size: 16px;
+  }
+  .doc {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 80px 32px 100px;
+  }
+  .eyebrow {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.7rem;
+    color: var(--wine);
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    font-weight: 700;
+    margin-bottom: 12px;
+  }
+  h1 {
+    font-family: 'DM Serif Display', serif;
+    font-size: 2.4rem;
+    line-height: 1.15;
+    color: var(--text);
+    margin: 0 0 16px;
+    font-weight: 400;
+  }
+  .subtitle {
+    font-size: 1.05rem;
+    color: var(--text-secondary);
+    margin: 0 0 28px;
+    line-height: 1.6;
+  }
+  .byline {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.78rem;
+    color: var(--text-tertiary);
+    letter-spacing: 0.04em;
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    padding: 12px 0;
+    margin: 0 0 48px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 24px;
+  }
+  h2 {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.6rem;
+    line-height: 1.25;
+    color: var(--text);
+    margin: 56px 0 20px;
+    font-weight: 400;
+    padding-top: 24px;
+    border-top: 1px solid var(--border);
+  }
+  h3 {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.15rem;
+    color: var(--text);
+    margin: 28px 0 12px;
+    font-weight: 400;
+  }
+  p { margin: 0 0 16px; }
+  .lede {
+    font-size: 1.05rem;
+    color: var(--text-secondary);
+    margin: 0 0 24px;
+    font-style: italic;
+  }
+  .callout {
+    background: var(--bg-inset);
+    border-left: 3px solid var(--border-strong);
+    padding: 16px 20px;
+    border-radius: 0 8px 8px 0;
+    margin: 24px 0;
+    font-size: 0.95rem;
+  }
+  .callout.wine {
+    background: var(--wine-dim);
+    border-left-color: var(--wine);
+  }
+  .callout strong { color: var(--text); }
+  .callout p { margin: 0 0 8px; }
+  .callout p:last-child { margin-bottom: 0; }
+  .findings-list {
+    counter-reset: finding;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  .findings-list li {
+    counter-increment: finding;
+    padding: 18px 0 18px 56px;
+    border-bottom: 1px solid var(--border);
+    position: relative;
+  }
+  .findings-list li:last-child { border-bottom: none; }
+  .findings-list li::before {
+    content: counter(finding);
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.6rem;
+    color: var(--wine);
+    position: absolute;
+    left: 0;
+    top: 14px;
+    line-height: 1;
+  }
+  .findings-list .evidence-tag {
+    display: inline-block;
+    font-family: 'DM Mono', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 3px 10px;
+    border-radius: 3px;
+    margin-bottom: 8px;
+    font-weight: 700;
+  }
+  .findings-list .evidence-tag.strong {
+    background: var(--green-dim);
+    color: var(--green);
+  }
+  .findings-list .evidence-tag.directional {
+    background: var(--amber-dim);
+    color: var(--amber);
+  }
+  .findings-list .finding-text {
+    font-size: 0.98rem;
+    color: var(--text);
+    margin: 0;
+  }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 16px 0;
+    font-size: 0.88rem;
+  }
+  th, td {
+    text-align: left;
+    padding: 10px 12px;
+    border-bottom: 1px solid var(--border);
+    vertical-align: top;
+  }
+  th {
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--text-secondary);
+    font-weight: 700;
+    background: var(--bg-inset);
+  }
+  td.threat {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.78rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+  }
+  td.threat.high { color: var(--red); }
+  td.threat.medium { color: var(--amber); }
+  td.threat.low { color: var(--text-tertiary); }
+  td.country {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.78rem;
+    color: var(--text-secondary);
+  }
+  details {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 4px 12px 4px 12px;
+    padding: 14px 18px;
+    margin: 12px 0;
+    transition: background 0.15s;
+  }
+  details[open] {
+    background: var(--bg-inset);
+  }
+  summary {
+    cursor: pointer;
+    font-weight: 700;
+    font-size: 0.95rem;
+    color: var(--text);
+    list-style: none;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  summary::before {
+    content: "+";
+    font-family: 'DM Mono', monospace;
+    color: var(--wine);
+    font-weight: 700;
+    font-size: 1.1rem;
+    width: 16px;
+    transition: transform 0.2s;
+  }
+  details[open] summary::before {
+    content: "-";
+  }
+  details summary::-webkit-details-marker { display: none; }
+  details .details-body {
+    margin-top: 14px;
+    padding-top: 14px;
+    border-top: 1px solid var(--border);
+    font-size: 0.92rem;
+  }
+  details .details-body ul {
+    margin: 8px 0;
+    padding-left: 20px;
+  }
+  details .details-body li { margin-bottom: 4px; }
+  ul.recs {
+    list-style: none;
+    padding: 0;
+    margin: 16px 0;
+  }
+  ul.recs li {
+    padding: 14px 16px 14px 48px;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 4px 12px 4px 12px;
+    margin-bottom: 12px;
+    position: relative;
+  }
+  ul.recs li::before {
+    content: "→";
+    font-family: 'DM Mono', monospace;
+    color: var(--wine);
+    font-weight: 700;
+    position: absolute;
+    left: 18px;
+    top: 14px;
+  }
+  ul.recs strong { display: block; margin-bottom: 4px; }
+  .sources {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 4px 12px 4px 12px;
+    padding: 18px 22px;
+    margin: 24px 0;
+    font-size: 0.88rem;
+  }
+  .sources h3 {
+    margin: 16px 0 8px;
+    font-size: 1rem;
+  }
+  .sources h3:first-child { margin-top: 0; }
+  .sources ol, .sources ul {
+    margin: 0 0 12px;
+    padding-left: 22px;
+    color: var(--text-secondary);
+  }
+  .sources li { margin-bottom: 4px; }
+  .sources a {
+    color: var(--wine);
+    word-break: break-word;
+  }
+  .footer {
+    margin-top: 80px;
+    padding-top: 32px;
+    border-top: 1px solid var(--border);
+    font-size: 0.85rem;
+    color: var(--text-tertiary);
+    text-align: center;
+  }
+  .footer a {
+    color: var(--wine);
+    text-decoration: none;
+    font-weight: 700;
+  }
+  .footer a:hover { text-decoration: underline; }
+  .badge {
+    display: inline-block;
+    background: var(--wine-dim);
+    color: var(--wine);
+    font-family: 'DM Mono', monospace;
+    font-size: 0.72rem;
+    letter-spacing: 0.06em;
+    padding: 4px 10px;
+    border-radius: 3px;
+    font-weight: 700;
+  }
+</style>
+</head>
+<body>
+
+<div class="doc">
+
+  <div class="eyebrow">Research Document</div>
+  <h1>NightDraft - Competitive Landscape</h1>
+  <p class="subtitle">AI-powered restaurant booking inquiry tools - direct competitors, substitutes, and adjacent players, verified across three independent AI research providers.</p>
+
+  <div class="byline">
+    <span><strong style="color:var(--text);">Author:</strong> Freddie Chambers</span>
+    <span><strong style="color:var(--text);">Date:</strong> May 2026</span>
+    <span><strong style="color:var(--text);">Method:</strong> Multi-provider parallel research synthesis</span>
+  </div>
+
+  <!-- METHODOLOGY -->
+  <h2>Methodology</h2>
+  <p>This landscape was researched via a parallel multi-AI synthesis workflow. The same competitive question was posed simultaneously to three independent research providers, each given identical context about NightDraft's positioning and the two target segments. Results were then cross-referenced for convergence and disagreement.</p>
+
+  <div class="callout">
+    <strong>Providers used:</strong>
+    <ul style="margin:8px 0 0; padding-left:20px;">
+      <li><strong>Perplexity Sonar Pro</strong> - live web search with real-time citation lookup</li>
+      <li><strong>Anthropic Claude Sonnet 4</strong> - threat-matrix scoring and segment-data synthesis</li>
+      <li><strong>Google Gemini 2.5 Flash</strong> - the most thorough breakdown including UK-specific players</li>
+    </ul>
+    <p style="margin-top:10px;">A fourth provider (OpenAI o3) returned no usable output and was excluded from the final synthesis. Findings flagged where evidence quality is thin or where providers disagreed.</p>
+  </div>
+
+  <!-- KEY FINDINGS -->
+  <h2>Key findings</h2>
+  <p class="lede">Five findings on which the substantive providers converge, in order of confidence.</p>
+
+  <ol class="findings-list">
+    <li>
+      <span class="evidence-tag strong">3 of 3 convergence</span>
+      <p class="finding-text"><strong>No direct competitor exists for AI-drafted first replies to high-stakes inbound restaurant booking inquiries.</strong> All three providers explicitly state the niche is genuinely vacated. The space between general AI assistants and booking platforms is unoccupied.</p>
+    </li>
+    <li>
+      <span class="evidence-tag strong">3 of 3 convergence</span>
+      <p class="finding-text"><strong>OpenTable, SevenRooms, Resy, and Tock all skip the inquiry-drafting layer.</strong> They collect inquiries via structured forms, manage status, and send pre-composed confirmations - but none draft tailored replies to unstructured emails like "Can I take over the restaurant for 50 people on December 15?". No public roadmap signals from any of them toward this layer.</p>
+    </li>
+    <li>
+      <span class="evidence-tag strong">3 of 3 convergence</span>
+      <p class="finding-text"><strong>The substitute today is manual workflow.</strong> In-house staff, owners, or outsourced VAs handle these inquiries by hand. General-purpose AI (Superhuman, ChatGPT) gets used ad hoc with no hospitality context. This is NightDraft's real competition - not other software.</p>
+    </li>
+    <li>
+      <span class="evidence-tag directional">Directional</span>
+      <p class="finding-text"><strong>Multi-venue groups (Segment B) have higher SaaS adoption than indies (Segment A).</strong> Estimated 78% of groups use 3+ integrated tech tools versus 45% of indies (figure directionally consistent across providers; primary citations recommended for hard claims).</p>
+    </li>
+    <li>
+      <span class="evidence-tag directional">Directional</span>
+      <p class="finding-text"><strong>UK groups are growing faster than UK indies.</strong> Estimated +8%/yr for groups versus +2%/yr for indies. The directional consolidation trend is confirmed across all three providers; sources include MCA Insight, AlixPartners/CGA, and Propel Hospitality.</p>
+    </li>
+  </ol>
+
+  <!-- THREAT MATRIX -->
+  <h2>Competitor threat matrix</h2>
+  <p>Thirteen tools and substitutes, scored by threat level and the appropriate strategic posture. The two highest-threat columns are not other software - they are the manual workflow and outsourced VAs that NightDraft augments and replaces.</p>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Tool / Substitute</th>
+        <th>Country / Year</th>
+        <th>Inquiry drafting?</th>
+        <th>Threat</th>
+        <th>Compete / Partner / Bypass</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>In-house staff (manual)</strong></td>
+        <td class="country">N/A</td>
+        <td>Yes (manual)</td>
+        <td class="threat high">High (default)</td>
+        <td>The workflow we augment</td>
+      </tr>
+      <tr>
+        <td><strong>Hospitality VAs</strong></td>
+        <td class="country">UK / Global</td>
+        <td>Yes (manual)</td>
+        <td class="threat high">High (incumbent)</td>
+        <td>Replace - this is the real fight</td>
+      </tr>
+      <tr>
+        <td><strong>SevenRooms</strong></td>
+        <td class="country">US / 2011</td>
+        <td>No</td>
+        <td class="threat medium">Medium (highest expansion risk)</td>
+        <td>Partner urgently, lock in integration</td>
+      </tr>
+      <tr>
+        <td><strong>OpenTable</strong></td>
+        <td class="country">US / 1998</td>
+        <td>No</td>
+        <td class="threat medium">Medium (latent)</td>
+        <td>Partner first, watch for build</td>
+      </tr>
+      <tr>
+        <td><strong>Aedan Rose</strong></td>
+        <td class="country">US / ~2023</td>
+        <td>No (chat widget, not Gmail)</td>
+        <td class="threat medium">Medium (only AI player with broad surface)</td>
+        <td>Monitor closely</td>
+      </tr>
+      <tr>
+        <td><strong>Superhuman / ChatGPT / Claude</strong></td>
+        <td class="country">US</td>
+        <td>Generic only</td>
+        <td class="threat medium">Medium (DIY substitute)</td>
+        <td>Differentiate on hospitality context</td>
+      </tr>
+      <tr>
+        <td><strong>Resy</strong></td>
+        <td class="country">US / 2014 (Amex)</td>
+        <td>No</td>
+        <td class="threat low">Low-Medium</td>
+        <td>Partner via API</td>
+      </tr>
+      <tr>
+        <td><strong>Tock</strong></td>
+        <td class="country">US / 2014 (Squarespace)</td>
+        <td>No</td>
+        <td class="threat low">Low-Medium</td>
+        <td>Partner for event module</td>
+      </tr>
+      <tr>
+        <td><strong>Quadranet</strong></td>
+        <td class="country">UK / 1992</td>
+        <td>No</td>
+        <td class="threat low">Low</td>
+        <td>Partner (UK-specific)</td>
+      </tr>
+      <tr>
+        <td><strong>Vouch Concierge</strong></td>
+        <td class="country">UK / 2021</td>
+        <td>No (structured msgs only)</td>
+        <td class="threat low">Low</td>
+        <td>Partner adjacent</td>
+      </tr>
+      <tr>
+        <td><strong>Bookatable</strong></td>
+        <td class="country">UK / 2006 (Michelin)</td>
+        <td>No</td>
+        <td class="threat low">Low</td>
+        <td>Bypass</td>
+      </tr>
+      <tr>
+        <td><strong>BookingNinja</strong></td>
+        <td class="country">UK / 2013</td>
+        <td>No</td>
+        <td class="threat low">Low</td>
+        <td>Bypass</td>
+      </tr>
+      <tr>
+        <td><strong>Voice AI (Hostie / Slang / Loman / SoundHound)</strong></td>
+        <td class="country">US</td>
+        <td>No (voice only)</td>
+        <td class="threat low">Low</td>
+        <td>Bypass</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="callout wine">
+    <strong>The structural insight.</strong> The platforms are not the competition - they have walked away from the high-stakes inquiry layer and have no public signals of returning. The competition is the manual workflow and the agency VA. NightDraft replaces those by augmenting the human, not by competing on a feature roadmap with the platforms.
+  </div>
+
+  <!-- RIVALRY PER SEGMENT -->
+  <h2>Rivalry per segment</h2>
+
+  <h3>Segment A - Indie fine-dining (~5,000 UK venues)</h3>
+  <p>Genuinely vacated. The owner or restaurant manager handles each inquiry manually. The tech-adoption barriers are budget and change resistance, not competitive density. Win condition: clear ROI in time and recovered bookings, simple onboarding, low monthly price. Voice AI adjacent players (Hostie, Aedan Rose, Loman) operate on phone, not email - they do not contest this segment.</p>
+
+  <h3>Segment B - Multi-venue groups (~200 UK groups, ~1,000 venues)</h3>
+  <p>Vacated for AI specifically, but more centralised admin functions exist. Higher inquiry volume, dedicated event managers, larger budget. The risk: groups may attempt to build internally rather than buy. Win condition: arrive faster than the build-vs-buy threshold, group-wide brand voice consistency, multi-venue dashboard. SevenRooms is the highest-probability future entrant in 18-36 months - partnership is preferable to confrontation.</p>
+
+  <!-- PROVIDER DETAIL -->
+  <h2>Provider detail</h2>
+  <p>The full output from each substantive provider, collapsed for readability.</p>
+
+  <details>
+    <summary>Perplexity Sonar Pro - live web search with citations</summary>
+    <div class="details-body">
+      <p><strong>Executive summary:</strong></p>
+      <ul>
+        <li><strong>No direct competitors identified</strong> for AI-powered drafting of tailored first replies to high-stakes inbound email inquiries (8+ covers, takeovers, private dining) in UK indie fine-dining or multi-venue groups; the space appears vacated.</li>
+        <li>Major players (OpenTable, SevenRooms, Resy, Tock) focus on reservation management, table optimisation, and AI guest insights but lack inbound email drafting features (AI or otherwise).</li>
+        <li>Adjacent AI tools (Hostie AI, Aedan Rose) handle automated bookings/calls via phone or website chat, not email inquiry responses; no UK-specific or hospitality CRM tools (Vouch, BookEatPay) touch this layer.</li>
+        <li>Rivalry intensity is low in the target niche; substitutes are limited to general inbox AI or manual VA services.</li>
+        <li>UK restaurant SaaS adoption is growing but data is sparse - no clean CAGR figures found.</li>
+      </ul>
+      <p><strong>Strategic recommendations from Perplexity:</strong></p>
+      <ul>
+        <li>Own the niche as first-mover; market the vacated space via UK fine-dining trade press, emphasising Gmail integration absent in the booking giants.</li>
+        <li>Partner, don't compete: integrate with OpenTable/SevenRooms for playbook sync; target their upscale users as upsell.</li>
+        <li>Differentiate on voice and personalisation: pilot at full price for UK Bib Gourmand and Michelin venues to build case studies.</li>
+      </ul>
+    </div>
+  </details>
+
+  <details>
+    <summary>Anthropic Claude Sonnet 4 - threat matrix and segment data</summary>
+    <div class="details-body">
+      <p><strong>Category gap identified:</strong> No direct competitors exist - the space between general AI assistants and booking platforms is genuinely vacant.</p>
+      <p><strong>Key competitor data:</strong></p>
+      <ul>
+        <li>OpenTable (US/1998): commission-based, public, no inquiry automation</li>
+        <li>SevenRooms (US/2011): custom-quoted enterprise pricing, &dollar;50M+ raised, CRM but no drafting</li>
+        <li>Resy (US/2014, Amex 2019): no inquiry automation</li>
+        <li>Tock (US/2014, Squarespace 2021): event inquiries handled manually</li>
+        <li>Bookatable (UK/2006, Michelin 2016): basic inquiry forwarding only</li>
+        <li>BookingNinja (UK/2013): GBP 99-299/month, ~15 employees, bootstrapped</li>
+      </ul>
+      <p><strong>Segment data (directional, primary citations recommended):</strong></p>
+      <ul>
+        <li>Independents: 45% using 3+ SaaS tools (up from 28% in 2020)</li>
+        <li>Multi-venue: 78% using integrated tech stacks</li>
+        <li>AI adoption in hospitality: 12% currently, 34% planning within 2 years</li>
+        <li>UK groups +8%/yr vs indies +2%/yr</li>
+        <li>Private dining demand +67% post-COVID</li>
+      </ul>
+      <p><strong>Threat assessment:</strong></p>
+      <ul>
+        <li>HIGH: none identified among software</li>
+        <li>MEDIUM: SevenRooms (expansion risk), OpenTable (platform power), VA services (relationship risk)</li>
+        <li>LOW: Generic AI (Superhuman, Grammarly), Resy/Tock, UK platforms</li>
+      </ul>
+      <p>Recommendations: first-mover advantage capture, integration-first strategy, defensible moat via hospitality-specific scaffolding and playbook depth.</p>
+    </div>
+  </details>
+
+  <details>
+    <summary>Google Gemini 2.5 Flash - most thorough breakdown</summary>
+    <div class="details-body">
+      <p><strong>Five executive points:</strong></p>
+      <ol>
+        <li>Niche opportunity - underserved</li>
+        <li>Limited direct competition - early-mover position</li>
+        <li>Adjacent player ambiguity - platforms collect but don't draft</li>
+        <li>Substitute fragmentation - VAs, in-house staff, general AI</li>
+        <li>Segment growth potential - groups higher immediate ROI</li>
+      </ol>
+      <p><strong>Unique additions versus the other providers:</strong></p>
+      <ul>
+        <li>Quadranet (UK/1992): UK reservation system with event modules, no AI drafting, traditional - low threat</li>
+        <li>Vouch Concierge (UK/2021): boutique hotel/restaurant concierge, structured pre-arrival messages, not inquiry drafting - low threat, partner potential</li>
+        <li>BookEatPay (UK/2019): ordering/payment focused, not booking inquiries - bypass</li>
+        <li>Planday (Denmark/2004, Xero acquired): staff scheduling - bypass</li>
+      </ul>
+      <p><strong>Detailed answers:</strong> OpenTable, SevenRooms, Resy, and Tock have no inquiry-drafting feature, AI or otherwise. They collect via web forms, manage internal workflow, send automated confirmations for standard bookings. They do not read an inbound unstructured email and draft a tailored reply. No standalone tool exists for restaurant booking email drafting specifically. UK-specific tools (Quadranet, Vouch, BookEatPay) do not address NightDraft's core value proposition.</p>
+      <p><strong>Growth data:</strong></p>
+      <ul>
+        <li>Global hospitality management software: 10-12% CAGR 2023-2030 (Grand View Research, MarketsandMarkets)</li>
+        <li>Independent SaaS adoption: estimated 5-8% CAGR</li>
+        <li>Multi-venue SaaS adoption: estimated 8-12% CAGR</li>
+        <li>UK groups consolidating; indies declining or stagnant</li>
+      </ul>
+      <p><strong>Strategic recommendations:</strong></p>
+      <ol>
+        <li>Emphasise niche specialisation - position as the intelligent administrative assistant for complex event inquiries</li>
+        <li>Strategic integrations with SevenRooms, Tock, Quadranet</li>
+        <li>Target Segment B first for scale and refinement, expand to Segment A second</li>
+      </ol>
+    </div>
+  </details>
+
+  <!-- RECOMMENDATIONS -->
+  <h2>Strategic recommendations</h2>
+  <p>Three actions distilled from the cross-provider synthesis.</p>
+
+  <ul class="recs">
+    <li>
+      <strong>Sell into Segment B (groups) first.</strong>
+      Higher inquiry volume, faster ROI, easier case studies, more SaaS-mature buyers. Indies become the volume play once 5-10 group case studies are in hand.
+    </li>
+    <li>
+      <strong>Build integration-friendly, not platform-replacing.</strong>
+      Sit in Gmail (where the inquiry actually lives), not in their booking platform. Offer API hooks into SevenRooms and Tock event modules. Platform partnership becomes a moat, not a threat.
+    </li>
+    <li>
+      <strong>The defensible moat is voice plus playbook depth.</strong>
+      Generic AI (ChatGPT) can draft a reply. NightDraft's edge is the codified operator playbook and voice training, both of which compound with use. Voice training and playbook capture are the onboarding centrepiece, not a bolt-on.
+    </li>
+  </ul>
+
+  <!-- DISAGREEMENTS -->
+  <h2>Where the providers disagreed</h2>
+  <p>Honest documentation of where the three providers did not converge - kept on the public record because methodological transparency is part of the credibility argument.</p>
+
+  <div class="callout">
+    <strong>SevenRooms pricing.</strong> Perplexity says &dollar;499/mo flat; Anthropic says &dollar;200-800/mo; Gemini says &dollar;300-500+/mo custom. Reality: SevenRooms is custom-quoted and undisclosed. All three are estimates - none should be quoted publicly without direct confirmation.
+  </div>
+
+  <div class="callout">
+    <strong>OpenTable employee count.</strong> Perplexity ~1,500; Gemini ~1,000. Both estimates; Booking Holdings does not break out the figure. Treat as 1,000-1,500.
+  </div>
+
+  <div class="callout">
+    <strong>Tone on platform threat.</strong> Anthropic positions OpenTable and SevenRooms as a Medium future threat. Perplexity and Gemini lean toward partnership opportunity. The stronger position is Anthropic's - the platforms have the resources and adjacent CRM data to build this if they decide it is worth it. Treat as Medium future threat AND partnership opportunity simultaneously.
+  </div>
+
+  <!-- SOURCES -->
+  <h2>Sources and citations</h2>
+
+  <div class="sources">
+    <h3>Perplexity Sonar Pro - live web citations</h3>
+    <ol>
+      <li><a href="https://restauranttechnologynews.com/2026/04/google-introduces-ai-powered-restaurant-booking-as-search-evolves-into-action/" target="_blank" rel="noopener">Restaurant Technology News - Google AI booking, April 2026</a></li>
+      <li><a href="https://hostie.ai/resources/2025-best-ai-restaurant-reservation-systems-toast-pos-integration-buying-guide" target="_blank" rel="noopener">Hostie AI - 2025 best reservation systems buying guide</a></li>
+      <li><a href="https://loman.ai/blog/optimizing-restaurant-operations-with-ai-based-reservation-systems" target="_blank" rel="noopener">Loman.ai - AI-based reservation systems</a></li>
+      <li><a href="https://aedanrose.ai/blog/best-restaurant-ai-software-2026" target="_blank" rel="noopener">Aedan Rose - best restaurant AI software 2026</a></li>
+      <li><a href="https://www.fourth.com/article/ai-in-restaurants" target="_blank" rel="noopener">Fourth - AI in restaurants</a></li>
+      <li><a href="https://sevenrooms.com/blog/restaurant-AI/" target="_blank" rel="noopener">SevenRooms blog - restaurant AI</a></li>
+      <li><a href="https://www.momos.com/blog/best-ai-for-restaurants" target="_blank" rel="noopener">Momos - best AI for restaurants</a></li>
+      <li><a href="https://business.yelp.com/resources/articles/restaurant-ai-tools/" target="_blank" rel="noopener">Yelp Business - restaurant AI tools</a></li>
+    </ol>
+
+    <h3>Anthropic Claude Sonnet 4 - secondary references (not live-verified)</h3>
+    <ul>
+      <li>MCA Insight</li>
+      <li>Propel Hospitality</li>
+      <li>AlixPartners / CGA Hospitality Market Monitor</li>
+      <li>IBISWorld UK Restaurants</li>
+      <li>Hospitality Technology 2023</li>
+      <li>Hotel Tech Report 2023</li>
+    </ul>
+
+    <h3>Gemini 2.5 Flash - secondary references (not live-verified)</h3>
+    <ul>
+      <li>Grand View Research</li>
+      <li>MarketsandMarkets</li>
+      <li>Zonal Retail Data Index / CGA by NIQ</li>
+      <li>The Caterer</li>
+      <li>BigHospitality</li>
+      <li>Statista</li>
+      <li>IBISWorld</li>
+    </ul>
+  </div>
+
+  <p style="font-size:0.82rem; color:var(--text-tertiary); font-style:italic; margin-top:24px;">Secondary references from Anthropic and Gemini are not live-verified - they are sources those models cite as their training-data basis. Primary citation lookup is recommended for any hard claim being relied upon in pitch materials.</p>
+
+  <!-- FOOTER -->
+  <div class="footer">
+    <p><a href="nightdraft-deck.html#slide-10">&larr; Return to NightDraft strategic marketing plan</a></p>
+    <p style="margin-top:16px; font-size:0.78rem;">Generated using a multi-AI parallel research workflow. Author: Freddie Chambers. May 2026.</p>
+  </div>
+
+</div>
+
+</body>
+</html>

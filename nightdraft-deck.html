@@ -1701,6 +1701,91 @@
     .slide-num { position: static; display: block; margin-bottom: 0.5rem; }
   }
 
+  /* Slide 10 - Competition & Warfare two-column landscape */
+  .slide10-methodology {
+    background: var(--bg-inset);
+    border-left: 3px solid var(--border-strong);
+    padding: 12px 16px;
+    border-radius: 0 8px 8px 0;
+    margin: 12px 0 24px;
+    font-size: 0.84rem;
+    color: var(--text-secondary);
+    font-style: italic;
+  }
+  .slide10-methodology strong { color: var(--text); font-style: normal; }
+  .slide10-seg-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 4px 14px 4px 14px;
+    padding: 18px 20px;
+  }
+  .slide10-seg-card.amber-tag { border-top: 3px solid var(--amber); }
+  .slide10-seg-card.blue-tag { border-top: 3px solid var(--blue); }
+  .slide10-seg-tag {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.65rem;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+  .slide10-seg-card.amber-tag .slide10-seg-tag { color: var(--amber); }
+  .slide10-seg-card.blue-tag .slide10-seg-tag { color: var(--blue); }
+  .slide10-seg-card h3 {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.05rem;
+    margin: 0 0 14px;
+    color: var(--text);
+  }
+  .slide10-comp-row {
+    border-bottom: 1px solid var(--border);
+    padding: 10px 0;
+  }
+  .slide10-comp-row:last-child { border-bottom: none; }
+  .slide10-comp-name {
+    font-weight: 700;
+    font-size: 0.92rem;
+    margin-bottom: 2px;
+    color: var(--text);
+  }
+  .slide10-comp-role {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.7rem;
+    color: var(--text-tertiary);
+    letter-spacing: 0.05em;
+    margin-bottom: 4px;
+  }
+  .slide10-comp-why {
+    font-size: 0.84rem;
+    color: var(--text-secondary);
+    margin: 0;
+  }
+  .slide10-future-role {
+    background: var(--wine-dim);
+    border-left: 3px solid var(--wine);
+    padding: 14px 18px;
+    border-radius: 0 8px 8px 0;
+    margin: 16px 0;
+    font-size: 0.92rem;
+  }
+  .slide10-future-role strong { color: var(--text); }
+  .slide10-future-role p { margin: 0 0 8px; }
+  .slide10-future-role p:last-child { margin-bottom: 0; }
+  .slide10-future-role .arrow {
+    font-family: 'DM Mono', monospace;
+    color: var(--wine);
+    font-weight: 700;
+  }
+  .slide10-moat-stack {
+    margin: 16px 0 24px;
+    padding: 0;
+  }
+  .slide10-moat-svg {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+
   /* Slide 22 - audio clip cards */
   .slide22-clip-card {
     background: var(--bg-card);
@@ -2589,64 +2674,145 @@
 <section class="slide" id="slide-10">
   <div class="slide-num">Slide 10 / 24</div>
   <div class="eyebrow">Slide 10 &middot; Competition &amp; Warfare</div>
-  <h1>This category did not exist before 2025.</h1>
-  <p class="lede">The technology to deliver it - LLMs that codify a restaurant's playbook and draft in the owner's voice, at indie price points - became commercially viable only in the last 18 months. Legacy booking platforms cannot build this even if they wanted to. NightDraft sits alone at an intersection that did not exist before.</p>
 
-  <div class="subhead">Competitive landscape - Segment A</div>
-  <table>
-    <thead><tr><th>Competitor</th><th>Warfare type</th><th>Why they cannot compete</th></tr></thead>
-    <tbody>
-      <tr><td>OpenTable / SevenRooms / Resy</td><td>Leader (in 1-6)</td><td>Walked away from 8+. No AI/ML product talent. By the time they buy or build, NightDraft owns the playbook library.</td></tr>
-      <tr><td>ChatGPT / Claude (consumer DIY)</td><td>DIY substitute</td><td>No playbook access. No Gmail integration. No learning loop. Katie tried, abandoned.</td></tr>
-      <tr><td>Word doc templates</td><td>DIY status quo</td><td>Rot. Don't learn.</td></tr>
-      <tr><td>Sent-folder copy-paste</td><td>Status quo</td><td>1-in-8 inquiries lost.</td></tr>
-    </tbody>
-  </table>
+  <h1>The platforms left a gap. We're filling it.</h1>
+  <p class="lede">No booking platform handles AI-drafted replies to high-stakes inquiries. The layer is genuinely vacated. NightDraft sits in it - augmenting the manual workflow, not replacing the operator.</p>
 
-  <div class="subhead">Competitive landscape - Segment B</div>
-  <table>
-    <thead><tr><th>Competitor</th><th>Warfare type</th><th>Why they cannot compete</th></tr></thead>
-    <tbody>
-      <tr><td>Hiring a reservations manager per concept</td><td>Status quo (above-band)</td><td>GBP 35-45k/yr per venue. 5 concepts = GBP 200k+. NightDraft = GBP 28,800/group/yr. 10x cheaper.</td></tr>
-      <tr><td>GM time on bookings</td><td>Status quo (de facto)</td><td>Wastes GM time. Inconsistent voice across concepts.</td></tr>
-      <tr><td>Outsourced VA agencies</td><td>Substitute</td><td>No voice fit. Brand-voice damage risk.</td></tr>
-      <tr><td>Generic CRM repurposed (Hubspot)</td><td>DIY workaround</td><td>No hospitality depth. No playbook codification.</td></tr>
-    </tbody>
-  </table>
-
-  <blockquote>
-    "Even sometimes the kind of copying it, putting it into a different platform... I've ended up not doing it."
-    <span class="attr">Katie Exton, Lorne <span class="star">&#9733;</span></span>
-  </blockquote>
-
-  <div class="subhead">NightDraft's position - niche specialist in a structurally vacated segment</div>
-  <p>The leaders have made a deliberate choice to ignore the high-stakes inquiry segment. OpenTable's revenue is per-cover commission on 1-6 volume. The 8+ segment is bespoke, infrequent, and does not fit their model. NightDraft is not a frontal challenger. It is a niche specialist in a segment the leaders cannot enter quickly even if they wanted to.</p>
-
-  <div class="subhead">The dataset is part of the moat</div>
-  <p>Lorne 24-thread dataset (April 2026) is structured, tagged, and pattern-extracted. NightDraft v1 ships with: a 9-template voice library, a 5-register sign-off ladder, an 8-failure-mode operational playbook, a complete 30-80-cover capacity matrix, and a 7-tier pricing matrix - all mined from real customer behaviour. No competitor has this depth of evidence.</p>
-
-  <div class="subhead">The moat - founder + technology window + interface design</div>
-  <div class="card num-card">
-    <div class="num">1</div>
-    <div><h3>Founder-led customer intimacy</h3><p>Lived hospitality experience plus a vertical hospitality network. Founder origin on Slide 2.</p></div>
-  </div>
-  <div class="card num-card">
-    <div class="num">2</div>
-    <div><h3>AI/ML product capability</h3><p>LLM-native build, vibe-coded fast, Anthropic API economics that make GBP 179/mo viable.</p></div>
-  </div>
-  <div class="card num-card">
-    <div class="num">3</div>
-    <div><h3>The interface is the moat</h3><p>Starting at the onboarding call. NightDraft does not ask Katie to write a 30-page rules document. Onboarding starts with an agentic interview: "walk me through your last takeover. What would you do if a 14-cover comes in for a Sunday lunch in August." Each answer becomes a captured rule. The same Jack &amp; Jill long-term context capture pattern.</p></div>
-  </div>
-  <div class="card num-card">
-    <div class="num">4</div>
-    <div><h3>Distribution unfair advantage</h3><p>The warm-network GTM (founder-led, podcast-amplified).</p></div>
+  <div class="slide10-methodology">
+    <strong>Methodology.</strong> Competitive landscape verified May 2026 across three independent AI research providers (Perplexity Sonar Pro, Anthropic Claude Sonnet 4, Google Gemini 2.5 Flash). <a href="competitive-landscape.html" style="color:var(--wine); font-style:normal; font-weight:700;">Read the full research &rarr;</a>
   </div>
 
-  <blockquote>
-    "I'm running a Michelin restaurant. I'm not running an inbox."
-    <span class="attr">Operator-marketer, London group</span>
-  </blockquote>
+  <div class="subhead">Who's competing for each segment</div>
+
+  <div class="grid-2">
+
+    <div class="slide10-seg-card amber-tag">
+      <div class="slide10-seg-tag">Segment A &middot; Indie</div>
+      <h3>Hospitality-Led Indie</h3>
+
+      <div class="slide10-comp-row">
+        <div class="slide10-comp-name">Owner replying manually</div>
+        <div class="slide10-comp-role">Status quo (default)</div>
+        <p class="slide10-comp-why">The workflow we augment, not replace. Owner reads, edits, sends - we make those steps faster. 1-in-8 inquiries currently lost to overflow.</p>
+      </div>
+
+      <div class="slide10-comp-row">
+        <div class="slide10-comp-name">ChatGPT / Claude (DIY)</div>
+        <div class="slide10-comp-role">DIY substitute</div>
+        <p class="slide10-comp-why">No playbook access, no Gmail integration, no learning loop. Katie tried, abandoned.</p>
+      </div>
+
+      <div class="slide10-comp-row">
+        <div class="slide10-comp-name">Hospitality VAs (GBP 15-40/hr)</div>
+        <div class="slide10-comp-role">Manual substitute</div>
+        <p class="slide10-comp-why">No voice fit, brand-damage risk. Stranger writing in your voice.</p>
+      </div>
+
+      <div class="slide10-comp-row">
+        <div class="slide10-comp-name">OpenTable / SevenRooms / Resy</div>
+        <div class="slide10-comp-role">Platform leader (1-6)</div>
+        <p class="slide10-comp-why">Walked away from 8+. No drafting layer today. Could bolt on in 18-36 months - partnership preferable to confrontation.</p>
+      </div>
+
+      <div class="slide10-comp-row">
+        <div class="slide10-comp-name">Voice AI (Hostie, Aedan Rose, Loman)</div>
+        <div class="slide10-comp-role">Adjacent AI</div>
+        <p class="slide10-comp-why">Phone-only. None do email drafting. Aedan Rose has broadest AI surface area - monitor.</p>
+      </div>
+    </div>
+
+    <div class="slide10-seg-card blue-tag">
+      <div class="slide10-seg-tag">Segment B &middot; Group</div>
+      <h3>Operator-Marketer Group</h3>
+
+      <div class="slide10-comp-row">
+        <div class="slide10-comp-name">GM time on bookings</div>
+        <div class="slide10-comp-role">Status quo (default)</div>
+        <p class="slide10-comp-why">Wastes GM time. Inconsistent voice across concepts. The workflow we augment.</p>
+      </div>
+
+      <div class="slide10-comp-row">
+        <div class="slide10-comp-name">Hiring reservations manager per concept</div>
+        <div class="slide10-comp-role">Status quo (above-band)</div>
+        <p class="slide10-comp-why">GBP 35-45k/yr per venue. 5 concepts = GBP 200k+. NightDraft = GBP 28,800/group/yr. 10x cheaper.</p>
+      </div>
+
+      <div class="slide10-comp-row">
+        <div class="slide10-comp-name">Outsourced VA agencies</div>
+        <div class="slide10-comp-role">Substitute</div>
+        <p class="slide10-comp-why">No voice fit. Brand-voice damage risk across multiple concepts.</p>
+      </div>
+
+      <div class="slide10-comp-row">
+        <div class="slide10-comp-name">Generic CRM (Hubspot)</div>
+        <div class="slide10-comp-role">DIY workaround</div>
+        <p class="slide10-comp-why">No hospitality depth. No playbook codification.</p>
+      </div>
+
+      <div class="slide10-comp-row">
+        <div class="slide10-comp-name">SevenRooms expanding</div>
+        <div class="slide10-comp-role">Future risk</div>
+        <p class="slide10-comp-why">Has CRM + hospitality data. Highest-probability future entrant. Partnership preferable.</p>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="slide10-future-role">
+    <strong>Our role today, and where we're going.</strong>
+    <p style="margin-top:8px;"><span class="arrow">Today &rarr;</span> Niche specialist in a vacated layer. Owner-augmenting, not platform-replacing. Focus: own the inquiry-drafting layer for 8+ bookings before any platform decides it's worth building.</p>
+    <p><span class="arrow">By 2028 &rarr;</span> Category-defining first-mover in "booking inquiry intelligence." Natural integration partner for SevenRooms / Tock / OpenTable - or eventual fuller booking solution for groups specifically, where the multi-venue playbook depth becomes a moat the platforms can't replicate quickly.</p>
+  </div>
+
+  <div class="subhead">Why this is defensible - the moat</div>
+
+  <p style="font-size:0.92rem; color:var(--text-secondary); margin: 0 0 12px;">The LLM is commodity. The four layers above it are what compound and what no platform can quickly replicate.</p>
+
+  <div class="slide10-moat-stack">
+    <svg class="slide10-moat-svg" viewBox="0 0 720 380" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="NightDraft moat stack diagram - LLM commodity at top, four defensible layers below">
+
+      <rect x="20" y="20" width="600" height="48" rx="6" fill="#e8e2d9" stroke="#d4cdc2" stroke-width="1" stroke-dasharray="3 3" />
+      <text x="40" y="42" font-family="DM Mono, monospace" font-size="11" fill="#7a7067" font-weight="700" letter-spacing="0.14em">00 &middot; LLM CALL</text>
+      <text x="40" y="58" font-family="DM Sans, sans-serif" font-size="12" fill="#7a7067" font-style="italic">Commodity &middot; the cheap part &middot; replaceable when a better model ships</text>
+
+      <rect x="20" y="76" width="600" height="56" rx="6" fill="#c0608d" />
+      <text x="40" y="100" font-family="DM Mono, monospace" font-size="11" fill="#ffffff" font-weight="700" letter-spacing="0.14em">01 &middot; CODIFIED PLAYBOOK</text>
+      <text x="40" y="120" font-family="DM Sans, sans-serif" font-size="13" fill="#ffffff">24 Lorne threads &middot; party-size tiers, sign-off ladder, cancellation rules &middot; structured data</text>
+
+      <rect x="20" y="140" width="600" height="56" rx="6" fill="#a63a6a" />
+      <text x="40" y="164" font-family="DM Mono, monospace" font-size="11" fill="#ffffff" font-weight="700" letter-spacing="0.14em">02 &middot; AGENTIC ONBOARDING</text>
+      <text x="40" y="184" font-family="DM Sans, sans-serif" font-size="13" fill="#ffffff">30-min conversational capture &middot; operator delivers playbook unconsciously (Slide 22)</text>
+
+      <rect x="20" y="204" width="600" height="56" rx="6" fill="#8b2252" />
+      <text x="40" y="228" font-family="DM Mono, monospace" font-size="11" fill="#ffffff" font-weight="700" letter-spacing="0.14em">03 &middot; DISTRIBUTION</text>
+      <text x="40" y="248" font-family="DM Sans, sans-serif" font-size="13" fill="#ffffff">Founder warm network &middot; Cool 5 (Slide 19) &middot; unfair access no AI can buy</text>
+
+      <rect x="20" y="268" width="600" height="68" rx="6" fill="#b8860b" />
+      <rect x="20" y="268" width="6" height="68" fill="#8b6308" />
+      <text x="40" y="292" font-family="DM Mono, monospace" font-size="11" fill="#ffffff" font-weight="700" letter-spacing="0.14em">04 &middot; EDIT-LOGGING DATA FLYWHEEL  &middot;  THE CORE MOAT</text>
+      <text x="40" y="312" font-family="DM Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Every correction and every email sent makes the system smarter</text>
+      <text x="40" y="328" font-family="DM Sans, sans-serif" font-size="11.5" fill="#ffffff" opacity="0.92">Private per restaurant &middot; compounds monthly &middot; platforms can't see it</text>
+
+      <line x1="635" y1="22" x2="635" y2="66" stroke="#a69e94" stroke-width="1.5"/>
+      <line x1="631" y1="22" x2="639" y2="22" stroke="#a69e94" stroke-width="1.5"/>
+      <line x1="631" y1="66" x2="639" y2="66" stroke="#a69e94" stroke-width="1.5"/>
+      <text x="650" y="48" font-family="DM Sans, sans-serif" font-size="11" fill="#7a7067" font-weight="700">20%</text>
+
+      <line x1="635" y1="78" x2="635" y2="334" stroke="#8b2252" stroke-width="1.5"/>
+      <line x1="631" y1="78" x2="639" y2="78" stroke="#8b2252" stroke-width="1.5"/>
+      <line x1="631" y1="334" x2="639" y2="334" stroke="#8b2252" stroke-width="1.5"/>
+      <text x="650" y="200" font-family="DM Sans, sans-serif" font-size="11" fill="#8b2252" font-weight="700">80%</text>
+      <text x="650" y="216" font-family="DM Sans, sans-serif" font-size="11" fill="#8b2252" font-weight="700">THE MOAT</text>
+
+      <text x="320" y="358" font-family="DM Mono, monospace" font-size="10" fill="#7a7067" text-anchor="middle" letter-spacing="0.14em">DEEPEST &middot; HARDEST TO REPLICATE &middot; COMPOUNDS DAILY</text>
+
+    </svg>
+  </div>
+
+  <div class="callout wine">
+    <strong>Junestrand's 80/20 rule, applied.</strong>
+    <p style="margin-top:6px;">Max Junestrand (Legora, &dollar;200M raised) on vertical AI: <em>"80% comes from building normal software around the models. All the scaffolding, all the ways users can actually interact with the system."</em> The model is 20%. NightDraft is what that 80% looks like for restaurant booking inquiries.</p>
+  </div>
 </section>
 
 <!-- ============ SLIDE 9 - DIVIDER: MARKETING STRATEGY ============ -->
