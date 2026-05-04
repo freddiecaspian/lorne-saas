@@ -3216,14 +3216,6 @@
     </table>
   </div>
 
-  <div class="callout">
-    <strong>Aside - how this was designed, with no budget.</strong>
-    <p style="margin-top:0.4rem;">No designer was hired. Instead: a self-built fresh-context evaluator loop. Each iteration <strong>a brand-new AI agent is spawned</strong> with no access to the source code or prior iterations - it only sees the live page via screenshots and Playwright interaction. That isolation matters: it stops the generator (the model writing the code) from grading its own work. <strong>The grader has no memory of who built what.</strong></p>
-    <p style="margin-top:0.4rem;">The evaluator scores against four weighted criteria with <strong>anchored calibration</strong> verbatim in every prompt: 5/10 = generic SaaS, 7/10 = made for this product, 9/10 = could only be for this product. Anchoring is the lever - without it, AI evaluators inflate to 7+ on everything.</p>
-    <p style="margin-top:0.4rem;">Decision rule per iteration: <strong>refine</strong> (small fixes) or <strong>pivot</strong> (change the layout, metaphor, or density - not just hex values). Each iteration committed to git, so any can be rolled back if the next is worse.</p>
-    <p style="margin-top:0.4rem;">Iterated until all four scores cleared 8/10. The slide you're looking at is the surviving direction.</p>
-    <p style="margin-top:0.5rem;"><em>Visual identity assets across the deck (Waymo illustration, podcast ad, brand mockups) generated with Gemini and ElevenLabs using a curated brand-system bundle. GenAI used in service of the brand, not in place of it.</em></p>
-  </div>
 </section>
 
 <!-- ============ SLIDE 15 - REFERENCE PRICE ============ -->
